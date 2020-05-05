@@ -77,7 +77,7 @@ il.initialise_data()
 #alf.plot_MST_histogram(title = "Statistical MST histogram")
 #ab.plot_MST_histogram(title = "Single MST histogram")
 #il.plot_MST_histogram(title = "Single MST histogram")
-# compute_MST_histogram works partially : no title AND very slow for Abacus (more than 1 min)
+# plot_MST_histogram works partially : no title AND very slow for Abacus (more than 1 min)
 
 #alf.plot_MST_2D(title = "2D plot of ALF MST")
 #ab.plot_MST_2D(title = "2D plot of Abacus MST")
