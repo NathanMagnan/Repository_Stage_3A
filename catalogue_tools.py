@@ -1,5 +1,6 @@
 ## Imports
 import numpy as np
+import mistree as mist
 
 import sys
 import os
@@ -13,7 +14,6 @@ import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex = True)
 from mpl_toolkits.mplot3d import Axes3D
-"""Imports To Be Tested"""
 
 ## Catalogue Class
 class Catalogue():
@@ -38,15 +38,12 @@ class Catalogue():
         self.MST_histogram = None # dict
     
     def initialise_data(self):
-        """To Be Tested"""
         return("initialise_data To Be Done for " + self.type)
     
     def compute_2PCF(self):
-        """To Be Tested"""
         return("compute_2PCF To Be Done for " + self.type)
     
     def extract_reliable_2PCF(self, min_reliable, max_reliable, bin_min = None, bin_max = None, n_bin = None):
-        """To Be Tested"""
         if (self.Mean_2PCF is None):
             self.compute_2PCF(bin_min, bin_max, n_bin)
         
@@ -55,8 +52,8 @@ class Catalogue():
         
         Bins_reliable = []
         Mean_2PCF_reliable = []
-        Std_xi_reliable = []
-        for i in range(self.parameters_2PCF(['n_bin'])):
+        Std_2PCF_reliable = []
+        for i in range(self.parameters_2PCF['n_bin']):
             if ((self.Bins[i] > min_reliable) and (self.Bins[i] < max_reliable)):
                 Bins_reliable.append(self.Bins[i])
                 Mean_2PCF_reliable.append(self.Mean_2PCF[i])
@@ -66,13 +63,12 @@ class Catalogue():
         self.Std_2PCF_reliable = np.asarray(Std_2PCF_reliable)
     
     def compute_MST(self):
-        """To Be Tested"""
-        if (self.count is None):
+        if (self.CM is None):
             self.initialise_data()
         
-        X = np.asarray(self.CM[:-1][0])
-        Y = np.asarray(self.CM[:-1][1])
-        Z = np.asarray(self.CM[:-1][2])
+        X = np.asarray(self.CM[:, 0])
+        Y = np.asarray(self.CM[:, 1])
+        Z = np.asarray(self.CM[:, 2])
         
         self.MST = mist.GetMST(x = X, y = Y, z = Z)
     
@@ -81,8 +77,7 @@ class Catalogue():
         return("compute_MST_histogram To Be Done for " + self.type)
     
     def plot_2D(self, title = " "): # slice et Z < 50 Mpc / h
-        """To Be Tested"""
-        if (self.count is None):
+        if (self.CM is None):
             self.initialise_data()
         
         plt.figure()
@@ -91,7 +86,7 @@ class Catalogue():
         plt.xlabel("$X [h^{-1} Mpc]$")
         plt.ylabel("$Y [h^{-1} Mpc]$")
         
-        X_reduced, Y_reduced, Z_reduced = [], [], []
+        X_slice, Y_slice, Z_slice = [], [], []
         for i in range(self.count):
             if (self.CM[i][2] <= 50):
                 X_slice.append(self.CM[i][0])
@@ -102,11 +97,10 @@ class Catalogue():
         Z_slice = np.asarray(Z_slice)
         plt.scatter(X_slice, Y_slice, c = Z_slice, s = 0.05, cmap = 'Greys')
         
-        plt.show()
+        plt.show(block = True)
     
     def plot_3D(self, title = " "): # maximum of 100 000 points
-        """To Be Tested"""
-        if (self.count is None):
+        if (self.CM is None):
             self.initialise_data()
         
         fig = plt.figure()
@@ -129,11 +123,10 @@ class Catalogue():
         Z_reduced = np.asarray(Z_reduced)
         ax.scatter(X_reduced, Y_reduced, Z_reduced, s = 0.05, color = 'k')
         
-        fig.show()
+        plt.show(block = True)
     
     def plot_2PCF(self, title = " ", full_output = True, bin_min = None, bin_max = None, n_bin = None, min_reliable = None, max_reliable = None):
         """Il faudrait adapter cette fonction pour tracer plusieurs 2PCF sur un seul graphe"""
-        """To Be Tested"""
         fig = plt.figure()
         
         plt.title(title)
@@ -149,20 +142,20 @@ class Catalogue():
             plt.plot(self.Bins, self.Mean_2PCF - self.Std_2PCF, color = self.color, linestyle = '--')
             plt.plot(self.Bins, self.Mean_2PCF + self.Std_2PCF, color = self.color, linestyle = '--')
         else:
-            if (self.Mean_2PCF_realiable is None):
+            if (self.Mean_2PCF_reliable is None):
                 self.extract_reliable_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin = n_bin, min_reliable = min_reliable, max_reliable = max_reliable)
             plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable, self.color)
             plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable - self.Std_2PCF_reliable, color = self.color, linestyle = '--')
             plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable + self.Std_2PCF_reliable, color = self.color, linestyle = '--')
         
-        fig.show()
+        plt.show(block = True)
     
     def plot_MST_2D(self, title = " "): # slice at Z < 50 Mpc / h
         """To Be Tested"""
         if (self.MST is None):
             self.compute_MST()
         
-        plt.figure()
+        fig = plt.figure()
         
         plt.title(title)
         plt.xlabel('$X [h^{-1} Mpc]$')
@@ -182,13 +175,13 @@ class Catalogue():
         
         # plotting MST edges:
         d, l, b, s, l_index, b_index = self.MST.get_stats(include_index = True)
-        for i in range(self.count - 1):
-            if ((self.CM[l_index[i][0]][2] <= 50) and (self.CM[l_index[i][1]][2] <= 50):
-                X = [self.CM[l_index[i][0]][0], self.CM[l_index[i][1]][0]]
-                Y = [self.CM[l_index[i][0]][1], self.CM[l_index[i][1]][1]]
+        for i in range(np.shape(l_index)[1]): # safer than count - 1 because with the k-nearest neighbors approach the MST might be non - connected
+            if ((self.CM[l_index[0][i]][2] <= 50) and (self.CM[l_index[1][i]][2] <= 50)):
+                X = [self.CM[l_index[0][i]][0], self.CM[l_index[1][i]][0]]
+                Y = [self.CM[l_index[0][i]][1], self.CM[l_index[1][i]][1]]
                 plt.plot(X, Y, color = 'k', linewidth = 0.5)
         
-        fig.show()
+        plt.show(block = True)
     
     def plot_MST_3D(self, title = " "): # maximum of 100 000 points
         """To Be Tested"""
@@ -218,29 +211,25 @@ class Catalogue():
         
         # plotting MST edges
         d, l, b, s, l_index, b_index = self.MST.get_stats(include_index = True)
-        for i in range(self.count - 1):
-            if ((np.isin(l_index[i][0], Indexes_kept) == True) and (np.isin(l_index[i][1], Indexes_kept) == True)):
-                X = [self.CM[l_index[i][0]][0], self.CM[l_index[i][1]][0]]
-                Y = [self.CM[l_index[i][0]][1], self.CM[l_index[i][1]][1]]
-                Z = [self.CM[l_index[i][0]][2], self.CM[l_index[i][1]][2]]
+        for i in range(np.shape(l_index)[1]):
+            if ((np.isin(l_index[0][i], Indexes_kept) == True) and (np.isin(l_index[1][i], Indexes_kept) == True)):
+                X = [self.CM[l_index[0][i]][0], self.CM[l_index[1][i]][0]]
+                Y = [self.CM[l_index[0][i]][1], self.CM[l_index[1][i]][1]]
+                Z = [self.CM[l_index[0][i]][2], self.CM[l_index[1][i]][2]]
                 ax.plot3D(X, Y, Z, color = 'k', linewidth = 2)
         
-        plt.show()
+        plt.show(block = True)
     
     def plot_MST_histogram(self, title = " "):
         """To Be Tested"""
         if (self.MST_histogram is None):
             self.compute_MST_histogram() # will yield non-statistical results for ALF as default behaviour
         
-        plt.fig()
-        
-        plt.title(title)
-        
         plot_histograms = mist.PlotHistMST()
         plot_histograms.read_mst(self.MST_histogram, label = self.type)
         plot_histograms.plot(figsize = (9, 4))
         
-        plt.show()
+        plt.show(block = True)
     
     def save(self):
         return("save To Be Done for " + self.type)
@@ -255,25 +244,37 @@ class Catalogue_Illustris(Catalogue):
         self.type = "Illustris 1"
         self.color = 'green'
         self.basePath = basePath
-        sel.simulation_number = simulation_number
+        self.simulation_number = simulation_number
+        
+        self.count = None # float -  number of galaxies
+        self.box_size = None # float - Mpc / h
+        self.CM = None # np.array(count, 3) - Mpc / h
+        self.h = None # float - km/s / Mpc
+        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin, min_reliable, max_reliable) - first two and last two in Mpc / h
+        self.Bins = None # np.array(n_bin, 1) - Mpc / h
+        self.Mean_2PCF = None # np.array(n_bin, 1)
+        self.Std_2PCF = None # np.array(n_bin, 1)
+        self.Bins_reliable = None # np.array(? , 1) # Mpc / h
+        self.Mean_2PCF_reliable = None # np.array(?, 1)
+        self.Std_2PCF_reliable = None # np.array(?, 1)
+        self.MST = None # mist.mst
+        self.MST_histogram = None # dict
     
     def initialise_data(self):
-        """To Be Tested"""
         self.count, self.box_size, self.CM, self.h = il.get_data(self.basePath, self.simulation_number)
     
     def compute_2PCF(self, bin_min, bin_max, n_bin):
-        """To Be Tested"""
-        if (self.count is None):
+        if (self.CM is None):
             self.initialise_data()
         self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin' : n_bin, 'min_reliable' : None, 'max_reliable' : None}
         self.Bins, self.Mean_2PCF, self.Std_2PCF = il.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin = n_bin, box_size = self.box_size)
     
-    def compute_MST_histogram():
+    def compute_MST_histogram(self):
         """To Be Tested"""
         if (self.MST is None):
             self.compute_MST()
         
-        self.MST_histogram = il.get_MST_hisogram(MST = self.MST)
+        self.MST_histogram = il.get_MST_histogram(MST = self.MST)
     
 
 class Catalogue_Abacus(Catalogue):
@@ -282,26 +283,38 @@ class Catalogue_Abacus(Catalogue):
         self.type = "Abacus Rockstar"
         self.color = 'blue'
         self.basePath = basePath
+        
+        self.count = None # float -  number of galaxies
+        self.box_size = None # float - Mpc / h
+        self.CM = None # np.array(count, 3) - Mpc / h
+        self.h = None # float - km/s / Mpc
+        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin, min_reliable, max_reliable) - first two and last two in Mpc / h
+        self.Bins = None # np.array(n_bin, 1) - Mpc / h
+        self.Mean_2PCF = None # np.array(n_bin, 1)
+        self.Std_2PCF = None # np.array(n_bin, 1)
+        self.Bins_reliable = None # np.array(? , 1) # Mpc / h
+        self.Mean_2PCF_reliable = None # np.array(?, 1)
+        self.Std_2PCF_reliable = None # np.array(?, 1)
+        self.MST = None # mist.mst
+        self.MST_histogram = None # dict
     
     def initialise_data(self):
-        """To Be Tested"""
         self.inputPath = self.basePath + '/header'
         self.dataPath = self.basePath
         self.count, self.box_size, self.CM, self.h = ab.get_data(self.dataPath, self.inputPath)
     
     def compute_2PCF(self, bin_min, bin_max, n_bin):
-        """To Be Tested"""
-        if (self.count is None):
+        if (self.CM is None):
             self.initialise_data()
         self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin' : n_bin, 'min_reliable' : None, 'max_reliable' : None}
         self.Bins, self.Mean_2PCF, self.Std_2PCF = ab.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin = n_bin, box_size = self.box_size)
     
-    def compute_MST_histogram():
-        """To Be Tested"""
-        if (self.MST is None):
-            self.compute_MST()
-        
-        self.MST_histogram = ab.get_MST_hisogram(MST = self.MST)
+    def compute_MST_histogram(self):
+    	"""To Be Tested"""
+    	if (self.MST is None):
+    		self.compute_MST()
+    	
+    	self.MST_histogram = ab.get_MST_histogram(MST = self.MST)
 
 
 class Catalogue_ALF(Catalogue):
@@ -317,31 +330,40 @@ class Catalogue_ALF(Catalogue):
         self.count = count
         self.box_size = box_size
         self.h = 1
+        
+        self.CM = None # np.array(count, 3) - Mpc / h
+        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin, min_reliable, max_reliable) - first two and last two in Mpc / h
+        self.Bins = None # np.array(n_bin, 1) - Mpc / h
+        self.Mean_2PCF = None # np.array(n_bin, 1)
+        self.Std_2PCF = None # np.array(n_bin, 1)
+        self.Bins_reliable = None # np.array(? , 1) # Mpc / h
+        self.Mean_2PCF_reliable = None # np.array(?, 1)
+        self.Std_2PCF_reliable = None # np.array(?, 1)
+        self.MST = None # mist.mst
+        self.MST_histogram = None # dict
     
     def initialise_data(self):
-        """To Be Tested"""
-        self.CM = alf.get_data(count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, box_size = self.boxe_size, mode = '3D')
+        self.CM = alf.get_data(count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, box_size = self.box_size, mode = '3D')
     
     def compute_2PCF(self, bin_min, bin_max, n_bin):
-        """To Be Tested"""
-        if (self.count is None):
+        if (self.CM is None):
             self.initialise_data()
         
         self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin' : n_bin, 'min_reliable' : None, 'max_reliable' : None}
         self.Bins, self.Mean_2PCF, self.Std_2PCF = alf.get_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin = n_bin, box_size = self.box_size, count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, mode = '3D')
     
-    def compute_MST_histogram(mode_MST = 'SingleMST'): # Can be either for the current ALF distribution, or for the statistical average ALF with the same parameters
+    def compute_MST_histogram(self, mode_MST = 'SingleMST'): # Can be either for the current ALF distribution, or for the statistical average ALF with the same parameters
         """To Be Tested"""
         if (mode_MST == 'SingleMST'):
             if (self.MST is None):
                 self.compute_MST()
         
-            self.MST_histogram = alf.get_MST_hisogram(MST = self.MST, mode_MST = 'SingleMST')
+            self.MST_histogram = alf.get_MST_histogram(MST = self.MST, mode_MST = 'SingleMST')
         else:
             if (self.MST is None):
                 self.compute_MST()
             
-            self.MST_histogaram = alf.get_MST_histrogram(mode_MST = mode_MST, count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, box_size = self.boxe_size, mode = '3D')
+            self.MST_histogram = alf.get_MST_histogram(mode_MST = mode_MST, count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, box_size = self.box_size, mode = '3D')
 
 
 ## Tools

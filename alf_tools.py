@@ -7,9 +7,8 @@ def get_data(count, alpha, beta, gamma, t0, ts, box_size, mode):
     halos_unbiased = {'haloCM' : []}
     for i in range(count):
         halos_unbiased['haloCM'].append(np.asarray([X[i], Y[i], Z[i]]))
-    return(halos_unbiased)
     
-    return(halos_unbiased['haloCM'])
+    return(np.asarray(halos_unbiased['haloCM']))
 
 def get_2PCF(bin_min, bin_max, n_bin, box_size, count, alpha, beta, gamma, t0, ts, mode):
     Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin)
@@ -48,7 +47,7 @@ def get_2PCF(bin_min, bin_max, n_bin, box_size, count, alpha, beta, gamma, t0, t
     
     return(Bins, Mean_xi, Std_xi)
 
-def get_MST_histrogram(mode_MST, MST = None, count = None, alpha = None, beta = None, gamma = None, t0 = None, ts = None, box_size = None, mode = None):
+def get_MST_histogram(mode_MST, MST = None, count = None, alpha = None, beta = None, gamma = None, t0 = None, ts = None, box_size = None, mode = None):
     histogram = mist.HistMST()
     histogram.setup(usenorm = False, uselog = True)
     if (mode_MST == 'SingleMST'):
@@ -57,11 +56,11 @@ def get_MST_histrogram(mode_MST, MST = None, count = None, alpha = None, beta = 
     else:
         histogram.start_group()
         
-        for i in range(50):
+        for i in range(5):
             X, Y, Z = mist.get_adjusted_levy_flight(size = count, alpha = alpha, beta = beta, gamma = gamma, t_0 = t0, t_s = ts, box_size = box_size, mode = mode)
             
             MST = mist.GetMST(x = X, y = Y, z = Z)
             d, l, b, s, l_index, b_index = MST.get_stats(include_index=True)
             _hist = histogram.get_hist(d, l, b, s)
         
-        return(histogram_uniform.end_group())
+        return(histogram.end_group())

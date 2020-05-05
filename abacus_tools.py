@@ -2,8 +2,15 @@ import numpy as np
 import treecorr as treecorr
 import mistree as mist
 
+import sys
+import os
+sys.path.append("/home/astro/magnan")
+from AbacusCosmos import Halos
+from AbacusCosmos import InputFile
+os.chdir('/home/astro/magnan')
+
 def get_data(dataPath, inputPath):
-    cat = Halos.make_catalog_from_dir(dirname = data_Path, load_subsamples = False, load_pids = False)
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
     param = InputFile.InputFile(fn = inputPath)
     halos = cat.halos
     box_size = param.get('BoxSize')
@@ -18,14 +25,14 @@ def get_data(dataPath, inputPath):
             halos_unbiased['haloID'].append(i)
             halos_unbiased['haloCM'].append(halos['pos'][i])
     
-    return(halos_unbiased['count'], box_size, halos_unbiased['haloCM'], h)
+    return(halos_unbiased['count'], box_size, np.asarray(halos_unbiased['haloCM']), h)
 
 def get_2PCF(input_data, bin_min, bin_max, n_bin, box_size):
     Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin)
     
-    X = input_data[:-1, 0]
-    Y = input_data[:-1, 1]
-    Z = input_data[:-1, 2]
+    X = input_data[:, 0]
+    Y = input_data[:, 1]
+    Z = input_data[:, 2]
     
     data = treecorr.Catalog(x = X, y = Y, z = Z)
     dd = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin)
@@ -60,7 +67,7 @@ def get_2PCF(input_data, bin_min, bin_max, n_bin, box_size):
     
     return(Bins, Mean_xi, Std_xi)
 
-def get_MST_histrogram(MST):
+def get_MST_histogram(MST):
     d, l, b, s, l_index, b_index = MST.get_stats(include_index = True)
     histogram = mist.HistMST()
     histogram.setup(usenorm = False, uselog = True)
