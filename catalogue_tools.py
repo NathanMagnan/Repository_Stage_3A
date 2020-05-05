@@ -25,11 +25,16 @@ class Catalogue():
         self.box_size = None # float - Mpc / h
         self.CM = None # np.array(count, 3) - Mpc / h
         self.h = None # float - km/s / Mpc
+        self.Masses # float - M_sun / h
         
-        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin, min_reliable, max_reliable) - first two and last two in Mpc / h
-        self.Bins = None # np.array(n_bin, 1) - Mpc / h
-        self.Mean_2PCF = None # np.array(n_bin, 1)
-        self.Std_2PCF = None # np.array(n_bin, 1)
+        self.parameters_HMF = None #dict(bin_min_HMF, bin_max_HMF, n_bin_HMF) - first two in M_sun / h
+        self.Bins_HMF = None # np.array(n_bin_HMF, 1)
+        self.HMF = None # np.array(n_bin_HMF, 1)
+        
+        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin_2PCF, min_reliable, max_reliable) - first two and last two in Mpc / h
+        self.Bins = None # np.array(n_bin_2PCF, 1) - Mpc / h
+        self.Mean_2PCF = None # np.array(n_bin_2PCF, 1)
+        self.Std_2PCF = None # np.array(n_bin_2PCF, 1)
         self.Bins_reliable = None # np.array(? , 1) # Mpc / h
         self.Mean_2PCF_reliable = None # np.array(?, 1)
         self.Std_2PCF_reliable = None # np.array(?, 1)
@@ -38,14 +43,24 @@ class Catalogue():
         self.MST_histogram = None # dict
     
     def initialise_data(self):
+        """ To Be Tested"""
         return("initialise_data To Be Done for " + self.type)
+    
+    def compute_HMF(self, bin_min_HMF, bin_max_HMF, n_bin_HMF): # does not make much sense for an ALF since it does not include any mass
+        """To Be Tested"""
+        if (self.Masses is None):
+            self.initialise_data()
+        
+        self.parameters_HMF = {'bin_min_HMF' : bin_min_HMF, 'bin_max_HMF' : bin_max_HMF, 'n_bin_HMF' : n_bin_HMF}
+        self.Bins_HMF = np.logspace(np.log10(bin_min_HMF), np.log10(bin_max_HMF), n_bin_HMF)
+        self.HMF, bins, patches = plt.hist(self.Masses, bins = self.Bins_HMF, log = True) # here bins should contains one element too many
     
     def compute_2PCF(self):
         return("compute_2PCF To Be Done for " + self.type)
     
-    def extract_reliable_2PCF(self, min_reliable, max_reliable, bin_min = None, bin_max = None, n_bin = None):
+    def extract_reliable_2PCF(self, min_reliable, max_reliable, bin_min = None, bin_max = None, n_bin_2PCF = None):
         if (self.Mean_2PCF is None):
-            self.compute_2PCF(bin_min, bin_max, n_bin)
+            self.compute_2PCF(bin_min, bin_max, n_bin_2PCF)
         
         self.parameters_2PCF['min_reliable'] = min_reliable
         self.parameters_2PCF['max_reliable'] = max_reliable
@@ -53,7 +68,7 @@ class Catalogue():
         Bins_reliable = []
         Mean_2PCF_reliable = []
         Std_2PCF_reliable = []
-        for i in range(self.parameters_2PCF['n_bin']):
+        for i in range(self.parameters_2PCF['n_bin_2PCF']):
             if ((self.Bins[i] > min_reliable) and (self.Bins[i] < max_reliable)):
                 Bins_reliable.append(self.Bins[i])
                 Mean_2PCF_reliable.append(self.Mean_2PCF[i])
@@ -125,8 +140,25 @@ class Catalogue():
         
         plt.show(block = True)
     
-    def plot_2PCF(self, title = " ", full_output = True, bin_min = None, bin_max = None, n_bin = None, min_reliable = None, max_reliable = None):
-        """Il faudrait adapter cette fonction pour tracer plusieurs 2PCF sur un seul graphe"""
+    def plot_HMF(self, bin_min_HMF = None, bin_max_HMF = None, n_bin_HMF = None):
+        """To Be Tested"""
+        if (self.HMF is None):
+            self.compute_HMF(bin_min_HMF = bin_min_HMF, bin_max_HMF = bin_max_HMF, n_bin_HMF = n_bin_HMF)
+        
+        fig = plt.figure()
+        
+        plt.title(title)
+        plt.xlabel("Mass [$M_{\odot}$]")
+        plt.ylabel("Count")
+        plt.xscale('log')
+        plt.yscale('log')
+        
+        plt.plot(self.Bins_HMF, self.HMF, color = self.color)
+        
+        plt.show(block = True)
+        
+    
+    def plot_2PCF(self, title = " ", full_output = True, bin_min = None, bin_max = None, n_bin_2PCF = None, min_reliable = None, max_reliable = None):
         fig = plt.figure()
         
         plt.title(title)
@@ -137,13 +169,13 @@ class Catalogue():
         
         if (full_output == True):
             if (self.Mean_2PCF is None):
-                self.compute_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin = n_bin)
+                self.compute_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF)
             plt.plot(self.Bins, self.Mean_2PCF, self.color)
             plt.plot(self.Bins, self.Mean_2PCF - self.Std_2PCF, color = self.color, linestyle = '--')
             plt.plot(self.Bins, self.Mean_2PCF + self.Std_2PCF, color = self.color, linestyle = '--')
         else:
             if (self.Mean_2PCF_reliable is None):
-                self.extract_reliable_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin = n_bin, min_reliable = min_reliable, max_reliable = max_reliable)
+                self.extract_reliable_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, min_reliable = min_reliable, max_reliable = max_reliable)
             plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable, self.color)
             plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable - self.Std_2PCF_reliable, color = self.color, linestyle = '--')
             plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable + self.Std_2PCF_reliable, color = self.color, linestyle = '--')
@@ -151,7 +183,6 @@ class Catalogue():
         plt.show(block = True)
     
     def plot_MST_2D(self, title = " "): # slice at Z < 50 Mpc / h
-        """To Be Tested"""
         if (self.MST is None):
             self.compute_MST()
         
@@ -184,7 +215,6 @@ class Catalogue():
         plt.show(block = True)
     
     def plot_MST_3D(self, title = " "): # maximum of 100 000 points
-        """To Be Tested"""
         if (self.MST is None):
             self.compute_MST()
         
@@ -221,7 +251,6 @@ class Catalogue():
         plt.show(block = True)
     
     def plot_MST_histogram(self, title = " "):
-        """To Be Tested"""
         if (self.MST_histogram is None):
             self.compute_MST_histogram() # will yield non-statistical results for ALF as default behaviour
         
@@ -250,24 +279,31 @@ class Catalogue_Illustris(Catalogue):
         self.box_size = None # float - Mpc / h
         self.CM = None # np.array(count, 3) - Mpc / h
         self.h = None # float - km/s / Mpc
-        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin, min_reliable, max_reliable) - first two and last two in Mpc / h
-        self.Bins = None # np.array(n_bin, 1) - Mpc / h
-        self.Mean_2PCF = None # np.array(n_bin, 1)
-        self.Std_2PCF = None # np.array(n_bin, 1)
+        self.Masses = None # float - M_sun / h
+        
+        self.parameters_HMF = None #dict(bin_min_HMF, bin_max_HMF, n_bin_HMF) - first two in M_sun / h
+        self.Bins_HMF = None # np.array(n_bin_HMF, 1)
+        self.HMF = None # np.array(n_bin_HMF, 1)
+        
+        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin_2PCF, min_reliable, max_reliable) - first two and last two in Mpc / h
+        self.Bins = None # np.array(n_bin_2PCF, 1) - Mpc / h
+        self.Mean_2PCF = None # np.array(n_bin_2PCF, 1)
+        self.Std_2PCF = None # np.array(n_bin_2PCF, 1)
         self.Bins_reliable = None # np.array(? , 1) # Mpc / h
         self.Mean_2PCF_reliable = None # np.array(?, 1)
         self.Std_2PCF_reliable = None # np.array(?, 1)
+        
         self.MST = None # mist.mst
         self.MST_histogram = None # dict
     
     def initialise_data(self):
-        self.count, self.box_size, self.CM, self.h = il.get_data(self.basePath, self.simulation_number)
+        self.count, self.box_size, self.CM, self.h, self.Masses = il.get_data(self.basePath, self.simulation_number)
     
-    def compute_2PCF(self, bin_min, bin_max, n_bin):
+    def compute_2PCF(self, bin_min, bin_max, n_bin_2PCF):
         if (self.CM is None):
             self.initialise_data()
-        self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin' : n_bin, 'min_reliable' : None, 'max_reliable' : None}
-        self.Bins, self.Mean_2PCF, self.Std_2PCF = il.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin = n_bin, box_size = self.box_size)
+        self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin_2PCF' : n_bin_2PCF, 'min_reliable' : None, 'max_reliable' : None}
+        self.Bins, self.Mean_2PCF, self.Std_2PCF = il.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, box_size = self.box_size)
     
     def compute_MST_histogram(self):
         """To Be Tested"""
@@ -288,33 +324,40 @@ class Catalogue_Abacus(Catalogue):
         self.box_size = None # float - Mpc / h
         self.CM = None # np.array(count, 3) - Mpc / h
         self.h = None # float - km/s / Mpc
-        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin, min_reliable, max_reliable) - first two and last two in Mpc / h
-        self.Bins = None # np.array(n_bin, 1) - Mpc / h
-        self.Mean_2PCF = None # np.array(n_bin, 1)
-        self.Std_2PCF = None # np.array(n_bin, 1)
+        self.Masses = None # float - M_sun / h
+        
+        self.parameters_HMF = None #dict(bin_min_HMF, bin_max_HMF, n_bin_HMF) - first two in M_sun / h
+        self.Bins_HMF = None # np.array(n_bin_HMF, 1)
+        self.HMF = None # np.array(n_bin_HMF, 1)
+        
+        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin_2PCF, min_reliable, max_reliable) - first two and last two in Mpc / h
+        self.Bins = None # np.array(n_bin_2PCF, 1) - Mpc / h
+        self.Mean_2PCF = None # np.array(n_bin_2PCF, 1)
+        self.Std_2PCF = None # np.array(n_bin_2PCF, 1)
         self.Bins_reliable = None # np.array(? , 1) # Mpc / h
         self.Mean_2PCF_reliable = None # np.array(?, 1)
         self.Std_2PCF_reliable = None # np.array(?, 1)
+        
         self.MST = None # mist.mst
         self.MST_histogram = None # dict
     
     def initialise_data(self):
         self.inputPath = self.basePath + '/header'
         self.dataPath = self.basePath
-        self.count, self.box_size, self.CM, self.h = ab.get_data(self.dataPath, self.inputPath)
+        self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
     
-    def compute_2PCF(self, bin_min, bin_max, n_bin):
+    def compute_2PCF(self, bin_min, bin_max, n_bin_2PCF):
         if (self.CM is None):
             self.initialise_data()
-        self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin' : n_bin, 'min_reliable' : None, 'max_reliable' : None}
-        self.Bins, self.Mean_2PCF, self.Std_2PCF = ab.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin = n_bin, box_size = self.box_size)
+        self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin_2PCF' : n_bin_2PCF, 'min_reliable' : None, 'max_reliable' : None}
+        self.Bins, self.Mean_2PCF, self.Std_2PCF = ab.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, box_size = self.box_size)
     
     def compute_MST_histogram(self):
-    	"""To Be Tested"""
-    	if (self.MST is None):
-    		self.compute_MST()
-    	
-    	self.MST_histogram = ab.get_MST_histogram(MST = self.MST)
+        """To Be Tested"""
+        if (self.MST is None):
+            self.compute_MST()
+        
+        self.MST_histogram = ab.get_MST_histogram(MST = self.MST)
 
 
 class Catalogue_ALF(Catalogue):
@@ -327,30 +370,37 @@ class Catalogue_ALF(Catalogue):
         self.gamma = gamma
         self.t0 = t0
         self.ts = ts
+        
         self.count = count
         self.box_size = box_size
-        self.h = 1
-        
         self.CM = None # np.array(count, 3) - Mpc / h
-        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin, min_reliable, max_reliable) - first two and last two in Mpc / h
-        self.Bins = None # np.array(n_bin, 1) - Mpc / h
-        self.Mean_2PCF = None # np.array(n_bin, 1)
-        self.Std_2PCF = None # np.array(n_bin, 1)
+        self.h = 1
+        self.Masses = np.array([10**10 for i in range(count)])
+        
+        self.parameters_HMF = None #dict(bin_min_HMF, bin_max_HMF, n_bin_HMF) - first two in M_sun / h
+        self.Bins_HMF = None # np.array(n_bin_HMF, 1)
+        self.HMF = None # np.array(n_bin_HMF, 1)
+        
+        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin_2PCF, min_reliable, max_reliable) - first two and last two in Mpc / h
+        self.Bins = None # np.array(n_bin_2PCF, 1) - Mpc / h
+        self.Mean_2PCF = None # np.array(n_bin_2PCF, 1)
+        self.Std_2PCF = None # np.array(n_bin_2PCF, 1)
         self.Bins_reliable = None # np.array(? , 1) # Mpc / h
         self.Mean_2PCF_reliable = None # np.array(?, 1)
         self.Std_2PCF_reliable = None # np.array(?, 1)
+        
         self.MST = None # mist.mst
         self.MST_histogram = None # dict
     
     def initialise_data(self):
         self.CM = alf.get_data(count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, box_size = self.box_size, mode = '3D')
     
-    def compute_2PCF(self, bin_min, bin_max, n_bin):
+    def compute_2PCF(self, bin_min, bin_max, n_bin_2PCF):
         if (self.CM is None):
             self.initialise_data()
         
-        self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin' : n_bin, 'min_reliable' : None, 'max_reliable' : None}
-        self.Bins, self.Mean_2PCF, self.Std_2PCF = alf.get_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin = n_bin, box_size = self.box_size, count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, mode = '3D')
+        self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin_2PCF' : n_bin_2PCF, 'min_reliable' : None, 'max_reliable' : None}
+        self.Bins, self.Mean_2PCF, self.Std_2PCF = alf.get_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, box_size = self.box_size, count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, mode = '3D')
     
     def compute_MST_histogram(self, mode_MST = 'SingleMST'): # Can be either for the current ALF distribution, or for the statistical average ALF with the same parameters
         """To Be Tested"""
@@ -368,6 +418,49 @@ class Catalogue_ALF(Catalogue):
 
 ## Tools
 
+def compare_HMFs(List_catalogues, title = " "): # we assume all catalogues HMF have been computed already
+    """To Be Tested"""
+    n = len(List_catalogues)
+    for i in range(n):
+        if (List_catalogues[i].HMF is None):
+            return("HMFs should be computed before comparison. This is not true for element in position " + i + "in List_catalogues")
+    
+    fig = plt.figure()
+    
+    plt.title(title)
+    plt.title(title)
+    plt.xlabel("Mass [$M_{\odot}$]")
+    plt.ylabel("Count")
+    plt.xscale('log')
+    plt.yscale('log')
+    
+    for catalogue in List_catalogues:
+        plt.plot(catalogue.Bins_HMF, catalogue.HMF, color = catalogue.color, label = catalogue.type)
+    
+    plt.show(block = True)
+    
+def compare_2PCFs(List_catalogues, title = " "): # we assume all catalogues 2PCFs have been computed already, and we only provide support for the full 2PCF. Please zoom on the interesting part of the graph if necessary.
+    """To Be Tested"""
+    n = len(List_catalogues)
+    for i in range(n):
+        if (List_catalogues[i].Mean_2PCF is None):
+            return("2PCFs should be computed before comparison. This is not true for element in position " + i + "in List_catalogues")
+    
+    fig = plt.figure()
+    
+    plt.title(title)
+    plt.xlabel("$r [h^{-1} Mpc]$")
+    plt.ylabel("$\\xi(r)$")
+    plt.xscale('log')
+    plt.yscale('log')
+    
+    for catalogue in List_catalogues:
+        plt.plot(catalogue.Bins, catalogue.Mean_2PCF, catalogue.color, label = catalogue.type)
+        plt.plot(catalogue.Bins, catalogue.Mean_2PCF - catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
+        plt.plot(catalogue.Bins, catalogue.Mean_2PCF + catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
+    
+    plt.show(block = True)
+
 def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalogues MST histograms have been computed already
     """To Be Tested"""
     n = len(List_catalogues)
@@ -376,7 +469,6 @@ def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalo
             return("MST histograms should be computed before comparison. This is not true for element in position " + i + "in List_catalogues")
     
     plt.fig()
-    
     plt.title(title)
     
     plot_histograms = mist.PlotHistMST()
@@ -385,4 +477,4 @@ def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalo
         plot_histograms.read_mst(MST_histogram, label = catalogue.type)
     plot_histograms.plot(usecomp = True, figsize = (9, 6))
     
-    plt.show()
+    plt.show(block = True)

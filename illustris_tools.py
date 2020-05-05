@@ -14,13 +14,14 @@ def get_data(basePath, simulation_number):
     box_size = 75.0 # To Be Automatised
     h = 0.704 # To Be Automatised
     
-    Subhalos_unbiased = {'count' : 0, 'haloCM' : []}
+    Subhalos_unbiased = {'count' : 0, 'haloCM' : [], 'haloM' : []}
     for i in range(Subhalos['count']):
         if ((Subhalos['SubhaloMassType'][i][4] >= (0.01 / h)) and (Subhalos['SubhaloMassType'][i][1] * 0.63 > Subhalos['SubhaloMassType'][i][4])):
             Subhalos_unbiased['count'] += 1
             Subhalos_unbiased['haloCM'].append(Subhalos['SubhaloCM'][i] / 1000) # We have to be in Mpc / h
+            Subhalos_unbiased['haloM'].append(Subhalos['SubhaloMass'][i] * 10**10) # We have to be un M_sun / h
     
-    return(Subhalos_unbiased['count'], box_size, np.asarray(Subhalos_unbiased['haloCM']), h)
+    return(Subhalos_unbiased['count'], box_size, np.asarray(Subhalos_unbiased['haloCM']), h, np.asarray(Subhalos_unbiased['haloM']))
 
 def get_2PCF(input_data, bin_min, bin_max, n_bin, box_size):
     Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin)
@@ -35,16 +36,16 @@ def get_2PCF(input_data, bin_min, bin_max, n_bin, box_size):
     
     List_xi = []
     for i in range(50):
-    	pos_uniform = np.random.rand(len(X), 3)
-    	X_uniform = pos_uniform[:-1, 0] * box_size
-    	Y_uniform = pos_uniform[:-1, 1] * box_size
-    	Z_uniform = pos_uniform[:-1, 2] * box_size
-    	uniform_distribution = treecorr.Catalog(x = X_uniform, y = Y_uniform, z = Z_uniform)
-    	uu = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin)
-    	uu.process(uniform_distribution)
-    	
-    	xi, varxi = dd.calculateXi(uu) #The 2PCF compare the data distribution to an uniform distribution
-    	List_xi.append(xi)   
+        pos_uniform = np.random.rand(len(X), 3)
+        X_uniform = pos_uniform[:-1, 0] * box_size
+        Y_uniform = pos_uniform[:-1, 1] * box_size
+        Z_uniform = pos_uniform[:-1, 2] * box_size
+        uniform_distribution = treecorr.Catalog(x = X_uniform, y = Y_uniform, z = Z_uniform)
+        uu = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin)
+        uu.process(uniform_distribution)
+        
+        xi, varxi = dd.calculateXi(uu) #The 2PCF compare the data distribution to an uniform distribution
+        List_xi.append(xi) 
     
     Mean_xi = [0 for r in Bins]
     Std_xi = [0 for r in Bins]

@@ -18,14 +18,14 @@ def get_data(dataPath, inputPath):
     
     particle_mass = param.get('ParticleMassMsun')
     lower_limit_mass = particle_mass * 100
-    halos_unbiased = {'count' : 0, 'haloID' : [], 'haloCM' : []}
+    halos_unbiased = {'count' : 0, 'haloCM' : [], 'haloM' : []}
     for i in range(np.shape(halos)[0]):
         if ((halos['m'][i] >= lower_limit_mass) and (halos['parent_id'][i] == -1)):
             halos_unbiased['count'] += 1
-            halos_unbiased['haloID'].append(i)
             halos_unbiased['haloCM'].append(halos['pos'][i])
+            halos_unbiased["haloM"].append(halos['m'][i])
     
-    return(halos_unbiased['count'], box_size, np.asarray(halos_unbiased['haloCM']), h)
+    return(halos_unbiased['count'], box_size, np.asarray(halos_unbiased['haloCM']), h, np.asarray(halos_unbiased['haloM']))
 
 def get_2PCF(input_data, bin_min, bin_max, n_bin, box_size):
     Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin)

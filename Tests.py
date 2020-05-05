@@ -60,9 +60,9 @@ il.initialise_data()
 #il.plot_3D(title = "3D plot for Illustris")
 # plot_3D OK in both pipeline and standard mode
 
-alf.compute_MST()
-ab.compute_MST()
-il.compute_MST()
+#alf.compute_MST()
+#ab.compute_MST()
+#il.compute_MST()
 # compute_MST OK
 
 #alf.compute_MST_histogram(mode_MST = 'SingleMST')
@@ -84,8 +84,8 @@ il.compute_MST()
 #il.plot_MST_2D(title = "2D plot of Illustris MST")
 # plot_MST_2D OK BUT there seem to be an issue with the MST calculation : one can create a ALF with non-connected MST and even some points without any edge...
 
-alf.plot_MST_3D(title = "3D plot of ALF MST")
-ab.plot_MST_3D(title = "3D plot of Abacus MST")
-il.plot_MST_3D(title = "3D plot of Illustris MST")
-# plot_MST_3D seems to be OK
+#alf.plot_MST_3D(title = "3D plot of ALF MST")
+#ab.plot_MST_3D(title = "3D plot of Abacus MST")
+#il.plot_MST_3D(title = "3D plot of Illustris MST")
+# plot_MST_3D seems to be OK but really slow
 
