@@ -23,15 +23,15 @@ def get_data(basePath, simulation_number):
     
     return(Subhalos_unbiased['count'], box_size, np.asarray(Subhalos_unbiased['haloCM']), h, np.asarray(Subhalos_unbiased['haloM']))
 
-def get_2PCF(input_data, bin_min, bin_max, n_bin, box_size):
-    Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin)
+def get_2PCF(input_data, bin_min, bin_max, n_bin_2PCF, box_size):
+    Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin_2PCF)
     
     X = input_data[:, 0]
     Y = input_data[:, 1]
     Z = input_data[:, 2]
     
     data = treecorr.Catalog(x = X, y = Y, z = Z)
-    dd = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin)
+    dd = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin_2PCF)
     dd.process(data)
     
     List_xi = []
@@ -41,7 +41,7 @@ def get_2PCF(input_data, bin_min, bin_max, n_bin, box_size):
         Y_uniform = pos_uniform[:-1, 1] * box_size
         Z_uniform = pos_uniform[:-1, 2] * box_size
         uniform_distribution = treecorr.Catalog(x = X_uniform, y = Y_uniform, z = Z_uniform)
-        uu = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin)
+        uu = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin_2PCF)
         uu.process(uniform_distribution)
         
         xi, varxi = dd.calculateXi(uu) #The 2PCF compare the data distribution to an uniform distribution

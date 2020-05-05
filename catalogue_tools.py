@@ -43,17 +43,15 @@ class Catalogue():
         self.MST_histogram = None # dict
     
     def initialise_data(self):
-        """ To Be Tested"""
         return("initialise_data To Be Done for " + self.type)
     
     def compute_HMF(self, bin_min_HMF, bin_max_HMF, n_bin_HMF): # does not make much sense for an ALF since it does not include any mass
-        """To Be Tested"""
         if (self.Masses is None):
             self.initialise_data()
         
         self.parameters_HMF = {'bin_min_HMF' : bin_min_HMF, 'bin_max_HMF' : bin_max_HMF, 'n_bin_HMF' : n_bin_HMF}
-        self.Bins_HMF = np.logspace(np.log10(bin_min_HMF), np.log10(bin_max_HMF), n_bin_HMF)
-        self.HMF, bins, patches = plt.hist(self.Masses, bins = self.Bins_HMF, log = True) # here bins should contains one element too many
+        self.Bins_HMF = np.logspace(np.log10(bin_min_HMF), np.log10(bin_max_HMF), n_bin_HMF + 1)
+        self.HMF, bins = np.histogram(self.Masses, bins = self.Bins_HMF)
     
     def compute_2PCF(self):
         return("compute_2PCF To Be Done for " + self.type)
@@ -88,7 +86,6 @@ class Catalogue():
         self.MST = mist.GetMST(x = X, y = Y, z = Z)
     
     def compute_MST_histogram(self):
-        """To Be Tested"""
         return("compute_MST_histogram To Be Done for " + self.type)
     
     def plot_2D(self, title = " "): # slice et Z < 50 Mpc / h
@@ -140,8 +137,7 @@ class Catalogue():
         
         plt.show(block = True)
     
-    def plot_HMF(self, bin_min_HMF = None, bin_max_HMF = None, n_bin_HMF = None):
-        """To Be Tested"""
+    def plot_HMF(self, title = " ", bin_min_HMF = None, bin_max_HMF = None, n_bin_HMF = None):
         if (self.HMF is None):
             self.compute_HMF(bin_min_HMF = bin_min_HMF, bin_max_HMF = bin_max_HMF, n_bin_HMF = n_bin_HMF)
         
@@ -153,7 +149,7 @@ class Catalogue():
         plt.xscale('log')
         plt.yscale('log')
         
-        plt.plot(self.Bins_HMF, self.HMF, color = self.color)
+        plt.plot(self.Bins_HMF[:-1], self.HMF, color = self.color)
         
         plt.show(block = True)
         
@@ -306,7 +302,6 @@ class Catalogue_Illustris(Catalogue):
         self.Bins, self.Mean_2PCF, self.Std_2PCF = il.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, box_size = self.box_size)
     
     def compute_MST_histogram(self):
-        """To Be Tested"""
         if (self.MST is None):
             self.compute_MST()
         
@@ -353,7 +348,6 @@ class Catalogue_Abacus(Catalogue):
         self.Bins, self.Mean_2PCF, self.Std_2PCF = ab.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, box_size = self.box_size)
     
     def compute_MST_histogram(self):
-        """To Be Tested"""
         if (self.MST is None):
             self.compute_MST()
         
@@ -403,7 +397,6 @@ class Catalogue_ALF(Catalogue):
         self.Bins, self.Mean_2PCF, self.Std_2PCF = alf.get_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, box_size = self.box_size, count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, mode = '3D')
     
     def compute_MST_histogram(self, mode_MST = 'SingleMST'): # Can be either for the current ALF distribution, or for the statistical average ALF with the same parameters
-        """To Be Tested"""
         if (mode_MST == 'SingleMST'):
             if (self.MST is None):
                 self.compute_MST()
@@ -419,7 +412,6 @@ class Catalogue_ALF(Catalogue):
 ## Tools
 
 def compare_HMFs(List_catalogues, title = " "): # we assume all catalogues HMF have been computed already
-    """To Be Tested"""
     n = len(List_catalogues)
     for i in range(n):
         if (List_catalogues[i].HMF is None):
@@ -435,8 +427,9 @@ def compare_HMFs(List_catalogues, title = " "): # we assume all catalogues HMF h
     plt.yscale('log')
     
     for catalogue in List_catalogues:
-        plt.plot(catalogue.Bins_HMF, catalogue.HMF, color = catalogue.color, label = catalogue.type)
+        plt.plot(catalogue.Bins_HMF[:-1], catalogue.HMF, color = catalogue.color, label = catalogue.type)
     
+    plt.legend()
     plt.show(block = True)
     
 def compare_2PCFs(List_catalogues, title = " "): # we assume all catalogues 2PCFs have been computed already, and we only provide support for the full 2PCF. Please zoom on the interesting part of the graph if necessary.
@@ -459,6 +452,7 @@ def compare_2PCFs(List_catalogues, title = " "): # we assume all catalogues 2PCF
         plt.plot(catalogue.Bins, catalogue.Mean_2PCF - catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
         plt.plot(catalogue.Bins, catalogue.Mean_2PCF + catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
     
+    plt.legend()
     plt.show(block = True)
 
 def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalogues MST histograms have been computed already
@@ -467,9 +461,6 @@ def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalo
     for i in range(n):
         if (List_catalogues[i].MST_histogram is None):
             return("MST histograms should be computed before comparison. This is not true for element in position " + i + "in List_catalogues")
-    
-    plt.fig()
-    plt.title(title)
     
     plot_histograms = mist.PlotHistMST()
     for catalogue in List_catalogues:

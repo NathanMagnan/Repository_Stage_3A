@@ -10,14 +10,14 @@ def get_data(count, alpha, beta, gamma, t0, ts, box_size, mode):
     
     return(np.asarray(halos_unbiased['haloCM']))
 
-def get_2PCF(bin_min, bin_max, n_bin, box_size, count, alpha, beta, gamma, t0, ts, mode):
-    Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin)
+def get_2PCF(bin_min, bin_max, n_bin_2PCF, box_size, count, alpha, beta, gamma, t0, ts, mode):
+    Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin_2PCF)
     
     List_xi = []
     for i in range(50):
         X, Y, Z = mist.get_adjusted_levy_flight(size = count, alpha = alpha, beta = beta, gamma = gamma, t_0 = t0, t_s = ts, box_size = box_size, mode = mode)
         data = treecorr.Catalog(x = X, y = Y, z = Z)
-        dd = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin)
+        dd = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin_2PCF)
         dd.process(data)
         
         pos_uniform = np.random.rand(len(X), 3)
@@ -25,7 +25,7 @@ def get_2PCF(bin_min, bin_max, n_bin, box_size, count, alpha, beta, gamma, t0, t
         Y_uniform = pos_uniform[:-1, 1] * box_size
         Z_uniform = pos_uniform[:-1, 2] * box_size
         uniform_distribution = treecorr.Catalog(x = X_uniform, y = Y_uniform, z = Z_uniform)
-        uu = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin)
+        uu = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin_2PCF)
         uu.process(uniform_distribution)
     
         xi, varxi = dd.calculateXi(uu) #The 2PCF compare the data distribution to an uniform distribution
@@ -56,7 +56,7 @@ def get_MST_histogram(mode_MST, MST = None, count = None, alpha = None, beta = N
     else:
         histogram.start_group()
         
-        for i in range(5):
+        for i in range(50):
             X, Y, Z = mist.get_adjusted_levy_flight(size = count, alpha = alpha, beta = beta, gamma = gamma, t_0 = t0, t_s = ts, box_size = box_size, mode = mode)
             
             MST = mist.GetMST(x = X, y = Y, z = Z)
