@@ -88,15 +88,16 @@ class Catalogue():
     def compute_MST_histogram(self):
         return("compute_MST_histogram To Be Done for " + self.type)
     
-    def plot_2D(self, title = " "): # slice et Z < 50 Mpc / h
+    def plot_2D(self, title = " ", figure = None): # slice et Z < 50 Mpc / h
         if (self.CM is None):
             self.initialise_data()
         
-        plt.figure()
+        if (figure is None):
+        		figure = plt.figure()
         
-        plt.title(title)
-        plt.xlabel("$X [h^{-1} Mpc]$")
-        plt.ylabel("$Y [h^{-1} Mpc]$")
+        figure.set_title(title)
+        figure.set_xlabel("$X [h^{-1} Mpc]$")
+        figure.set_ylabel("$Y [h^{-1} Mpc]$")
         
         X_slice, Y_slice, Z_slice = [], [], []
         for i in range(self.count):
@@ -107,9 +108,7 @@ class Catalogue():
         X_slice = np.asarray(X_slice)
         Y_slice = np.asarray(Y_slice)
         Z_slice = np.asarray(Z_slice)
-        plt.scatter(X_slice, Y_slice, c = Z_slice, s = 0.05, cmap = 'Greys')
-        
-        plt.show(block = True)
+        figure.scatter(X_slice, Y_slice, c = Z_slice, cmap = 'Greys', s = 0.05)
     
     def plot_3D(self, title = " "): # maximum of 100 000 points
         if (self.CM is None):
@@ -432,31 +431,29 @@ def compare_HMFs(List_catalogues, title = " "): # we assume all catalogues HMF h
     plt.legend()
     plt.show(block = True)
     
-def compare_2PCFs(List_catalogues, title = " "): # we assume all catalogues 2PCFs have been computed already, and we only provide support for the full 2PCF. Please zoom on the interesting part of the graph if necessary.
-    """To Be Tested"""
+def compare_2PCFs(List_catalogues, title = " ", figure = None): # we assume all catalogues 2PCFs have been computed already, and we only provide support for the full 2PCF. Please zoom on the interesting part of the graph if necessary.
     n = len(List_catalogues)
     for i in range(n):
         if (List_catalogues[i].Mean_2PCF is None):
             return("2PCFs should be computed before comparison. This is not true for element in position " + i + "in List_catalogues")
     
-    fig = plt.figure()
+    if (figure is None):
+    	  figure = plt.figure()
     
-    plt.title(title)
-    plt.xlabel("$r [h^{-1} Mpc]$")
-    plt.ylabel("$\\xi(r)$")
-    plt.xscale('log')
-    plt.yscale('log')
+    figure.set_title(title)
+    figure.set_xlabel("$r [h^{-1} Mpc]$")
+    figure.set_ylabel("$\\xi(r)$")
+    figure.set_xscale('log')
+    figure.set_yscale('log')
     
     for catalogue in List_catalogues:
-        plt.plot(catalogue.Bins, catalogue.Mean_2PCF, catalogue.color, label = catalogue.type)
-        plt.plot(catalogue.Bins, catalogue.Mean_2PCF - catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
-        plt.plot(catalogue.Bins, catalogue.Mean_2PCF + catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
+        figure.plot(catalogue.Bins, catalogue.Mean_2PCF, catalogue.color, label = catalogue.type)
+        figure.plot(catalogue.Bins, catalogue.Mean_2PCF - catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
+        figure.plot(catalogue.Bins, catalogue.Mean_2PCF + catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
     
-    plt.legend()
-    plt.show(block = True)
+    figure.legend()
 
 def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalogues MST histograms have been computed already
-    """To Be Tested"""
     n = len(List_catalogues)
     for i in range(n):
         if (List_catalogues[i].MST_histogram is None):
@@ -467,5 +464,3 @@ def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalo
         MST_histogram = catalogue.MST_histogram
         plot_histograms.read_mst(MST_histogram, label = catalogue.type)
     plot_histograms.plot(usecomp = True, figsize = (9, 6))
-    
-    plt.show(block = True)
