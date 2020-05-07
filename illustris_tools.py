@@ -35,7 +35,7 @@ def get_2PCF(input_data, bin_min, bin_max, n_bin_2PCF, box_size):
     dd.process(data)
     
     List_xi = []
-    for i in range(2):
+    for i in range(50):
         pos_uniform = np.random.rand(len(X), 3)
         X_uniform = pos_uniform[:-1, 0] * box_size
         Y_uniform = pos_uniform[:-1, 1] * box_size
@@ -49,7 +49,7 @@ def get_2PCF(input_data, bin_min, bin_max, n_bin_2PCF, box_size):
     
     Mean_xi = [0 for r in Bins]
     Std_xi = [0 for r in Bins]
-    for i in range(2):
+    for i in range(50):
         for k in range(len(Bins)):
             mean_old = Mean_xi[k]
             std_old = Std_xi[k]

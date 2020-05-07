@@ -14,7 +14,7 @@ def get_2PCF(bin_min, bin_max, n_bin_2PCF, box_size, count, alpha, beta, gamma, 
     Bins = np.logspace(np.log10(bin_min), np.log10(bin_max), n_bin_2PCF)
     
     List_xi = []
-    for i in range(2):
+    for i in range(50):
         X, Y, Z = mist.get_adjusted_levy_flight(size = count, alpha = alpha, beta = beta, gamma = gamma, t_0 = t0, t_s = ts, box_size = box_size, mode = mode)
         data = treecorr.Catalog(x = X, y = Y, z = Z)
         dd = treecorr.NNCorrelation(min_sep = bin_min, max_sep = bin_max, nbins = n_bin_2PCF)
@@ -33,7 +33,7 @@ def get_2PCF(bin_min, bin_max, n_bin_2PCF, box_size, count, alpha, beta, gamma, 
     
     Mean_xi = [0 for r in Bins]
     Std_xi = [0 for r in Bins]
-    for i in range(2):
+    for i in range(50):
         for k in range(len(Bins)):
             mean_old = Mean_xi[k]
             std_old = Std_xi[k]
@@ -56,7 +56,7 @@ def get_MST_histogram(mode_MST, MST = None, count = None, alpha = None, beta = N
     else:
         histogram.start_group()
         
-        for i in range(2):
+        for i in range(50):
             X, Y, Z = mist.get_adjusted_levy_flight(size = count, alpha = alpha, beta = beta, gamma = gamma, t_0 = t0, t_s = ts, box_size = box_size, mode = mode)
             
             MST = mist.GetMST(x = X, y = Y, z = Z)

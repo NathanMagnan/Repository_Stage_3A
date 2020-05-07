@@ -92,8 +92,12 @@ class Catalogue():
         if (self.CM is None):
             self.initialise_data()
         
+        plot_at_the_end = False
         if (figure is None):
-        		figure = plt.figure()
+        		misleading = plt.figure()
+        		figure = misleading.gca()
+        		plot_at_the_end = True
+        		
         
         figure.set_title(title)
         figure.set_xlabel("$X [h^{-1} Mpc]$")
@@ -109,6 +113,9 @@ class Catalogue():
         Y_slice = np.asarray(Y_slice)
         Z_slice = np.asarray(Z_slice)
         figure.scatter(X_slice, Y_slice, c = Z_slice, cmap = 'Greys', s = 0.05)
+        
+        if plot_at_the_end:
+        	   plt.show(block = True)
     
     def plot_3D(self, title = " "): # maximum of 100 000 points
         if (self.CM is None):
@@ -136,56 +143,70 @@ class Catalogue():
         
         plt.show(block = True)
     
-    def plot_HMF(self, title = " ", bin_min_HMF = None, bin_max_HMF = None, n_bin_HMF = None):
+    def plot_HMF(self, title = " ", bin_min_HMF = None, bin_max_HMF = None, n_bin_HMF = None, figure = None):
         if (self.HMF is None):
             self.compute_HMF(bin_min_HMF = bin_min_HMF, bin_max_HMF = bin_max_HMF, n_bin_HMF = n_bin_HMF)
         
-        fig = plt.figure()
+        plot_at_the_end = False
+        if (figure is None):
+        		misleading = plt.figure()
+        		figure = misleading.gca()
+        		plot_at_the_end = True
         
-        plt.title(title)
-        plt.xlabel("Mass [$M_{\odot}$]")
-        plt.ylabel("Count")
-        plt.xscale('log')
-        plt.yscale('log')
+        figure.set_title(title)
+        figure.set_xlabel("Mass [$M_{\odot}$]")
+        figure.set_ylabel("Count")
+        figure.set_xscale('log')
+        figure.set_yscale('log')
         
-        plt.plot(self.Bins_HMF[:-1], self.HMF, color = self.color)
+        figure.plot(self.Bins_HMF[:-1], self.HMF, color = self.color)
         
-        plt.show(block = True)
+        if plot_at_the_end:
+        	   plt.show(block = True)
         
     
-    def plot_2PCF(self, title = " ", full_output = True, bin_min = None, bin_max = None, n_bin_2PCF = None, min_reliable = None, max_reliable = None):
-        fig = plt.figure()
+    def plot_2PCF(self, title = " ", full_output = True, bin_min = None, bin_max = None, n_bin_2PCF = None, min_reliable = None, max_reliable = None, figure = None):
+        plot_at_the_end = False
+        if (figure is None):
+        		misleading = plt.figure()
+        		figure = misleading.gca()
+        		plot_at_the_end = True
         
-        plt.title(title)
-        plt.xlabel("$r [h^{-1} Mpc]$")
-        plt.ylabel("$\\xi(r)$")
-        plt.xscale('log')
-        plt.yscale('log')
+        figure.set_title(title)
+        figure.set_xlabel("$r [h^{-1} Mpc]$")
+        figure.set_ylabel("$\\xi(r)$")
+        figure.set_xscale('log')
+        figure.set_yscale('log')
         
         if (full_output == True):
             if (self.Mean_2PCF is None):
                 self.compute_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF)
-            plt.plot(self.Bins, self.Mean_2PCF, self.color)
-            plt.plot(self.Bins, self.Mean_2PCF - self.Std_2PCF, color = self.color, linestyle = '--')
-            plt.plot(self.Bins, self.Mean_2PCF + self.Std_2PCF, color = self.color, linestyle = '--')
+            figure.plot(self.Bins, self.Mean_2PCF, self.color)
+            figure.plot(self.Bins, self.Mean_2PCF - self.Std_2PCF, color = self.color, linestyle = '--')
+            figure.plot(self.Bins, self.Mean_2PCF + self.Std_2PCF, color = self.color, linestyle = '--')
         else:
             if (self.Mean_2PCF_reliable is None):
                 self.extract_reliable_2PCF(bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, min_reliable = min_reliable, max_reliable = max_reliable)
-            plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable, self.color)
-            plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable - self.Std_2PCF_reliable, color = self.color, linestyle = '--')
-            plt.plot(self.Bins_reliable, self.Mean_2PCF_reliable + self.Std_2PCF_reliable, color = self.color, linestyle = '--')
+            figure.plot(self.Bins_reliable, self.Mean_2PCF_reliable, self.color)
+            figure.plot(self.Bins_reliable, self.Mean_2PCF_reliable - self.Std_2PCF_reliable, color = self.color, linestyle = '--')
+            figure.plot(self.Bins_reliable, self.Mean_2PCF_reliable + self.Std_2PCF_reliable, color = self.color, linestyle = '--')
         
-        plt.show(block = True)
+        if plot_at_the_end:
+        		plt.show(block = True)
     
-    def plot_MST_2D(self, title = " "): # slice at Z < 50 Mpc / h
+    def plot_MST_2D(self, title = " ", figure = None): # slice at Z < 50 Mpc / h
         if (self.MST is None):
             self.compute_MST()
         
-        fig = plt.figure()
+        plot_at_the_end = False
+        if (figure is None):
+        		misleading = plt.figure()
+        		figure = misleading.gca()
+        		plot_at_the_end = True
         
-        plt.title(title)
-        plt.xlabel('$X [h^{-1} Mpc]$')
-        plt.ylabel('$Y [h^{-1} Mpc]$')
+        figure.set_title(title)
+        figure.set_xlabel('$X [h^{-1} Mpc]$')
+        figure.set_ylabel('$Y [h^{-1} Mpc]$')
         
         # plotting nodes:
         X_slice, Y_slice, Z_slice = [], [], []
@@ -197,7 +218,7 @@ class Catalogue():
         X_slice = np.asarray(X_slice)
         Y_slice = np.asarray(Y_slice)
         Z_slice = np.asarray(Z_slice)
-        plt.scatter(X_slice, Y_slice, s=0.2, color='r')
+        figure.scatter(X_slice, Y_slice, s=0.2, color='r')
         
         # plotting MST edges:
         d, l, b, s, l_index, b_index = self.MST.get_stats(include_index = True)
@@ -205,9 +226,10 @@ class Catalogue():
             if ((self.CM[l_index[0][i]][2] <= 50) and (self.CM[l_index[1][i]][2] <= 50)):
                 X = [self.CM[l_index[0][i]][0], self.CM[l_index[1][i]][0]]
                 Y = [self.CM[l_index[0][i]][1], self.CM[l_index[1][i]][1]]
-                plt.plot(X, Y, color = 'k', linewidth = 0.5)
+                figure.plot(X, Y, color = 'k', linewidth = 0.5)
         
-        plt.show(block = True)
+        if plot_at_the_end:
+        		plt.show(block = True)
     
     def plot_MST_3D(self, title = " "): # maximum of 100 000 points
         if (self.MST is None):
@@ -410,26 +432,32 @@ class Catalogue_ALF(Catalogue):
 
 ## Tools
 
-def compare_HMFs(List_catalogues, title = " "): # we assume all catalogues HMF have been computed already
+def compare_HMFs(List_catalogues, title = " ", figure = None): # we assume all catalogues HMF have been computed already
     n = len(List_catalogues)
     for i in range(n):
         if (List_catalogues[i].HMF is None):
             return("HMFs should be computed before comparison. This is not true for element in position " + i + "in List_catalogues")
     
-    fig = plt.figure()
+    plot_at_the_end = False
+    if (figure is None):
+        	misleading = plt.figure()
+        	figure = misleading.gca()
+        	plot_at_the_end = True
     
-    plt.title(title)
-    plt.title(title)
-    plt.xlabel("Mass [$M_{\odot}$]")
-    plt.ylabel("Count")
-    plt.xscale('log')
-    plt.yscale('log')
+    figure.set_title(title)
+    figure.set_title(title)
+    figure.set_xlabel("Mass [$M_{\odot}$]")
+    figure.set_ylabel("Count")
+    figure.set_xscale('log')
+    figure.set_yscale('log')
     
     for catalogue in List_catalogues:
         plt.plot(catalogue.Bins_HMF[:-1], catalogue.HMF, color = catalogue.color, label = catalogue.type)
     
-    plt.legend()
-    plt.show(block = True)
+    figure.legend()
+    
+    if plot_at_the_end:
+    	  plt.show(block = True)
     
 def compare_2PCFs(List_catalogues, title = " ", figure = None): # we assume all catalogues 2PCFs have been computed already, and we only provide support for the full 2PCF. Please zoom on the interesting part of the graph if necessary.
     n = len(List_catalogues)
@@ -437,8 +465,11 @@ def compare_2PCFs(List_catalogues, title = " ", figure = None): # we assume all 
         if (List_catalogues[i].Mean_2PCF is None):
             return("2PCFs should be computed before comparison. This is not true for element in position " + i + "in List_catalogues")
     
+    plot_at_the_end = False
     if (figure is None):
-    	  figure = plt.figure()
+    	  misleading = plt.figure()
+    	  figure = misleading.gca()
+    	  plot_at_the_end = True
     
     figure.set_title(title)
     figure.set_xlabel("$r [h^{-1} Mpc]$")
@@ -452,8 +483,11 @@ def compare_2PCFs(List_catalogues, title = " ", figure = None): # we assume all 
         figure.plot(catalogue.Bins, catalogue.Mean_2PCF + catalogue.Std_2PCF, color = catalogue.color, linestyle = '--')
     
     figure.legend()
+    
+    if plot_at_the_end:
+    	plt.show(block = True)
 
-def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalogues MST histograms have been computed already
+def compare_MST_histograms(List_catalogues, usemean = True, whichcomp = None, title = " ", saveas = None): # we assume all catalogues MST histograms have been computed already
     n = len(List_catalogues)
     for i in range(n):
         if (List_catalogues[i].MST_histogram is None):
@@ -463,4 +497,4 @@ def compare_MST_histograms(List_catalogues, title = " "): # we assume all catalo
     for catalogue in List_catalogues:
         MST_histogram = catalogue.MST_histogram
         plot_histograms.read_mst(MST_histogram, label = catalogue.type)
-    plot_histograms.plot(usecomp = True, figsize = (9, 6))
+    plot_histograms.plot(usecomp = True, usemean = usemean, whichcomp = whichcomp, figsize = (9, 6), saveas = saveas)
