@@ -1,3 +1,4 @@
+""" tested, very long but compiles """
 ## Imports
 import numpy as np
 
@@ -16,8 +17,8 @@ print("starting to work on creating the data set")
 X_data = []
 Y_data = []
 
-for i in [0, 39]: # For testing purpose only. For actual run, use  for i in range(40):
-    print("starting to work on simulation " + i)
+for i in range(40):
+    print("starting to work on simulation " + str(i))
     
     # getting the basepath
     if (i < 10):
@@ -33,20 +34,20 @@ for i in [0, 39]: # For testing purpose only. For actual run, use  for i in rang
     path += '_rockstar_halos/z0.100'
     
     # creating a catalogue object
-    cat.Catalogue_Abacus(basePath = path)
-    print("simulation " + i + " : catalogue created")
+    ab = cat.Catalogue_Abacus(basePath = path)
+    print("simulation " + str(i) + " : catalogue created")
     
     # gettting the data
     ab.initialise_data()
-    print("simulation " + i + " : data acquired")
+    print("simulation " + str(i) + " : data acquired")
     
     # computing the histogram
     ab.compute_MST_histogram()
-    print("simulation " + i + " : histogram computed")
+    print("simulation " + str(i) + " : histogram computed")
     
     # reading the histogram
     X_d = ab.MST_histogram['x_d']
-    Y_b = ab.MST_histogram['y_d'] / np.max(ab.MST_histogram['y_d']) # we normalize every histogram to 1
+    Y_d = ab.MST_histogram['y_d'] / np.max(ab.MST_histogram['y_d']) # we normalize every histogram to 1
     
     X_l_long = ab.MST_histogram['x_l']
     Y_l_long = ab.MST_histogram['y_l'] / np.max(ab.MST_histogram['y_l']) # we normalize every histogram to 1
@@ -62,24 +63,24 @@ for i in [0, 39]: # For testing purpose only. For actual run, use  for i in rang
     Y_s_long = ab.MST_histogram['y_s'] / np.max(ab.MST_histogram['y_s']) # we normalize every histogram to 1
     X_s = X_s_long[2::5]
     Y_s = Y_s_long[2::5] # we only keep 10 points per histogram to avoid having huge redundant dataset
-    print("simulation " + i + " : histogram read")
+    print("simulation " + str(i) + " : histogram read")
     
     # reading the simulation parameters
     input_path = path + '/header'
-    param = InputFile.InputFile(fn = inputPath)
+    param = InputFile.InputFile(fn = input_path)
     
     h0 = (param.get('H0') - 60)  / (75 - 60) # we normalize every parameter to use the whole range from 0 to 1
-    w0 = (param.get('w0') - (-1.40)) / ((-0.60) - (-1.40) # we normalize every parameter to use the whole range from 0 to 1
+    w0 = (param.get('w0') - (-1.40)) / ((-0.60) - (-1.40)) # we normalize every parameter to use the whole range from 0 to 1
     ns = (param.get('ns') - 0.920) / (0.995 - 0.920) # we normalize every parameter to use the whole range from 0 to 1
     sigma8 = (param.get('sigma_8') - 0.64) / (1.04 - 0.64) # we normalize every parameter to use the whole range from 0 to 1
     omegaM = (param.get('Omega_M') - 0.250) / (0.375 - 0.250) # we normalize every parameter to use the whole range from 0 to 1
-    print("simulation " + i + " : parameters read")
+    print("simulation " + str(i) + " : parameters read")
     
     # creating the set of new points
     X_data_new_d = np.reshape([[h0, w0, ns, sigma8, omegaM, x_d, 0] for x_d in X_d], (6, 7))
-    X_data_new_l = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l, 0] for x_l in X_l], (10, 7))
-    X_data_new_b = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b, 0] for x_b in X_b], (10, 7))
-    X_data_new_s = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s, 0] for x_s in X_s], (10, 7))
+    X_data_new_l = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l, 1] for x_l in X_l], (10, 7))
+    X_data_new_b = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b, 2] for x_b in X_b], (10, 7))
+    X_data_new_s = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s, 3] for x_s in X_s], (10, 7))
     X_data_new = np.concatenate((X_data_new_d, X_data_new_l, X_data_new_b, X_data_new_s), 0)
     
     Y_data_new_d = np.reshape([[y_d] for y_d in Y_d], (6, 1))
@@ -87,7 +88,7 @@ for i in [0, 39]: # For testing purpose only. For actual run, use  for i in rang
     Y_data_new_b = np.reshape([[y_b] for y_b in Y_b], (10, 1))
     Y_data_new_s = np.reshape([[y_s] for y_s in Y_s], (10, 1))
     Y_data_new = np.concatenate((Y_data_new_d, Y_data_new_l, Y_data_new_b, Y_data_new_s), 0)
-    print("simulation " + i + " : new data points created")
+    print("simulation " + str(i) + " : new data points created")
     
     # adding the new points
     if (i == 0):
@@ -96,7 +97,7 @@ for i in [0, 39]: # For testing purpose only. For actual run, use  for i in rang
     else:
         X_data = np.concatenate((X_data, X_data_new), 0)
         Y_data = np.concatenate((Y_data, Y_data_new), 0)
-    print("simulation " + i + " : new data points added to the data set")
+    print("simulation " + str(i) + " : new data points added to the data set")
 
 print("data set fully created")
 
