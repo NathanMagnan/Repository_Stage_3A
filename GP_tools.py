@@ -6,67 +6,40 @@ import GPy as GPy
 ## GP Class
 class GP():
     
-    def __init__(self, X_data, Y_data, kernel_type = None, Noise_std = None):
+    def __init__(self, X_data, Y_data, kernel, Noise_data = None):
         """ To Be Tested"""
-        self.x_dim =  np.shape(X_data)[1] # int
-        self.y_dim =  np.shape(Y_data)[1] # int
         self.n_data_points = np.shape(X_data)[0] # int
+        self.x_dim =  np.shape(X_data)[1] # int
+        
+        self.X_data = X_data # np.array(n_data_points, x_dim)
+        
+        self.Y_data = Y_data # np.array(n_data_points, 1)
         if (np.shape(Y_data)[0] != self.n_data_points):
             return ("Error : There is not as many X and Y data points : " + self.n_data_points + " vs. " + np.shape(Y_data)[0])
         
-        self.X_data = X_data # np.array(n_data_points, x_dim)
-        self.Y_data = Y_data # np.array(n_data_points, y_dim)
-        self.Noise_std = Noise_std # np.array(y_dim, y_dim)
+        self.Noise_data = Noise_data # np.array(n_data_points, n_data_points)
+        if (self.Noise_data is not None):
+            if (np.shape(self.Noise_data) != (self.n_data_points, self.n_data_points)):
+                return("Error : Noise_std does not have the right dimensions : " + np.shape(self.Noise_data) + " vs. " + (self.n_data_points, self.n_data_points))
         
-        self.kernel_type = kernel_type # str
-        self.kernel = None # GPy.kern object
-        self.initialise_kernel() # intialises kernel_parameters and kernel
+        self.kernel = kernel # GPy.kern object
         
         self.model = None # GPy.model object
         self.initialise_model() # initialises the GP regression model
         
         self.Y_prediction_on_test_points = None
         self.Cov_on_test_points = None
-    
-    def initialise_kernel(self, kernel = None):
-        """ To Be Tested"""
-        """ Needs to be improved to account for the selection of observables """
-        if (kernel is not None):
-            self.kernel = kernel
-        
-        List_kernel_types = self.kernel_type.split('+')
-        
-        for type in List_kernel_types :
-            if (type == 'RBF'):
-                self.kernel += GPy.kern.RBF(self.x_dim, ARD = True) # By default, we assume anistropy
-            elif (type == 'Matern 3/2'):
-                self.kernel += GPy.kern.Matern32(self.x_dim, ARD = True)
-            elif (type == 'Matern 5/2'):
-                self.kernel += GPy.kern.Matern52(self.x_dim, ARD = True)
-            elif (type == 'Exponential'):
-                self.kernel += GPy.kern.Exponential(self.x_dim, ARD = True)
-            elif (type == 'White'):
-                self.kernel += GPy.kern.White(self.x_dim, ARD = True)
-            elif (type == 'Linear'):
-                self.kernel += GPy.kern.Linear(self.x_dim, ARD = True)
-            else:
-                return("Error : kernel type " + type + " was not understood.")
             
     def initialise_model(self):
         """ To Be Tested """
-        if (self.kernel is None):
-            self.initialise_kernel()
-        
         self.model = GPy.models.GPRegression(self.X_data, self.Y_data, self.kernel)
         
-        if (self.Noise_std is not None):
-            if (np.shape(self.Noise_std) != (self.y_dim, self.y_dim)):
-                return("Error : Noise_std does not have the right dimensions : " + np.shape(self.Noise_std) + " vs. " + (self.y_dim, self.y_dim))
-            
-            self.model.Gaussian_noise.variance = self.Noise_std
+        if (self.Noise_data is not None)
+            self.model.Gaussian_noise.variance = self.Noise_data # I need to check if GPy accepts this
             self.model.Gaussian_noise.variance.fix()
         else:
-            self.model.Gaussian_noise.variance = 0.01 * np.identity(n = self.y_dim) """ To Be Defined """
+            self.model.Gaussian_noise.variance = 0
+            self.model.Gaussian_noise.variance.fix()
     
     def optimize_model(self):
         """ To Be Tested """
@@ -75,41 +48,53 @@ class GP():
         
         self.model.optimize()
     
-    def compute_performance_on_tests(X_test, Y_test, Noise_std_test = None, Observables_to_use = None): # we assume the model either has already been optimized, or hasn't been initialized
+    def compute_performance_on_tests(X_test, Y_test, Noise_test = None): # we assume the model either has already been optimized, or hasn't been initialized
         """ To Be Tested """
-        """ Needs to be improved to account for the selection of observables """
         if (self.model is None):
             self.initialise_model()
             self.optimize_model()
         
         n_test_points = np.shape(X_test)[0]
-        if (n_test_points != np.shape(Y_test)[0]):
-            return("Error : There is not as many X and Y test points : " + n_test_points + " vs. " + np.shape(Y_test)[0])
+        
         if (np.shape(X_test)[1] != self.x_dim):
             return("Error : X_test does not have the right dimension : " + self.x_dim + " vs. " + np.shape(X_test)[1])
-        if (np.shape(Y_test)[1] != self.y_dim):
-            return("Error : Y_test does not have the right dimension : " + self.y_dim + " vs. " + np.shape(Y_test)[1])
-        if (np.shape(Noise_std_test) != (self.y_dim, self.y_dim)):
-            return("Error : Noise_std_test does not have the right dimensions : " + np.shape(Noise_std_test) + " vs. " + (self.y_dim, self.y_dim))
         
-        Y_prediction_test, Cov_test = self.model.predict(X_test, full_cov = True) # This might definitely not work, Cov_test will have some strange shape
+        if (np.shape(Y_test)[0] != n_test_points):
+            return("Error : There is not as many X and Y test points : " + n_test_points + " vs. " + np.shape(Y_test)[0])
         
-        performance = chi_2(Y_test, Noise_std_test, Y_prediction_test, Cov_test)
+        if (np.shape(Noise_test) != (n_test_points, n_test_points)):
+            return("Error : Noise_test does not have the right dimensions : " + np.shape(Noise_test) + " vs. " + (n_test_points, n_test_points))
+        
+        Y_predicted_test, Cov_test = self.model.predict(X_test, full_cov = True)
+        
+        performance = chi_2(Y_test, Noise_std_test, Y_predicted_test, Cov_test)
         return(performance)
     
-    def compute_prediction(X_new, Observables_to_use = None): # we assume the model either has already been optimized, or hasn't been initialized
+    def compute_prediction(X_new): # we assume the model either has already been optimized, or hasn't been initialized
         """ To Be Tested """
-        """ Needs to be improved to account for the selection of observables """
         if (self.model is None):
             self.initialise_model()
             self.optimize_model()
         
-        n_new_points = np.shape(X_new)[0]
-        if (np.shape(X_new)[1] != self.x_dim):
-            return("Error : X_new does not have the right dimension : " + self.x_dim + " vs. " + np.shape(self.X_new)[1])
+        if (np.shape(X_new)[1] != 5): # we predict the MST for a set of cosmological parameters
+            return("Error : X_new does not have the right dimension : " + str(5) + " vs. " + np.shape(X_new)[1])
         
-        Y_prediction, Cov = self.model.predict(X_new, full_cov = True) # This might definitely not work, Cov might have some strange shape
-        return(Y_prediction, Cov)
+        n_new_points = np.shape(X_new)[0]
+        
+        for i in range(n_new_points): # construct a full X matrix from the cosmological parameters
+            h0, w0, ns, sigma8, omegaM = X_new[i]
+            X_d = np.reshape(self.X_data[0:6][5], (1, 6))
+            X_l = np.reshape(self.X_data[6:16][5], (1, 10))
+            X_b = np.reshape(self.X_data[16:26][5], (1, 10))
+            X_s = np.reshape(self.X_data[26:36][5], (1, 10))
+            X_new_d = np.reshape([[h0, w0, ns, sigma8, omegaM, x_d, 0] for x_d in X_d], (6, 7))
+            X_new_l = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l, 1] for x_l in X_l], (10, 7))
+            X_new_b = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b, 2] for x_b in X_b], (10, 7))
+            X_new_s = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s, 3] for x_s in X_s], (10, 7))
+            X_new_full = np.concatenate((X_new_d, X_new_l, X_new_b, X_new_s), 0)
+        
+        Y_predicted, Cov = self.model.predict(X_new_full, full_cov = True)
+        return(Y_predicted, Cov)
     
     def plot_prediction(X_new, Observables_to_use = None):
         return("Error : Plot_prediction has yet to be written")
@@ -119,13 +104,14 @@ class GP():
 ## Tools
 def chi_2(Y_model, Noise_model, Y_observation, Noise_observations):
     """ To Be Tested """
-    result = 0
+    chi2 = 0
     
-    for i  in range(np.shape(Y_model)[0]):
-        u = Y_model[i]
-        v = Y_observation[i]
-        Cov = np.asarray(Noise_model) + np.asarray(Noise_observations)
+    for i  in range(np.shape(Y_model)[0] // 36): # we compute a chi2 for each simu then we sum the chi2s
+        u = Y_model[36 * i : 36 * (i + 1)]
+        v = Y_observation[36 * i : 36 * (i + 1)]
+        Cov = np.asarray(Noise_model[36 * i : 36 * (i + 1)][36 * i : 36 * (i + 1)]) + np.asarray(Noise_observations[36 * i : 36 * (i + 1)][36 * i : 36 * (i + 1)])
+        
         VI = np.linalg.inv(Cov)
-        result += spatial.distance.mahalanobis(u, v, VI)
+        chi2 += spatial.distance.mahalanobis(u, v, VI)**2
     
-    return(result)
+    return(chi2)
