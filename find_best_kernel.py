@@ -51,7 +51,7 @@ Kernels_input.append(kernel_input)
 Kernel_names.append('Matern52')
 
 for kernel_input in Kernels_input:
-    kernel_output = GPy.kern.Coregionalize(input_dim = 6, output_dim = 4, rank = 4) # rank 4 since there are 4 outputs
+    kernel_output = GPy.kern.Coregionalize(input_dim = 1, output_dim = 4, rank = 4) # rank 4 since there are 4 outputs
     kernel = kernel_input**kernel_output
     Kernels.append(kernel)
 
@@ -94,16 +94,20 @@ for k in range(Kernels):
         # getting the right data and test groups
         X_data_group, Y_data_group, X_test_group, Y_test_group = List_groups[i]
         
-        # To Be Done : modelling the noise
-        Noise_data = np.identity(n = np.shape(X_data_group)[0]) * 0.05
-        Noise_test = np.identity(n = np.shape(X_test_group)[0]) * 0.05
+        # modelling the noise
+        # Noise_data = np.identity(n = np.shape(X_data_group)[0]) * 0.05
+        # Noise_test = np.identity(n = np.shape(X_test_group)[0]) * 0.05
+        noise_data = 0.05
+        noise_test = 0.05
         
         # creating the gaussian process and optimizing it
-        gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, Noise_data = Noise_data)
-        gp.initialise_kernel()
+        # gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, Noise_data = Noise_data)
+        gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, noise_data = noise_data)
+        gp.initialise_model()
         gp.optimize_model()
         
-        performance_new = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, Noise_test = Noise_test)
+        # performance_new = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, Noise_test = Noise_test)
+        performance_new = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, noise_test = noise_test)
         
         mean_old = mean
         std_old = std
