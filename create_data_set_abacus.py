@@ -17,7 +17,7 @@ print("starting to work on creating the data set")
 X_data = []
 Y_data = []
 
-for i in range(40):
+for i in range(41):
     print("starting to work on simulation " + str(i))
     
     # getting the basepath

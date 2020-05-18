@@ -108,12 +108,16 @@ def chi_2(Y_model, noise_model, Y_observation, Noise_observations):
     """ To Be Tested """
     chi2 = 0
     
-    for i  in range(np.shape(Y_model)[0] // 36): # we compute a chi2 for each simu then we sum the chi2s
+    n_simu = np.shape(Y_model)[0] // 36
+    
+    for i  in range(n_simu): # we compute a chi2 for each simu then we sum the chi2s
         u = Y_model[36 * i : 36 * (i + 1)]
         v = Y_observation[36 * i : 36 * (i + 1)]
         Cov = np.identity(36) * noise_model + np.asarray(Noise_observations[36 * i : 36 * (i + 1), 36 * i : 36 * (i + 1)])
         
         VI = np.linalg.inv(Cov)
         chi2 += spatial.distance.mahalanobis(u, v, VI)**2
+    
+    chi2 = np.sqrt(chi2 / n_simu)
     
     return(chi2)

@@ -1,0 +1,4 @@
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/.local/lib/python3.7/site-packages/mistree/mst/hist_mst.py:183: RuntimeWarning: invalid value encountered in sqrt
+  x_s, y_s = bin_data(np.sqrt(1.-s), minimum=self.s_min, maximum=self.s_max, bin_number=self.num_s_bins, normalised=self.usenorm)
