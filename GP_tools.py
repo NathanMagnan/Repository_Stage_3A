@@ -7,7 +7,6 @@ import GPy as GPy
 class GP():
     
     def __init__(self, X_data, Y_data, kernel, noise_data = None):
-        """ To Be Tested"""
         self.n_data_points = np.shape(X_data)[0] # int
         self.x_dim =  np.shape(X_data)[1] # int
         
@@ -31,7 +30,6 @@ class GP():
         self.initialise_model() # initialises the GP regression model
             
     def initialise_model(self):
-        """ To Be Tested """
         self.model = GPy.models.GPRegression(self.X_data, self.Y_data, self.kernel)
         
         #if (self.Noise_data is not None):
@@ -44,14 +42,12 @@ class GP():
             self.model.Gaussian_noise.variance.fix()
     
     def optimize_model(self):
-        """ To Be Tested """
         if (self.model is None):
             self.initialise_model()
         
         self.model.optimize()
     
     def compute_performance_on_tests(self, X_test, Y_test, noise_test = None): # we assume the model either has already been optimized, or hasn't been initialized
-        """ To Be Tested """
         if (self.model is None):
             self.initialise_model()
             self.optimize_model()
@@ -73,7 +69,6 @@ class GP():
         return(performance)
     
     def compute_prediction(self, X_new): # we assume the model either has already been optimized, or hasn't been initialized
-        """ To Be Tested """
         if (self.model is None):
             self.initialise_model()
             self.optimize_model()
@@ -105,7 +100,6 @@ class GP():
 
 ## Tools
 def chi_2(Y_model, noise_model, Y_observation, Noise_observations):
-    """ To Be Tested """
     chi2 = 0
     
     n_simu = np.shape(Y_model)[0] // 36
