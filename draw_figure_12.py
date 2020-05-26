@@ -94,7 +94,7 @@ for i in range(5):
 
 print("grids defined")
 
-# Drawing
+## Drawing
 print("starting to plot the results")
 
 K = [[0, 0, 0, 0, 0], [1, 2, 0, 0, 0], [3, 4, 5, 0, 0], [6, 7, 8, 9, 0], [10, 11, 12, 13, 14]]

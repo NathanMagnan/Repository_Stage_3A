@@ -1,11 +1,6 @@
 ## Imports
 import numpy as np
 import GPy as GPy
-from matplotlib import use
-use('Agg')
-import matplotlib.pyplot as plt
-from matplotlib import rc
-rc('text', usetex = True)
 
 import sys
 import os
@@ -48,6 +43,7 @@ print(np.shape(X_training))
 print(np.shape(Y_training))
 print(np.shape(X_planck))
 print(np.shape(Y_planck))
+print(Planck_parameters)
 
 ## Defining the pipeline
 print("starting to define the pipeline")

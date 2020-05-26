@@ -1,8 +1,6 @@
 ## Imports
 import numpy as np
 import GPy as GPy
-import matplotlib as mpl
-mpl.use('Agg')
 import matplotlib.pyplot as plt
 
 import sys
@@ -21,6 +19,9 @@ target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus"
 
 X_data = np.loadtxt(str(target) + "_X_data") # numpy array with fields h0, w0, ns, sigma8, omegaM, (d, l, b or s), i -- 36 points per simu
 Y_data = np.loadtxt(str(target) + "_Y_data") # numpy array with fields either Nd, Nl, Nb or Ns depending on the corresponding x
+
+X_data = X_data[0:1440] # we leave the planck simulation out
+Y_data = Y_data[0:1440]
 
 print("data loaded")
 
@@ -67,7 +68,7 @@ print("kernels defined")
 
 ## Setting up the data and test groups
 n_points_per_simulation = 36
-n_groups = 10 # arbitrary
+n_groups = 10
 n_simulations = np.shape(X_data)[0] // n_points_per_simulation
 
 List_groups = []
@@ -103,18 +104,21 @@ for k in range(len(Kernels)):
        X_data_group, Y_data_group, X_test_group, Y_test_group = List_groups[i]
        
        # modelling the noise
-       # Noise_data = np.identity(n = np.shape(X_data_group)[0]) * 0.05
-       # Noise_test = np.identity(n = np.shape(X_test_group)[0]) * 0.05
        noise_data = 0.01
        noise_test = 0.01
        
        # creating the gaussian process and optimizing it
-       # gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, Noise_data = Noise_data)
        gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, noise_data = noise_data)
        gp.initialise_model()
        gp.optimize_model()
        
-       # performance_new = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, Noise_test = Noise_test)
+       # printing results of optimisation
+       if (k == 1):
+          print(gp.model.mul.rbf.variance)
+          print(gp.model.mul.rbf.lengthscale)
+          print(gp.model.Gaussian_noise.variance)
+       
+       # getting the performance of the gaussian process
        performance_new = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, noise_test = noise_test)
        
        mean_old = mean
@@ -129,30 +133,3 @@ for k in range(len(Kernels)):
 
 print("performances successfully evaluated")
 print(Performances)
-
-#Performances = [(1.7431731128219348, 0.03424299249080456), (1.1104506855727245, 0.12047927606391293), (1.4527061862685788, 0.21480454208667255), (1.1294659311180384, 0.1205993185368657), (1.226891725125497, 0.0651931666909746)]
-
-## Choosing the best kernel
-print("starting to plot the results")
-
-n_kernels = len(Kernels)
-#n_kernels = 5
-#Kernel_names = ['RBF isotropic', 'RBF anisotropic', 'Exponential', 'Matern32', 'Matern52']
-
-figure = plt.figure()
-ax = figure.gca()
-
-ax.set_title("Performances of the different kernels")
-ax.set_xlabel("Kernels")
-ax.set_ylabel("Performance (arbitrary unit)")
-
-for i in range(n_kernels):
-    ax.errorbar(x = [Kernel_names[i]], y = Performances[i][0], yerr = Performances[i][1], fmt = "o")
-
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_file = 'Comparison between_kernels'
-my_file = os.path.join(my_path, my_file)
-plt.savefig(my_file, format = 'pdf')
-
-print("results plotted and saved")
-print("Results ready !")
