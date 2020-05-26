@@ -1,6 +1,8 @@
 ## Imports
 import numpy as np
 import GPy as GPy
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 
 import sys
@@ -12,6 +14,7 @@ os.chdir('/home/astro/magnan')
 print("All imports successful")
 
 ## Importing the data
+print("Connexion successfull")
 print("starting to load the data")
 
 target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus"
@@ -127,7 +130,7 @@ for k in range(len(Kernels)):
 print("performances successfully evaluated")
 print(Performances)
 
-#Performances = [(1.7431731128219348, 0.03424299249080456), (1.1104506855727245, 0.12047927606391293), (1.4527061862685788, #0.21480454208667255), (1.1294659311180384, 0.1205993185368657), (1.226891725125497, 0.0651931666909746)]
+#Performances = [(1.7431731128219348, 0.03424299249080456), (1.1104506855727245, 0.12047927606391293), (1.4527061862685788, 0.21480454208667255), (1.1294659311180384, 0.1205993185368657), (1.226891725125497, 0.0651931666909746)]
 
 ## Choosing the best kernel
 print("starting to plot the results")
@@ -147,9 +150,9 @@ for i in range(n_kernels):
     ax.errorbar(x = [Kernel_names[i]], y = Performances[i][0], yerr = Performances[i][1], fmt = "o")
 
 my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_file = 'Comparison between_kernels.png'
+my_file = 'Comparison between_kernels'
 my_file = os.path.join(my_path, my_file)
-plt.savefig(my_file)
+plt.savefig(my_file, format = 'pdf')
 
 print("results plotted and saved")
 print("Results ready !")

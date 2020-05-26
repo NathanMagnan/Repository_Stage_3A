@@ -1,0 +1,2 @@
+ /home/astro/magnan/Repository_Stage_3A/data_figure_12.py:5: UserWarning:matplotlib.pyplot as already been imported, this call will have no effect.
+reconstraining parameters GP_regression.mul.rbf.lengthscale

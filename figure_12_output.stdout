@@ -1,0 +1,192 @@
+connexion successfull
+All imports successful
+starting to load the data
+data loaded
+starting to divide the data set
+data set divided
+(1440, 7)
+(1440,)
+(36, 7)
+(36,)
+starting to define the pipeline
+
+Name : GP regression
+Objective : -993.4471190478996
+Number of Parameters : 28
+Number of Optimization Parameters : 27
+Updates : True
+Parameters:
+  [1mGP_regression.         [0;0m  |   value  |  constraints  |  priors
+  [1mmul.rbf.variance       [0;0m  |     1.0  |      +ve      |        
+  [1mmul.rbf.lengthscale    [0;0m  |    (6,)  |    0.0,3.0    |        
+  [1mmul.coregion.W         [0;0m  |  (4, 4)  |               |        
+  [1mmul.coregion.kappa     [0;0m  |    (4,)  |      +ve      |        
+  [1mGaussian_noise.variance[0;0m  |    0.01  |   +ve fixed   |        
+pipeline defined
+starting to train the pipeline
+pipeline trained
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.04427551  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99999850  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99999844  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99999862  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99999812  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99999837  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75459594  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.mul.coregion.W  |  constraints  |  priors
+  [1m[0 0][0;0m  |                    0.84236899  |               |        
+  [1m[0 1][0;0m  |                    0.37326390  |               |        
+  [1m[0 2][0;0m  |                    0.47462257  |               |        
+  [1m[0 3][0;0m  |                    0.25166900  |               |        
+  [1m[1 0][0;0m  |                    0.43605134  |               |        
+  [1m[1 1][0;0m  |                   -0.72328299  |               |        
+  [1m[1 2][0;0m  |                    0.72191360  |               |        
+  [1m[1 3][0;0m  |                    0.02313191  |               |        
+  [1m[2 0][0;0m  |                    0.31910094  |               |        
+  [1m[2 1][0;0m  |                   -0.80899095  |               |        
+  [1m[2 2][0;0m  |                   -0.55719335  |               |        
+  [1m[2 3][0;0m  |                    0.24144311  |               |        
+  [1m[3 0][0;0m  |                    5.01731092  |               |        
+  [1m[3 1][0;0m  |                    4.48737897  |               |        
+  [1m[3 2][0;0m  |                    3.41445452  |               |        
+  [1m[3 3][0;0m  |                   13.92830044  |               |        
+  [1mindex[0;0m  |  GP_regression.mul.coregion.kappa  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        0.06693962  |      +ve      |        
+  [1m[1]  [0;0m  |                        0.00800686  |      +ve      |        
+  [1m[2]  [0;0m  |                        0.00686783  |      +ve      |        
+  [1m[3]  [0;0m  |                        2.97558635  |      +ve      |        
+[[ 1.20445494e+00  4.45798771e-01 -2.36859173e-01  1.10273023e+01]
+ [ 4.45798771e-01  1.24298025e+00  3.27613368e-01  1.72928957e+00]
+ [-2.36859173e-01  3.27613368e-01  1.13191881e+00 -5.68839529e-01]
+ [ 1.10273023e+01  1.72928957e+00 -5.68839529e-01  2.53941618e+02]]
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+starting to define the grids
+grids defined
+starting to make predictions
+starting to work on grid 0
+0.0
+starting to work on grid 1
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 2
+0.0
+starting to work on grid 3
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 4
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 5
+0.0
+starting to work on grid 6
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 7
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 8
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 9
+0.0
+starting to work on grid 10
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 11
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 12
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 13
+0.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+starting to work on grid 14
+0.0
+predictions made
+starting to look for the points with chi2 < 1.96
+points with chi2 > 1.96 found
+starting to plot the results
+results saved
