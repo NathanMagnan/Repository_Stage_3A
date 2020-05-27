@@ -41,11 +41,11 @@ class GP():
             self.model.Gaussian_noise.variance = 0
             self.model.Gaussian_noise.variance.fix()
     
-    def optimize_model(self):
+    def optimize_model(self, optimizer = 'bfgs'):
         if (self.model is None):
             self.initialise_model()
         
-        self.model.optimize()
+        self.model.optimize(optimizer)
     
     def compute_performance_on_tests(self, X_test, Y_test, noise_test = None): # we assume the model either has already been optimized, or hasn't been initialized
         if (self.model is None):
@@ -107,7 +107,8 @@ def chi_2(Y_model, noise_model, Y_observation, Noise_observations):
     for i  in range(n_simu): # we compute a chi2 for each simu then we sum the chi2s
         u = Y_model[36 * i : 36 * (i + 1)]
         v = Y_observation[36 * i : 36 * (i + 1)]
-        Cov = np.identity(36) * noise_model + np.asarray(Noise_observations[36 * i : 36 * (i + 1), 36 * i : 36 * (i + 1)])
+        #Cov = np.identity(36) * noise_model + np.asarray(Noise_observations[36 * i : 36 * (i + 1), 36 * i : 36 * (i + 1)])
+        Cov = np.identity(36)
         
         VI = np.linalg.inv(Cov)
         chi2 += spatial.distance.mahalanobis(u, v, VI)**2

@@ -39,11 +39,6 @@ kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5]) # the column 6 
 Kernels_input.append(kernel_input)
 Kernel_names.append('RBF isotropic')
 
-# RBF
-kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True) # the column 6 will be dealt with by the coregionalization
-Kernels_input.append(kernel_input)
-Kernel_names.append('RBF anisotropic')
-
 # Exponential
 kernel_input = GPy.kern.Exponential(6, active_dims = [0, 1, 2, 3, 4, 5]) # the column 6 will be dealt with by the coregionalization
 Kernels_input.append(kernel_input)
@@ -58,6 +53,31 @@ Kernel_names.append('Matern32')
 kernel_input = GPy.kern.Matern52(6, active_dims = [0, 1, 2, 3, 4, 5]) # the column 6 will be dealt with by the coregionalization
 Kernels_input.append(kernel_input)
 Kernel_names.append('Matern52')
+
+# RBF
+kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True) # the column 6 will be dealt with by the coregionalization
+Kernels_input.append(kernel_input)
+Kernel_names.append('RBF anisotropic')
+
+# RBF
+kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True) # the column 6 will be dealt with by the coregionalization
+Kernels_input.append(kernel_input)
+Kernel_names.append('RBF anisotropic bounded')
+
+# RBF
+kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True) # the column 6 will be dealt with by the coregionalization
+Kernels_input.append(kernel_input)
+Kernel_names.append('RBF anisotropic with prior')
+
+# RBF
+kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True) # the column 6 will be dealt with by the coregionalization
+Kernels_input.append(kernel_input)
+Kernel_names.append('RBF anisotropic sgc')
+
+# RBF
+kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True) # the column 6 will be dealt with by the coregionalization
+Kernels_input.append(kernel_input)
+Kernel_names.append('RBF anisotropic restart')
 
 for kernel_input in Kernels_input:
    kernel_output = GPy.kern.Coregionalize(input_dim = 1, output_dim = 4, rank = 4) # rank 4 since there are 4 outputs
@@ -110,10 +130,22 @@ for k in range(len(Kernels)):
        # creating the gaussian process and optimizing it
        gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, noise_data = noise_data)
        gp.initialise_model()
-       gp.optimize_model()
        
+       if (k <= 4):
+       	gp.optimize_model()
+       if (k == 5):
+       	gp.model.mul.rbf.lengthscale.constrain_bounded(0, 3)
+       	gp.optimize_model()
+       if (k == 6):
+       	gp.model.mul.rbf.lengthscale.set_prior(GPy.priors.Gamma(1, 1))
+       	gp.optimize_model()
+       if (k == 7):
+       	gp.optimize_model('scg')
+       if (k == 8):
+       	gp.model.optimize_restart()
+       	
        # printing results of optimisation
-       if (k == 1):
+       if (k >= 4):
           print(gp.model.mul.rbf.variance)
           print(gp.model.mul.rbf.lengthscale)
           print(gp.model.Gaussian_noise.variance)
@@ -133,3 +165,4 @@ for k in range(len(Kernels)):
 
 print("performances successfully evaluated")
 print(Performances)
+print(Kernel_names)

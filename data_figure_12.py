@@ -55,7 +55,7 @@ kernel_name = "RBF anisotropic"
 
 gp = GP.GP(X_training, Y_training, kernel = kernel, noise_data = noise)
 gp.initialise_model()
-gp.model.mul.rbf.lengthscale.constrain_bounded(0, 3)
+#gp.model.mul.rbf.lengthscale.constrain_bounded(0, 3)
 print(gp.model)
 
 print("pipeline defined")
