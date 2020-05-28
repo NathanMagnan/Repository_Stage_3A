@@ -13,10 +13,10 @@ print("All imports successful")
 ## Getting the data set
 print("starting to load the data")
 
-target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus"
+target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
 
-X_data = np.loadtxt(str(target) + "_X_data") # numpy array with fields h0, w0, ns, sigma8, omegaM, (d, l, b or s), i -- 36 points per simu
-Y_data = np.loadtxt(str(target) + "_Y_data") # numpy array with fields either Nd, Nl, Nb or Ns depending on the corresponding x
+X_data = np.loadtxt(str(target) + "_X_data_all") # numpy array with fields h0, w0, ns, sigma8, omegaM, (d, l, b or s), i -- 36 points per simu
+Y_data = np.loadtxt(str(target) + "_Y_data_all") # numpy array with fields either Nd, Nl, Nb or Ns depending on the corresponding x
 
 print("data loaded")
 

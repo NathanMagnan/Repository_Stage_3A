@@ -91,8 +91,8 @@ def chi_2(Y_model, noise_model, Y_observation, Noise_observations):
     for i  in range(n_simulations): # we compute a chi2 for each simu then we sum the chi2s
         u = Y_model[n_points_per_simulation * i : n_points_per_simulation * (i + 1)]
         v = Y_observation[n_points_per_simulation * i : n_points_per_simulation * (i + 1)]
-        #Cov = np.identity(36) * noise_model + np.asarray(Noise_observations[36 * i : 36 * (i + 1), 36 * i : 36 * (i + 1)])
-        Cov = np.identity(n_points_per_simulation)
+        Cov = np.identity(n_points_per_simulation) * noise_model + np.asarray(Noise_observations[n_points_per_simulation * i : n_points_per_simulation * (i + 1), n_points_per_simulation * i : n_points_per_simulation * (i + 1)])
+        #Cov = np.identity(n_points_per_simulation)
         
         VI = np.linalg.inv(Cov)
         chi2 += spatial.distance.mahalanobis(u, v, VI)**2

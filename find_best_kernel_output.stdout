@@ -1,1 +1,548 @@
 OK, it worked
+All imports successful
+Connexion successfull
+starting to load the data
+data loaded
+starting to define the kernels
+kernels defined
+data and test groups defined
+starting to evaluate the performances
+starting to work on kernel 0
+kernel 0 group 0
+kernel 0 group 1
+kernel 0 group 2
+kernel 0 group 3
+kernel 0 group 4
+kernel 0 group 5
+kernel 0 group 6
+kernel 0 group 7
+kernel 0 group 8
+kernel 0 group 9
+work done on kernel 0
+starting to work on kernel 1
+kernel 1 group 0
+kernel 1 group 1
+kernel 1 group 2
+kernel 1 group 3
+kernel 1 group 4
+kernel 1 group 5
+kernel 1 group 6
+kernel 1 group 7
+kernel 1 group 8
+kernel 1 group 9
+work done on kernel 1
+starting to work on kernel 2
+kernel 2 group 0
+kernel 2 group 1
+kernel 2 group 2
+kernel 2 group 3
+kernel 2 group 4
+kernel 2 group 5
+kernel 2 group 6
+kernel 2 group 7
+kernel 2 group 8
+kernel 2 group 9
+work done on kernel 2
+starting to work on kernel 3
+kernel 3 group 0
+kernel 3 group 1
+kernel 3 group 2
+kernel 3 group 3
+kernel 3 group 4
+kernel 3 group 5
+kernel 3 group 6
+kernel 3 group 7
+kernel 3 group 8
+kernel 3 group 9
+work done on kernel 3
+starting to work on kernel 4
+kernel 4 group 0
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76343071  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 1
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76426296  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 2
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.75675643  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 3
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76366793  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 4
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76430870  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 5
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76454516  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 6
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76380420  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 7
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76409571  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 8
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76472067  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 4 group 9
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.00000000  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                    531928.58240794  |      +ve      |        
+  [1m[1]  [0;0m  |                    530231.93767104  |      +ve      |        
+  [1m[2]  [0;0m  |                    545315.84631176  |      +ve      |        
+  [1m[3]  [0;0m  |                    495275.07321722  |      +ve      |        
+  [1m[4]  [0;0m  |                    522652.38985248  |      +ve      |        
+  [1m[5]  [0;0m  |                         0.76367935  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+work done on kernel 4
+starting to work on kernel 5
+kernel 5 group 0
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06633870  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99991982  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992002  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994027  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984605  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990579  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75303731  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 1
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06884125  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99991984  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992004  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994028  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984613  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990583  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75765051  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 2
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.05564419  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99991988  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992008  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994031  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984624  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990588  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.73091068  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 3
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06596396  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99991991  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992011  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994033  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984634  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990592  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75283439  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 4
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06778082  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99991993  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992014  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994035  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984642  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990596  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75679745  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 5
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06413559  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99991995  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992016  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994036  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984649  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990599  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75050218  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 6
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06806013  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99991998  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992018  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994038  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984657  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990602  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75632048  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 7
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06694278  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99992000  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992021  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994039  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984665  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990606  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75465510  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 8
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06231394  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99992002  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992023  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994041  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984670  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990609  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.74506692  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 5 group 9
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.06656217  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                         2.99992005  |    0.0,3.0    |        
+  [1m[1]  [0;0m  |                         2.99992025  |    0.0,3.0    |        
+  [1m[2]  [0;0m  |                         2.99994042  |    0.0,3.0    |        
+  [1m[3]  [0;0m  |                         2.99984679  |    0.0,3.0    |        
+  [1m[4]  [0;0m  |                         2.99990612  |    0.0,3.0    |        
+  [1m[5]  [0;0m  |                         0.75450490  |    0.0,3.0    |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+work done on kernel 5
+starting to work on kernel 6
+kernel 6 group 0
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.49967042  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         7.05048323  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         7.16967769  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.46049780  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.69130802  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         6.99961558  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.86842638  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 1
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.51649548  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         7.06752363  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         7.06264976  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.64773548  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.66014236  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         7.03600603  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.87268244  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 2
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.43341102  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         7.03846928  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         7.09608173  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.50653862  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.56107653  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         7.00232139  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.84894947  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 3
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.50011891  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         6.94141177  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         6.98175902  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.52286881  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.45359400  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         7.04945805  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.86891593  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 4
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.51905442  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         7.03125339  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         7.11296380  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.68782422  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.73476897  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         7.05052838  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.87338463  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 5
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.48985986  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         7.04450194  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         7.08214452  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.64850242  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.69405831  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         6.96720331  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.86607174  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 6
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.51592728  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         6.96464796  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         7.06942110  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.77972440  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.63104708  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         6.83615916  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.87175839  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 7
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.50215873  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         7.08949712  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         7.16042223  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.41715568  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.65139715  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         7.11998605  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.86925585  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 8
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.47234445  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         7.06446610  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         6.91101988  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.56251718  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.31839522  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         7.09418841  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.86081874  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 6 group 9
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                      0.51315140  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |   priors 
+  [1m[0]  [0;0m  |                         6.99131709  |      +ve      |  Ga(1, 1)
+  [1m[1]  [0;0m  |                         7.14783558  |      +ve      |  Ga(1, 1)
+  [1m[2]  [0;0m  |                         7.69917883  |      +ve      |  Ga(1, 1)
+  [1m[3]  [0;0m  |                         6.74039267  |      +ve      |  Ga(1, 1)
+  [1m[4]  [0;0m  |                         6.89110436  |      +ve      |  Ga(1, 1)
+  [1m[5]  [0;0m  |                         0.87236341  |      +ve      |  Ga(1, 1)
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+work done on kernel 6
+starting to work on kernel 7
+kernel 7 group 0
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     11.82844584  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        46.29288005  |      +ve      |        
+  [1m[1]  [0;0m  |                        47.10117539  |      +ve      |        
+  [1m[2]  [0;0m  |                        48.16076693  |      +ve      |        
+  [1m[3]  [0;0m  |                        45.65319035  |      +ve      |        
+  [1m[4]  [0;0m  |                        46.34409380  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.47511248  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 1
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     12.25444326  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        60.71949061  |      +ve      |        
+  [1m[1]  [0;0m  |                        61.73125217  |      +ve      |        
+  [1m[2]  [0;0m  |                        64.04301702  |      +ve      |        
+  [1m[3]  [0;0m  |                        60.24910612  |      +ve      |        
+  [1m[4]  [0;0m  |                        61.26227868  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.48475311  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 2
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     12.32251072  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        81.03586386  |      +ve      |        
+  [1m[1]  [0;0m  |                        82.64147612  |      +ve      |        
+  [1m[2]  [0;0m  |                        86.48064120  |      +ve      |        
+  [1m[3]  [0;0m  |                        80.79340992  |      +ve      |        
+  [1m[4]  [0;0m  |                        82.55240671  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.47799875  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 3
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     13.25464428  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        81.82195623  |      +ve      |        
+  [1m[1]  [0;0m  |                        83.45364683  |      +ve      |        
+  [1m[2]  [0;0m  |                        87.36592676  |      +ve      |        
+  [1m[3]  [0;0m  |                        81.58942820  |      +ve      |        
+  [1m[4]  [0;0m  |                        83.39235881  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.50970416  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 4
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     13.25463223  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        81.82224902  |      +ve      |        
+  [1m[1]  [0;0m  |                        83.45394578  |      +ve      |        
+  [1m[2]  [0;0m  |                        87.36625986  |      +ve      |        
+  [1m[3]  [0;0m  |                        81.58973059  |      +ve      |        
+  [1m[4]  [0;0m  |                        83.39267007  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.51066279  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 5
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     13.20315423  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        81.92572921  |      +ve      |        
+  [1m[1]  [0;0m  |                        83.55956051  |      +ve      |        
+  [1m[2]  [0;0m  |                        87.48196292  |      +ve      |        
+  [1m[3]  [0;0m  |                        81.69608055  |      +ve      |        
+  [1m[4]  [0;0m  |                        83.50060022  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.50543375  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 6
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     13.21431414  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        81.99575648  |      +ve      |        
+  [1m[1]  [0;0m  |                        83.63209396  |      +ve      |        
+  [1m[2]  [0;0m  |                        87.56225961  |      +ve      |        
+  [1m[3]  [0;0m  |                        81.76853374  |      +ve      |        
+  [1m[4]  [0;0m  |                        83.57347820  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.50931916  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 7
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     13.21258156  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        82.01056541  |      +ve      |        
+  [1m[1]  [0;0m  |                        83.64751551  |      +ve      |        
+  [1m[2]  [0;0m  |                        87.57854724  |      +ve      |        
+  [1m[3]  [0;0m  |                        81.78375873  |      +ve      |        
+  [1m[4]  [0;0m  |                        83.58921014  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.50799670  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 8
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     12.67774888  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        83.35453454  |      +ve      |        
+  [1m[1]  [0;0m  |                        85.00419241  |      +ve      |        
+  [1m[2]  [0;0m  |                        89.06732807  |      +ve      |        
+  [1m[3]  [0;0m  |                        83.11549515  |      +ve      |        
+  [1m[4]  [0;0m  |                        85.00235711  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.49265645  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+kernel 7 group 9
+  [1mindex[0;0m  |  GP_regression.mul.rbf.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                     12.67811236  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.mul.rbf.lengthscale  |  constraints  |  priors
+  [1m[0]  [0;0m  |                        83.35500704  |      +ve      |        
+  [1m[1]  [0;0m  |                        85.00468706  |      +ve      |        
+  [1m[2]  [0;0m  |                        89.06787111  |      +ve      |        
+  [1m[3]  [0;0m  |                        83.11599103  |      +ve      |        
+  [1m[4]  [0;0m  |                        85.00285223  |      +ve      |        
+  [1m[5]  [0;0m  |                         1.49469128  |      +ve      |        
+  [1mindex[0;0m  |  GP_regression.Gaussian_noise.variance  |  constraints  |  priors
+  [1m[0]  [0;0m  |                             0.01000000  |   +ve fixed   |        
+work done on kernel 7
+performances successfully evaluated
+[(0.248043259118587, 0.005362297514592487), (0.28031679770028595, 0.055898993975172596), (0.18340983108760123, 0.029205087580071478), (0.1836357742395285, 0.016012992592860896), (0.1622188950611747, 0.02839762103846572), (0.1687407823984622, 0.03461049551622683), (0.16162315968701507, 0.024040478889329774), (0.160260570051421, 0.005299883541867323)]
+['RBF isotropic', 'Exponential', 'Matern32', 'Matern52', 'RBF anisotropic', 'RBF anisotropic bounded', 'RBF anisotropic with prior', 'RBF anisotropic sgc']

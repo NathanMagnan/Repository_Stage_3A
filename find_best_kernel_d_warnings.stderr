@@ -1,0 +1,32 @@
+ /home/astro/magnan/.local/lib/python3.7/site-packages/paramz/transformations.py:111: RuntimeWarning:overflow encountered in expm1
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+reconstraining parameters GP_regression.rbf.lengthscale
+ /home/astro/magnan/.local/lib/python3.7/site-packages/GPy/kern/src/stationary.py:137: RuntimeWarning:overflow encountered in square
+ /home/astro/magnan/.local/lib/python3.7/site-packages/GPy/kern/src/stationary.py:138: RuntimeWarning:invalid value encountered in add

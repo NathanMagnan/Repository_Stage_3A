@@ -72,11 +72,6 @@ kernel = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True)
 Kernels.append(kernel)
 Kernel_names.append('RBF anisotropic sgc')
 
-# RBF
-kernel = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True)
-Kernels.append(kernel)
-Kernel_names.append('RBF anisotropic restart')
-
 print("kernels defined")
 
 ## Setting up the data and test groups
@@ -127,20 +122,18 @@ for k in range(len(Kernels)):
         if (k <= 4):
             gp.optimize_model()
         if (k == 5):
-            gp.model.mul.rbf.lengthscale.constrain_bounded(0, 3)
+            gp.model.rbf.lengthscale.constrain_bounded(0, 3)
             gp.optimize_model()
         if (k == 6):
-            gp.model.mul.rbf.lengthscale.set_prior(GPy.priors.Gamma(1, 1))
+            gp.model.rbf.lengthscale.set_prior(GPy.priors.Gamma(1, 1))
             gp.optimize_model()
         if (k == 7):
             gp.optimize_model('scg')
-        if (k == 8):
-            gp.model.optimize_restart()
         
         # printing results of optimisation
         if (k >= 4):
-            print(gp.model.mul.rbf.variance)
-            print(gp.model.mul.rbf.lengthscale)
+            print(gp.model.rbf.variance)
+            print(gp.model.rbf.lengthscale)
             print(gp.model.Gaussian_noise.variance)
         
         # getting the performance of the gaussian process

@@ -15,10 +15,10 @@ print("All imports successful")
 print("Connexion successfull")
 print("starting to load the data")
 
-target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus"
+target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
 
-X_data = np.loadtxt(str(target) + "_X_data") # numpy array with fields h0, w0, ns, sigma8, omegaM, (d, l, b or s), i -- 36 points per simu
-Y_data = np.loadtxt(str(target) + "_Y_data") # numpy array with fields either Nd, Nl, Nb or Ns depending on the corresponding x
+X_data = np.loadtxt(str(target) + "_X_data_all") # numpy array with fields h0, w0, ns, sigma8, omegaM, (d, l, b or s), i -- 36 points per simu
+Y_data = np.loadtxt(str(target) + "_Y_data_all") # numpy array with fields either Nd, Nl, Nb or Ns depending on the corresponding x
 
 X_data = X_data[0:1440] # we leave the planck simulation out
 Y_data = Y_data[0:1440]
@@ -73,11 +73,6 @@ Kernel_names.append('RBF anisotropic with prior')
 kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True) # the column 6 will be dealt with by the coregionalization
 Kernels_input.append(kernel_input)
 Kernel_names.append('RBF anisotropic sgc')
-
-# RBF
-kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True) # the column 6 will be dealt with by the coregionalization
-Kernels_input.append(kernel_input)
-Kernel_names.append('RBF anisotropic restart')
 
 for kernel_input in Kernels_input:
    kernel_output = GPy.kern.Coregionalize(input_dim = 1, output_dim = 4, rank = 4) # rank 4 since there are 4 outputs
@@ -141,8 +136,6 @@ for k in range(len(Kernels)):
        	gp.optimize_model()
        if (k == 7):
        	gp.optimize_model('scg')
-       if (k == 8):
-       	gp.model.optimize_restart()
        	
        # printing results of optimisation
        if (k >= 4):
