@@ -8,7 +8,7 @@ print("All imports successful")
 ## Drawing
 print("starting to plot the results")
 n_kernels = 8
-Performances = [(1.5839707633350024, 0.28221748772229766), (1.1658135630347024, 0.27904929863404476), (1.4214899503229779, 0.207887393767021), (1.5647038147870622, 0.22500253101212803), (1.4218844429272284, 0.2993943034053358), (1.4732638325191334, 0.28289909676520386), (1.4685413460244996, 0.2880984936896126), (1.5642631954170114, 0.33143822780299864)]
+Performances = [(0.24350464841398053, 0.043515257941273325), (0.4572760334266503, 0.12035178619521882), (0.28233076385302236, 0.03785708973648219), (0.24885080895492231, 0.0326197704483331), (0.20685441533249155, 0.043335109478190005), (0.21738036659538545, 0.04168739738025657), (0.21536767999660644, 0.04212083437061767), (0.26802912985880367, 0.04303800122469888)]
 Kernel_names = ['RBF isotropic', 'Exponential', 'Matern32', 'Matern52', 'RBF anisotropic', 'bounded', 'prior', 'sgc']
 
 figure = plt.figure()
@@ -21,9 +21,11 @@ ax.set_ylabel("Performance (arbitrary unit)")
 for i in range(n_kernels):
     ax.errorbar(x = [Kernel_names[i]], y = Performances[i][0], yerr = Performances[i][1], fmt = "o")
 
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_file = 'Comparison_between_kernels_d'
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+my_file = 'Comparison_between_kernels_d_2'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
+plt.show()
 
 print("results plotted and saved")

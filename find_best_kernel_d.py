@@ -1,4 +1,3 @@
-""" need to modify GP_tools """
 ## Imports
 import numpy as np
 import GPy as GPy
@@ -6,9 +5,11 @@ import matplotlib.pyplot as plt
 
 import sys
 import os
-sys.path.append('/home/astro/magnan/Repository_Stage_3A')
+#sys.path.append('/home/astro/magnan/Repository_Stage_3A')
+sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 import GP_tools_d as GP
-os.chdir('/home/astro/magnan')
+#os.chdir('/home/astro/magnan')
+os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 
 print("All imports successful")
 
@@ -16,7 +17,8 @@ print("All imports successful")
 print("Connexion successfull")
 print("starting to load the data")
 
-target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
+#target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
+target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus'
 
 X_data = np.loadtxt(str(target) + "_X_data_d") # numpy array with fields h0, w0, ns, sigma8, omegaM, ds -- 6 point per simu
 Y_data = np.loadtxt(str(target) + "_Y_data_d") # numpy array with field Nd
@@ -101,11 +103,11 @@ Performances = []
 for k in range(len(Kernels)):
     print("starting to work on kernel " + str(k))
     
-    kernel = Kernels[k]
     mean = 0
     std = 0
     
     for i in range(n_groups):
+        kernel = Kernels[k].copy()
         print("kernel " + str(k) + " group " + str(i))
         
         # getting the right data and test groups

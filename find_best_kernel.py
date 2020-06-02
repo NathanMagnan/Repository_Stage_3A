@@ -108,11 +108,11 @@ Performances = []
 for k in range(len(Kernels)):
    print("starting to work on kernel " + str(k))
    
-   kernel = Kernels[k]
    mean = 0
    std = 0
    
    for i in range(n_groups):
+       kernel = Kernels[k].copy()
        print("kernel " + str(k) + " group " + str(i))
        
        # getting the right data and test groups
