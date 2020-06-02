@@ -98,47 +98,47 @@ gp.initialise_model()
 # print("The best optimiser seems to be lbfgsb")
 
 ## Optimising the hyperparameters manually
-print("Starting to optimise the hyperparameters")
-
-
-h0, w0, ns, sigma8, omegaM = X_planck[0, 0:5]
-Planck_parameters = np.reshape([h0, w0, ns, sigma8, omegaM], (1, 5))
-Y_predicted, Cov = gp.compute_prediction(Planck_parameters)
-
-def loss_function(X): # X is a 1 dimensional numpy array of size 7
-    var, l0, l1, l2, l3, l4, l5 = X
-    gp.model.rbf.variance = abs(var) # to constrain the hyperparameters to positive values
-    gp.model.rbf.lengthscale[0] = abs(l0)
-    gp.model.rbf.lengthscale[1] = abs(l1)
-    gp.model.rbf.lengthscale[2] = abs(l2)
-    gp.model.rbf.lengthscale[3] = abs(l3)
-    gp.model.rbf.lengthscale[4] = abs(l4)
-    gp.model.rbf.lengthscale[5] = abs(l5)
-    
-    Y_predicted, Cov = gp.compute_prediction(Planck_parameters)
-    
-    rms = gp.RMS(Y_model = Y_planck, Y_observation = Y_predicted)
-    print("RMS : " + str(rms))
-    return(rms)
-
-x0 = np.asarray([1, 1, 1, 1, 1, 1, 1]) # initial point for the research # could use a lambda function to make random restarts
-sigma0 = 1 #should be 1/4th of the search domain
-cma.fmin(objective_function = loss_function, x0 = x0, sigma0 = sigma0, options={'maxfevals': 10**(4)})
-
-print("Hyperparameters optimised")
-print(gp.model.rbf.variance)
-print(gp.model.rbf.lengthscale)
-print(gp.model.Gaussian_noise.variance)
-
-Y_predicted, Cov = gp.compute_prediction(Planck_parameters)
-rms = gp.RMS(Y_model = Y_planck, Y_observation = Y_predicted)
-print("RMS Planck : " + str(rms))
-
-h0_2, w0_2, ns_2, sigma8_2, omegaM_2 = X_other[0, 0:5]
-Other_parameters = np.reshape([h0_2, w0_2, ns_2, sigma8_2, omegaM_2], (1, 5))
-Y_predicted_2, Cov_2 = gp.compute_prediction(Other_parameters)
-rms_2 = gp.RMS(Y_model = Y_other, Y_observation = Y_predicted_2)
-print("RMS Other : " + str(rms_2))
+# print("Starting to optimise the hyperparameters")
+# 
+# 
+# h0, w0, ns, sigma8, omegaM = X_planck[0, 0:5]
+# Planck_parameters = np.reshape([h0, w0, ns, sigma8, omegaM], (1, 5))
+# Y_predicted, Cov = gp.compute_prediction(Planck_parameters)
+# 
+# def loss_function(X): # X is a 1 dimensional numpy array of size 7
+#     var, l0, l1, l2, l3, l4, l5 = X
+#     gp.model.rbf.variance = abs(var) # to constrain the hyperparameters to positive values
+#     gp.model.rbf.lengthscale[0] = abs(l0)
+#     gp.model.rbf.lengthscale[1] = abs(l1)
+#     gp.model.rbf.lengthscale[2] = abs(l2)
+#     gp.model.rbf.lengthscale[3] = abs(l3)
+#     gp.model.rbf.lengthscale[4] = abs(l4)
+#     gp.model.rbf.lengthscale[5] = abs(l5)
+#     
+#     Y_predicted, Cov = gp.compute_prediction(Planck_parameters)
+#     
+#     rms = gp.RMS(Y_model = Y_planck, Y_observation = Y_predicted)
+#     print("RMS : " + str(rms))
+#     return(rms)
+# 
+# x0 = np.asarray([1, 1, 1, 1, 1, 1, 1]) # initial point for the research # could use a lambda function to make random restarts
+# sigma0 = 1 #should be 1/4th of the search domain
+# cma.fmin(objective_function = loss_function, x0 = x0, sigma0 = sigma0, options={'maxfevals': 10**(4)})
+# 
+# print("Hyperparameters optimised")
+# print(gp.model.rbf.variance)
+# print(gp.model.rbf.lengthscale)
+# print(gp.model.Gaussian_noise.variance)
+# 
+# Y_predicted, Cov = gp.compute_prediction(Planck_parameters)
+# rms = gp.RMS(Y_model = Y_planck, Y_observation = Y_predicted)
+# print("RMS Planck : " + str(rms))
+# 
+# h0_2, w0_2, ns_2, sigma8_2, omegaM_2 = X_other[0, 0:5]
+# Other_parameters = np.reshape([h0_2, w0_2, ns_2, sigma8_2, omegaM_2], (1, 5))
+# Y_predicted_2, Cov_2 = gp.compute_prediction(Other_parameters)
+# rms_2 = gp.RMS(Y_model = Y_other, Y_observation = Y_predicted_2)
+# print("RMS Other : " + str(rms_2))
 
 ## Optimizing the hyperparameters properly
 # print("starting to optimize the hyperparameters")

@@ -1,4 +1,3 @@
-""" To Be Tested : Else... from lines 97 to 100 """
 ## Imports
 import numpy as np
 
@@ -16,6 +15,7 @@ print("All imports successful")
 print("starting to work on creating the data set")
 X_data = []
 Y_data = []
+Catalogues = []
 
 for i in range(41):
     print("starting to work on simulation " + str(i))
@@ -45,22 +45,25 @@ for i in range(41):
     ab.compute_MST_histogram()
     print("simulation " + str(i) + " : histogram computed")
     
-    # reading the histogram
-    X_d = ab.MST_histogram['x_d']
-    Y_d = ab.MST_histogram['y_d'] / np.max(ab.MST_histogram['y_d']) # we normalize every histogram to 1
+    # saving the catalogue
+    Catalogues.append(ab)
     
-    X_l_long = ab.MST_histogram['x_l']
-    Y_l_long = ab.MST_histogram['y_l'] / np.max(ab.MST_histogram['y_l']) # we normalize every histogram to 1
+    # reading the histogram
+    X_d = ab.MST_histogram['x_d'] / 6 # we normalize every histogram to have a typical scale of 1
+    Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
+    
+    X_l_long = np.log10(ab.MST_histogram['x_l']) # we normalize every histogram to have a typical scale of 1
+    Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
     X_l = X_l_long[4::10]
     Y_l = Y_l_long[4::10] # we only keep 10 points per histogram to avoid having huge redundant dataset
     
-    X_b_long = ab.MST_histogram['x_b']
-    Y_b_long = ab.MST_histogram['y_b'] / np.max(ab.MST_histogram['y_b']) # we normalize every histogram to 1
+    X_b_long = np.log10(ab.MST_histogram['x_b']) # we normalize every histogram to have a typical scale of 1
+    Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
     X_b = X_b_long[4::10]
     Y_b = Y_b_long[4::10] # we only keep 10 points per histogram to avoid having huge redundant dataset
     
-    X_s_long = ab.MST_histogram['x_s']
-    Y_s_long = ab.MST_histogram['y_s'] / np.max(ab.MST_histogram['y_s']) # we normalize every histogram to 1
+    X_s_long = ab.MST_histogram['x_s'] # already normalized between 0 and 1
+    Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
     X_s = X_s_long[2::5]
     Y_s = Y_s_long[2::5] # we only keep 10 points per histogram to avoid having huge redundant dataset
     print("simulation " + str(i) + " : histogram read")
@@ -104,10 +107,46 @@ print("data set fully created")
 ## saving the data set
 print("starting to work on saving the data set")
 
-target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus"
+target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
 
-np.savetxt(str(target) + "_X_data", X_data)
-np.savetxt(str(target) + "_Y_data", Y_data)
+np.savetxt(str(target) + "_X_data_all", X_data)
+np.savetxt(str(target) + "_Y_data_all", Y_data)
 
 print("data fully saved")
 print("Data set ready !")
+
+## printing the statistics
+print("starting to work on saving the catalogues")
+target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+
+for i in range(len(Catalogues)):
+    ab = Catalogues[i]
+    
+    X_d = ab.MST_histogram['x_d']
+    Y_d = ab.MST_histogram['y_d']
+    np.savetxt(str(target) + str(i) + "_X_d", X_d)
+    np.savetxt(str(target) + str(i) + "_Y_d", Y_d)
+    
+    X_l = ab.MST_histogram['x_l']
+    Y_l = ab.MST_histogram['y_l']
+    np.savetxt(str(target) + str(i) + "_X_l", X_l)
+    np.savetxt(str(target) + str(i) + "_Y_l", Y_l)
+    
+    X_b = ab.MST_histogram['x_b']
+    Y_b = ab.MST_histogram['y_b']
+    np.savetxt(str(target) + str(i) + "_X_b", X_b)
+    np.savetxt(str(target) + str(i) + "_Y_b", Y_b)
+    
+    X_s = ab.MST_histogram['x_s']
+    Y_s = ab.MST_histogram['y_s']
+    np.savetxt(str(target) + str(i) + "_X_s", X_s)
+    np.savetxt(str(target) + str(i) + "_Y_s", Y_s)
+
+print("Catalogues fully saved")
+
+## Plotting the statistics
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+my_file = 'Comparison_between_MST_statistics.png'
+my_file = os.path.join(my_path, my_file)
+cat.compare_MST_histograms(Catalogues, usemean = False, whichcomp = 0, title = "Comparison between the MST statistics", saveas = my_file)
+print("Statistics plotted")

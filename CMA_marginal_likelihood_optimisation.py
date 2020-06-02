@@ -108,7 +108,7 @@ gp.initialise_model()
 # rms = gp.RMS(Y_model = Y_planck, Y_observation = Y_predicted)
 # print("RMS Planck : " + str(rms))
 
-## Optimising the hyperparameters - CMA
+## Optimising the hyperparameters - Gradient Descent
 # print("Starting to optimise the hyperparameters")
 # 
 # h0, w0, ns, sigma8, omegaM = X_planck[0, 0:5]
