@@ -1,4 +1,278 @@
 /astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
   import imp
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:53: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:53: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
 /home/astro/magnan/.local/lib/python3.7/site-packages/mistree/mst/hist_mst.py:183: RuntimeWarning: invalid value encountered in sqrt
   x_s, y_s = bin_data(np.sqrt(1.-s), minimum=self.s_min, maximum=self.s_max, bin_number=self.num_s_bins, normalised=self.usenorm)
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:53: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:53: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:53: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:56: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:61: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:66: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py", line 151, in <module>
+    cat.compare_MST_histograms(Catalogues, usemean = False, whichcomp = 0, title = "Comparison between the MST statistics", saveas = my_file)
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 500, in compare_MST_histograms
+    plot_histograms.plot(usecomp = True, usemean = usemean, whichcomp = whichcomp, figsize = (9, 6), saveas = saveas)
+  File "/home/astro/magnan/.local/lib/python3.7/site-packages/mistree/mst/plot_mst.py", line 329, in plot
+    gridspec_kw={'height_ratios': height_ratios})
+  File "/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/matplotlib/pyplot.py", line 1217, in subplots
+    fig = figure(**fig_kw)
+  File "/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/matplotlib/pyplot.py", line 525, in figure
+    **kwargs)
+  File "/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/matplotlib/backend_bases.py", line 3218, in new_figure_manager
+    return cls.new_figure_manager_given_figure(num, fig)
+  File "/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/matplotlib/backends/_backend_tk.py", line 1008, in new_figure_manager_given_figure
+    window = Tk.Tk(className="matplotlib")
+  File "/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/tkinter/__init__.py", line 2023, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+_tkinter.TclError: couldn't connect to display "localhost:49.0"

@@ -320,7 +320,17 @@ simulation 39 : histogram read
 simulation 39 : parameters read
 simulation 39 : new data points created
 simulation 39 : new data points added to the data set
+starting to work on simulation 40
+simulation 40 : catalogue created
+simulation 40 : data acquired
+simulation 40 : histogram computed
+simulation 40 : histogram read
+simulation 40 : parameters read
+simulation 40 : new data points created
+simulation 40 : new data points added to the data set
 data set fully created
 starting to work on saving the data set
 data fully saved
 Data set ready !
+starting to work on saving the catalogues
+Catalogues fully saved
