@@ -42,7 +42,7 @@ for i in range(41):
     print("simulation " + str(i) + " : data acquired")
     
     # computing the histogram
-    ab.compute_MST_histogram()
+    ab.compute_MST_histogram(jacknife = True)
     print("simulation " + str(i) + " : histogram computed")
     
     # saving the catalogue

@@ -75,7 +75,7 @@ class Catalogue():
         self.Mean_2PCF_reliable = np.asarray(Mean_2PCF_reliable)
         self.Std_2PCF_reliable = np.asarray(Std_2PCF_reliable)
     
-    def compute_MST(self):
+    def compute_MST(self, jacknife = False):
         if (self.CM is None):
             self.initialise_data()
         
@@ -368,11 +368,18 @@ class Catalogue_Abacus(Catalogue):
         self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin_2PCF' : n_bin_2PCF, 'min_reliable' : None, 'max_reliable' : None}
         self.Bins, self.Mean_2PCF, self.Std_2PCF = ab.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, box_size = self.box_size)
     
-    def compute_MST_histogram(self):
-        if (self.MST is None):
-            self.compute_MST()
-        
-        self.MST_histogram = ab.get_MST_histogram(MST = self.MST)
+    def compute_MST_histogram(self, jacknife = False):
+        if (jacknife == False):
+            if (self.MST is None):
+                self.compute_MST()
+            
+            self.MST_histogram = ab.get_MST_histogram(MST = self.MST)
+            
+        else:
+            if (self.CM is None):
+                self.initialise_data()
+            
+            self.MST_histogram = ab.get_MST_histogram(jacknife = True, CM = sef.CM)
 
 
 class Catalogue_ALF(Catalogue):
