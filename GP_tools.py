@@ -1,118 +1,259 @@
 ## Imports
 import numpy as np
 import scipy.spatial as spatial
+import scipy.linalg as linalg
 import GPy as GPy
+import matplotlib.pyplot as plt
+from matplotlib import rc
+rc('text', usetex = True)
 
 ## GP Class
 class GP():
     
-    def __init__(self, X_data, Y_data, kernel, noise_data = None):
-        self.n_data_points = np.shape(X_data)[0] # int
-        self.x_dim =  np.shape(X_data)[1] # int
+    def __init__(self, X, Y, N_points_per_simu = [5, 5, 5, 5], Noise = [None, None, None, None], type_kernel = "Separated"):
+        self.X_d_data, self.X_l_data, self.X_b_data, self.X_s_data = X # (n_simu * n_d/b/l/s_points_per_simu, 6) arrays
+        self.Y_d_data, self.Y_l_data, self.Y_b_data, self.Y_s_data = Y # (n_simu * n_d/b/l/s_points_per_simu, 1) arrays
         
-        self.X_data = X_data # np.array(n_data_points, x_dim)
+        N = [np.shape(self.X_d_data)[0], np.shape(self.X_l_data)[0], np.shape(self.X_b_data)[0], np.shape(self.X_s_data)[0]]
+        self.n_d_points, self.n_l_points, self.n_b_points, self.n_s_points = N # ints
+        self.n_d_points_per_simu, self.n_l_points_per_simu, self.n_b_points_per_simu, self.n_s_points_per_simu = N_points_per_simu # ints
+        self.n_simu = self.n_d_points / self.n_d_points_per_simu # int
         
-        self.Y_data = Y_data # np.array(n_data_points, 1)
-        if (np.shape(Y_data)[0] != self.n_data_points):
-            return ("Error : There is not as many X and Y data points : " + self.n_data_points + " vs. " + np.shape(Y_data)[0])
-        self.Y_data = np.reshape(Y_data, (self.n_data_points, 1))
+        self.noise_d, self.noise_l, self.noise_b, self.noise_s = Noise # floats
         
-        # self.Noise_data = Noise_data # np.array(n_data_points, n_data_points)
-        # if (self.Noise_data is not None):
-            # if (np.shape(self.Noise_data) != (self.n_data_points, self.n_data_points)):
-                # return("Error : Noise_std does not have the right dimensions : " + np.shape(self.Noise_data) + " vs. " + (self.n_data_points, self.n_data_points))
-        self.noise_data = noise_data # float
+        self.Kernels = None # list of GPy.kern objects
+        self.type_kernel = type_kernel
+        self.make_kernels()
         
-        
-        self.kernel = kernel # GPy.kern object
-        
-        self.model = None # GPy.model object
-        self.initialise_model() # initialises the GP regression model
+        self.Models = None # list of GPy.model objects
+        self.make_models()
+    
+    def make_kernels(self):
+        if (self.type_kernel == "Separated"):
+            kernel_d = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True)
+            kernel_l = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True)
+            kernel_b = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True)
+            kernel_s = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True)
+            self.Kernels = [kernel_d, kernel_l, kernel_b, kernel_s]
             
-    def initialise_model(self):
-        self.model = GPy.models.GPRegression(self.X_data, self.Y_data, self.kernel)
+        elif (self.type_kernel == "Coregionalized"):
+            kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True)
+            kernel = GPy.util.multioutput.ICM(input_dim = 6, num_outputs = 4, W_rank = 4, kernel = kernel_input) # rank 4 since there are 4 outputs
+            self.Kernels = [kernel]
         
-        #if (self.Noise_data is not None):
-        if (self.noise_data is not None):
-            # self.model.Gaussian_noise.variance = self.Noise_data # GPy does not accept this
-            self.model.Gaussian_noise.variance = self.noise_data
-            self.model.Gaussian_noise.variance.fix()
         else:
-            self.model.Gaussian_noise.variance = 0
-            self.model.Gaussian_noise.variance.fix()
+            print("Error : kernel type not recognized when initialising the GP")
+            
+    def make_models(self):
+        if (self.type_kernel == "Separated"):
+            gp_d = GPy.models.GPRegression(self.X_d_data, self.Y_d_data, self.Kernels[0])
+            gp_l = GPy.models.GPRegression(self.X_l_data, self.Y_l_data, self.Kernels[1])
+            gp_b = GPy.models.GPRegression(self.X_b_data, self.Y_b_data, self.Kernels[2])
+            gp_s = GPy.models.GPRegression(self.X_s_data, self.Y_s_data, self.Kernels[3])
+            
+            if (self.noise_d is not None):
+                gp_d.Gaussian_noise.variance = self.noise_d
+                gp_d.Gaussian_noise.variance.fix()
+            if (self.noise_l is not None):
+                gp_l.Gaussian_noise.variance = self.noise_l
+                gp_l.Gaussian_noise.variance.fix()
+            if (self.noise_b is not None):
+                gp_b.Gaussian_noise.variance = self.noise_b
+                gp_b.Gaussian_noise.variance.fix()
+            if (self.noise_s is not None):
+                gp_s.Gaussian_noise.variance = self.noise_s
+                gp_s.Gaussian_noise.variance.fix()
+            
+            self.Models = [gp_d, gp_l, gp_b, gp_s]
+        
+        elif (self.type_kernel == "Coregionalized"):
+            gp = GPy.models.GPCoregionalizedRegression([self.X_d_data, self.X_l_data, self.X_b_data, self.X_s_data], [self.Y_d_data, self.Y_l_data, self.Y_b_data, self.Y_s_data], kernel = self.Kernels[0])
+            
+            if (self.noise_d is not None):
+                gp.mixed_noise.Gaussian_noise_0.variance = self.noise_d
+                gp.mixed_noise.Gaussian_noise_0.variance.fix()
+            if (self.noise_l is not None):
+                gp.mixed_noise.Gaussian_noise_1.variance = self.noise_l
+                gp.mixed_noise.Gaussian_noise_1.variance.fix()
+            if (self.noise_b is not None):
+                gp.mixed_noise.Gaussian_noise_2.variance = self.noise_b
+                gp.mixed_noise.Gaussian_noise_2.variance.fix()
+            if (self.noise_s is not None):
+                gp.mixed_noise.Gaussian_noise_3.variance = self.noise_s
+                gp.mixed_noise.Gaussian_noise_3.variance.fix()
+            
+            self.Models = [gp]
     
-    def optimize_model(self, optimizer = 'bfgs'):
-        if (self.model is None):
-            self.initialise_model()
+    def change_kernels(self, Stats, New_kernels):
+        if (self.type_kernel == "Separated"):
+            for i in range(len(Stats)):
+                self.Kernels[Stats[i]] = New_kernels[i]
+            self.make_models()
         
-        self.model.optimize(optimizer)
+        elif (self.type_kernel == "Coregionalized"):
+            print("Warning : change_kernels is not available for coregionalized models, so this call will be ignored")
     
-    def compute_performance_on_tests(self, X_test, Y_test, noise_test = None): # we assume the model either has already been optimized, or hasn't been initialized
-        if (self.model is None):
-            self.initialise_model()
-            self.optimize_model()
+    def optimize_models(self, optimizer = 'lbfgsb'):
+        if (self.type_kernel == "Separated"):
+            self.Models[0].optimize(optimizer = optimizer)
+            self.Models[1].optimize(optimizer = optimizer)
+            self.Models[2].optimize(optimizer = optimizer)
+            self.Models[3].optimize(optimizer = optimizer)
         
-        n_test_points = np.shape(X_test)[0]
-        
-        if (np.shape(X_test)[1] != self.x_dim):
-            return("Error : X_test does not have the right dimension : " + self.x_dim + " vs. " + np.shape(X_test)[1])
-        
-        if (np.shape(Y_test)[0] != n_test_points):
-            return("Error : There is not as many X and Y test points : " + n_test_points + " vs. " + np.shape(Y_test)[0])
-        
-        # if (np.shape(Noise_test) != (n_test_points, n_test_points)):
-            # return("Error : Noise_test does not have the right dimensions : " + np.shape(Noise_test) + " vs. " + (n_test_points, n_test_points))
-        
-        Y_predicted_test, Cov_test = self.model.predict(X_test, full_cov = True)
-        
-        performance = chi_2(Y_test, noise_test, Y_predicted_test, Cov_test)
-        return(performance)
+        elif (self.type_kernel == "Coregionalized"):
+            self.Models[0].optimize(optimizer = optimizer)
     
-    def compute_prediction(self, X_new): # we assume the model either has already been optimized, or hasn't been initialized
-        if (self.model is None):
-            self.initialise_model()
-            self.optimize_model()
+    def print_models(self):
+        if (self.type_kernel == "Separated"):
+            for i in range(4):
+                gp = self.Models[i]
+                Stats = ['d', 'l', 'b', 's']
+                
+                print("GP model for " + str(Stats[i]) + " :")
+                print(gp.rbf.variance)
+                print(gp.rbf.lengthscale)
+                print(gp.Gaussian_noise.variance)
+                print("Obj : " + str(gp.objective_function()))
+                print("\n")
         
+        elif (self.type_kernel == "Coregionalized"):
+            gp = self.Models[0]
+            
+            print("GP Coregionalized model :")
+            print(gp.ICM.rbf.variance)
+            print(gp.ICM.rbf.lengthscale)
+            print(gp.ICM.B.W)
+            print(gp.ICM.B.kappa)
+            print(gp.mixed_noise.Gaussian_noise_0.variance)
+            print(gp.mixed_noise.Gaussian_noise_1.variance)
+            print(gp.mixed_noise.Gaussian_noise_2.variance)
+            print(gp.mixed_noise.Gaussian_noise_3.variance)
+            print("Obj : " + str(gp.objective_function()))
+            print("\n")
+    
+    def compute_prediction(self, X_new): # we assume the model either has already been optimized
         if (np.shape(X_new)[1] != 5): # we predict the MST for a set of cosmological parameters
             return("Error : X_new does not have the right dimension : " + str(5) + " vs. " + np.shape(X_new)[1])
         
-        n_new_points = np.shape(X_new)[0]
+        n_new_cosmologies = np.shape(X_new)[0]
         
-        for i in range(n_new_points): # construct a full X matrix from the cosmological parameters
-            h0, w0, ns, sigma8, omegaM = X_new[i]
-            X_d = self.X_data[0:6, 5]
-            X_l = self.X_data[6:16, 5]
-            X_b = self.X_data[16:26, 5]
-            X_s = self.X_data[26:36, 5]
-            X_new_d = np.reshape([[h0, w0, ns, sigma8, omegaM, x_d, 0] for x_d in X_d], (6, 7))
-            X_new_l = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l, 1] for x_l in X_l], (10, 7))
-            X_new_b = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b, 2] for x_b in X_b], (10, 7))
-            X_new_s = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s, 3] for x_s in X_s], (10, 7))
-            X_new_full = np.concatenate((X_new_d, X_new_l, X_new_b, X_new_s), 0)
+        if (self.type_kernel == "Separated"):
+            X_predicted, Y_predicted, Cov = [], [], []
+            for i in range(n_new_cosmologies):
+                h0, w0, ns, sigma8, omegaM = X_new[i]
+                
+                X_d = self.X_d_data[0 : self.n_d_points_per_simu, 5]
+                X_l = self.X_l_data[0 : self.n_l_points_per_simu, 5]
+                X_b = self.X_b_data[0 : self.n_b_points_per_simu, 5]
+                X_s = self.X_s_data[0 : self.n_s_points_per_simu, 5]
+                X_d_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_d] for x_d in X_d], (self.n_d_points_per_simu, 6))
+                X_l_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l] for x_l in X_l], (self.n_l_points_per_simu, 6))
+                X_b_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b] for x_b in X_b], (self.n_b_points_per_simu, 6))
+                X_s_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s] for x_s in X_s], (self.n_s_points_per_simu, 6))
+                
+                Y_d_predicted, Cov_d = self.Models[0].predict(X_d_new, full_cov = True)
+                Y_l_predicted, Cov_l = self.Models[1].predict(X_l_new, full_cov = True)
+                Y_b_predicted, Cov_b = self.Models[2].predict(X_b_new, full_cov = True)
+                Y_s_predicted, Cov_s = self.Models[3].predict(X_s_new, full_cov = True)
+                
+                X_predicted.append([X_d_new, X_l_new, X_b_new, X_s_new])
+                Y_predicted.append([Y_d_predicted, Y_l_predicted, Y_b_predicted, Y_s_predicted])
+                Cov.append([Cov_d, Cov_l, Cov_b, Cov_s])
+            return(X_predicted, Y_predicted, Cov)
         
-        Y_predicted, Cov = self.model.predict(X_new_full, full_cov = True)
-        return(Y_predicted, Cov)
+        elif (self.type_kernel == "Coregionalized"):
+            X_predicted, Y_predicted, Cov = [], [], []
+            for i in range(n_new_cosmologies):
+                h0, w0, ns, sigma8, omegaM = X_new[i]
+                
+                X_d = self.X_d_data[0 : self.n_d_points_per_simu, 5]
+                X_l = self.X_l_data[0 : self.n_l_points_per_simu, 5]
+                X_b = self.X_b_data[0 : self.n_b_points_per_simu, 5]
+                X_s = self.X_s_data[0 : self.n_s_points_per_simu, 5]
+                X_d = np.reshape([[h0, w0, ns, sigma8, omegaM, x_d] for x_d in X_d], (self.n_d_points_per_simu, 6))
+                X_l = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l] for x_l in X_l], (self.n_l_points_per_simu, 6))
+                X_b = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b] for x_b in X_b], (self.n_b_points_per_simu, 6))
+                X_s = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s] for x_s in X_s], (self.n_s_points_per_simu, 6))
+                X_d_new = np.concatenate((X_d, np.array([[0] for i in range(self.n_d_points_per_simu)])), 1)
+                X_l_new = np.concatenate((X_l, np.array([[1] for i in range(self.n_l_points_per_simu)])), 1)
+                X_b_new = np.concatenate((X_b, np.array([[2] for i in range(self.n_b_points_per_simu)])), 1)
+                X_s_new = np.concatenate((X_s, np.array([[3] for i in range(self.n_s_points_per_simu)])), 1)
+                
+                X = np.concatenate((X_d_new, X_l_new, X_b_new, X_s_new), 0)
+                Metadata = np.concatenate((np.asarray([0 for i in range(self.n_d_points_per_simu)]), np.asarray([1 for i in range(self.n_l_points_per_simu)]), np.asarray([2 for i in range(self.n_b_points_per_simu)]), np.asarray([3 for i in range(self.n_s_points_per_simu)])))
+                
+                Y, C = self.Models[0].predict(X, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                
+                Y_d_predicted = Y[0 : self.n_d_points_per_simu]
+                Y_l_predicted = Y[self.n_d_points_per_simu : self.n_d_points_per_simu + self.n_l_points_per_simu]
+                Y_b_predicted = Y[self.n_d_points_per_simu + self.n_l_points_per_simu : self.n_d_points_per_simu + self.n_l_points_per_simu + self.n_b_points_per_simu]
+                Y_s_predicted = Y[self.n_d_points_per_simu + self.n_l_points_per_simu + self.n_b_points_per_simu:]
+                
+                X_predicted.append([X_d, X_l, X_b, X_s])
+                Y_predicted.append([Y_d_predicted, Y_l_predicted, Y_b_predicted, Y_s_predicted])
+                Cov.append(C)
+            return(X_predicted, Y_predicted, Cov)
     
-    def plot_prediction(self, X_new):
-        return("Error : Plot_prediction has yet to be written")
+    def test(self, X_test, Y_test):
+        if (self.type_kernel == "Separated"):
+            X_d_test, X_l_test, X_b_test, X_s_test = X_test
+            Y_d_test, Y_l_test, Y_b_test, Y_s_test = Y_test
+            
+            s = 0
+            for i in range(np.shape(X_d_test)[0]):
+                X_d_new = np.reshape(X_d_test[i], (1, 6))
+                X_l_new = np.reshape(X_l_test[i], (1, 6))
+                X_b_new = np.reshape(X_b_test[i], (1, 6))
+                X_s_new = np.reshape(X_s_test[i], (1, 6))
+                
+                y_d_predicted = (self.Models[0].predict(X_d_new, full_cov = True))[0][0][0]
+                y_l_predicted = (self.Models[1].predict(X_l_new, full_cov = True))[0][0][0]
+                y_b_predicted = (self.Models[2].predict(X_b_new, full_cov = True))[0][0][0]
+                y_s_predicted = (self.Models[3].predict(X_s_new, full_cov = True))[0][0][0]
+                
+                y_d_expected = Y_d_test[i][0]
+                y_l_expected = Y_l_test[i][0]
+                y_b_expected = Y_b_test[i][0]
+                y_s_expected = Y_s_test[i][0]
+                
+                s += (y_d_predicted - y_d_expected)**2 + (y_l_predicted - y_l_expected)**2 + (y_b_predicted - y_b_expected)**2 + (y_s_predicted - y_s_expected)**2
+            
+            ms = s / (4 * np.shape(X_d_test)[0])
+            rms = np.sqrt(ms)
+            return(rms)
         
-
-
-## Tools
-def chi_2(Y_model, noise_model, Y_observation, Noise_observations):
-    chi2 = 0
+        elif (self.type_kernel == "Coregionalized"):
+            return("Error : test has not yet been written for coregionalized kernels")
     
-    n_simu = np.shape(Y_model)[0] // 36
-    
-    for i  in range(n_simu): # we compute a chi2 for each simu then we sum the chi2s
-        u = Y_model[36 * i : 36 * (i + 1)]
-        v = Y_observation[36 * i : 36 * (i + 1)]
-        #Cov = np.identity(36) * noise_model + np.asarray(Noise_observations[36 * i : 36 * (i + 1), 36 * i : 36 * (i + 1)])
-        Cov = np.identity(36)
+    def chi_2(self, Y_model, Noise_model, Y_observation, Noise_observation):
+        if (self.type_kernel == "Separated"):
+            s = 0
+            
+            n_simulations = np.shape(Y_observation)[0]
+            
+            for i in range(n_simulations):
+                Sigma_model = Noise_model[i]
+                if (Sigma_model is None):
+                    Diag_d = [self.Models[0].Gaussian_noise.variance[0] for j in range(self.n_d_points_per_simu)]
+                    Diag_l = [self.Models[1].Gaussian_noise.variance[0] for j in range(self.n_l_points_per_simu)]
+                    Diag_b = [self.Models[2].Gaussian_noise.variance[0] for j in range(self.n_b_points_per_simu)]
+                    Diag_s = [self.Models[3].Gaussian_noise.variance[0] for j in range(self.n_s_points_per_simu)]
+                    Diag = Diag_d + Diag_l + Diag_b + Diag_s
+                    Sigma_model = np.diag(Diag)
+                
+                Sigma_obs = linalg.block_diag(Noise_observation[i][0], Noise_observation[i][1], Noise_observation[i][2], Noise_observation[i][3])
+                Sigma = Sigma_model + Sigma_obs
+                Sigma_inv = np.linalg.inv(Sigma)
+                
+                U = np.concatenate((Y_model[i][0], Y_model[i][1], Y_model[i][2], Y_model[i][3]), 0)
+                V = np.concatenate((Y_observation[i][0], Y_observation[i][1], Y_observation[i][2], Y_observation[i][3]), 0)
+                
+                s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
+            
+            ms = s / (4 * n_simulations)
+            chi_2 = np.sqrt(ms)
+            return(chi_2)
         
-        VI = np.linalg.inv(Cov)
-        chi2 += spatial.distance.mahalanobis(u, v, VI)**2
+        elif (self.type_kernel == "Coregionalized"):
+            return("Error : chi_2 has not yet been written for coregionalized kernels")
     
-    chi2 = np.sqrt(chi2 / n_simu)
-    
-    return(chi2)
