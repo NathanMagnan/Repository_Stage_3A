@@ -170,7 +170,7 @@ print("starting to evaluate the performances")
 Mean = [[], [], [], []]
 Std = [[], [], [], []]
 
-for i in range(4):
+for i in range(1):
     print("starting to work on MST stat" + str(i))
     
     for j in range(len(Kernels)):
@@ -187,12 +187,12 @@ for i in range(4):
             X_data, Y_data, X_test, Y_test = List_groups[k]
             
             # creating the gaussian process and optimizing it
-            gp = GP.GP(X = X_data, Y = Y_data, N_points_per_simu = [5, 5, 5, 5], Noise = [None, None, None, None], type_kernel = "Separated")
+            gp = GP.GP(X = X_data, Y = Y_data, N_points_per_simu = [5, 5, 5, 5], Noise = [None, None, None, None], type_kernel = "Coregionalized")
             gp.change_kernels(Stats = [i], New_kernels = [kernel])
             gp.optimize_models(optimizer = 'lbfgsb')
             
             # getting the performance of the gaussian process
-            performance_new = gp.test(X_test = X_test, Y_test = Y_test)
+            performance_new = gp.test_chi2(X_test = X_test, Y_test = Y_test)
             
             mean_old = mean
             std_old = std
@@ -213,13 +213,13 @@ print(Kernel_names)
 ## Plotting the results
 print("starting to plot the results")
 
-plt.title("Find best kernel : $s$")
-plt.ylabel("Root Mean Square prediction error")
-plt.errorbar(Kernel_names, Mean[3], Std[3], fmt = 'o', ecolor = 'k')
+plt.title("Find best kernel : Coregionalized")
+plt.ylabel("Performance (a.u.)")
+plt.errorbar(Kernel_names, Mean[0], Std[0], fmt = 'o', ecolor = 'k')
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Find_best_kernel_s'
+my_file = 'Find_best_kernel_coregionalized'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()

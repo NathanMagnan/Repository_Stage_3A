@@ -84,14 +84,16 @@ class GP():
             
             self.Models = [gp]
     
-    def change_kernels(self, Stats, New_kernels):
+    def change_kernels(self, New_kernels, Stats = None):
         if (self.type_kernel == "Separated"):
             for i in range(len(Stats)):
                 self.Kernels[Stats[i]] = New_kernels[i]
             self.make_models()
         
         elif (self.type_kernel == "Coregionalized"):
-            print("Warning : change_kernels is not available for coregionalized models, so this call will be ignored")
+            kernel_input = New_kernels[0]
+            kernel = GPy.util.multioutput.ICM(input_dim = 6, num_outputs = 4, W_rank = 4, kernel = kernel_input) # rank 4 since there are 4
+            self.Kernels[0] = kernel
     
     def optimize_models(self, optimizer = 'lbfgsb'):
         if (self.type_kernel == "Separated"):
@@ -194,7 +196,7 @@ class GP():
                 Cov.append(C)
             return(X_predicted, Y_predicted, Cov)
     
-    def test(self, X_test, Y_test):
+    def test_rms(self, X_test, Y_test):
         if (self.type_kernel == "Separated"):
             X_d_test, X_l_test, X_b_test, X_s_test = X_test
             Y_d_test, Y_l_test, Y_b_test, Y_s_test = Y_test
@@ -223,7 +225,127 @@ class GP():
             return(rms)
         
         elif (self.type_kernel == "Coregionalized"):
-            return("Error : test has not yet been written for coregionalized kernels")
+            X_d_test, X_l_test, X_b_test, X_s_test = X_test
+            Y_d_test, Y_l_test, Y_b_test, Y_s_test = Y_test
+            
+            s = 0
+            for i in range(np.shape(X_d_test)[0]):
+                X_d_new = np.reshape(X_d_test[i], (1, 6))
+                X_d_new = np.concatenate((X_d_new, np.array([[0]])), 1)
+                Metadata = np.asarray([0])
+                
+                y_d_predicted, C = self.Models[0].predict(X_d_new, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                y_d_expected = Y_d_test[i][0]
+                
+                s += (y_d_predicted - y_d_expected)**2
+            for i in range(np.shape(X_l_test)[0]):
+                X_l_new = np.reshape(X_l_test[i], (1, 6))
+                X_l_new = np.concatenate((X_l_new, np.array([[1]])), 1)
+                Metadata = np.asarray([1])
+                
+                y_l_predicted, C = self.Models[0].predict(X_l_new, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                y_l_expected = Y_l_test[i][0]
+                
+                s += (y_l_predicted - y_l_expected)**2
+            for i in range(np.shape(X_b_test)[0]):
+                X_b_new = np.reshape(X_b_test[i], (1, 6))
+                X_b_new = np.concatenate((X_b_new, np.array([[2]])), 1)
+                Metadata = np.asarray([2])
+                
+                y_b_predicted, C = self.Models[0].predict(X_b_new, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                y_b_expected = Y_b_test[i][0]
+                
+                s += (y_b_predicted - y_b_expected)**2
+            for i in range(np.shape(X_s_test)[0]):
+                X_s_new = np.reshape(X_s_test[i], (1, 6))
+                X_s_new = np.concatenate((X_s_new, np.array([[3]])), 1)
+                Metadata = np.asarray([3])
+                
+                y_s_predicted, C = self.Models[0].predict(X_s_new, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                y_s_expected = Y_s_test[i][0]
+                
+                s += (y_s_predicted - y_s_expected)**2
+            
+            ms = s / (np.shape(X_d_test)[0] + np.shape(X_l_test)[0] + np.shape(X_b_test)[0] + np.shape(X_s_test)[0])
+            rms = np.sqrt(ms)
+            return(rms)
+    
+    def test_chi2(self, X_test, Y_test):
+        if (self.type_kernel == "Separated"):
+            X_d_test, X_l_test, X_b_test, X_s_test = X_test
+            Y_d_test, Y_l_test, Y_b_test, Y_s_test = Y_test
+            
+            s = 0
+            for i in range(np.shape(X_d_test)[0]):
+                X_d_new = np.reshape(X_d_test[i], (1, 6))
+                X_l_new = np.reshape(X_l_test[i], (1, 6))
+                X_b_new = np.reshape(X_b_test[i], (1, 6))
+                X_s_new = np.reshape(X_s_test[i], (1, 6))
+                
+                y_d_predicted, C_d = (self.Models[0].predict(X_d_new, full_cov = True))
+                y_l_predicted, C_l = (self.Models[1].predict(X_l_new, full_cov = True))
+                y_b_predicted, C_b = (self.Models[2].predict(X_b_new, full_cov = True))
+                y_s_predicted, C_s = (self.Models[3].predict(X_s_new, full_cov = True))
+                
+                y_d_expected = Y_d_test[i][0]
+                y_l_expected = Y_l_test[i][0]
+                y_b_expected = Y_b_test[i][0]
+                y_s_expected = Y_s_test[i][0]
+                
+                s += (y_d_predicted - y_d_expected)**2 / (C_d + self.Models[0].Gaussian_noise.variance**2)
+                s += (y_l_predicted - y_l_expected)**2 / (C_b + self.Models[1].Gaussian_noise.variance**2)
+                s += (y_b_predicted - y_b_expected)**2 / (C_l + self.Models[2].Gaussian_noise.variance**2)
+                s += (y_s_predicted - y_s_expected)**2 / (C_s + self.Models[3].Gaussian_noise.variance**2)
+            
+            ms = s / (4 * np.shape(X_d_test)[0])
+            chi_2 = np.sqrt(ms)
+            return(chi_2)
+        
+        elif (self.type_kernel == "Coregionalized"):
+            X_d_test, X_l_test, X_b_test, X_s_test = X_test
+            Y_d_test, Y_l_test, Y_b_test, Y_s_test = Y_test
+            
+            s = 0
+            for i in range(np.shape(X_d_test)[0]):
+                X_d_new = np.reshape(X_d_test[i], (1, 6))
+                X_d_new = np.concatenate((X_d_new, np.array([[0]])), 1)
+                Metadata = np.asarray([0])
+                
+                y_d_predicted, C = self.Models[0].predict(X_d_new, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                y_d_expected = Y_d_test[i][0]
+                
+                s += (y_d_predicted - y_d_expected)**2 / (C + self.Models[0].mixed_noise.Gaussian_noise_0.variance**2)
+            for i in range(np.shape(X_l_test)[0]):
+                X_l_new = np.reshape(X_l_test[i], (1, 6))
+                X_l_new = np.concatenate((X_l_new, np.array([[1]])), 1)
+                Metadata = np.asarray([1])
+                
+                y_l_predicted, C = self.Models[0].predict(X_l_new, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                y_l_expected = Y_l_test[i][0]
+                
+                s += (y_l_predicted - y_l_expected)**2 / (C + self.Models[0].mixed_noise.Gaussian_noise_1.variance**2)
+            for i in range(np.shape(X_b_test)[0]):
+                X_b_new = np.reshape(X_b_test[i], (1, 6))
+                X_b_new = np.concatenate((X_b_new, np.array([[2]])), 1)
+                Metadata = np.asarray([2])
+                
+                y_b_predicted, C = self.Models[0].predict(X_b_new, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                y_b_expected = Y_b_test[i][0]
+                
+                s += (y_b_predicted - y_b_expected)**2 / (C + self.Models[0].mixed_noise.Gaussian_noise_2.variance**2)
+            for i in range(np.shape(X_s_test)[0]):
+                X_s_new = np.reshape(X_s_test[i], (1, 6))
+                X_s_new = np.concatenate((X_s_new, np.array([[3]])), 1)
+                Metadata = np.asarray([3])
+                
+                y_s_predicted, C = self.Models[0].predict(X_s_new, Y_metadata={'output_index' : Metadata}, full_cov = True)
+                y_s_expected = Y_s_test[i][0]
+                
+                s += (y_s_predicted - y_s_expected)**2 / (C + self.Models[0].mixed_noise.Gaussian_noise_3.variance**2)
+            
+            ms = s / (np.shape(X_d_test)[0] + np.shape(X_l_test)[0] + np.shape(X_b_test)[0] + np.shape(X_s_test)[0])
+            chi_2 = np.sqrt(ms)
+            return(chi_2)
     
     def chi_2(self, Y_model, Noise_model, Y_observation, Noise_observation):
         if (self.type_kernel == "Separated"):

@@ -71,9 +71,9 @@ for j in range(4):
                 subplot.plot(dict['X_d'][0], Mean, 'b')
                 
             else:
-                subplot.set_ylabel('$\Delta N_{d} / <N_{d}>$')
+                subplot.set_ylabel('$\Delta N_{d} / \sqrt{<N_{d}}>$')
                 subplot.set_yscale('log')
-                subplot.set_ylim(0.01, 5)
+                subplot.set_ylim(0.1, 50)
                 
                 Mean = dict['Y_d'][0]
                 Zeros = np.asarray([0 for k in range(np.shape(dict['Y_d'][0])[0])])
@@ -88,8 +88,8 @@ for j in range(4):
                     Mean = Mean_new.copy()
                     Std = Std_new.copy()
                 
-                subplot.fill_between(x = dict['X_d'][0], y1 = Zeros, y2 = 3 * Std / Mean, color = 'b', alpha = 0.2)
-                subplot.errorbar(x = dict['X_d'][0], y = Zeros, yerr = 3 * Std / Mean, fmt = 'o', markersize = 0, ecolor = 'b')
+                subplot.fill_between(x = dict['X_d'][0], y1 = Zeros, y2 = Std / np.sqrt(Mean), color = 'b', alpha = 0.2)
+                subplot.errorbar(x = dict['X_d'][0], y = Zeros, yerr = Std / np.sqrt(Mean), fmt = 'o', markersize = 0, ecolor = 'b')
                 subplot.plot(dict['X_d'][0], Zeros, 'b')
         
         elif (j == 1):
@@ -116,9 +116,9 @@ for j in range(4):
                 subplot.plot(dict['X_l'][0], Mean, 'g')
                 
             else:
-                subplot.set_ylabel('$\Delta N_{l} / <N_{l}>$')
+                subplot.set_ylabel('$\Delta N_{l} / \sqrt{<N_{l}>}$')
                 subplot.set_yscale('log')
-                subplot.set_ylim(0.01, 5)
+                subplot.set_ylim(0.05, 50)
                 
                 Mean = dict['Y_l'][0]
                 Zeros = np.asarray([0 for k in range(np.shape(dict['Y_l'][0])[0])])
@@ -133,8 +133,8 @@ for j in range(4):
                     Mean = Mean_new.copy()
                     Std = Std_new.copy()
                 
-                subplot.fill_between(x = dict['X_l'][0], y1 = Zeros, y2 = 3 * Std / Mean, color = 'g', alpha = 0.2)
-                subplot.errorbar(x = dict['X_l'][0][::5], y = Zeros[::5], yerr = 3 * (Std / Mean)[::5], fmt = 'o', markersize = 0, ecolor = 'g')
+                subplot.fill_between(x = dict['X_l'][0], y1 = Zeros, y2 = Std / np.sqrt(Mean), color = 'g', alpha = 0.2)
+                subplot.errorbar(x = dict['X_l'][0][::5], y = Zeros[::5], yerr = (Std / np.sqrt(Mean))[::5], fmt = 'o', markersize = 0, ecolor = 'g')
                 subplot.plot(dict['X_l'][0], Zeros, 'g')
                 
         elif (j == 2):
@@ -161,9 +161,9 @@ for j in range(4):
                 subplot.plot(dict['X_b'][0], Mean, 'r')
                 
             else:
-                subplot.set_ylabel('$\Delta N_{b} / <N_{b}>$')
+                subplot.set_ylabel('$\Delta N_{b} / \sqrt{<N_{b}>}$')
                 subplot.set_yscale('log')
-                subplot.set_ylim(0.01, 5)
+                subplot.set_ylim(0.05, 50)
                 
                 Mean = dict['Y_b'][0]
                 Zeros = np.asarray([0 for k in range(np.shape(dict['Y_b'][0])[0])])
@@ -178,8 +178,8 @@ for j in range(4):
                     Mean = Mean_new.copy()
                     Std = Std_new.copy()
                 
-                subplot.fill_between(x = dict['X_b'][0], y1 = Zeros, y2 = 3 * Std / Mean, color = 'r', alpha = 0.2)
-                subplot.errorbar(x = dict['X_b'][0][::5], y = Zeros[::5], yerr = 3 * (Std / Mean)[::5], fmt = 'o', markersize = 0, ecolor = 'r')
+                subplot.fill_between(x = dict['X_b'][0], y1 = Zeros, y2 = Std / np.sqrt(Mean), color = 'r', alpha = 0.2)
+                subplot.errorbar(x = dict['X_b'][0][::5], y = Zeros[::5], yerr = (Std / np.sqrt(Mean))[::5], fmt = 'o', markersize = 0, ecolor = 'r')
                 subplot.plot(dict['X_b'][0], Zeros, 'r')
                 
         else:
@@ -205,9 +205,9 @@ for j in range(4):
                 subplot.plot(dict['X_s'][0], Mean, 'y')
                 
             else:
-                subplot.set_ylabel('$\Delta N_{s} / <N_{s}>$')
+                subplot.set_ylabel('$\Delta N_{s} / \sqrt{<N_{s}>}$')
                 subplot.set_yscale('log')
-                subplot.set_ylim(0.01, 5)
+                subplot.set_ylim(0.05, 50)
                 
                 Mean = dict['Y_s'][0]
                 Zeros = np.asarray([0 for k in range(np.shape(dict['Y_s'][0])[0])])
@@ -222,8 +222,8 @@ for j in range(4):
                     Mean = Mean_new.copy()
                     Std = Std_new.copy()
                 
-                subplot.fill_between(x = dict['X_s'][0], y1 = Zeros, y2 = 3 * Std / Mean, color = 'y', alpha = 0.2)
-                subplot.errorbar(x = dict['X_s'][0], y = Zeros, yerr = 3 * Std / Mean, fmt = 'o', markersize = 0, ecolor = 'y')
+                subplot.fill_between(x = dict['X_s'][0], y1 = Zeros, y2 = Std / np.sqrt(Mean), color = 'y', alpha = 0.2)
+                subplot.errorbar(x = dict['X_s'][0], y = Zeros, yerr = Std / np.sqrt(Mean), fmt = 'o', markersize = 0, ecolor = 'y')
                 subplot.plot(dict['X_s'][0], Zeros, 'y')
 
 plt.suptitle("Comparison of all the Abacus MSTs")
