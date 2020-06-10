@@ -51,21 +51,28 @@ for i in range(41):
     # reading the histogram
     X_d = ab.MST_histogram['x_d'] / 6 # we normalize every histogram to have a typical scale of 1
     Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
+    Y_d_std = ab.MST_histogram['y_d_std'] / ab.MST_histogram['y_d'] # valid approximation when std << mean
     
     X_l_long = np.log10(ab.MST_histogram['x_l']) # we normalize every histogram to have a typical scale of 1
     Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+    Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
     X_l = X_l_long[4::10]
-    Y_l = Y_l_long[4::10] # we only keep 10 points per histogram to avoid having huge redundant dataset
+    Y_l = Y_l_long[4::10]
+    Y_l_std = Y_l_std[4::10] # we only keep 10 points per histogram to avoid having huge redundant dataset
     
     X_b_long = np.log10(ab.MST_histogram['x_b']) # we normalize every histogram to have a typical scale of 1
     Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+    Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
     X_b = X_b_long[4::10]
-    Y_b = Y_b_long[4::10] # we only keep 10 points per histogram to avoid having huge redundant dataset
+    Y_b = Y_b_long[4::10]
+    Y_b_std = Y_b_std[4::10] # we only keep 10 points per histogram to avoid having huge redundant dataset
     
     X_s_long = ab.MST_histogram['x_s'] # already normalized between 0 and 1
     Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+    Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
     X_s = X_s_long[2::5]
-    Y_s = Y_s_long[2::5] # we only keep 10 points per histogram to avoid having huge redundant dataset
+    Y_s = Y_s_long[2::5]
+    Y_s_std = Y_s_std[2::5] # we only keep 10 points per histogram to avoid having huge redundant dataset
     print("simulation " + str(i) + " : histogram read")
     
     # reading the simulation parameters
@@ -91,15 +98,23 @@ for i in range(41):
     Y_data_new_b = np.reshape([[y_b] for y_b in Y_b], (10, 1))
     Y_data_new_s = np.reshape([[y_s] for y_s in Y_s], (10, 1))
     Y_data_new = np.concatenate((Y_data_new_d, Y_data_new_l, Y_data_new_b, Y_data_new_s), 0)
+    
+    Y_std_new_d = np.reshape([[y_std_d] for y_std_d in Y_d_std], (6, 1))
+    Y_std_new_l = np.reshape([[y_std_l] for y_std_l in Y_l_std], (10, 1))
+    Y_std_new_b = np.reshape([[y_std_b] for y_std_b in Y_b_std], (10, 1))
+    Y_std_new_s = np.reshape([[y_std_s] for y_std_s in Y_s_std], (10, 1))
+    Y_std_new = np.concatenate((Y_std_new_d, Y_std_new_l, Y_std_new_b, Y_std_new_s), 0)
     print("simulation " + str(i) + " : new data points created")
     
     # adding the new points
     if (i == 0):
         X_data = X_data_new
         Y_data = Y_data_new
+        Y_std = Y_std_new
     else:
         X_data = np.concatenate((X_data, X_data_new), 0)
         Y_data = np.concatenate((Y_data, Y_data_new), 0)
+        Y_std = np.concatenate((Y_std, Y_std_new), 0)
     print("simulation " + str(i) + " : new data points added to the data set")
 
 print("data set fully created")
@@ -111,6 +126,7 @@ target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus
 
 np.savetxt(str(target) + "_X_data_all", X_data)
 np.savetxt(str(target) + "_Y_data_all", Y_data)
+np.savetxt(str(target) + "_Y_std_all", Y_std)
 
 print("data fully saved")
 print("Data set ready !")
@@ -124,23 +140,31 @@ for i in range(len(Catalogues)):
     
     X_d = ab.MST_histogram['x_d']
     Y_d = ab.MST_histogram['y_d']
+    Y_d_std = ab.MST_histogram['y_d_std']
     np.savetxt(str(target) + str(i) + "_X_d", X_d)
     np.savetxt(str(target) + str(i) + "_Y_d", Y_d)
+    np.savetxt(str(target) + str(i) + "_Y_d_std", Y_d_std)
     
     X_l = ab.MST_histogram['x_l']
     Y_l = ab.MST_histogram['y_l']
+    Y_l_std = ab.MST_histogram['y_l_std']
     np.savetxt(str(target) + str(i) + "_X_l", X_l)
     np.savetxt(str(target) + str(i) + "_Y_l", Y_l)
+    np.savetxt(str(target) + str(i) + "_Y_l_std", Y_l_std)
     
     X_b = ab.MST_histogram['x_b']
     Y_b = ab.MST_histogram['y_b']
+    Y_b_std = ab.MST_histogram['y_b_std']
     np.savetxt(str(target) + str(i) + "_X_b", X_b)
     np.savetxt(str(target) + str(i) + "_Y_b", Y_b)
+    np.savetxt(str(target) + str(i) + "_Y_b_std", Y_b_std)
     
     X_s = ab.MST_histogram['x_s']
     Y_s = ab.MST_histogram['y_s']
+    Y_s_std = ab.MST_histogram['y_s_std']
     np.savetxt(str(target) + str(i) + "_X_s", X_s)
     np.savetxt(str(target) + str(i) + "_Y_s", Y_s)
+    np.savetxt(str(target) + str(i) + "_Y_s_std", Y_s_std)
 
 print("Catalogues fully saved")
 

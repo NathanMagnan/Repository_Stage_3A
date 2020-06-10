@@ -1,21 +1,20 @@
 ## Imports
 import numpy as np
+import math as m
 import GPy as GPy
-import cma as cma
 import pymultinest as pmn
 import json as json
-import os
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex = True)
 
 import sys
 import os
-#sys.path.append('/home/astro/magnan/Repository_Stage_3A')
-sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+sys.path.append('/home/astro/magnan/Repository_Stage_3A')
+#sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 import GP_tools as GP
-#os.chdir('/home/astro/magnan')
-os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+os.chdir('/home/astro/magnan')
+#os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 
 print("All imports successful")
 
@@ -23,8 +22,8 @@ print("All imports successful")
 print("Connexion successfull")
 print("starting to load the data")
 
-#target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
-target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus'
+target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
+#target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus'
 
 """
 d = 0->5
@@ -131,6 +130,14 @@ print("prior defined")
 ## Defining the log-likelihood
 print("Starting to define the log-likelihood")
 
+def loglikelihoodTest(cube):
+	s = 1 / (2 * m.pi * 0.15**2)**0.5 * np.exp(- (cube[0] - 68)**2 / 0.15**2)
+	s += 1 / (2 * m.pi * 0.08**2)**0.5 * np.exp(- (cube[1] + 1)**2 / 0.08**2)
+	s += 1 / (2 * m.pi * 0.008**2)**0.5 * np.exp(- (cube[2] - 0.960)**2 / 0.008**2)
+	s += 1 / (2 * m.pi * 0.04**2)**0.5 * np.exp(- (cube[3] - 0.80)**2 / 0.04**2)
+	s += 1 / (2 * m.pi * 0.01**2)**0.5 * np.exp(- (cube[4] - 0.310)**2 / 0.01**2)
+	return np.log(s)
+
 def loglikelihood(cube):
     # Making the prediction
     X_new = np.reshape(cube, (1, 5))
@@ -214,7 +221,7 @@ print("Likelihood defined")
 ## Defining the problem
 print("Starting to define the problem")
 
-parameters = ['$H_{0}$', '$w_{0}$', '$n_{s}$', '$\sigma_{8}$', '$\Omega_{M}$', '$\chi_{2}$']
+parameters = ['$H_{0}$', '$w_{0}$', '$n_{s}$', '$\sigma_{8}$', '$\Omega_{M}$']
 n_dims = 5
 n_params = 5
 
@@ -223,43 +230,45 @@ print("Problem defined")
 ## Running the MCMC method
 print("Starting the MCMC method")
 
-#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/MCMC')
-my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/MCMC')
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/MCMC')
+#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/MCMC')
 target = 'Abacus_chi2'
 target = os.path.join(my_path, target)
 
-result = pmn.solve(LogLikelihood = loglikelihood, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target)
+result = pmn.solve(LogLikelihood = loglikelihoodTest, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target, sampling_efficiency = 1, evidence_tolerance = 0.0005)
 
-json.dump(parameters, open(target, 'w')) # save parameter names
+json.dump(parameters, open(target + 'params.json', 'w')) # save parameter names
 
 print("MCMC analysis done")
 
 ## Plotting the results
 print("Starting to plot the results")
 
-a = pmn.Analyzer(n_params = n_params, outputfiles_basename = target)
-s = a.get_stats()
+os.system('python3' + ' ' + '/home/astro/magnan/PyMultiNest/multinest_marginals_fancy.py' + ' ' + target)
 
-json.dump(s, open(target + 'stats.json', 'w'), indent=4)
-
-data = a.get_data()
-i = data[:,1].argsort()[::-1]
-samples = data[i,2:]
-weights = data[i,0]
-loglike = data[i,1]
-Z = s['global evidence']
-logvol = np.log(weights) + 0.5 * loglike + Z
-logvol = logvol - logvol.max()
-results = dict(samples=samples, weights=weights, logvol=logvol)
-
-pmn.multinest_marginal_fancy.traceplots(results = result, labels = parameters, show_titles = True)
-plt.show()
-plt.close()
-pmn.multinest_marginal_fancy.cornerplot(results = result, labels = parameters, show_titles = True)
-plt.show()
-plt.close()
-pmn.multinest_marginal_fancy.cornerpoints(results = result, labels = parameters, show_titles = True)
-plt.show()
-plt.close()
+#a = pmn.Analyzer(n_params = n_params, outputfiles_basename = target)
+#s = a.get_stats()
+#
+#json.dump(s, open(target + 'stats.json', 'w'), indent=4)
+#
+#data = a.get_data()
+#i = data[:,1].argsort()[::-1]
+#samples = data[i,2:]
+#weights = data[i,0]
+#loglike = data[i,1]
+#Z = s['global evidence']
+#logvol = np.log(weights) + 0.5 * loglike + Z
+#logvol = logvol - logvol.max()
+#results = dict(samples=samples, weights=weights, logvol=logvol)
+#
+#marginals.multinest_marginal_fancy.traceplots(results = result, labels = parameters, show_titles = True)
+#plt.show()
+#plt.close()
+#marginals.multinest_marginal_fancy.cornerplot(results = result, labels = parameters, show_titles = True)
+#plt.show()
+#plt.close()
+#marginals.multinest_marginal_fancy.cornerpoints(results = result, labels = parameters, show_titles = True)
+#plt.show()
+#plt.close()
 
 print("Results plotted")

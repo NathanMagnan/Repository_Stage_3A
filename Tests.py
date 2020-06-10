@@ -12,12 +12,12 @@ os.chdir('/home/astro/magnan')
 """ Testing Catalogue Tools """
 #alf = cat.Catalogue_ALF(count = 10**4, alpha = 1.5, beta = 0.4, gamma = 1.3, t0 = 0.3, ts = 0.01, box_size = 75.)
 #ab = cat.Catalogue_Abacus()
-#il = cat.Catalogue_Illustris()
+il = cat.Catalogue_Illustris()
 # __init__ OK
 
 #alf.initialise_data()
 #ab.initialise_data()
-#il.initialise_data()
+il.initialise_data()
 # initialise_data OK but quite slow (likely because it needs to load simulations)
 
 #alf.compute_2PCF(bin_min = 0.01, bin_max = 1000, n_bin_2PCF = 100)
@@ -80,7 +80,7 @@ os.chdir('/home/astro/magnan')
 #alf.compute_MST_histogram(mode_MST = 'MultipleMST')
 #alf.plot_MST_histogram(title = "Statistical MST histogram")
 #ab.plot_MST_histogram(title = "Single MST histogram")
-#il.plot_MST_histogram(title = "Single MST histogram")
+il.plot_MST_histogram(title = "Single MST histogram")
 # plot_MST_histogram works partially : no title AND very slow for Abacus (more than 1 min)
 
 #alf.plot_MST_2D(title = "2D plot of ALF MST")
@@ -212,58 +212,58 @@ os.chdir('/home/astro/magnan')
 #print("data fully saved")
 #print("Data set ready !")
 
-print("starting to load the data")
-
-target = "/home/astro/magnan/Repository_Stage_3A/data_set_test"
-
-X_data = np.loadtxt(str(target) + "_X_data")
-Y_data = np.loadtxt(str(target) + "_Y_data")
-
-print("data loaded")
-
-kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5]) # the column 6 will be dealt with by the coregionalization
-kernel_output = GPy.kern.Coregionalize(input_dim = 1, output_dim = 4, rank = 4) # rank 4 since there are 4 outputs
-kernel = kernel_input**kernel_output
-print("kernel sucessfully constructed")
-print(kernel)
-
-n_test = 4
-n_simulations = 40
-n_points_per_simulation = 36
-
-start_group = (n_simulations - n_test) * n_points_per_simulation
-end_group =  n_simulations * n_points_per_simulation
-
-X_test_group = X_data[start_group:end_group]
-X_data_group = np.concatenate((X_data[0:start_group], X_data[end_group:]), 0)
-Y_test_group = Y_data[start_group:end_group]
-Y_data_group = np.concatenate((Y_data[0:start_group], Y_data[end_group:]), 0)
-
-# Noise_data = np.identity(n = np.shape(X_data_group)[0]) * 0.05
-# Noise_test = np.identity(n = np.shape(X_test_group)[0]) * 0.05
-noise_data = 0.05
-noise_test = 0.05
-print("Data and test group successfully created")
-
-# gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, Noise_data = Noise_data)
-gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, noise_data = noise_data)
-print("GP successfully created")
-
-gp.initialise_model()
-print("GP model successfully created")
-print(gp.model)
-
-gp.optimize_model()
-print("GP model successfully optimized")
-print(gp.model)
-
-# performance = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, Noise_test = Noise_test)
-performance = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, noise_test = noise_test)
-print("performance successfully computed")
-print(performance)
-
-prediction, Cov = gp.compute_prediction([[0.7, 0.3, 0.5, 0.4, 0.1]])
-print("prediction successfully computed")
-print(prediction)
-print(Cov)
+#print("starting to load the data")
+#
+#target = "/home/astro/magnan/Repository_Stage_3A/data_set_test"
+#
+#X_data = np.loadtxt(str(target) + "_X_data")
+#Y_data = np.loadtxt(str(target) + "_Y_data")
+#
+#print("data loaded")
+#
+#kernel_input = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5]) # the column 6 will be dealt with by the coregionalization
+#kernel_output = GPy.kern.Coregionalize(input_dim = 1, output_dim = 4, rank = 4) # rank 4 since there are 4 outputs
+#kernel = kernel_input**kernel_output
+#print("kernel sucessfully constructed")
+#print(kernel)
+#
+#n_test = 4
+#n_simulations = 40
+#n_points_per_simulation = 36
+#
+#start_group = (n_simulations - n_test) * n_points_per_simulation
+#end_group =  n_simulations * n_points_per_simulation
+#
+#X_test_group = X_data[start_group:end_group]
+#X_data_group = np.concatenate((X_data[0:start_group], X_data[end_group:]), 0)
+#Y_test_group = Y_data[start_group:end_group]
+#Y_data_group = np.concatenate((Y_data[0:start_group], Y_data[end_group:]), 0)
+#
+## Noise_data = np.identity(n = np.shape(X_data_group)[0]) * 0.05
+## Noise_test = np.identity(n = np.shape(X_test_group)[0]) * 0.05
+#noise_data = 0.05
+#noise_test = 0.05
+#print("Data and test group successfully created")
+#
+## gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, Noise_data = Noise_data)
+#gp = GP.GP(X_data_group, Y_data_group, kernel = kernel, noise_data = noise_data)
+#print("GP successfully created")
+#
+#gp.initialise_model()
+#print("GP model successfully created")
+#print(gp.model)
+#
+#gp.optimize_model()
+#print("GP model successfully optimized")
+#print(gp.model)
+#
+## performance = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, Noise_test = Noise_test)
+#performance = gp.compute_performance_on_tests(X_test = X_test_group, Y_test = Y_test_group, noise_test = noise_test)
+#print("performance successfully computed")
+#print(performance)
+#
+#prediction, Cov = gp.compute_prediction([[0.7, 0.3, 0.5, 0.4, 0.1]])
+#print("prediction successfully computed")
+#print(prediction)
+#print(Cov)
 

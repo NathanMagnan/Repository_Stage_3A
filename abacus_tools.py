@@ -68,28 +68,28 @@ def get_2PCF(input_data, bin_min, bin_max, n_bin_2PCF, box_size):
     return(Bins, Mean_xi, Std_xi)
 
 def get_MST_histogram(jacknife = False, MST = None, CM = None):
-    if (jacknife == False):
-        d, l, b, s, l_index, b_index = MST.get_stats(include_index = True)
-        histogram = mist.HistMST()
-        histogram.setup(usenorm = False, uselog = True)
-        
-        return(histogram.get_hist(d, l, b, s))
-    
-    else:
-        X = np.asarray(CM[:, 0])
-        Y = np.asarray(CM[:, 1])
-        Z = np.asarray(CM[:, 2])
-        
-        histogram.start_group()
-        
-        for i in range(50):
-            n_galaxies = np.shape(X)[0]
-            X_reduced = np.random.choice(X, int(0.99 * n_galaxies), replace = False)
-            Y_reduced = np.random.choice(Y, int(0.99 * n_galaxies), replace = False)
-            Z_reduced = np.random.choice(Z, int(0.99 * n_galaxies), replace = False)
-            
-            MST = mist.GetMST(x = X_reduced, y = Y_reduced, z = Z_reduced)
-            d, l, b, s, l_index, b_index = MST.get_stats(include_index=True)
-            _hist = histogram.get_hist(d, l, b, s)
-        
-        return(histogram.end_group())
+	 histogram = mist.HistMST()
+	 histogram.setup(usenorm = False, uselog = True)
+	 
+	 if (jacknife == False):
+	 	d, l, b, s, l_index, b_index = MST.get_stats(include_index = True)
+	 	return(histogram.get_hist(d, l, b, s))
+	 	
+	 else:
+	 	X = np.asarray(CM[:, 0])
+	 	Y = np.asarray(CM[:, 1])
+	 	Z = np.asarray(CM[:, 2])
+	 	
+	 	histogram.start_group()
+	 	
+	 	for i in range(50):
+	 		n_galaxies = np.shape(X)[0]
+	 		X_reduced = np.random.choice(X, int(0.99 * n_galaxies), replace = False)
+	 		Y_reduced = np.random.choice(Y, int(0.99 * n_galaxies), replace = False)
+	 		Z_reduced = np.random.choice(Z, int(0.99 * n_galaxies), replace = False)
+	 		
+	 		MST = mist.GetMST(x = X_reduced, y = Y_reduced, z = Z_reduced)
+	 		d, l, b, s, l_index, b_index = MST.get_stats(include_index=True)
+	 		_hist = histogram.get_hist(d, l, b, s)
+	 		
+	 	return(histogram.end_group())
