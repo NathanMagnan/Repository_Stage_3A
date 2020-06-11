@@ -162,6 +162,14 @@ print("prior defined")
 print("Starting to define the log-likelihood")
 
 def loglikelihood(cube):
+    # Reading the parameters
+    h0 = (cube[0] - 60) / (75 - 60)
+    w0 = (cube[1] - (-1.40)) / ((-0.60) - (-1.40))
+    ns = (cube[2] - 0.920) / (0.995 - 0.920)
+    sigma8 = (cube[3] - 0.64) / (1.04 - 0.64)
+    omegaM = (cube[4] - 0.250) / (0.375 - 0.250)
+    X_new = np.asarray([h0, w0, ns, sigma8, omegaM])
+    
     # Making the prediction
     X_new = np.reshape(cube, (1, 5))
     X_predicted, Y_predicted, Cov = gp.compute_prediction(X_new)
@@ -234,10 +242,10 @@ def loglikelihood(cube):
     Noise_expected = [None]
     
     # Computing the likelihood
-    likelihood = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
+    chi_2 = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
     
-    # returning the log-likelihood
-    return -0.5 * likelihood
+    # returning the log-likelihood or chi_2
+    return(-0.5 * chi_2)
 
 print("Likelihood defined")
 
