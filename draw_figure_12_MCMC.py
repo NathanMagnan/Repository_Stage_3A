@@ -98,6 +98,37 @@ Y_s_data = np.reshape(Y_s_data, (n_simulations * 5, 1))
 
 print("data loaded")
 
+## Loading the complete Abacus data for analysis
+print("starting to load the data")
+
+target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+#target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+
+dict = {'X_d' : [], 'Y_d' : [], 'X_l' : [], 'Y_l' : [], 'X_b' : [], 'Y_b' : [], 'X_s' : [], 'Y_s' : []}
+
+for i in range(41):    
+    X_d_a = np.loadtxt(str(target) + str(i) + "_X_d")
+    Y_d_a = np.loadtxt(str(target) + str(i) + "_Y_d")
+    dict['X_d'].append(X_d_a)
+    dict['Y_d'].append(Y_d_a)
+    
+    X_l_a = np.loadtxt(str(target) + str(i) + "_X_l")
+    Y_l_a = np.loadtxt(str(target) + str(i) + "_Y_l")
+    dict['X_l'].append(X_l_a)
+    dict['Y_l'].append(Y_l_a)
+    
+    X_b_a = np.loadtxt(str(target) + str(i) + "_X_b")
+    Y_b_a = np.loadtxt(str(target) + str(i) + "_Y_b")
+    dict['X_b'].append(X_b_a)
+    dict['Y_b'].append(Y_b_a)
+    
+    X_s_a = np.loadtxt(str(target) + str(i) + "_X_s")
+    Y_s_a = np.loadtxt(str(target) + str(i) + "_Y_s")
+    dict['X_s'].append(X_s_a)
+    dict['Y_s'].append(Y_s_a)
+
+print("data fully loaded")
+
 ## Setting up the GPs
 print("starting to define the Gps")
 
@@ -129,14 +160,6 @@ print("prior defined")
 
 ## Defining the log-likelihood
 print("Starting to define the log-likelihood")
-
-def loglikelihoodTest(cube):
-	s = 1 / (2 * m.pi * 0.15**2)**0.5 * np.exp(- (cube[0] - 68)**2 / 0.15**2)
-	s += 1 / (2 * m.pi * 0.08**2)**0.5 * np.exp(- (cube[1] + 1)**2 / 0.08**2)
-	s += 1 / (2 * m.pi * 0.008**2)**0.5 * np.exp(- (cube[2] - 0.960)**2 / 0.008**2)
-	s += 1 / (2 * m.pi * 0.04**2)**0.5 * np.exp(- (cube[3] - 0.80)**2 / 0.04**2)
-	s += 1 / (2 * m.pi * 0.01**2)**0.5 * np.exp(- (cube[4] - 0.310)**2 / 0.01**2)
-	return np.log(s)
 
 def loglikelihood(cube):
     # Making the prediction
@@ -208,13 +231,13 @@ def loglikelihood(cube):
     
     # Defining the noises
     Noise_predicted = Cov
-    Noise_observation = [None]
+    Noise_expected = [None]
     
     # Computing the likelihood
-    likelihood = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_observation)
+    likelihood = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
     
     # returning the log-likelihood
-    return np.log(likelihood)
+    return -0.5 * likelihood
 
 print("Likelihood defined")
 
@@ -235,7 +258,7 @@ my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/MCMC')
 target = 'Abacus_chi2'
 target = os.path.join(my_path, target)
 
-result = pmn.solve(LogLikelihood = loglikelihoodTest, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target, sampling_efficiency = 1, evidence_tolerance = 0.0005)
+result = pmn.solve(LogLikelihood = loglikelihood, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target, sampling_efficiency = 1, evidence_tolerance = 10**(-10), n_live_points = 500)
 
 json.dump(parameters, open(target + 'params.json', 'w')) # save parameter names
 
@@ -245,30 +268,5 @@ print("MCMC analysis done")
 print("Starting to plot the results")
 
 os.system('python3' + ' ' + '/home/astro/magnan/PyMultiNest/multinest_marginals_fancy.py' + ' ' + target)
-
-#a = pmn.Analyzer(n_params = n_params, outputfiles_basename = target)
-#s = a.get_stats()
-#
-#json.dump(s, open(target + 'stats.json', 'w'), indent=4)
-#
-#data = a.get_data()
-#i = data[:,1].argsort()[::-1]
-#samples = data[i,2:]
-#weights = data[i,0]
-#loglike = data[i,1]
-#Z = s['global evidence']
-#logvol = np.log(weights) + 0.5 * loglike + Z
-#logvol = logvol - logvol.max()
-#results = dict(samples=samples, weights=weights, logvol=logvol)
-#
-#marginals.multinest_marginal_fancy.traceplots(results = result, labels = parameters, show_titles = True)
-#plt.show()
-#plt.close()
-#marginals.multinest_marginal_fancy.cornerplot(results = result, labels = parameters, show_titles = True)
-#plt.show()
-#plt.close()
-#marginals.multinest_marginal_fancy.cornerpoints(results = result, labels = parameters, show_titles = True)
-#plt.show()
-#plt.close()
 
 print("Results plotted")

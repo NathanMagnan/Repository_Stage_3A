@@ -347,7 +347,7 @@ class GP():
             chi_2 = np.sqrt(ms)
             return(chi_2)
     
-    def chi_2(self, Y_model, Noise_model, Y_observation, Noise_observation):
+    def likelihood_chi2(self, Y_model, Noise_model, Y_observation, Noise_observation):
         if (self.type_kernel == "Separated"):
             s = 0
             
