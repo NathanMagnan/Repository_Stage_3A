@@ -1,6 +1,7 @@
 ## Importin the libraries
 import numpy as np
 import mistree as mist
+import pickle
 
 import sys
 import os
@@ -28,11 +29,12 @@ ab = cat.Catalogue_Abacus(basePath = path)
 # gettting the data
 ab.initialise_data()
 
-print("simulation " + str(i) + " : data acquired")
+print("data acquired")
 
 ## creating the data set
 print("starting to work on creating the data set")
 Catalogues = []
+MST_dicts = [0, 0, 0, 0]
 
 for m in range(4):
     histogram = mist.HistMST()
@@ -67,6 +69,7 @@ for i in range(4):
                     if not ((cm[1] > lim_inf_y) and (cm[1] < lim_sup_y)):
                         if not ((cm[2] > lim_inf_z) and (cm[2] < lim_sup_z)):
                             CM_reduced.append(cm)
+            CM_reduced = np.asarray(CM_reduced)
             
             X_reduced = np.asarray(CM_reduced[:, 0])
             Y_reduced = np.asarray(CM_reduced[:, 1])
@@ -80,20 +83,22 @@ for i in range(4):
             _hist = Catalogues[m].get_hist(d, l, b, s)
 
 for m in range(4):
-    Catalogues[m].end_group()
+    MST_dicts[m] = Catalogues[m].end_group()
 
 print("data set fully created")
 
-## Plotting the statistics
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_file = 'Test_jacknife.png'
-my_file = os.path.join(my_path, my_file)
+## Saving the statistics
+print("Starting to save the results")
 
 Labels = ['center', 'face', 'edge', 'corner']
 
-plot_histograms = mist.PlotHistMST()
 for m in range(4):
-    plot_histograms.read_mst(Catalogues[m], label = Labels[m])
-plot_histograms.plot(usecomp = True, usemean = False, whichcomp = 3, figsize = (9, 6), saveas = my_file)
+	my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Test_jacknife')
+	my_file = Labels[m] + '.pkl'
+	my_file = os.path.join(my_path, my_file)
+	
+	f = open(my_file, "wb")
+	pickle.dump(MST_dicts[m], f)
+	f.close()
 
-print("Statistics plotted")
+print("Results saved")

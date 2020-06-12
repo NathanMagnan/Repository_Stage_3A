@@ -9,11 +9,11 @@ rc('text', usetex = True)
 
 import sys
 import os
-#sys.path.append('/home/astro/magnan/Repository_Stage_3A')
-sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+sys.path.append('/home/astro/magnan/Repository_Stage_3A')
+#sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 import GP_tools as GP
-#os.chdir('/home/astro/magnan')
-os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+os.chdir('/home/astro/magnan')
+#os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 
 print("All imports successful")
 
@@ -21,8 +21,8 @@ print("All imports successful")
 print("Connexion successfull")
 print("starting to load the data")
 
-#target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
-target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus'
+target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
+#target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus'
 
 """
 d = 0->5
@@ -185,8 +185,8 @@ print("grids defined")
 ## Loading the whole Abacus data for analyzing the predictions
 print("starting to load the data")
 
-#target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
-target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+#target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
 
 dict = {'X_d' : [], 'Y_d' : [], 'X_l' : [], 'Y_l' : [], 'X_b' : [], 'Y_b' : [], 'X_s' : [], 'Y_s' : []}
 
@@ -305,7 +305,7 @@ for i in range(n_grids):
         Y_expected = []
         Y_expected.append([Y_d_expected, Y_l_expected, Y_b_expected, Y_s_expected])
                 
-        chi2 = gp.chi_2(Y_model = Y_expected, Noise_model = [None], Y_observation = Y_predicted, Noise_observation = Cov)
+        chi2 = gp.likelihood_chi2(Y_model = Y_expected, Noise_model = [None], Y_observation = Y_predicted, Noise_observation = Cov)
         Chi2_grid[j] = chi2
     
     Grids['chi2_grid'].append(Chi2_grid)
@@ -432,11 +432,11 @@ for i in range(5):
 plt.suptitle("Sensitivity of the MST to cosmological parameters")
 
 print("starting to save the results")
-#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
 my_file = 'Chi_2_test_Abacus_separated'
 my_file = os.path.join(my_path, my_file)
-plt.savefig(my_file)
+#plt.savefig(my_file)
 plt.show()
 
 print("results plotted and saved")
