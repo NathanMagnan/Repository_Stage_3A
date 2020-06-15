@@ -148,7 +148,7 @@ gp.print_models()
 ## Defining the prior
 print("starting to define the prior")
 
-def prior(cube):
+def prior(cube, ndims, nparams):
     cube[0] = cube[0] * (75 - 60) + 60
     cube[1] = cube[1] * ((-0.60) - (-1.40)) + (-1.40)
     cube[2] = cube[2] * (0.995 - 0.920) + 0.920
@@ -161,7 +161,7 @@ print("prior defined")
 ## Defining the log-likelihood
 print("Starting to define the log-likelihood")
 
-def loglikelihood(cube):
+def loglikelihood(cube,ndims, nparams):
     # Reading the parameters
     h0 = (cube[0] - 60) / (75 - 60)
     w0 = (cube[1] - (-1.40)) / ((-0.60) - (-1.40))
@@ -245,7 +245,7 @@ def loglikelihood(cube):
     chi_2 = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
     
     # returning the log-likelihood or chi_2
-    return(-0.5 * chi_2)
+    return(-10 * chi_2)
 
 print("Likelihood defined")
 
@@ -266,7 +266,7 @@ my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/MCMC')
 target = 'Abacus_chi2_'
 target = os.path.join(my_path, target)
 
-result = pmn.solve(LogLikelihood = loglikelihood, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target, sampling_efficiency = 1, evidence_tolerance = 10**(-12), n_live_points = 500, max_iter = 500000)
+result = pmn.run(LogLikelihood = loglikelihood, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target, sampling_efficiency = 1, evidence_tolerance = 10**(-4), n_live_points = 500, max_iter = 500000)
 
 json.dump(parameters, open(target + 'params.json', 'w')) # save parameter names
 

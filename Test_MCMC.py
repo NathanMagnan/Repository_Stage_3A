@@ -53,7 +53,7 @@ my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/MCMC')
 target = 'Test'
 target = os.path.join(my_path, target)
 
-result = pmn.solve(LogLikelihood = loglikelihoodTest, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target, sampling_efficiency = 1, evidence_tolerance = 10**(-10), n_live_points = 500)
+result = pmn.solve(LogLikelihood = loglikelihoodTest, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target, sampling_efficiency = 1, evidence_tolerance = 10**(-0), n_live_points = 500)
 
 json.dump(parameters, open(target + 'params.json', 'w')) # save parameter names
 

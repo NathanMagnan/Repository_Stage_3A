@@ -85,6 +85,6 @@ MCMC analysis done
  no. of live points =  500
  dimensionality =    5
  *****************************************************
- ln(ev)=  -1.8717214088784373      +/-   2.2090412771486930E-002
- Total Likelihood Evaluations:       200718
+ ln(ev)=  -1.9326509854855245      +/-   2.3868129104816137E-002
+ Total Likelihood Evaluations:       648511
  Sampling finished. Exiting MultiNest
