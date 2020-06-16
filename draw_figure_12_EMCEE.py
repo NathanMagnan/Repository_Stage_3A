@@ -342,3 +342,21 @@ plt.savefig(my_file)
 plt.show()
 
 print("Results saved and plotted")
+
+## Plotting 2
+import corner
+Labels = ['$H_{0}$', '$w_{0}$', '$n_{s}$', '$\sigma_{8}$', '$\Omega_{M}$']
+Expected_values_01 = X_d_planck[0, 0:5]
+Truths = prior(Expected_values_01)
+
+flat_samples = sampler.get_chain(discard = 0, thin = 15, flat=True)
+
+corner.corner(flat_samples, labels = Labels, truths = Truths)
+plt.suptitle("Posterior distribution (Abacus)")
+
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+my_file = 'Figure_12_EMCEE_corner'
+my_file = os.path.join(my_path, my_file)
+plt.savefig(my_file)
+plt.show()
