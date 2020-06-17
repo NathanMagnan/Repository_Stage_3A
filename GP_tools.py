@@ -373,8 +373,29 @@ class GP():
                 s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
             
             ms = s / (4 * n_simulations)
-            chi_2 = np.sqrt(ms)
+            #chi_2 = np.sqrt(ms)
+            chi_2 = ms
             return(chi_2)
+        
+        elif (self.type_kernel == "Coregionalized"):
+            return("Error : chi_2 has not yet been written for coregionalized kernels")
+
+    def likelihood_ms(self, Y_model, Noise_model, Y_observation, Noise_observation):
+        if (self.type_kernel == "Separated"):
+            s = 0
+            
+            n_simulations = np.shape(Y_observation)[0]
+            
+            for i in range(n_simulations):
+                Sigma_inv = np.identity(self.n_d_points_per_simu + self.n_l_points_per_simu + self.n_b_points_per_simu + self.n_s_points_per_simu)
+                
+                U = np.concatenate((Y_model[i][0], Y_model[i][1], Y_model[i][2], Y_model[i][3]), 0)
+                V = np.concatenate((Y_observation[i][0], Y_observation[i][1], Y_observation[i][2], Y_observation[i][3]), 0)
+                
+                s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
+            
+            ms = s / (4 * n_simulations)
+            return(ms)
         
         elif (self.type_kernel == "Coregionalized"):
             return("Error : chi_2 has not yet been written for coregionalized kernels")

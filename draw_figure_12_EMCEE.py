@@ -256,14 +256,14 @@ def chi2(X):
     Noise_expected = [None]
     
     # Computing the likelihood
-    chi_2 = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
+    ms = gp.likelihood_ms(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
     
-    if (m.isnan(chi_2)):
+    if (m.isnan(ms)):
         print(X)
-        return(0)
+        return(- m.inf)
     
     # returning the log-likelihood or chi_2
-    return(chi_2)
+    return(-0.5 * ms)
 
 print("Likelihood defined")
 
@@ -273,10 +273,17 @@ print("Starting to define the problem")
 n_dims = 5
 n_walkers = 32
 
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/EMCEE/')
+my_file = 'Figure_12_4'
+my_file = os.path.join(my_path, my_file)
+backend = emcee.backends.HDFBackend(my_file)
+backend.reset(n_walkers, n_dims)
+
 A = np.random.rand(n_walkers, n_dims)
 Initial_guess = np.asarray([prior(A[i]) for i in range(n_walkers)])
 
-sampler = emcee.EnsembleSampler(n_walkers, n_dims, chi2, args=[])
+sampler = emcee.EnsembleSampler(n_walkers, n_dims, chi2, args=[], backend=backend)
 
 print("Problem defined")
 
@@ -336,7 +343,7 @@ plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE'
+my_file = 'Figure_12_EMCEE_4'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()
@@ -349,14 +356,14 @@ Labels = ['$H_{0}$', '$w_{0}$', '$n_{s}$', '$\sigma_{8}$', '$\Omega_{M}$']
 Expected_values_01 = X_d_planck[0, 0:5]
 Truths = prior(Expected_values_01)
 
-flat_samples = sampler.get_chain(discard = 0, thin = 15, flat=True)
+flat_samples = sampler.get_chain(discard = 0, thin = 2, flat=True)
 
-corner.corner(flat_samples, labels = Labels, truths = Truths)
+corner.corner(flat_samples, labels = Labels, truths = Truths, plot_datapoints = False, fill_contours = True)
 plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_corner'
+my_file = 'Figure_12_EMCEE_corner_4'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()
