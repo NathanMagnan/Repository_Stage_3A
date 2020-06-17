@@ -161,7 +161,21 @@ print("prior defined")
 ## Defining the log-likelihood
 print("Starting to define the log-likelihood")
 
+Boundaries = [[60, 75], [-1.40, -0.60], [0.920, 0.995], [0.64, 1.04], [0.250, 0.375]]
+
 def loglikelihood(cube,ndims, nparams):
+    # Making boundaries
+    if ((cube[0] > Boundaries[0][1]) or (cube[0] < Boundaries[0][0])):
+        return(- m.inf)
+    if ((cube[1] > Boundaries[1][1]) or (cube[1] < Boundaries[1][0])):
+        return(- m.inf)
+    if ((cube[2] > Boundaries[2][1]) or (cube[2] < Boundaries[2][0])):
+        return(- m.inf)
+    if ((cube[3] > Boundaries[3][1]) or (cube[3] < Boundaries[3][0])):
+        return(- m.inf)
+    if ((cube[4] > Boundaries[4][1]) or (cube[4] < Boundaries[4][0])):
+        return(- m.inf)
+    
     # Reading the parameters
     h0 = (cube[0] - 60) / (75 - 60)
     w0 = (cube[1] - (-1.40)) / ((-0.60) - (-1.40))
@@ -242,10 +256,13 @@ def loglikelihood(cube,ndims, nparams):
     Noise_expected = [None]
     
     # Computing the likelihood
-    chi_2 = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
+    ms = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
+    
+    if (m.isnan(ms)):
+        return(- m.inf)
     
     # returning the log-likelihood or chi_2
-    return(-10 * chi_2)
+    return(-0.5 * ms)
 
 print("Likelihood defined")
 
