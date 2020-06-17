@@ -67,29 +67,64 @@ def get_2PCF(input_data, bin_min, bin_max, n_bin_2PCF, box_size):
     
     return(Bins, Mean_xi, Std_xi)
 
-def get_MST_histogram(jacknife = False, MST = None, CM = None):
+def get_MST_histogram(MST, jacknife = False, CM = None):
 	 histogram = mist.HistMST()
 	 histogram.setup(usenorm = False, uselog = True)
+	 d, l, b, s, l_index, b_index = MST.get_stats(include_index=True)
 	 
 	 if (jacknife == False):
-	 	d, l, b, s, l_index, b_index = MST.get_stats(include_index = True)
 	 	return(histogram.get_hist(d, l, b, s))
 	 	
 	 else:
-	 	X = np.asarray(CM[:, 0])
-	 	Y = np.asarray(CM[:, 1])
-	 	Z = np.asarray(CM[:, 2])
-	 	
 	 	histogram.start_group()
 	 	
-	 	for i in range(50):
-	 		n_galaxies = np.shape(X)[0]
-	 		X_reduced = np.random.choice(X, int(0.99 * n_galaxies), replace = False)
-	 		Y_reduced = np.random.choice(Y, int(0.99 * n_galaxies), replace = False)
-	 		Z_reduced = np.random.choice(Z, int(0.99 * n_galaxies), replace = False)
-	 		
-	 		MST = mist.GetMST(x = X_reduced, y = Y_reduced, z = Z_reduced)
-	 		d, l, b, s, l_index, b_index = MST.get_stats(include_index=True)
-	 		_hist = histogram.get_hist(d, l, b, s)
+	 	for i in range(4):
+	 		for j in range(4):
+	 			for k in range(4):
+	 				# finding the limits of the small box to exclude
+	 				lim_inf_x, lim_sup_x = 720 / 4 * i, 720 / 4 * (i + 1)
+	 				lim_inf_y, lim_sup_y = 720 / 4 * j, 720 / 4 * (j + 1)
+	 				lim_inf_z, lim_sup_z = 720 / 4 * k, 720 / 4 * (k + 1)
+	 				
+	 				# finding the index of the nodes in the small box
+	 				Indexes_to_remove = []
+	 				n_nodes = np.shape(CM)[0]
+	 				for m in range(n_nodes):
+	 					if ((CM[m, 0] > lim_inf_x) and (CM[m, 0] < lim_sup_x)):
+	 						if ((CM[m, 1] > lim_inf_y) and (CM[m, 1] < lim_sup_y)):
+	 							if ((CM[m, 2] > lim_inf_z) and (CM[m, 2] < lim_sup_z)):
+	 								Indexes_to_remove.append(m)
+	 				
+	 				# constructing d_reduced
+	 				d_reduced = d.copy()
+	 				d_reduced = d_reduced.tolist()
+	 				for m in Indexes_to_remove:
+	 					del d_reduced[m]
+	 				d_reduced = np.asarray(d_reduced)
+	 				
+	 				# constructing l_reduced
+	 				l_reduced = l.copy()
+	 				l_reduced = l_reduced.tolist()
+	 				for m in range(np.shape(l)[0]):
+	 					if ((l_index[0, m] in Indexes_to_remove) or (l_index[1, m] in Indexes_to_remove)):
+	 						del l_reduced[m]
+	 				l_reduced = np.asarray(l_reduced)
+	 				
+	 				# constructing b_reduced and s_reduced
+	 				b_reduced = b.copy()
+	 				b_reduced = b_reduced.tolist()
+	 				s_reduced = s.copy()
+	 				s_reduced = s_reduced.tolist()
+	 				for m in range(len(b_index)):
+	 					branch = b_index[m]
+	 					for index in branch:
+	 						if (index in Indexes_to_remove):
+	 							del b_reduced[m]
+	 							del s_reduced[m]
+	 							break
+	 				b_reduced = np.asarray(b_reduced)
+	 				s_reduced = np.asarray(s_reduced)
+	 				
+	 				_hist = histogram.get_hist(d_reduced, l_reduced, b_reduced, s_reduced)
 	 		
 	 	return(histogram.end_group())

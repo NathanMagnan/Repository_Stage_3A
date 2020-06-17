@@ -2,8 +2,6 @@
 import numpy as np
 import math as m
 import GPy as GPy
-import pymultinest as pmn
-import json as json
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex = True)
@@ -83,6 +81,8 @@ Y_b_planck_expected = np.reshape(Y_b_planck, (5, 1))
 Y_l_planck_expected = np.reshape(Y_l_planck, (5, 1))
 Y_s_planck_expected = np.reshape(Y_s_planck, (5, 1))
 
+print(X_d_planck[0])
+
 X_d_data = X_d[0 : (n_simulations) * 5]
 Y_d_data = Y_d[0 : (n_simulations) * 5]
 X_l_data = X_l[0 : (n_simulations) * 5]
@@ -161,21 +161,7 @@ print("prior defined")
 ## Defining the log-likelihood
 print("Starting to define the log-likelihood")
 
-Boundaries = [[60, 75], [-1.40, -0.60], [0.920, 0.995], [0.64, 1.04], [0.250, 0.375]]
-
 def loglikelihood(cube,ndims, nparams):
-    # Making boundaries
-    if ((cube[0] > Boundaries[0][1]) or (cube[0] < Boundaries[0][0])):
-        return(- m.inf)
-    if ((cube[1] > Boundaries[1][1]) or (cube[1] < Boundaries[1][0])):
-        return(- m.inf)
-    if ((cube[2] > Boundaries[2][1]) or (cube[2] < Boundaries[2][0])):
-        return(- m.inf)
-    if ((cube[3] > Boundaries[3][1]) or (cube[3] < Boundaries[3][0])):
-        return(- m.inf)
-    if ((cube[4] > Boundaries[4][1]) or (cube[4] < Boundaries[4][0])):
-        return(- m.inf)
-    
     # Reading the parameters
     h0 = (cube[0] - 60) / (75 - 60)
     w0 = (cube[1] - (-1.40)) / ((-0.60) - (-1.40))
@@ -183,6 +169,7 @@ def loglikelihood(cube,ndims, nparams):
     sigma8 = (cube[3] - 0.64) / (1.04 - 0.64)
     omegaM = (cube[4] - 0.250) / (0.375 - 0.250)
     X_new = np.asarray([h0, w0, ns, sigma8, omegaM])
+    print(X_new)
     
     # Making the prediction
     X_new = np.reshape(X_new, (1, 5))
@@ -256,35 +243,38 @@ def loglikelihood(cube,ndims, nparams):
     Noise_expected = [None]
     
     # Computing the likelihood
-    ms = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
-    
-    if (m.isnan(ms)):
-        return(- m.inf)
+    chi_2 = gp.likelihood_chi2(Y_observation = Y_predicted, Noise_observation = Noise_predicted, Y_model = Y_expected, Noise_model = Noise_expected)
     
     # returning the log-likelihood or chi_2
-    return(-0.5 * ms)
+    return(chi_2)
 
 print("Likelihood defined")
 
-## Defining the problem
-print("Starting to define the problem")
+## Plotting
+print("starting to plot")
 
-parameters = ['$H_{0}$', '$w_{0}$', '$n_{s}$', '$\sigma_{8}$', '$\Omega_{M}$']
-n_dims = 5
-n_params = 5
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+my_file = 'test_likelihood_function'
+my_file = os.path.join(my_path, my_file)
 
-print("Problem defined")
+X = np.linspace(60, 75, 100)
+Cube = [[x, 0.326 * ((-0.60) - (-1.40)) + (-1.40), 0.13338 * (0.995 - 0.920) + 0.920, 0.53456 * (1.04 - 0.64) + 0.64, 0.41348 * (0.375 - 0.250) + 0.250] for x in X]
+Y = [loglikelihood(cube, 5, 5) for cube in Cube]
 
-## Running the MCMC method
-print("Starting the MCMC method")
+figure = plt.figure()
+ax = figure.gca()
 
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/MCMC')
-#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/MCMC')
-target = 'Abacus_ms_2_'
-target = os.path.join(my_path, target)
+ax.set_title("$\chi_{2}$ as a function of $H_{0}$")
+ax.set_xlabel("$H_{0}$")
+ax.set_ylabel("$\chi_{2}$")
 
-result = pmn.run(LogLikelihood = loglikelihood, Prior = prior, n_dims = n_params, resume = False, outputfiles_basename = target, sampling_efficiency = 1, evidence_tolerance = 10**(-8), n_live_points = 500, max_iter = 500000)
+ax.plot(X, Y, 'k')
+ax.axvline(x = 0.59666 * (75 - 60) + 60)
 
-json.dump(parameters, open(target + 'params.json', 'w')) # save parameter names
+plt.savefig(my_file)
+plt.show()
 
-print("MCMC analysis done")
+print("plot done")
+
+

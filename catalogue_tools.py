@@ -377,9 +377,11 @@ class Catalogue_Abacus(Catalogue):
             
         else:
             if (self.CM is None):
-                self.initialise_data()
+            	self.initialise_data()
+            if (self.MST is None):
+            	self.compute_MST()
             
-            self.MST_histogram = ab.get_MST_histogram(jacknife = True, CM = self.CM)
+            self.MST_histogram = ab.get_MST_histogram(MST = self.MST, jacknife = True, CM = self.CM)
 
 
 class Catalogue_ALF(Catalogue):

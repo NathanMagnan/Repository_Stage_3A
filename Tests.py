@@ -12,12 +12,12 @@ os.chdir('/home/astro/magnan')
 """ Testing Catalogue Tools """
 #alf = cat.Catalogue_ALF(count = 10**4, alpha = 1.5, beta = 0.4, gamma = 1.3, t0 = 0.3, ts = 0.01, box_size = 75.)
 #ab = cat.Catalogue_Abacus()
-il = cat.Catalogue_Illustris()
+#il = cat.Catalogue_Illustris()
 # __init__ OK
 
 #alf.initialise_data()
 #ab.initialise_data()
-il.initialise_data()
+#il.initialise_data()
 # initialise_data OK but quite slow (likely because it needs to load simulations)
 
 #alf.compute_2PCF(bin_min = 0.01, bin_max = 1000, n_bin_2PCF = 100)
@@ -75,12 +75,15 @@ il.initialise_data()
 #il.compute_MST_histogram()
 # compute_MST_histrogram OK
 
+#d, b, l, s, l_index, b_index = alf.MST.get_stats(include_index = True)
+#print(l_index)
+
 #alf.compute_MST_histogram(mode_MST = 'SingleMST')
 #alf.plot_MST_histogram(title = "Single MST histogram")
 #alf.compute_MST_histogram(mode_MST = 'MultipleMST')
 #alf.plot_MST_histogram(title = "Statistical MST histogram")
 #ab.plot_MST_histogram(title = "Single MST histogram")
-il.plot_MST_histogram(title = "Single MST histogram")
+#il.plot_MST_histogram(title = "Single MST histogram")
 # plot_MST_histogram works partially : no title AND very slow for Abacus (more than 1 min)
 
 #alf.plot_MST_2D(title = "2D plot of ALF MST")

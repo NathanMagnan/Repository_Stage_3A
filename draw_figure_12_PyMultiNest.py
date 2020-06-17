@@ -23,7 +23,7 @@ print("Starting to plot the results")
 
 my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/MCMC')
 #my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/MCMC')
-target = 'Abacus_chi2_'
+target = 'Abacus_ms_2_'
 target = os.path.join(my_path, target)
 
 os.system('python3' + ' ' + '/home/astro/magnan/PyMultiNest/multinest_marginals_fancy.py' + ' ' + target)
