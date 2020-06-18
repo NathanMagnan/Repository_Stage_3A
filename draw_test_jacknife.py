@@ -17,8 +17,8 @@ MST_dicts = [0, 0, 0, 0]
 Labels = ['center', 'face', 'edge', 'corner']
 
 for m in range(4):
-	my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Test_jacknife')
-	my_file = Labels[m] + '.pkl'
+	my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Test_jacknife/')
+	my_file = 'Test_3_' + Labels[m] + '.pkl'
 	my_file = os.path.join(my_path, my_file)
 	
 	f = open(my_file, "rb")
@@ -27,7 +27,7 @@ for m in range(4):
 
 
 my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_file = 'Test_jacknife.png'
+my_file = 'Test_jacknife_3.png'
 my_file = os.path.join(my_path, my_file)
 
 plot_histograms = mist.PlotHistMST()
