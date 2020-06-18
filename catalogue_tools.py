@@ -75,7 +75,7 @@ class Catalogue():
         self.Mean_2PCF_reliable = np.asarray(Mean_2PCF_reliable)
         self.Std_2PCF_reliable = np.asarray(Std_2PCF_reliable)
     
-    def compute_MST(self, jacknife = False):
+    def compute_MST(self):
         if (self.CM is None):
             self.initialise_data()
         
@@ -377,9 +377,9 @@ class Catalogue_Abacus(Catalogue):
             
         else:
             if (self.CM is None):
-            	self.initialise_data()
+                self.initialise_data()
             if (self.MST is None):
-            	self.compute_MST()
+                self.compute_MST()
             
             self.MST_histogram = ab.get_MST_histogram(MST = self.MST, jacknife = True, CM = self.CM)
 
