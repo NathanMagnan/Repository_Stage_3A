@@ -1,6 +1,5 @@
 ## Imports
 import numpy as np
-from mpi4py import MPI
 
 import sys
 import os
@@ -15,7 +14,7 @@ print("All imports successful")
 ## creating the data set
 print("starting to work on creating the data set")
 
-for i in range(0, 41):
+for i in range(40, 41):
     print("starting to work on simulation " + str(i))
     
     # getting the basepath
