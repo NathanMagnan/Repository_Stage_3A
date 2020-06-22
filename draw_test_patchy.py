@@ -2,6 +2,13 @@
 import numpy as np
 import pickle
 import os
+import sys
+import os
+sys.path.append('/home/astro/magnan/Repository_Stage_3A')
+import catalogue_tools as cat
+sys.path.append("/home/astro/magnan")
+from AbacusCosmos import InputFile
+os.chdir('/home/astro/magnan')
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex = True)
@@ -21,7 +28,47 @@ f.close()
 
 print("patchy loaded")
 
-## Loading Abacus
+## Loading Abacus (single)
+
+print("Starting to load Abacus (single)")
+
+# getting the basepath
+number_str = 'planck'
+path = '/home/astro/magnan/Abacus/AbacusCosmos_720box_products/AbacusCosmos_720box_'
+path += number_str
+path += '_products/AbacusCosmos_720box_'
+path += number_str
+path += '_rockstar_halos/z0.100'
+
+# creating a catalogue object
+ab = cat.Catalogue_Abacus(basePath = path)
+
+# gettting the data
+ab.initialise_data()
+
+# reduce the catalogue
+current_density = np.shape(ab.CM)[0] / (720**3)
+print(current_density)
+objective_density = 0.00039769792
+print(objective_density)
+n_galaxies_to_keep = int(objective_density * (720**3))
+
+Indexes_to_keep = ab.Masses.argsort()[-n_galaxies_to_keep:]
+New_CM = []
+for index in Indexes_to_keep:
+	New_CM.append(ab.CM[index])
+New_CM = np.asarray(New_CM)
+
+ab.CM = New_CM
+new_density = np.shape(ab.CM)[0] / (720**3)
+print(new_density)
+
+# getting the MST stats
+ab.compute_MST_histogram(jacknife = False)
+
+print("Abacus loaded")
+
+## Loading Abacus (whole)
 print("starting to load Abacus")
 
 target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
@@ -30,227 +77,146 @@ target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats
 dict = {'X_d' : [], 'Y_d' : [], 'X_l' : [], 'Y_l' : [], 'X_b' : [], 'Y_b' : [], 'X_s' : [], 'Y_s' : []}
 
 for i in range(41):    
-    X_d = np.loadtxt(str(target) + str(i) + "_X_d")
-    Y_d = np.loadtxt(str(target) + str(i) + "_Y_d")
-    dict['X_d'].append(X_d)
-    dict['Y_d'].append(Y_d)
+	X_d = np.loadtxt(str(target) + str(i) + "_X_d")
+	Y_d = np.loadtxt(str(target) + str(i) + "_Y_d")
+	dict['X_d'].append(X_d)
+	dict['Y_d'].append(Y_d)
     
-    X_l = np.loadtxt(str(target) + str(i) + "_X_l")
-    Y_l = np.loadtxt(str(target) + str(i) + "_Y_l")
-    dict['X_l'].append(X_l)
-    dict['Y_l'].append(Y_l)
+	X_l = np.loadtxt(str(target) + str(i) + "_X_l")
+	Y_l = np.loadtxt(str(target) + str(i) + "_Y_l")
+	dict['X_l'].append(X_l)
+	dict['Y_l'].append(Y_l)
     
-    X_b = np.loadtxt(str(target) + str(i) + "_X_b")
-    Y_b = np.loadtxt(str(target) + str(i) + "_Y_b")
-    dict['X_b'].append(X_b)
-    dict['Y_b'].append(Y_b)
+	X_b = np.loadtxt(str(target) + str(i) + "_X_b")
+	Y_b = np.loadtxt(str(target) + str(i) + "_Y_b")
+	dict['X_b'].append(X_b)
+	dict['Y_b'].append(Y_b)
     
-    X_s = np.loadtxt(str(target) + str(i) + "_X_s")
-    Y_s = np.loadtxt(str(target) + str(i) + "_Y_s")
-    dict['X_s'].append(X_s)
-    dict['Y_s'].append(Y_s)
+	X_s = np.loadtxt(str(target) + str(i) + "_X_s")
+	Y_s = np.loadtxt(str(target) + str(i) + "_Y_s")
+	dict['X_s'].append(X_s)
+	dict['Y_s'].append(Y_s)
 
 print("Abacus loaded")
 
 ## Plot
 print("Starting to plot the MST stats")
 
-fig, axes = plt.subplots(nrows = 2, ncols = 4, figsize = (20, 10))
+fig, axes = plt.subplots(ncols = 4, figsize = (20, 8))
 plt.subplots_adjust(hspace = 0.3, wspace = 0.4)
 
 for j in range(4):
-    for i in range(2):
-        subplot = axes[i][j]
-        
-        if (j == 0):
-            subplot.set_xlabel('$d$')
-            if (i == 0):
-                subplot.set_ylabel('$N_{d}$')
-                subplot.set_yscale('log')
-                
-                Mean = dict['Y_d'][0]
-                Std = np.asarray([0 for k in range(np.shape(dict['Y_d'][0])[0])])
-                for k in range(1, 41):
-                    Mean_old = Mean.copy()
-                    Std_old = Std.copy()
-                    
-                    Mean_new = (k * Mean_old + dict['Y_d'][k]) / (k + 1)
-                    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_d'][k]**2) / (k + 1) - Mean_new**2)
-                    
-                    Mean = Mean_new.copy()
-                    Std = Std_new.copy()
-                m1 = np.max(Mean)
-                m2 = np.max(patchy_histogram['y_d'])
-                
-                subplot.fill_between(x = dict['X_d'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'b', alpha = 0.2)
-                subplot.errorbar(x = dict['X_d'][0], y = Mean, yerr = 3 * Std, fmt = 'o', markersize = 0, ecolor = 'b')
-                subplot.plot(dict['X_d'][0], Mean, 'b')
-                subplot.plot(patchy_histogram['x_d'], patchy_histogram['y_d'] * m1 / m2, 'k')
-                
-            else:
-                subplot.set_ylabel('$\Delta N_{d} / \sqrt{<N_{d}}>$')
-                subplot.set_yscale('log')
-                #subplot.set_ylim(0.1, 50)
-                
-                Mean = dict['Y_d'][0]
-                Zeros = np.asarray([0 for k in range(np.shape(dict['Y_d'][0])[0])])
-                Std = Zeros
-                for k in range(1, 41):
-                    Mean_old = Mean.copy()
-                    Std_old = Std.copy()
-                    
-                    Mean_new = (k * Mean_old + dict['Y_d'][k]) / (k + 1)
-                    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_d'][k]**2) / (k + 1) - Mean_new**2)
-                    
-                    Mean = Mean_new.copy()
-                    Std = Std_new.copy()
-                
-                subplot.fill_between(x = dict['X_d'][0], y1 = Zeros, y2 = Std / np.sqrt(Mean), color = 'b', alpha = 0.2)
-                subplot.errorbar(x = dict['X_d'][0], y = Zeros, yerr = Std / np.sqrt(Mean), fmt = 'o', markersize = 0, ecolor = 'b')
-                subplot.plot(dict['X_d'][0], Zeros, 'b')
-        
-        elif (j == 1):
-            subplot.set_xlabel('$l$')
-            subplot.set_xscale('log')
-            if (i == 0):
-                subplot.set_ylabel('$N_{l}$')
-                subplot.set_yscale('log')
-                
-                Mean = dict['Y_l'][0]
-                Std = np.asarray([0 for k in range(np.shape(dict['Y_l'][0])[0])])
-                for k in range(1, 41):
-                    Mean_old = Mean.copy()
-                    Std_old = Std.copy()
-                    
-                    Mean_new = (k * Mean_old + dict['Y_l'][k]) / (k + 1)
-                    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_l'][k]**2) / (k + 1) - Mean_new**2)
-                    
-                    Mean = Mean_new.copy()
-                    Std = Std_new.copy()
-                m1 = np.max(Mean)
-                m2 = np.max(patchy_histogram['y_l'])
-                
-                subplot.fill_between(x = dict['X_l'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'g', alpha = 0.2)
-                subplot.errorbar(x = dict['X_l'][0][::5], y = Mean[::5], yerr = 3 * Std[::5], fmt = 'o', markersize = 0, ecolor = 'g')
-                subplot.plot(dict['X_l'][0], Mean, 'g')
-                subplot.plot(patchy_histogram['x_l'], patchy_histogram['y_l'] * m1 / m2, 'k')
-                
-            else:
-                subplot.set_ylabel('$\Delta N_{l} / \sqrt{<N_{l}>}$')
-                subplot.set_yscale('log')
-                #subplot.set_ylim(0.05, 50)
-                
-                Mean = dict['Y_l'][0]
-                Zeros = np.asarray([0 for k in range(np.shape(dict['Y_l'][0])[0])])
-                Std = Zeros
-                for k in range(1, 41):
-                    Mean_old = Mean.copy()
-                    Std_old = Std.copy()
-                    
-                    Mean_new = (k * Mean_old + dict['Y_l'][k]) / (k + 1)
-                    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_l'][k]**2) / (k + 1) - Mean_new**2)
-                    
-                    Mean = Mean_new.copy()
-                    Std = Std_new.copy()
-                
-                subplot.fill_between(x = dict['X_l'][0], y1 = Zeros, y2 = Std / np.sqrt(Mean), color = 'g', alpha = 0.2)
-                subplot.errorbar(x = dict['X_l'][0][::5], y = Zeros[::5], yerr = (Std / np.sqrt(Mean))[::5], fmt = 'o', markersize = 0, ecolor = 'g')
-                subplot.plot(dict['X_l'][0], Zeros, 'g')
-                
-        elif (j == 2):
-            subplot.set_xlabel('$b$')
-            subplot.set_xscale('log')
-            if (i == 0):
-                subplot.set_ylabel('$N_{b}$')
-                subplot.set_yscale('log')
-                
-                Mean = dict['Y_b'][0]
-                Std = np.asarray([0 for k in range(np.shape(dict['Y_b'][0])[0])])
-                for k in range(1, 41):
-                    Mean_old = Mean.copy()
-                    Std_old = Std.copy()
-                    
-                    Mean_new = (k * Mean_old + dict['Y_b'][k]) / (k + 1)
-                    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_b'][k]**2) / (k + 1) - Mean_new**2)
-                    
-                    Mean = Mean_new.copy()
-                    Std = Std_new.copy()
-                m1 = np.max(Mean)
-                m2 = np.max(patchy_histogram['y_b'])
-                
-                subplot.fill_between(x = dict['X_b'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'r', alpha = 0.2)
-                subplot.errorbar(x = dict['X_b'][0][::5], y = Mean[::5], yerr = 3 * Std[::5], fmt = 'o', markersize = 0, ecolor = 'r')
-                subplot.plot(dict['X_b'][0], Mean, 'r')
-                subplot.plot(patchy_histogram['x_b'], patchy_histogram['y_b'] * m1 / m2, 'k')
-                
-            else:
-                subplot.set_ylabel('$\Delta N_{b} / \sqrt{<N_{b}>}$')
-                subplot.set_yscale('log')
-                #subplot.set_ylim(0.05, 50)
-                
-                Mean = dict['Y_b'][0]
-                Zeros = np.asarray([0 for k in range(np.shape(dict['Y_b'][0])[0])])
-                Std = Zeros
-                for k in range(1, 41):
-                    Mean_old = Mean.copy()
-                    Std_old = Std.copy()
-                    
-                    Mean_new = (k * Mean_old + dict['Y_b'][k]) / (k + 1)
-                    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_b'][k]**2) / (k + 1) - Mean_new**2)
-                    
-                    Mean = Mean_new.copy()
-                    Std = Std_new.copy()
-                
-                subplot.fill_between(x = dict['X_b'][0], y1 = Zeros, y2 = Std / np.sqrt(Mean), color = 'r', alpha = 0.2)
-                subplot.errorbar(x = dict['X_b'][0][::5], y = Zeros[::5], yerr = (Std / np.sqrt(Mean))[::5], fmt = 'o', markersize = 0, ecolor = 'r')
-                subplot.plot(dict['X_b'][0], Zeros, 'r')
-                
-        else:
-            subplot.set_xlabel('$s$')
-            if (i == 0):
-                subplot.set_ylabel('$N_{s}$')
-                subplot.set_yscale('log')
-                
-                Mean = dict['Y_s'][0]
-                Std = np.asarray([0 for k in range(np.shape(dict['Y_s'][0])[0])])
-                for k in range(1, 41):
-                    Mean_old = Mean.copy()
-                    Std_old = Std.copy()
-                    
-                    Mean_new = (k * Mean_old + dict['Y_s'][k]) / (k + 1)
-                    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_s'][k]**2) / (k + 1) - Mean_new**2)
-                    
-                    Mean = Mean_new.copy()
-                    Std = Std_new.copy()
-                m1 = np.max(Mean)
-                m2 = np.max(patchy_histogram['y_s'])
-                
-                subplot.fill_between(x = dict['X_s'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'y', alpha = 0.2)
-                subplot.errorbar(x = dict['X_s'][0], y = Mean, yerr = 3 * Std, fmt = 'o', markersize = 0, ecolor = 'y')
-                subplot.plot(dict['X_s'][0], Mean, 'y')
-                subplot.plot(patchy_histogram['x_s'], patchy_histogram['y_s'] * m1 / m2, 'k')
-                
-            else:
-                subplot.set_ylabel('$\Delta N_{s} / \sqrt{<N_{s}>}$')
-                subplot.set_yscale('log')
-                #subplot.set_ylim(0.05, 50)
-                
-                Mean = dict['Y_s'][0]
-                Zeros = np.asarray([0 for k in range(np.shape(dict['Y_s'][0])[0])])
-                Std = Zeros
-                for k in range(1, 41):
-                    Mean_old = Mean.copy()
-                    Std_old = Std.copy()
-                    
-                    Mean_new = (k * Mean_old + dict['Y_s'][k]) / (k + 1)
-                    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_s'][k]**2) / (k + 1) - Mean_new**2)
-                    
-                    Mean = Mean_new.copy()
-                    Std = Std_new.copy()
-                
-                subplot.fill_between(x = dict['X_s'][0], y1 = Zeros, y2 = Std / np.sqrt(Mean), color = 'y', alpha = 0.2)
-                subplot.errorbar(x = dict['X_s'][0], y = Zeros, yerr = Std / np.sqrt(Mean), fmt = 'o', markersize = 0, ecolor = 'y')
-                subplot.plot(dict['X_s'][0], Zeros, 'y')
+	subplot = axes[j]
+	
+	if (j == 0):
+		subplot.set_xlabel('$d$')
+		
+		subplot.set_ylabel('$N_{d}$')
+		subplot.set_yscale('log')
+       
+		Mean = dict['Y_d'][0]
+		Std = np.asarray([0 for k in range(np.shape(dict['Y_d'][0])[0])])
+		for k in range(1, 41):
+			Mean_old = Mean.copy()
+			Std_old = Std.copy()
+           
+			Mean_new = (k * Mean_old + dict['Y_d'][k]) / (k + 1)
+			Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_d'][k]**2) / (k + 1) - Mean_new**2)
+           
+			Mean = Mean_new.copy()
+			Std = Std_new.copy()
+		m1 = np.max(Mean)
+		m2 = np.max(patchy_histogram['y_d'])
+		m3 = np.max(ab.MST_histogram['y_d'])
+       
+		subplot.fill_between(x = dict['X_d'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'b', alpha = 0.2)
+		subplot.plot(dict['X_d'][0], Mean, 'b', label = "Abacus")
+		subplot.plot(patchy_histogram['x_d'], patchy_histogram['y_d'] * m1 / m2, 'k', label = "Patchy")
+		subplot.plot(ab.MST_histogram['x_d'], ab.MST_histogram['y_d'] * m1 / m3, 'k--', label = "Abacus reduced")
+		subplot.legend()
+  
+	elif (j == 1):
+		subplot.set_xlabel('$l$')
+		subplot.set_xscale('log')
+		
+		subplot.set_ylabel('$N_{l}$')
+		subplot.set_yscale('log')
+       
+		Mean = dict['Y_l'][0]
+		Std = np.asarray([0 for k in range(np.shape(dict['Y_l'][0])[0])])
+		for k in range(1, 41):
+			Mean_old = Mean.copy()
+			Std_old = Std.copy()
+           
+			Mean_new = (k * Mean_old + dict['Y_l'][k]) / (k + 1)
+			Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_l'][k]**2) / (k + 1) - Mean_new**2)
+           
+			Mean = Mean_new.copy()
+			Std = Std_new.copy()
+		m1 = np.max(Mean)
+		m2 = np.max(patchy_histogram['y_l'])
+		m3 = np.max(ab.MST_histogram['y_l'])
+       
+		subplot.fill_between(x = dict['X_l'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'g', alpha = 0.2)
+		subplot.plot(dict['X_l'][0], Mean, 'g', label = "Abacus")
+		subplot.plot(patchy_histogram['x_l'], patchy_histogram['y_l'] * m1 / m2, 'k', label = "Patchy")
+		subplot.plot(ab.MST_histogram['x_l'], ab.MST_histogram['y_l'] * m1 / m3, 'k--', label = "Abacus reduced")
+		subplot.legend()
+	    
+	elif (j == 2):
+		subplot.set_xlabel('$b$')
+		subplot.set_xscale('log')
+		
+		subplot.set_ylabel('$N_{b}$')
+		subplot.set_yscale('log')
+       
+		Mean = dict['Y_b'][0]
+		Std = np.asarray([0 for k in range(np.shape(dict['Y_b'][0])[0])])
+		for k in range(1, 41):
+			Mean_old = Mean.copy()
+			Std_old = Std.copy()
+           
+			Mean_new = (k * Mean_old + dict['Y_b'][k]) / (k + 1)
+			Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_b'][k]**2) / (k + 1) - Mean_new**2)
+           
+			Mean = Mean_new.copy()
+			Std = Std_new.copy()
+		m1 = np.max(Mean)
+		m2 = np.max(patchy_histogram['y_b'])
+		m3 = np.max(ab.MST_histogram['y_b'])
+       
+		subplot.fill_between(x = dict['X_b'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'r', alpha = 0.2)
+		subplot.plot(dict['X_b'][0], Mean, 'r', label = "Abacus")
+		subplot.plot(patchy_histogram['x_b'], patchy_histogram['y_b'] * m1 / m2, 'k', label = "Patchy")
+		subplot.plot(ab.MST_histogram['x_b'], ab.MST_histogram['y_b'] * m1 / m3, 'k--', label = "Abacus reduced")
+		subplot.legend()
+	          
+	else:
+		subplot.set_xlabel('$s$')
+		
+		subplot.set_ylabel('$N_{s}$')
+		subplot.set_yscale('log')
+       
+		Mean = dict['Y_s'][0]
+		Std = np.asarray([0 for k in range(np.shape(dict['Y_s'][0])[0])])
+		for k in range(1, 41):
+			Mean_old = Mean.copy()
+			Std_old = Std.copy()
+           
+			Mean_new = (k * Mean_old + dict['Y_s'][k]) / (k + 1)
+			Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_s'][k]**2) / (k + 1) - Mean_new**2)
+           
+			Mean = Mean_new.copy()
+			Std = Std_new.copy()
+		m1 = np.max(Mean)
+		m2 = np.max(patchy_histogram['y_s'])
+		m3 = np.max(ab.MST_histogram['y_s'])
+       
+		subplot.fill_between(x = dict['X_s'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'y', alpha = 0.2)
+		subplot.plot(dict['X_s'][0], Mean, 'y', label = "Abacus")
+		subplot.plot(patchy_histogram['x_s'], patchy_histogram['y_s'] * m1 / m2, 'k', label = "Patchy")
+		subplot.plot(ab.MST_histogram['x_s'], ab.MST_histogram['y_s'] * m1 / m3, 'k--', label = "Abacus reduced")
+		subplot.legend()
 
 plt.suptitle("Comparison of Abacus MSTS's to a patchy mock")
 print("results plotted")
