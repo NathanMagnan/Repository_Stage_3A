@@ -1,7 +1,6 @@
 ## Imports
 import numpy as np
-import pandas
-import mistree as mist
+import pickle
 import os
 import matplotlib.pyplot as plt
 from matplotlib import rc
@@ -80,11 +79,13 @@ for j in range(4):
                     
                     Mean = Mean_new.copy()
                     Std = Std_new.copy()
+                m1 = np.max(Mean)
+                m2 = np.max(patchy_histogram['y_d'])
                 
                 subplot.fill_between(x = dict['X_d'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'b', alpha = 0.2)
                 subplot.errorbar(x = dict['X_d'][0], y = Mean, yerr = 3 * Std, fmt = 'o', markersize = 0, ecolor = 'b')
                 subplot.plot(dict['X_d'][0], Mean, 'b')
-                subplot.plot(patchy_histogram['x_d'], patchy_histogram['y_d'], 'k')
+                subplot.plot(patchy_histogram['x_d'], patchy_histogram['y_d'] * m1 / m2, 'k')
                 
             else:
                 subplot.set_ylabel('$\Delta N_{d} / \sqrt{<N_{d}}>$')
@@ -126,11 +127,13 @@ for j in range(4):
                     
                     Mean = Mean_new.copy()
                     Std = Std_new.copy()
+                m1 = np.max(Mean)
+                m2 = np.max(patchy_histogram['y_l'])
                 
                 subplot.fill_between(x = dict['X_l'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'g', alpha = 0.2)
                 subplot.errorbar(x = dict['X_l'][0][::5], y = Mean[::5], yerr = 3 * Std[::5], fmt = 'o', markersize = 0, ecolor = 'g')
                 subplot.plot(dict['X_l'][0], Mean, 'g')
-                subplot.plot(patchy_histogram['x_l'], patchy_histogram['y_l'], 'k')
+                subplot.plot(patchy_histogram['x_l'], patchy_histogram['y_l'] * m1 / m2, 'k')
                 
             else:
                 subplot.set_ylabel('$\Delta N_{l} / \sqrt{<N_{l}>}$')
@@ -172,11 +175,13 @@ for j in range(4):
                     
                     Mean = Mean_new.copy()
                     Std = Std_new.copy()
+                m1 = np.max(Mean)
+                m2 = np.max(patchy_histogram['y_b'])
                 
                 subplot.fill_between(x = dict['X_b'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'r', alpha = 0.2)
                 subplot.errorbar(x = dict['X_b'][0][::5], y = Mean[::5], yerr = 3 * Std[::5], fmt = 'o', markersize = 0, ecolor = 'r')
                 subplot.plot(dict['X_b'][0], Mean, 'r')
-                subplot.plot(patchy_histogram['x_b'], patchy_histogram['y_b'], 'k')
+                subplot.plot(patchy_histogram['x_b'], patchy_histogram['y_b'] * m1 / m2, 'k')
                 
             else:
                 subplot.set_ylabel('$\Delta N_{b} / \sqrt{<N_{b}>}$')
@@ -217,11 +222,13 @@ for j in range(4):
                     
                     Mean = Mean_new.copy()
                     Std = Std_new.copy()
+                m1 = np.max(Mean)
+                m2 = np.max(patchy_histogram['y_s'])
                 
                 subplot.fill_between(x = dict['X_s'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'y', alpha = 0.2)
                 subplot.errorbar(x = dict['X_s'][0], y = Mean, yerr = 3 * Std, fmt = 'o', markersize = 0, ecolor = 'y')
                 subplot.plot(dict['X_s'][0], Mean, 'y')
-                subplot.plot(patchy_histogram['x_s'], patchy_histogram['y_s'], 'k')
+                subplot.plot(patchy_histogram['x_s'], patchy_histogram['y_s'] * m1 / m2, 'k')
                 
             else:
                 subplot.set_ylabel('$\Delta N_{s} / \sqrt{<N_{s}>}$')
@@ -250,7 +257,7 @@ print("results plotted")
 
 print("starting to save the results")
 my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-m#y_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
 my_file = 'Test_patchy_mocks.png'
 plt.savefig(os.path.join(my_path, my_file))
 print("results saved")
