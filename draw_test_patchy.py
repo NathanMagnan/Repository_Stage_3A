@@ -28,6 +28,19 @@ f.close()
 
 print("patchy loaded")
 
+## Loading BigMD
+print("starting to load BigMD")
+
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Test_patchy/')
+my_file = 'BigMD' + '.pkl'
+my_file = os.path.join(my_path, my_file)
+	
+f = open(my_file, "rb")
+BigMD_histogram = pickle.load(f)
+f.close()
+
+print("BigMD loaded")
+
 ## Loading Abacus (single)
 
 print("Starting to load Abacus (single)")
@@ -128,11 +141,13 @@ for j in range(4):
 		m1 = np.max(Mean)
 		m2 = np.max(patchy_histogram['y_d'])
 		m3 = np.max(ab.MST_histogram['y_d'])
+		m4 = np.max(BigMD_histogram['y_d'])
        
-		subplot.fill_between(x = dict['X_d'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'b', alpha = 0.2)
+		#subplot.fill_between(x = dict['X_d'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'b', alpha = 0.2)
 		subplot.plot(dict['X_d'][0], Mean, 'b', label = "Abacus")
 		subplot.plot(patchy_histogram['x_d'], patchy_histogram['y_d'] * m1 / m2, 'k', label = "Patchy")
-		subplot.plot(ab.MST_histogram['x_d'], ab.MST_histogram['y_d'] * m1 / m3, 'k--', label = "Abacus reduced")
+		subplot.plot(BigMD_histogram['x_d'], BigMD_histogram['y_d'] * m1 / m4, 'k--', label = "BigMD")
+		subplot.plot(ab.MST_histogram['x_d'], ab.MST_histogram['y_d'] * m1 / m3, 'b--', label = "Abacus reduced")
 		subplot.legend()
   
 	elif (j == 1):
@@ -156,11 +171,13 @@ for j in range(4):
 		m1 = np.max(Mean)
 		m2 = np.max(patchy_histogram['y_l'])
 		m3 = np.max(ab.MST_histogram['y_l'])
+		m4 = np.max(BigMD_histogram['y_l'])
        
-		subplot.fill_between(x = dict['X_l'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'g', alpha = 0.2)
+		#subplot.fill_between(x = dict['X_l'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'g', alpha = 0.2)
 		subplot.plot(dict['X_l'][0], Mean, 'g', label = "Abacus")
 		subplot.plot(patchy_histogram['x_l'], patchy_histogram['y_l'] * m1 / m2, 'k', label = "Patchy")
-		subplot.plot(ab.MST_histogram['x_l'], ab.MST_histogram['y_l'] * m1 / m3, 'k--', label = "Abacus reduced")
+		subplot.plot(BigMD_histogram['x_l'], BigMD_histogram['y_l'] * m1 / m4, 'k--', label = "BigMD")
+		subplot.plot(ab.MST_histogram['x_l'], ab.MST_histogram['y_l'] * m1 / m3, 'g--', label = "Abacus reduced")
 		subplot.legend()
 	    
 	elif (j == 2):
@@ -184,11 +201,13 @@ for j in range(4):
 		m1 = np.max(Mean)
 		m2 = np.max(patchy_histogram['y_b'])
 		m3 = np.max(ab.MST_histogram['y_b'])
+		m4 = np.max(BigMD_histogram['y_b'])
        
-		subplot.fill_between(x = dict['X_b'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'r', alpha = 0.2)
+		#subplot.fill_between(x = dict['X_b'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'r', alpha = 0.2)
 		subplot.plot(dict['X_b'][0], Mean, 'r', label = "Abacus")
 		subplot.plot(patchy_histogram['x_b'], patchy_histogram['y_b'] * m1 / m2, 'k', label = "Patchy")
-		subplot.plot(ab.MST_histogram['x_b'], ab.MST_histogram['y_b'] * m1 / m3, 'k--', label = "Abacus reduced")
+		subplot.plot(BigMD_histogram['x_b'], BigMD_histogram['y_b'] * m1 / m4, 'k--', label = "BigMD")
+		subplot.plot(ab.MST_histogram['x_b'], ab.MST_histogram['y_b'] * m1 / m3, 'r--', label = "Abacus reduced")
 		subplot.legend()
 	          
 	else:
@@ -211,14 +230,17 @@ for j in range(4):
 		m1 = np.max(Mean)
 		m2 = np.max(patchy_histogram['y_s'])
 		m3 = np.max(ab.MST_histogram['y_s'])
+		m4 = np.max(BigMD_histogram['y_s'])
        
-		subplot.fill_between(x = dict['X_s'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'y', alpha = 0.2)
+		#subplot.fill_between(x = dict['X_s'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'y', alpha = 0.2)
 		subplot.plot(dict['X_s'][0], Mean, 'y', label = "Abacus")
 		subplot.plot(patchy_histogram['x_s'], patchy_histogram['y_s'] * m1 / m2, 'k', label = "Patchy")
-		subplot.plot(ab.MST_histogram['x_s'], ab.MST_histogram['y_s'] * m1 / m3, 'k--', label = "Abacus reduced")
+		subplot.plot(BigMD_histogram['x_s'], BigMD_histogram['y_s'] * m1 / m4, 'k--', label = "BigMD")
+		subplot.plot(ab.MST_histogram['x_s'], ab.MST_histogram['y_s'] * m1 / m3, 'y--', label = "Abacus reduced")
+		subplot.plot(ab.MST_histogram['x_s'], ab.MST_histogram['y_s'], 'y--', label = "Abacus reduced")
 		subplot.legend()
 
-plt.suptitle("Comparison of Abacus MSTS's to a patchy mock")
+plt.suptitle("Comparison of Abacus MSTS's to BigMD's and Patchy's")
 print("results plotted")
 
 print("starting to save the results")
