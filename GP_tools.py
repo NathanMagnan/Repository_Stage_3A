@@ -19,7 +19,7 @@ class GP():
         self.n_d_points_per_simu, self.n_l_points_per_simu, self.n_b_points_per_simu, self.n_s_points_per_simu = N_points_per_simu # ints
         self.n_simu = self.n_d_points / self.n_d_points_per_simu # int
         
-        self.noise_d, self.noise_l, self.noise_b, self.noise_s = Noise # floats
+        self.noise_d, self.noise_l, self.noise_b, self.noise_s = Noise # None or (1, n_d/l/b/s_points) arrays (separated) or floats (coregionalized)
         
         self.Kernels = None # list of GPy.kern objects
         self.type_kernel = type_kernel
@@ -51,18 +51,35 @@ class GP():
             gp_b = GPy.models.GPRegression(self.X_b_data, self.Y_b_data, self.Kernels[2])
             gp_s = GPy.models.GPRegression(self.X_s_data, self.Y_s_data, self.Kernels[3])
             
+            # if (self.noise_d is not None):
+            #     gp_d.Gaussian_noise.variance = self.noise_d
+            #     gp_d.Gaussian_noise.variance.fix()
+            # if (self.noise_l is not None):
+            #     gp_l.Gaussian_noise.variance = self.noise_l
+            #     gp_l.Gaussian_noise.variance.fix()
+            # if (self.noise_b is not None):
+            #     gp_b.Gaussian_noise.variance = self.noise_b
+            #     gp_b.Gaussian_noise.variance.fix()
+            # if (self.noise_s is not None):
+            #     gp_s.Gaussian_noise.variance = self.noise_s
+            #     gp_s.Gaussian_noise.variance.fix()
+            
             if (self.noise_d is not None):
-                gp_d.Gaussian_noise.variance = self.noise_d
-                gp_d.Gaussian_noise.variance.fix()
+                gp_d = GPy.models.GPHeteroscedasticRegression(self.X_d_data, self.Y_d_data, self.Kernels[0])
+                gp_d['.*het_Gauss.variance'] = abs(self.noise_d)
+                gp_d.het_Gauss.variance.fix()
             if (self.noise_l is not None):
-                gp_l.Gaussian_noise.variance = self.noise_l
-                gp_l.Gaussian_noise.variance.fix()
+                gp_l = GPy.models.GPHeteroscedasticRegression(self.X_l_data, self.Y_l_data, self.Kernels[1])
+                gp_l['.*het_Gauss.variance'] = abs(self.noise_l)
+                gp_l.het_Gauss.variance.fix()
             if (self.noise_b is not None):
-                gp_b.Gaussian_noise.variance = self.noise_b
-                gp_b.Gaussian_noise.variance.fix()
+                gp_b = GPy.models.GPHeteroscedasticRegression(self.X_b_data, self.Y_b_data, self.Kernels[2])
+                gp_b['.*het_Gauss.variance'] = abs(self.noise_b)
+                gp_b.het_Gauss.variance.fix()
             if (self.noise_s is not None):
-                gp_s.Gaussian_noise.variance = self.noise_s
-                gp_s.Gaussian_noise.variance.fix()
+                gp_s = GPy.models.GPHeteroscedasticRegression(self.X_s_data, self.Y_s_data, self.Kernels[3])
+                gp_s['.*het_Gauss.variance'] = abs(self.noise_s)
+                gp_s.het_Gauss.variance.fix()
             
             self.Models = [gp_d, gp_l, gp_b, gp_s]
         
@@ -95,6 +112,37 @@ class GP():
             kernel = GPy.util.multioutput.ICM(input_dim = 6, num_outputs = 4, W_rank = 4, kernel = kernel_input) # rank 4 since there are 4
             self.Kernels[0] = kernel
     
+    def change_models_to_heteroscedatic(self, Noise = [None, None, None, None]):
+        self.noise_d, self.noise_l, self.noise_b, self.noise_s = Noise # None or (1, n_d/l/b/s_points) arrays (separated)
+        
+        if (self.type_kernel == "Separated"):
+            gp_d = GPy.models.GPRegression(self.X_d_data, self.Y_d_data, self.Kernels[0])
+            gp_l = GPy.models.GPRegression(self.X_l_data, self.Y_l_data, self.Kernels[1])
+            gp_b = GPy.models.GPRegression(self.X_b_data, self.Y_b_data, self.Kernels[2])
+            gp_s = GPy.models.GPRegression(self.X_s_data, self.Y_s_data, self.Kernels[3])
+            
+            if (self.noise_d is not None):
+                gp_d = GPy.models.GPHeteroscedasticRegression(self.X_d_data, self.Y_d_data, self.Kernels[0])
+                gp_d['.*het_Gauss.variance'] = abs(self.noise_d)
+                gp_d.het_Gauss.variance.fix()
+            if (self.noise_l is not None):
+                gp_l = GPy.models.GPHeteroscedasticRegression(self.X_l_data, self.Y_l_data, self.Kernels[1])
+                gp_l['.*het_Gauss.variance'] = abs(self.noise_l)
+                gp_l.het_Gauss.variance.fix()
+            if (self.noise_b is not None):
+                gp_b = GPy.models.GPHeteroscedasticRegression(self.X_b_data, self.Y_b_data, self.Kernels[2])
+                gp_b['.*het_Gauss.variance'] = abs(self.noise_b)
+                gp_b.het_Gauss.variance.fix()
+            if (self.noise_s is not None):
+                gp_s = GPy.models.GPHeteroscedasticRegression(self.X_s_data, self.Y_s_data, self.Kernels[3])
+                gp_s['.*het_Gauss.variance'] = abs(self.noise_s)
+                gp_s.het_Gauss.variance.fix()
+            
+            self.Models = [gp_d, gp_l, gp_b, gp_s]
+        
+        elif (self.type_kernel == "Coregionalized"):
+            print("Error :  Heteroscedacity has not yet been implemented for coregionalized kernels")
+    
     def optimize_models(self, optimizer = 'lbfgsb'):
         if (self.type_kernel == "Separated"):
             self.Models[0].optimize(optimizer = optimizer)
@@ -107,14 +155,19 @@ class GP():
     
     def print_models(self):
         if (self.type_kernel == "Separated"):
+            Stats = ['d', 'l', 'b', 's']
+            Noise = [self.noise_d, self.noise_l, self.noise_b, self.noise_s]
             for i in range(4):
                 gp = self.Models[i]
-                Stats = ['d', 'l', 'b', 's']
                 
                 print("GP model for " + str(Stats[i]) + " :")
                 print(gp.rbf.variance)
                 print(gp.rbf.lengthscale)
-                print(gp.Gaussian_noise.variance)
+                if (Noise[i] is not None):
+                    #print(gp.het_Gauss.variance)
+                    print()
+                else:
+                    print(gp.Gaussian_noise.variance)
                 print("Obj : " + str(gp.objective_function()))
                 print("\n")
         
@@ -153,10 +206,15 @@ class GP():
                 X_b_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b] for x_b in X_b], (self.n_b_points_per_simu, 6))
                 X_s_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s] for x_s in X_s], (self.n_s_points_per_simu, 6))
                 
-                Y_d_predicted, Cov_d = self.Models[0].predict(X_d_new, full_cov = True)
-                Y_l_predicted, Cov_l = self.Models[1].predict(X_l_new, full_cov = True)
-                Y_b_predicted, Cov_b = self.Models[2].predict(X_b_new, full_cov = True)
-                Y_s_predicted, Cov_s = self.Models[3].predict(X_s_new, full_cov = True)
+                # Y_d_predicted, Cov_d = self.Models[0].predict(X_d_new, full_cov = True)
+                # Y_l_predicted, Cov_l = self.Models[1].predict(X_l_new, full_cov = True)
+                # Y_b_predicted, Cov_b = self.Models[2].predict(X_b_new, full_cov = True)
+                # Y_s_predicted, Cov_s = self.Models[3].predict(X_s_new, full_cov = True)
+                
+                Y_d_predicted, Cov_d = self.Models[0].predict(X_d_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])})
+                Y_l_predicted, Cov_l = self.Models[1].predict(X_l_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])})
+                Y_b_predicted, Cov_b = self.Models[2].predict(X_b_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])})
+                Y_s_predicted, Cov_s = self.Models[3].predict(X_s_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])})
                 
                 X_predicted.append([X_d_new, X_l_new, X_b_new, X_s_new])
                 Y_predicted.append([Y_d_predicted, Y_l_predicted, Y_b_predicted, Y_s_predicted])
@@ -196,31 +254,55 @@ class GP():
                 Cov.append(C)
             return(X_predicted, Y_predicted, Cov)
     
-    def test_rms(self, X_test, Y_test):
+    def test_rms(self, X_test, Y_test, Noise_test = None):
         if (self.type_kernel == "Separated"):
             X_d_test, X_l_test, X_b_test, X_s_test = X_test
             Y_d_test, Y_l_test, Y_b_test, Y_s_test = Y_test
             
             s = 0
+            # for i in range(np.shape(X_d_test)[0]):
+            #     X_d_new = np.reshape(X_d_test[i], (1, 6))
+            #     X_l_new = np.reshape(X_l_test[i], (1, 6))
+            #     X_b_new = np.reshape(X_b_test[i], (1, 6))
+            #     X_s_new = np.reshape(X_s_test[i], (1, 6))
+            #     
+            #     y_d_predicted = (self.Models[0].predict(X_d_new, full_cov = True))[0][0][0]
+            #     y_l_predicted = (self.Models[1].predict(X_l_new, full_cov = True))[0][0][0]
+            #     y_b_predicted = (self.Models[2].predict(X_b_new, full_cov = True))[0][0][0]
+            #     y_s_predicted = (self.Models[3].predict(X_s_new, full_cov = True))[0][0][0]
+            #     
+            #     y_d_expected = Y_d_test[i][0]
+            #     y_l_expected = Y_l_test[i][0]
+            #     y_b_expected = Y_b_test[i][0]
+            #     y_s_expected = Y_s_test[i][0]
+            #     
+            #     s += (y_d_predicted - y_d_expected)**2 + (y_l_predicted - y_l_expected)**2 + (y_b_predicted - y_b_expected)**2 + (y_s_predicted - y_s_expected)**2
+            
+            # ms = s / (4 * np.shape(X_d_test)[0])
+            
             for i in range(np.shape(X_d_test)[0]):
                 X_d_new = np.reshape(X_d_test[i], (1, 6))
-                X_l_new = np.reshape(X_l_test[i], (1, 6))
-                X_b_new = np.reshape(X_b_test[i], (1, 6))
-                X_s_new = np.reshape(X_s_test[i], (1, 6))
-                
-                y_d_predicted = (self.Models[0].predict(X_d_new, full_cov = True))[0][0][0]
-                y_l_predicted = (self.Models[1].predict(X_l_new, full_cov = True))[0][0][0]
-                y_b_predicted = (self.Models[2].predict(X_b_new, full_cov = True))[0][0][0]
-                y_s_predicted = (self.Models[3].predict(X_s_new, full_cov = True))[0][0][0]
-                
+                y_d_predicted = (self.Models[0].predict(X_d_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
                 y_d_expected = Y_d_test[i][0]
+                s += (y_d_predicted - y_d_expected)**2
+            for i in range(np.shape(X_l_test)[0]):
+                X_l_new = np.reshape(X_l_test[i], (1, 6))
+                y_l_predicted = (self.Models[1].predict(X_l_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
                 y_l_expected = Y_l_test[i][0]
+                s += (y_l_predicted - y_l_expected)**2
+            for i in range(np.shape(X_b_test)[0]):
+                X_b_new = np.reshape(X_b_test[i], (1, 6))
+                y_b_predicted = (self.Models[2].predict(X_b_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
                 y_b_expected = Y_b_test[i][0]
+                s += (y_b_predicted - y_b_expected)**2
+            for i in range(np.shape(X_s_test)[0]):
+                X_s_new = np.reshape(X_s_test[i], (1, 6))
+                y_s_predicted = (self.Models[3].predict(X_s_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
                 y_s_expected = Y_s_test[i][0]
-                
-                s += (y_d_predicted - y_d_expected)**2 + (y_l_predicted - y_l_expected)**2 + (y_b_predicted - y_b_expected)**2 + (y_s_predicted - y_s_expected)**2
+                s += (y_s_predicted - y_s_expected)**2
             
-            ms = s / (4 * np.shape(X_d_test)[0])
+            ms = s / (np.shape(X_d_test)[0] + np.shape(X_l_test)[0] + np.shape(X_b_test)[0] + np.shape(X_s_test)[0])
+            
             rms = np.sqrt(ms)
             return(rms)
         
@@ -270,35 +352,51 @@ class GP():
             rms = np.sqrt(ms)
             return(rms)
     
-    def test_chi2(self, X_test, Y_test):
+    def test_chi2(self, X_test, Y_test, Noise_test = None):
         if (self.type_kernel == "Separated"):
             X_d_test, X_l_test, X_b_test, X_s_test = X_test
             Y_d_test, Y_l_test, Y_b_test, Y_s_test = Y_test
+            if (Noise_test is not None):
+                Y_d_std_test, Y_l_std_test, Y_b_std_test, Y_s_std_test = Noise_test
             
             s = 0
+            # for i in range(np.shape(X_d_test)[0]):                
+                # y_d_expected = Y_d_test[i][0]
+                # y_l_expected = Y_l_test[i][0]
+                # y_b_expected = Y_b_test[i][0]
+                # y_s_expected = Y_s_test[i][0]
+                
+                # s += (y_d_predicted - y_d_expected)**2 / (C_d + self.Models[0].Gaussian_noise.variance**2)
+                # s += (y_l_predicted - y_l_expected)**2 / (C_b + self.Models[1].Gaussian_noise.variance**2)
+                # s += (y_b_predicted - y_b_expected)**2 / (C_l + self.Models[2].Gaussian_noise.variance**2)
+                # s += (y_s_predicted - y_s_expected)**2 / (C_s + self.Models[3].Gaussian_noise.variance**2)
+            
+            # ms = s / (4 * np.shape(X_d_test)[0])
+            
             for i in range(np.shape(X_d_test)[0]):
                 X_d_new = np.reshape(X_d_test[i], (1, 6))
+                y_d_predicted, c_d = (self.Models[0].predict(X_d_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
+                y_d_expected, noise_d = Y_d_test[i][0], Y_d_std_test[i][0]
+                s += (y_d_predicted - y_d_expected)**2 / (c_d + noise_d**2)
+            for i in range(np.shape(X_l_test)[0]):
                 X_l_new = np.reshape(X_l_test[i], (1, 6))
+                y_l_predicted, c_l = (self.Models[1].predict(X_l_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
+                y_l_expected, noise_l = Y_l_test[i][0], Y_l_std_test[i][0]
+                s += (y_l_predicted - y_l_expected)**2 / (c_l + noise_l**2)
+            for i in range(np.shape(X_b_test)[0]):
                 X_b_new = np.reshape(X_b_test[i], (1, 6))
+                y_b_predicted, c_b = (self.Models[2].predict(X_b_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
+                y_b_expected, noise_b = Y_b_test[i][0], Y_b_std_test[i][0]
+                s += (y_b_predicted - y_b_expected)**2 / (c_b + noise_b**2)
+            for i in range(np.shape(X_s_test)[0]):
                 X_s_new = np.reshape(X_s_test[i], (1, 6))
-                
-                y_d_predicted, C_d = (self.Models[0].predict(X_d_new, full_cov = True))
-                y_l_predicted, C_l = (self.Models[1].predict(X_l_new, full_cov = True))
-                y_b_predicted, C_b = (self.Models[2].predict(X_b_new, full_cov = True))
-                y_s_predicted, C_s = (self.Models[3].predict(X_s_new, full_cov = True))
-                
-                y_d_expected = Y_d_test[i][0]
-                y_l_expected = Y_l_test[i][0]
-                y_b_expected = Y_b_test[i][0]
-                y_s_expected = Y_s_test[i][0]
-                
-                s += (y_d_predicted - y_d_expected)**2 / (C_d + self.Models[0].Gaussian_noise.variance**2)
-                s += (y_l_predicted - y_l_expected)**2 / (C_b + self.Models[1].Gaussian_noise.variance**2)
-                s += (y_b_predicted - y_b_expected)**2 / (C_l + self.Models[2].Gaussian_noise.variance**2)
-                s += (y_s_predicted - y_s_expected)**2 / (C_s + self.Models[3].Gaussian_noise.variance**2)
+                y_s_predicted, c_s = (self.Models[3].predict(X_s_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
+                y_s_expected, noise_s = Y_s_test[i][0], Y_s_std_test[i][0]
+                s += (y_s_predicted - y_s_expected)**2 / (c_s + noise_s**2)
             
-            ms = s / (4 * np.shape(X_d_test)[0])
-            chi_2 = np.sqrt(ms)
+            ms = s / (np.shape(X_d_test)[0] + np.shape(X_l_test)[0] + np.shape(X_b_test)[0] + np.shape(X_s_test)[0])
+            
+            chi_2 = ms[0][0]
             return(chi_2)
         
         elif (self.type_kernel == "Coregionalized"):
@@ -347,7 +445,7 @@ class GP():
             chi_2 = np.sqrt(ms)
             return(chi_2)
     
-    def likelihood_chi2(self, Y_model, Noise_model, Y_observation, Noise_observation):
+    def likelihood_chi2(self, Y_model, Noise_model, Y_observation, Noise_observation): # here there is a mess-up : "observation" is the GP prediction and "model" is the expected MST... It should be the other way around but the analysis scripts would not work anymore.
         if (self.type_kernel == "Separated"):
             s = 0
             
@@ -380,7 +478,7 @@ class GP():
         elif (self.type_kernel == "Coregionalized"):
             return("Error : chi_2 has not yet been written for coregionalized kernels")
 
-    def likelihood_ms(self, Y_model, Noise_model, Y_observation, Noise_observation):
+    def likelihood_ms(self, Y_model, Y_observation, Noise_model = None, Noise_observation = None): # here there is a mess-up : "observation" is the GP prediction and "model" is the expected MST... It should be the other way around but the analysis scripts would not work anymore.
         if (self.type_kernel == "Separated"):
             s = 0
             
@@ -398,5 +496,5 @@ class GP():
             return(ms)
         
         elif (self.type_kernel == "Coregionalized"):
-            return("Error : chi_2 has not yet been written for coregionalized kernels")
+            return("Error : ms has not yet been written for coregionalized kernels")
     
