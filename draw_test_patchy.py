@@ -142,6 +142,7 @@ for j in range(4):
 		m2 = np.max(patchy_histogram['y_d'])
 		m3 = np.max(ab.MST_histogram['y_d'])
 		m4 = np.max(BigMD_histogram['y_d'])
+		m1, m2, m3, m4 = 1, 1, 1, 1
        
 		#subplot.fill_between(x = dict['X_d'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'b', alpha = 0.2)
 		subplot.plot(dict['X_d'][0], Mean, 'b', label = "Abacus")
@@ -172,6 +173,7 @@ for j in range(4):
 		m2 = np.max(patchy_histogram['y_l'])
 		m3 = np.max(ab.MST_histogram['y_l'])
 		m4 = np.max(BigMD_histogram['y_l'])
+		m1, m2, m3, m4 = 1, 1, 1, 1
        
 		#subplot.fill_between(x = dict['X_l'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'g', alpha = 0.2)
 		subplot.plot(dict['X_l'][0], Mean, 'g', label = "Abacus")
@@ -202,6 +204,7 @@ for j in range(4):
 		m2 = np.max(patchy_histogram['y_b'])
 		m3 = np.max(ab.MST_histogram['y_b'])
 		m4 = np.max(BigMD_histogram['y_b'])
+		m1, m2, m3, m4 = 1, 1, 1, 1
        
 		#subplot.fill_between(x = dict['X_b'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'r', alpha = 0.2)
 		subplot.plot(dict['X_b'][0], Mean, 'r', label = "Abacus")
@@ -231,13 +234,13 @@ for j in range(4):
 		m2 = np.max(patchy_histogram['y_s'])
 		m3 = np.max(ab.MST_histogram['y_s'])
 		m4 = np.max(BigMD_histogram['y_s'])
+		m1, m2, m3, m4 = 1, 1, 1, 1
        
 		#subplot.fill_between(x = dict['X_s'][0], y1 = Mean - 3 * Std, y2 = Mean + 3 * Std, color = 'y', alpha = 0.2)
 		subplot.plot(dict['X_s'][0], Mean, 'y', label = "Abacus")
 		subplot.plot(patchy_histogram['x_s'], patchy_histogram['y_s'] * m1 / m2, 'k', label = "Patchy")
 		subplot.plot(BigMD_histogram['x_s'], BigMD_histogram['y_s'] * m1 / m4, 'k--', label = "BigMD")
 		subplot.plot(ab.MST_histogram['x_s'], ab.MST_histogram['y_s'] * m1 / m3, 'y--', label = "Abacus reduced")
-		subplot.plot(ab.MST_histogram['x_s'], ab.MST_histogram['y_s'], 'y--', label = "Abacus reduced")
 		subplot.legend()
 
 plt.suptitle("Comparison of Abacus MSTS's to BigMD's and Patchy's")
