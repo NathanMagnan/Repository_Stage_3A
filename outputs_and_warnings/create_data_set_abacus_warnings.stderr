@@ -1,524 +1,244 @@
 /astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
   import imp
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
+  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
+  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
+  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
 /astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
   import imp
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:81: RuntimeWarning: divide by zero encountered in log10
-  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:82: RuntimeWarning: invalid value encountered in true_divide
-  Y_d_std = ab.MST_histogram['y_d_std'] / ab.MST_histogram['y_d'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
   Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
   Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
   Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
   Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
   Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
-  import imp
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:81: RuntimeWarning: divide by zero encountered in log10
-  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:82: RuntimeWarning: invalid value encountered in true_divide
-  Y_d_std = ab.MST_histogram['y_d_std'] / ab.MST_histogram['y_d'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:81: RuntimeWarning: divide by zero encountered in log10
-  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:82: RuntimeWarning: invalid value encountered in true_divide
-  Y_d_std = ab.MST_histogram['y_d_std'] / ab.MST_histogram['y_d'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
-  import imp
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
-  import imp
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/.local/lib/python3.7/site-packages/mistree/mst/hist_mst.py:183: RuntimeWarning: invalid value encountered in sqrt
-  x_s, y_s = bin_data(np.sqrt(1.-s), minimum=self.s_min, maximum=self.s_max, bin_number=self.num_s_bins, normalised=self.usenorm)
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:81: RuntimeWarning: divide by zero encountered in log10
-  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:82: RuntimeWarning: invalid value encountered in true_divide
-  Y_d_std = ab.MST_histogram['y_d_std'] / ab.MST_histogram['y_d'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:81: RuntimeWarning: divide by zero encountered in log10
-  Y_d = np.log10(ab.MST_histogram['y_d']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:82: RuntimeWarning: invalid value encountered in true_divide
-  Y_d_std = ab.MST_histogram['y_d_std'] / ab.MST_histogram['y_d'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:85: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:86: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:93: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:100: RuntimeWarning: invalid value encountered in true_divide
+/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
   Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
