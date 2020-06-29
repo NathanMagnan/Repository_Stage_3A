@@ -197,10 +197,10 @@ class GP():
             for i in range(n_new_cosmologies):
                 h0, w0, ns, sigma8, omegaM = X_new[i]
                 
-                X_d = self.X_d_data[0 : self.n_d_points_per_simu, 5]
-                X_l = self.X_l_data[0 : self.n_l_points_per_simu, 5]
-                X_b = self.X_b_data[0 : self.n_b_points_per_simu, 5]
-                X_s = self.X_s_data[0 : self.n_s_points_per_simu, 5]
+                X_d = self.X_d_data[-self.n_d_points_per_simu:, 5]
+                X_l = self.X_l_data[-self.n_l_points_per_simu:, 5]
+                X_b = self.X_b_data[-self.n_b_points_per_simu:, 5]
+                X_s = self.X_s_data[-self.n_s_points_per_simu:, 5]
                 X_d_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_d] for x_d in X_d], (self.n_d_points_per_simu, 6))
                 X_l_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l] for x_l in X_l], (self.n_l_points_per_simu, 6))
                 X_b_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b] for x_b in X_b], (self.n_b_points_per_simu, 6))
@@ -283,22 +283,22 @@ class GP():
             for i in range(np.shape(X_d_test)[0]):
                 X_d_new = np.reshape(X_d_test[i], (1, 6))
                 y_d_predicted = (self.Models[0].predict(X_d_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
-                y_d_expected = Y_d_test[i][0]
+                y_d_expected = Y_d_test[i]
                 s += (y_d_predicted - y_d_expected)**2
             for i in range(np.shape(X_l_test)[0]):
                 X_l_new = np.reshape(X_l_test[i], (1, 6))
                 y_l_predicted = (self.Models[1].predict(X_l_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
-                y_l_expected = Y_l_test[i][0]
+                y_l_expected = Y_l_test[i]
                 s += (y_l_predicted - y_l_expected)**2
             for i in range(np.shape(X_b_test)[0]):
                 X_b_new = np.reshape(X_b_test[i], (1, 6))
                 y_b_predicted = (self.Models[2].predict(X_b_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
-                y_b_expected = Y_b_test[i][0]
+                y_b_expected = Y_b_test[i]
                 s += (y_b_predicted - y_b_expected)**2
             for i in range(np.shape(X_s_test)[0]):
                 X_s_new = np.reshape(X_s_test[i], (1, 6))
                 y_s_predicted = (self.Models[3].predict(X_s_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
-                y_s_expected = Y_s_test[i][0]
+                y_s_expected = Y_s_test[i]
                 s += (y_s_predicted - y_s_expected)**2
             
             ms = s / (np.shape(X_d_test)[0] + np.shape(X_l_test)[0] + np.shape(X_b_test)[0] + np.shape(X_s_test)[0])
@@ -376,23 +376,23 @@ class GP():
             for i in range(np.shape(X_d_test)[0]):
                 X_d_new = np.reshape(X_d_test[i], (1, 6))
                 y_d_predicted, c_d = (self.Models[0].predict(X_d_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
-                y_d_expected, noise_d = Y_d_test[i][0], Y_d_std_test[i][0]
-                s += (y_d_predicted - y_d_expected)**2 / (c_d + noise_d**2)
+                y_d_expected, noise_d = Y_d_test[i], Y_d_std_test[i]
+                s += (y_d_predicted - y_d_expected)**2 / (noise_d**2)
             for i in range(np.shape(X_l_test)[0]):
                 X_l_new = np.reshape(X_l_test[i], (1, 6))
                 y_l_predicted, c_l = (self.Models[1].predict(X_l_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
-                y_l_expected, noise_l = Y_l_test[i][0], Y_l_std_test[i][0]
-                s += (y_l_predicted - y_l_expected)**2 / (c_l + noise_l**2)
+                y_l_expected, noise_l = Y_l_test[i], Y_l_std_test[i]
+                s += (y_l_predicted - y_l_expected)**2 / (noise_l**2)
             for i in range(np.shape(X_b_test)[0]):
                 X_b_new = np.reshape(X_b_test[i], (1, 6))
                 y_b_predicted, c_b = (self.Models[2].predict(X_b_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
-                y_b_expected, noise_b = Y_b_test[i][0], Y_b_std_test[i][0]
-                s += (y_b_predicted - y_b_expected)**2 / (c_b + noise_b**2)
+                y_b_expected, noise_b = Y_b_test[i], Y_b_std_test[i]
+                s += (y_b_predicted - y_b_expected)**2 / (noise_b**2)
             for i in range(np.shape(X_s_test)[0]):
                 X_s_new = np.reshape(X_s_test[i], (1, 6))
                 y_s_predicted, c_s = (self.Models[3].predict(X_s_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
-                y_s_expected, noise_s = Y_s_test[i][0], Y_s_std_test[i][0]
-                s += (y_s_predicted - y_s_expected)**2 / (c_s + noise_s**2)
+                y_s_expected, noise_s = Y_s_test[i], Y_s_std_test[i]
+                s += (y_s_predicted - y_s_expected)**2 / (noise_s**2)
             
             ms = s / (np.shape(X_d_test)[0] + np.shape(X_l_test)[0] + np.shape(X_b_test)[0] + np.shape(X_s_test)[0])
             
