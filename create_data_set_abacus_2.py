@@ -16,7 +16,7 @@ print("All imports successful")
 ## creating the data set
 print("starting to work on creating the data set")
 
-for i in range(30, 40):
+for i in range(41, 42):
     print("starting to work on simulation " + str(i))
     
     if (i != 41):
@@ -181,16 +181,16 @@ for i in range(30, 40):
     Y_s_kept = np.log10(Y_s_kept) # we normalize Y axis to help the GP
     
     # creating the set of new points
-    X_data_new_d = np.reshape([[h0, w0, ns, sigma8, omegaM, x_d, 0] for x_d in X_d_kept], (4, 7))
-    X_data_new_l = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l, 1] for x_l in X_l_kept], (12, 7))
-    X_data_new_b = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b, 2] for x_b in X_b_kept], (11, 7))
-    X_data_new_s = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s, 3] for x_s in X_s_kept], (5, 7))
+    X_data_new_d = np.reshape([[h0, w0, ns, sigma8, omegaM, x_d, 0] for x_d in X_d_kept], (-1, 7))
+    X_data_new_l = np.reshape([[h0, w0, ns, sigma8, omegaM, x_l, 1] for x_l in X_l_kept], (-1, 7))
+    X_data_new_b = np.reshape([[h0, w0, ns, sigma8, omegaM, x_b, 2] for x_b in X_b_kept], (-1, 7))
+    X_data_new_s = np.reshape([[h0, w0, ns, sigma8, omegaM, x_s, 3] for x_s in X_s_kept], (-1, 7))
     X_data_new = np.concatenate((X_data_new_d, X_data_new_l, X_data_new_b, X_data_new_s), 0)
     
-    Y_data_new_d = np.reshape([[y_d] for y_d in Y_d_kept], (4, 1))
-    Y_data_new_l = np.reshape([[y_l] for y_l in Y_l_kept], (12, 1))
-    Y_data_new_b = np.reshape([[y_b] for y_b in Y_b_kept], (11, 1))
-    Y_data_new_s = np.reshape([[y_s] for y_s in Y_s_kept], (5, 1))
+    Y_data_new_d = np.reshape([[y_d] for y_d in Y_d_kept], (-1, 1))
+    Y_data_new_l = np.reshape([[y_l] for y_l in Y_l_kept], (-1, 1))
+    Y_data_new_b = np.reshape([[y_b] for y_b in Y_b_kept], (-1, 1))
+    Y_data_new_s = np.reshape([[y_s] for y_s in Y_s_kept], (-1, 1))
     Y_data_new = np.concatenate((Y_data_new_d, Y_data_new_l, Y_data_new_b, Y_data_new_s), 0)
     
     # saving the new points
