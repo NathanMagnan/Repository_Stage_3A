@@ -32,21 +32,18 @@ s = 27->32
 
 n_points_per_simulation_complete = 32
 n_simulations = 40
+n_patchy = 0
 
 X_d = None
 Y_d = None
-Y_d_std = None
 X_l = None
 Y_l = None
-Y_l_std = None
 X_b = None
 Y_b = None
-Y_b_std = None
 X_s = None
 Y_s = None
-Y_s_std = None
 
-for i in range(41):
+for i in range(n_simulations + n_patchy + 1):
     X_data_new = np.loadtxt(fname = str(target) + str(i) + "_X_data") # numpy array with fields h0, w0, ns, sigma8, omegaM, d/l/b/s
     Y_data_new = np.loadtxt( str(target) + str(i) + "_Y_data") # numpy array with field Nd/l/b/s
     
@@ -69,73 +66,36 @@ for i in range(41):
         X_s = np.concatenate((X_data_new[27 : 32, 0:6], X_s))
         Y_s = np.concatenate((Y_data_new[27 : 32], Y_s))
 
-X_d_planck = X_d[(n_simulations) * 4 : (n_simulations + 1) * 4]
-Y_d_planck = Y_d[(n_simulations) * 4 : (n_simulations + 1) * 4]
-X_l_planck = X_l[(n_simulations) * 12 : (n_simulations + 1) * 12]
-Y_l_planck = Y_l[(n_simulations) * 12 : (n_simulations + 1) * 12]
-X_b_planck = X_b[(n_simulations) * 11 : (n_simulations + 1) * 11]
-Y_b_planck = Y_b[(n_simulations) * 11 : (n_simulations + 1) * 11]
-X_s_planck = X_s[(n_simulations) * 5 : (n_simulations + 1) * 5]
-Y_s_planck = Y_s[(n_simulations) * 5 : (n_simulations + 1) * 5]
-Y_d_planck_expected = np.reshape(Y_d_planck, (4, 1))
-Y_l_planck_expected = np.reshape(Y_l_planck, (12, 1))
-Y_b_planck_expected = np.reshape(Y_b_planck, (11, 1))
-Y_s_planck_expected = np.reshape(Y_s_planck, (5, 1))
+Parameters_BigMD = np.reshape(X_d[: 4][0][0:5], (1, 5))
+print(Parameters_BigMD)
 
-X_d_data = X_d[0 : (n_simulations) * 4]
-Y_d_data = Y_d[0 : (n_simulations) * 4]
-X_l_data = X_l[0 : (n_simulations) * 12]
-Y_l_data = Y_l[0 : (n_simulations) * 12]
-X_b_data = X_b[0 : (n_simulations) * 11]
-Y_b_data = Y_b[0 : (n_simulations) * 11]
-X_s_data = X_s[0 : (n_simulations) * 5]
-Y_s_data = Y_s[0 : (n_simulations) * 5]
+X_d_BigMD = X_d[:4]
+Y_d_BigMD = Y_d[:4]
+X_l_BigMD = X_l[:12]
+Y_l_BigMD = Y_l[:12]
+X_b_BigMD = X_b[:11]
+Y_b_BigMD = Y_b[:11]
+X_s_BigMD = X_s[:5]
+Y_s_BigMD = Y_s[:5]
+Y_d_BigMD = np.reshape(Y_d_BigMD, (4, 1))
+Y_l_BigMD = np.reshape(Y_l_BigMD, (12, 1))
+Y_b_BigMD = np.reshape(Y_b_BigMD, (11, 1))
+Y_s_BigMD = np.reshape(Y_s_BigMD, ( 5, 1))
+
+X_d_data = X_d[4:]
+Y_d_data = Y_d[4:]
+X_l_data = X_l[12:]
+Y_l_data = Y_l[12:]
+X_b_data = X_b[11:]
+Y_b_data = Y_b[11:]
+X_s_data = X_s[5:]
+Y_s_data = Y_s[5:]
 Y_d_data = np.reshape(Y_d_data, (n_simulations * 4, 1))
 Y_l_data = np.reshape(Y_l_data, (n_simulations * 12, 1))
 Y_b_data = np.reshape(Y_b_data, (n_simulations * 11, 1))
 Y_s_data = np.reshape(Y_s_data, (n_simulations * 5, 1))
 
 print("data loaded")
-
-## Setting up the GPs
-print("starting to define the Gps")
-
-gp = GP.GP(X = [X_d_data, X_l_data, X_b_data, X_s_data], Y = [Y_d_data, Y_l_data, Y_b_data, Y_s_data], N_points_per_simu = [4, 12, 11, 5], Noise = [None, None, None, None], type_kernel = "Separated")
-
-print("models defined")
-
-## Optimising the hyperparameters - Gradient Descent
-print("Starting to optimise the hyperparameters")
-
-gp.optimize_models(optimizer = 'lbfgsb')
-print("Hyperparameters optimised")
-
-gp.print_models()
-
-## Making a prediction
-print("Starting to make a prediction")
-
-X_planck = np.reshape(X_d_planck[0, 0:5], (1, 5))
-X_planck_predicted, Y_planck_predicted, Cov = gp.compute_prediction(X_planck)
-
-X_d_planck_predicted = X_planck_predicted[0][0]
-X_l_planck_predicted = X_planck_predicted[0][1]
-X_b_planck_predicted = X_planck_predicted[0][2]
-X_s_planck_predicted = X_planck_predicted[0][3]
-
-Y_d_planck_predicted = Y_planck_predicted[0][0]
-Y_l_planck_predicted = Y_planck_predicted[0][1]
-Y_b_planck_predicted = Y_planck_predicted[0][2]
-Y_s_planck_predicted = Y_planck_predicted[0][3]
-
-Cov_d_predicted = np.sqrt(np.reshape(np.diag(Cov[0][0]), (4, 1)))
-Cov_l_predicted = np.sqrt(np.reshape(np.diag(Cov[0][1]), (12, 1)))
-Cov_b_predicted = np.sqrt(np.reshape(np.diag(Cov[0][2]), (11, 1)))
-Cov_s_predicted = np.sqrt(np.reshape(np.diag(Cov[0][3]), (5, 1)))
-
-print("Prediction done")
-rms = gp.test_rms(X_test = [X_d_planck, X_l_planck, X_b_planck, X_s_planck], Y_test = [Y_d_planck_expected, Y_l_planck_expected, Y_b_planck_expected, Y_s_planck_predicted])
-print("RMS Planck : " + str(rms))
 
 ## Loading the whole Abacus data for plotting
 print("starting to load the data")
@@ -145,7 +105,7 @@ target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3
 
 dict = {'X_d' : [], 'Y_d' : [], 'X_l' : [], 'Y_l' : [], 'X_b' : [], 'Y_b' : [], 'X_s' : [], 'Y_s' : []}
 
-for i in range(41):    
+for i in range(n_simulations + n_patchy + 1):    
     X_d_a = np.loadtxt(str(target) + str(i) + "_X_d")
     Y_d_a = np.loadtxt(str(target) + str(i) + "_Y_d")
     dict['X_d'].append(X_d_a)
@@ -168,6 +128,48 @@ for i in range(41):
 
 print("data fully loaded")
 
+## Setting up the GPs
+print("starting to define the Gps")
+
+gp = GP.GP(X = [X_d_data, X_l_data, X_b_data, X_s_data], Y = [Y_d_data, Y_l_data, Y_b_data, Y_s_data], N_points_per_simu = [4, 12, 11, 5], Noise = [None, None, None, None], type_kernel = "Separated")
+
+print("models defined")
+
+## Optimising the hyperparameters - Gradient Descent
+print("Starting to optimise the hyperparameters")
+
+gp.optimize_models(optimizer = 'lbfgsb')
+print("Hyperparameters optimised")
+
+gp.print_models()
+
+## Making a prediction
+print("Starting to make a prediction")
+
+X_BigMD_predicted, Y_BigMD_predicted, Cov = gp.compute_prediction(Parameters_BigMD)
+
+X_d_BigMD_predicted = X_BigMD_predicted[0][0][:, 5]
+X_l_BigMD_predicted = X_BigMD_predicted[0][1][:, 5]
+X_b_BigMD_predicted = X_BigMD_predicted[0][2][:, 5]
+X_s_BigMD_predicted = X_BigMD_predicted[0][3][:, 5]
+
+Y_d_BigMD_predicted = np.reshape(Y_BigMD_predicted[0][0], (4,))
+Y_l_BigMD_predicted = np.reshape(Y_BigMD_predicted[0][1], (12,))
+Y_b_BigMD_predicted = np.reshape(Y_BigMD_predicted[0][2], (11,))
+Y_s_BigMD_predicted = np.reshape(Y_BigMD_predicted[0][3], (5,))
+
+Y_d_std_BigMD_predicted = np.sqrt(np.reshape(np.diag(Cov[0][0]), (1, 4)))
+Y_l_std_BigMD_predicted = np.sqrt(np.reshape(np.diag(Cov[0][1]), (1, 12)))
+Y_b_std_BigMD_predicted = np.sqrt(np.reshape(np.diag(Cov[0][2]), (1, 11)))
+Y_s_std_BigMD_predicted = np.sqrt(np.reshape(np.diag(Cov[0][3]), (1, 5)))
+
+print("Prediction done")
+
+## Testing the quality of the predictions
+print("Starting to test the quality of the predictions")
+rms = gp.test_rms(X_test = [X_d_BigMD, X_l_BigMD, X_b_BigMD, X_s_BigMD], Y_test = [Y_d_BigMD, Y_l_BigMD, Y_b_BigMD, Y_s_BigMD])
+print("RMS Planck : " + str(rms))
+
 ## Plot
 print("Starting to plot the MST stats")
 
@@ -178,230 +180,95 @@ for j in range(4):
     for i in range(2):
         subplot = axes[i][j]
         
-        if (j == 0):
-            subplot.set_xlabel('$d$')
-            
-            Mean = dict['Y_d'][0]
-            Std = np.asarray([0 for k in range(np.shape(dict['Y_d'][0])[0])])
-            for k in range(1, 41):
-                Mean_old = Mean.copy()
-                Std_old = Std.copy()
-                
-                Mean_new = (k * Mean_old + dict['Y_d'][k]) / (k + 1)
-                Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_d'][k]**2) / (k + 1) - Mean_new**2)
-                
-                Mean = Mean_new.copy()
-                Std = Std_new.copy()
-            
-            if (i == 0):
-                subplot.set_ylabel('$N_{d}$')
-                subplot.set_yscale('log')
-                subplot.set_xlim(1, 5)
-                
-                subplot.fill_between(x = dict['X_d'][40], y1 = Mean - Std, y2 = Mean + Std, color = 'b', alpha = 0.2, label = 'Abacus range')
-                subplot.plot(6 * X_d_planck_predicted[:, 5], 10**Y_d_planck_predicted, 'b', label = "Prediction")
-                subplot.plot(dict['X_d'][40], dict['Y_d'][40], 'b--', label = "Expectation")
-                
-                subplot.legend()
-                
-            else:
-                subplot.set_ylabel('$\Delta N_{d} / <N_{d}>$')
-                subplot.set_xlim(1, 5)
-                
-                M = []
-                for k in range(4):
-                    min = 1
-                    l_min = 0
-                    
-                    x1 = X_d_planck_predicted[:, 5][k]
-                    
-                    for l in range(len(dict['X_d'][40])):
-                        x2 = dict['X_d'][40][l] / 6
-                        dist = abs(x2 - x1)
-                        if (dist < min):
-                            l_min = l
-                            min = dist
-
-                    M.append(Mean[l_min])
-
-                M = np.reshape(np.array(M), (4, 1))
-                
-                subplot.fill_between(x = dict['X_d'][40], y1 = - Std / Mean, y2 = Std / Mean, color = 'b', alpha = 0.2, label = "Abacus range")
-                subplot.plot(6 * X_d_planck_predicted[:, 5], (10**Y_d_planck_predicted - M) / M, 'b', label = "Prediction")
-                subplot.plot(dict['X_d'][40], (dict['Y_d'][40] - Mean) / Mean, 'b--', label = "Expectation")
-                
-                subplot.legend()
-        
-        elif (j == 1):
+        if (j == 1):
             subplot.set_xlabel('$l$')
             subplot.set_xscale('log')
+            subplot.set_xlim(2, 11)
             
-            Mean = dict['Y_l'][0]
-            Std = np.asarray([0 for k in range(np.shape(dict['Y_l'][0])[0])])
-            for k in range(1, 41):
-                Mean_old = Mean.copy()
-                Std_old = Std.copy()
+            X_abacus = dict['X_l'][0]
+            Mean_abacus = np.asarray([0 for k in range(np.shape(dict['X_l'][0])[0])])
+            Std_abacus = np.asarray([0 for k in range(np.shape(dict['X_l'][0])[0])])
+            for k in range(n_simulations):
+                New = []
+                for x1 in X_abacus:
+                    min = 10
+                    l_min = 0
+                    for l in range(np.shape(X_abacus)[0]):
+                        x2 = dict['X_l'][k][l]
+                        if (abs(x1 - x2) < min):
+                            min = abs(x1 - x2)
+                            l_min = l
+                    try:
+                        New.append((dict['Y_l'][k][l_min - 1] + dict['Y_l'][k][l_min] + dict['Y_l'][k][l_min + 1]) / 3)
+                    except:
+                        New.append(dict['Y_l'][k][l_min])
+                New = np.asarray(New)
                 
-                Mean_new = (k * Mean_old + dict['Y_l'][k]) / (k + 1)
-                Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_l'][k]**2) / (k + 1) - Mean_new**2)
+                Mean_old = Mean_abacus.copy()
+                Std_old = Std_abacus.copy()
                 
-                Mean = Mean_new.copy()
-                Std = Std_new.copy()
+                Mean_new = (k * Mean_old + New) / (k + 1)
+                Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + New**2) / (k + 1) - Mean_new**2)
+                
+                Mean_abacus = Mean_new.copy()
+                Std_abacus = Std_new.copy()
+            
+            Mean_BigMD = []
+            for x1 in dict['X_l'][n_simulations + 0]:
+                min = 10
+                l_min = 0
+                for l in range(np.shape(X_abacus)[0]):
+                    x2 = X_abacus[l]
+                    if (abs(x1 - x2) < min):
+                        min = abs(x1 - x2)
+                        l_min = l
+                
+                Mean_BigMD.append(Mean_abacus[l_min])
+            Mean_BigMD = np.asarray(Mean_BigMD)
+            
+            Mean_GP = []
+            for x1 in X_l_BigMD_predicted:
+                min = 10
+                l_min = 0
+                for l in range(np.shape(X_abacus)[0]):
+                    x2 = np.log10(X_abacus[l])
+                    if (abs(x1 - x2) < min):
+                        min = abs(x1 - x2)
+                        l_min = l
+                
+                Mean_GP.append(Mean_abacus[l_min])
+            Mean_GP = np.asarray(Mean_GP)
             
             if (i == 0):
                 subplot.set_ylabel('$N_{l}$')
                 subplot.set_yscale('log')
-                subplot.set_xlim(3, 10)
+                #subplot.set_ylim(10**3, 10**5)
                 
-                subplot.fill_between(x = dict['X_l'][40], y1 = Mean - Std, y2 = Mean + Std, color = 'g', alpha = 0.2, label = 'Abacus range')
-                subplot.plot(10**X_l_planck_predicted[:, 5], 10**Y_l_planck_predicted, 'g', label = "Prediction")
-                subplot.plot(dict['X_l'][40], dict['Y_l'][40], 'g--', label = "Expectation")
+                subplot.fill_between(x = X_abacus, y1 = Mean_abacus - Std_abacus, y2 = Mean_abacus + Std_abacus, color = 'g', alpha = 0.2, label = 'Abacus range')
+                subplot.plot(dict['X_l'][n_simulations + 0], dict['Y_l'][n_simulations + 0], 'g', label = "BigMD")
+                subplot.plot(10**X_l_BigMD_predicted, 10**Y_l_BigMD_predicted, 'g--', label = 'Prediction')
                 
                 subplot.legend()
                 
             else:
                 subplot.set_ylabel('$\Delta N_{l} / <N_{l}>$')
-                subplot.set_xlim(3, 10)
+                #subplot.set_ylim(-0.3, 0.3)
                 
-                M = []
-                for k in range(12):
-                    min = 1
-                    l_min = 0
-                    
-                    x1 = X_l_planck_predicted[:, 5][k]
-                    
-                    for l in range(len(dict['X_l'][40])):
-                        x2 = np.log10(dict['X_l'][40][l])
-                        dist = abs(x2 - x1)
-                        if (dist < min):
-                            l_min = l
-                            min = dist
-
-                    M.append(Mean[l_min])
-
-                M = np.reshape(np.array(M), (12, 1))
-                
-                subplot.fill_between(x = dict['X_l'][40], y1 = - Std / Mean, y2 = Std / Mean, color = 'g', alpha = 0.2, label = "Abacus range")
-                subplot.plot(10**X_l_planck_predicted[:, 5], (10**Y_l_planck_predicted - M) / M, 'g', label = "Prediction")
-                subplot.plot(dict['X_l'][40], (dict['Y_l'][40] - Mean) / Mean, 'g--', label = "Expectation")
+                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / Mean_abacus, y2 = Std_abacus / Mean_abacus, color = 'g', alpha = 0.2, label = "Abacus range")
+                subplot.plot(dict['X_l'][n_simulations + 0], (dict['Y_l'][n_simulations + 0] - Mean_BigMD) / Mean_BigMD, 'g', label = "BigMD")
+                subplot.plot(10**X_l_BigMD_predicted, (10**Y_l_BigMD_predicted - Mean_GP) / Mean_GP, 'g--', label = 'Prediction')
                 
                 subplot.legend()
-                
-        elif (j == 2):
-            subplot.set_xlabel('$b$')
-            subplot.set_xscale('log')
-            
-            Mean = dict['Y_b'][0]
-            Std = np.asarray([0 for k in range(np.shape(dict['Y_b'][0])[0])])
-            for k in range(1, 41):
-                Mean_old = Mean.copy()
-                Std_old = Std.copy()
-                
-                Mean_new = (k * Mean_old + dict['Y_b'][k]) / (k + 1)
-                Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_b'][k]**2) / (k + 1) - Mean_new**2)
-                
-                Mean = Mean_new.copy()
-                Std = Std_new.copy()
-            
-            if (i == 0):
-                subplot.set_ylabel('$N_{b}$')
-                subplot.set_yscale('log')
-                subplot.set_xlim(10, 50)
-                
-                subplot.fill_between(x = dict['X_b'][40], y1 = Mean - Std, y2 = Mean + Std, color = 'r', alpha = 0.2, label = 'Abacus range')
-                subplot.plot(10**X_b_planck_predicted[:, 5], 10**Y_b_planck_predicted, 'r', label = "Prediction")
-                subplot.plot(dict['X_b'][40], dict['Y_b'][40], 'r--', label = "Expectation")
-                
-                subplot.legend()
-                
-            else:
-                subplot.set_ylabel('$\Delta N_{b} / <N_{b}>$')
-                subplot.set_xlim(10, 50)
-                
-                M = []
-                for k in range(11):
-                    min = 1
-                    l_min = 0
-                    
-                    x1 = X_b_planck_predicted[:, 5][k]
-                    
-                    for l in range(len(dict['X_b'][40])):
-                        x2 = np.log10(dict['X_b'][40][l])
-                        dist = abs(x2 - x1)
-                        if (dist < min):
-                            l_min = l
-                            min = dist
-
-                    M.append(Mean[l_min])
-
-                M = np.reshape(np.array(M), (11, 1))
-                
-                subplot.fill_between(x = dict['X_b'][40], y1 = - Std / Mean, y2 = Std / Mean, color = 'r', alpha = 0.2, label = "Abacus range")
-                subplot.plot(10**X_b_planck_predicted[:, 5], (10**Y_b_planck_predicted - M) / M, 'r', label = "Prediction")
-                subplot.plot(dict['X_b'][40], (dict['Y_b'][40] - Mean) / Mean, 'r--', label = "Expectation")
-                
-                subplot.legend()
-                
+        
         else:
-            subplot.set_xlabel('$s$')
-            
-            Mean = dict['Y_s'][0]
-            Std = np.asarray([0 for k in range(np.shape(dict['Y_s'][0])[0])])
-            for k in range(1, 41):
-                Mean_old = Mean.copy()
-                Std_old = Std.copy()
-                
-                Mean_new = (k * Mean_old + dict['Y_s'][k]) / (k + 1)
-                Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + dict['Y_s'][k]**2) / (k + 1) - Mean_new**2)
-                
-                Mean = Mean_new.copy()
-                Std = Std_new.copy()
-            
-            if (i == 0):
-                subplot.set_ylabel('$N_{s}$')
-                subplot.set_yscale('log')
-                subplot.set_xlim(0.4, 0.7)
-                
-                subplot.fill_between(x = dict['X_s'][40], y1 = Mean - Std, y2 = Mean + Std, color = 'y', alpha = 0.2, label = 'Abacus range')
-                subplot.plot(X_s_planck_predicted[:, 5], 10**Y_s_planck_predicted, 'y', label = "Prediction")
-                subplot.plot(dict['X_s'][40], dict['Y_s'][40], 'y--', label = "Expectation")
-                
-                subplot.legend()
-                
-            else:
-                subplot.set_ylabel('$\Delta N_{s} / <N_{s}>$')
-                subplot.set_xlim(0.4, 0.7)
-                
-                M = []
-                for k in range(5):
-                    min = 1
-                    l_min = 0
-                    
-                    x1 = X_s_planck_predicted[:, 5][k]
-                    
-                    for l in range(len(dict['X_s'][40])):
-                        x2 = dict['X_s'][40][l]
-                        dist = abs(x2 - x1)
-                        if (dist < min):
-                            l_min = l
-                            min = dist
+            subplot.axis('off')
 
-                    M.append(Mean[l_min])
-
-                M = np.reshape(np.array(M), (5, 1))
-                
-                subplot.fill_between(x = dict['X_s'][40], y1 = - Std / Mean, y2 = Std / Mean, color = 'y', alpha = 0.2, label = "Abacus range")
-                subplot.plot(X_s_planck_predicted[:, 5], (10**Y_s_planck_predicted - M) / M, 'y', label = "Prediction")
-                subplot.plot(dict['X_s'][40], (dict['Y_s'][40] - Mean) / Mean, 'y--', label = "Expectation")
-                
-                subplot.legend()
-
-plt.suptitle("Comparison between prediction and expectation - Separated Heteroscedatic GPs")
+plt.suptitle("Proof of performance : GP")
 plt.show()
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Comparison_prediction_expectation_separated'
+my_file = 'Proof_of_performance_BigMD'
 my_file = os.path.join(my_path, my_file)
 #plt.savefig(my_file)
 

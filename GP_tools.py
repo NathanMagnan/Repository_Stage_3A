@@ -352,12 +352,11 @@ class GP():
             rms = np.sqrt(ms)
             return(rms)
     
-    def test_chi2(self, X_test, Y_test, Noise_test = None):
+    def test_chi2(self, X_test, Y_test, Noise_test):
         if (self.type_kernel == "Separated"):
             X_d_test, X_l_test, X_b_test, X_s_test = X_test
             Y_d_test, Y_l_test, Y_b_test, Y_s_test = Y_test
-            if (Noise_test is not None):
-                Y_d_std_test, Y_l_std_test, Y_b_std_test, Y_s_std_test = Noise_test
+            Y_d_std_test, Y_l_std_test, Y_b_std_test, Y_s_std_test = Noise_test
             
             s = 0
             # for i in range(np.shape(X_d_test)[0]):                
@@ -445,7 +444,7 @@ class GP():
             chi_2 = np.sqrt(ms)
             return(chi_2)
     
-    def likelihood_chi2(self, Y_model, Noise_model, Y_observation, Noise_observation): # here there is a mess-up : "observation" is the GP prediction and "model" is the expected MST... It should be the other way around but the analysis scripts would not work anymore.
+    def likelihood_chi2(self, Y_model, Noise_model, Y_observation, Noise_observation):
         if (self.type_kernel == "Separated"):
             s = 0
             
@@ -453,16 +452,15 @@ class GP():
             
             for i in range(n_simulations):
                 Sigma_model = Noise_model[i]
-                if (Sigma_model is None):
-                    Diag_d = [self.Models[0].Gaussian_noise.variance[0] for j in range(self.n_d_points_per_simu)]
-                    Diag_l = [self.Models[1].Gaussian_noise.variance[0] for j in range(self.n_l_points_per_simu)]
-                    Diag_b = [self.Models[2].Gaussian_noise.variance[0] for j in range(self.n_b_points_per_simu)]
-                    Diag_s = [self.Models[3].Gaussian_noise.variance[0] for j in range(self.n_s_points_per_simu)]
-                    Diag = Diag_d + Diag_l + Diag_b + Diag_s
-                    Sigma_model = np.diag(Diag)
                 
-                Sigma_obs = linalg.block_diag(Noise_observation[i][0], Noise_observation[i][1], Noise_observation[i][2], Noise_observation[i][3])
-                Sigma = Sigma_model + Sigma_obs
+                Diag_d = np.diagflat(Noise_observation[i][0]**2)
+                Diag_l = np.diagflat(Noise_observation[i][1]**2)
+                Diag_b = np.diagflat(Noise_observation[i][2]**2)
+                Diag_s = np.diagflat(Noise_observation[i][3]**2)
+                Sigma_observation = linalg.block_diag(Diag_d, Diag_l, Diag_b, Diag_s)
+                
+                #Sigma = Sigma_model + Sigma_observation
+                Sigma = 2 * Sigma_observation
                 Sigma_inv = np.linalg.inv(Sigma)
                 
                 U = np.concatenate((Y_model[i][0], Y_model[i][1], Y_model[i][2], Y_model[i][3]), 0)
@@ -470,10 +468,8 @@ class GP():
                 
                 s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
             
-            ms = s / (4 * n_simulations)
-            #chi_2 = np.sqrt(ms)
-            chi_2 = ms
-            return(chi_2)
+            chi2 = s / ((self.n_d_points_per_simu + self.n_l_points_per_simu + self.n_b_points_per_simu + self.n_s_points_per_simu) * n_simulations)
+            return(chi2)
         
         elif (self.type_kernel == "Coregionalized"):
             return("Error : chi_2 has not yet been written for coregionalized kernels")

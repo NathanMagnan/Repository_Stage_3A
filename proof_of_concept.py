@@ -134,8 +134,8 @@ for i in range(n_fiducial):
     for x1 in X_d_planck_expected:
         min = 10
         j_min = 0
-        for j in range(np.shape(dict['X_d'][i])[0]):
-            x2 = dict['X_d'][i][j] / 6
+        for j in range(np.shape(dict['X_d'][i + n_simulations])[0]):
+            x2 = dict['X_d'][i + n_simulations][j] / 6
             if (abs(x1 - x2) < min):
                 min = abs(x1 - x2)
                 j_min = j
