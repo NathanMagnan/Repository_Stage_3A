@@ -51,7 +51,7 @@ ab.initialise_data()
 
 CM_new = []
 for cm in ab.CM:
-    if (((cm[0] - 360)**2 + (cm[1] - 360)**2 + (cm[2] - 360)**2) > 1600):
+    if (((cm[0] - 360)**2 + (cm[1] - 360)**2 + (cm[2] - 360)**2) > 10000):
         CM_new.append(cm)
 ab.CM = np.reshape(CM_new, (-1, 3))
 
@@ -103,7 +103,7 @@ np.savetxt(str(target) + "_Y_s", MST_histogram['y_s'])
 
 X_masked, Y_masked, Z_masked = [], [], []
 for i in range(n_abacus):
-    if (((X[i] - 360)**2 + (Y[i] - 360)**2 + (Z[i] - 360)**2) > 1600):
+    if (((X[i] - 360)**2 + (Y[i] - 360)**2 + (Z[i] - 360)**2) > 10000):
         X_masked.append(X[i])
         Y_masked.append(Y[i])
         Z_masked.append(Z[i])
