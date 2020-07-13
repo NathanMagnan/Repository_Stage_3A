@@ -3,6 +3,7 @@ import numpy as np
 import mistree as mist
 import pandas
 import math as math
+import pickle
 
 import sys
 import os
@@ -87,6 +88,19 @@ print("starting to work on the masked catalogues")
 MST_hists_abacus = []
 MST_hists_random = []
 
+X_d_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+X_l_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+X_b_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+X_s_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+Y_d_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+Y_l_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+Y_b_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+Y_s_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+Y_d_std_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+Y_l_std_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+Y_b_std_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+Y_s_std_estimator = [np.array([0, 0]), np.array([0, 0]), np.array([0, 0]), np.array([0, 0])]
+
 for m in range(4):
 	histogram = mist.HistMST()
 	histogram.setup(usenorm = False, uselog = True)
@@ -165,18 +179,19 @@ for i in range(4):
             
 				# computing the correction estimator for this small box
 				if (number == 0): # we define Xs only for the first small box, and keep these for the others
-					X_d_estimator = hist_abacus['x_d'].copy()
-					X_l_estimator = hist_abacus['x_l'].copy()
-					X_b_estimator = hist_abacus['x_b'].copy()
-					X_s_estimator = hist_abacus['x_s'].copy()
+                    for mm in range(4):
+                        X_d_estimator[mm] = hist_abacus['x_d'].copy()
+                        X_l_estimator[mm] = hist_abacus['x_l'].copy()
+                        X_b_estimator[mm] = hist_abacus['x_b'].copy()
+                        X_s_estimator[mm] = hist_abacus['x_s'].copy()
             
-				Y_d_estimator_new = np.array([0.0 for n in range(np.shape(X_d_estimator)[0])]) # we will these with the values of the estimator
-				Y_l_estimator_new = np.array([0.0 for n in range(np.shape(X_l_estimator)[0])])
-				Y_b_estimator_new = np.array([0.0 for n in range(np.shape(X_b_estimator)[0])])
-				Y_s_estimator_new = np.array([0.0 for n in range(np.shape(X_s_estimator)[0])])
+				Y_d_estimator_new = np.array([0.0 for n in range(np.shape(X_d_estimator[m])[0])]) # we'll these with the values of the estimator
+				Y_l_estimator_new = np.array([0.0 for n in range(np.shape(X_l_estimator[m])[0])])
+				Y_b_estimator_new = np.array([0.0 for n in range(np.shape(X_b_estimator[m])[0])])
+				Y_s_estimator_new = np.array([0.0 for n in range(np.shape(X_s_estimator[m])[0])])
             
-				for n1 in range(np.shape(X_d_estimator)[0]): # before computing the estimator, we have to match the X to the one from the first box
-					x1 = X_d_estimator[n1]
+				for n1 in range(np.shape(X_d_estimator[m])[0]): # before computing the estimator, we have to match the X to the one from the first box
+					x1 = X_d_estimator[m][n1]
 					min = 10
 					n_min = 0
 					for n2 in range(np.shape(hist_random['x_d'])[0]):
@@ -186,7 +201,7 @@ for i in range(4):
 								n_min = n2
 					Y_d_estimator_new[n1] = hist_abacus['y_d'][n1] / hist_random['y_d'][n_min] - 1
             
-				for n1 in range(np.shape(X_l_estimator)[0]):
+				for n1 in range(np.shape(X_l_estimator[m])[0]):
 					x1 = X_l_estimator[n1]
 					min = 10
 					n_min = 0
@@ -203,7 +218,7 @@ for i in range(4):
 						except:
 							Y_l_estimator = + math.inf
             
-				for n1 in range(np.shape(X_b_estimator)[0]):
+				for n1 in range(np.shape(X_b_estimator[m])[0]):
 					x1 = X_b_estimator[n1]
 					min = 10
 					n_min = 0
@@ -220,7 +235,7 @@ for i in range(4):
 						except:
 							Y_b_estimator = + math.inf
             
-				for n1 in range(np.shape(X_s_estimator)[0]):
+				for n1 in range(np.shape(X_s_estimator[m])[0]):
 					x1 = X_s_estimator[n1]
 					min = 10
 					n_min = 0
@@ -239,44 +254,44 @@ for i in range(4):
             
 				# updating the mean and std of the estimator
 				if (number == 0):
-					Y_d_estimator = Y_d_estimator_new.copy()
-					Y_d_std_estimator = np.array([0 for n in range(np.shape(X_d_estimator)[0])])
+					Y_d_estimator[m] = Y_d_estimator_new.copy()
+					Y_d_std_estimator[m] = np.array([0 for n in range(np.shape(X_d_estimator)[0])])
 				else:
-					Y_d_estimator_old = Y_d_estimator.copy()
-					Y_d_std_estimator_old = Y_d_std_estimator.copy()
+					Y_d_estimator_old = Y_d_estimator[m].copy()
+					Y_d_std_estimator_old = Y_d_std_estimator[m].copy()
                 
-					Y_d_estimator = (number * Y_d_estimator_old + Y_d_estimator_new.copy()) / (number + 1)
-					Y_d_std_estimator = np.sqrt((number * (Y_d_estimator_old**2 + Y_d_std_estimator_old**2) + Y_d_estimator_new.copy()**2) / (number + 1) - Y_d_estimator.copy())
+					Y_d_estimator[m] = (number * Y_d_estimator_old + Y_d_estimator_new.copy()) / (number + 1)
+					Y_d_std_estimator[m] = np.sqrt((number * (Y_d_estimator_old**2 + Y_d_std_estimator_old**2) + Y_d_estimator_new.copy()**2) / (number + 1) - Y_d_estimator.copy())
             
 				if (number == 0):
-					Y_l_estimator = Y_l_estimator_new.copy()
-					Y_l_std_estimator = np.array([0 for n in range(np.shape(X_l_estimator)[0])])
+					Y_l_estimator[m] = Y_l_estimator_new.copy()
+					Y_l_std_estimator[m] = np.array([0 for n in range(np.shape(X_l_estimator)[0])])
 				else:
-					Y_l_estimator_old = Y_l_estimator.copy()
-					Y_l_std_estimator_old = Y_l_std_estimator.copy()
+					Y_l_estimator_old = Y_l_estimator[m].copy()
+					Y_l_std_estimator_old = Y_l_std_estimator[m].copy()
                 
-					Y_l_estimator = (number * Y_l_estimator_old + Y_l_estimator_new.copy()) / (number + 1)
-					Y_l_std_estimator = np.sqrt((number * (Y_l_estimator_old**2 + Y_l_std_estimator_old**2) + Y_l_estimator_new.copy()**2) / (number + 1) - Y_l_estimator.copy())
+					Y_l_estimator[m] = (number * Y_l_estimator_old + Y_l_estimator_new.copy()) / (number + 1)
+					Y_l_std_estimator[m] = np.sqrt((number * (Y_l_estimator_old**2 + Y_l_std_estimator_old**2) + Y_l_estimator_new.copy()**2) / (number + 1) - Y_l_estimator.copy())
             
 				if (number == 0):
-					Y_b_estimator = Y_b_estimator_new.copy()
-					Y_b_std_estimator = np.array([0 for n in range(np.shape(X_b_estimator)[0])])
+					Y_b_estimator[m] = Y_b_estimator_new.copy()
+					Y_b_std_estimator[m] = np.array([0 for n in range(np.shape(X_b_estimator)[0])])
 				else:
-					Y_b_estimator_old = Y_b_estimator.copy()
-					Y_b_std_estimator_old = Y_b_std_estimator.copy()
+					Y_b_estimator_old = Y_b_estimator[m].copy()
+					Y_b_std_estimator_old = Y_b_std_estimator[m].copy()
                 
-					Y_b_estimator = (number * Y_b_estimator_old + Y_b_estimator_new.copy()) / (number + 1)
-					Y_b_std_estimator = np.sqrt((number * (Y_b_estimator_old**2 + Y_b_std_estimator_old**2) + Y_b_estimator_new.copy()**2) / (number + 1) - Y_b_estimator.copy())
+					Y_b_estimator[m] = (number * Y_b_estimator_old + Y_b_estimator_new.copy()) / (number + 1)
+					Y_b_std_estimator[m] = np.sqrt((number * (Y_b_estimator_old**2 + Y_b_std_estimator_old**2) + Y_b_estimator_new.copy()**2) / (number + 1) - Y_b_estimator.copy())
             
 				if (number == 0):
-					Y_s_estimator = Y_s_estimator_new.copy()
-					Y_s_std_estimator = np.array([0 for n in range(np.shape(X_s_estimator)[0])])
+					Y_s_estimator[m] = Y_s_estimator_new.copy()
+					Y_s_std_estimator[m] = np.array([0 for n in range(np.shape(X_s_estimator)[0])])
 				else:
 					Y_s_estimator_old = Y_s_estimator.copy()
 					Y_s_std_estimator_old = Y_s_std_estimator.copy()
                 
-					Y_s_estimator = (number * Y_s_estimator_old + Y_s_estimator_new.copy()) / (number + 1)
-					Y_s_std_estimator = np.sqrt((number * (Y_s_estimator_old**2 + Y_s_std_estimator_old**2) + Y_s_estimator_new.copy()**2) / (number + 1) - Y_s_estimator.copy())
+					Y_s_estimator[m] = (number * Y_s_estimator_old + Y_s_estimator_new.copy()) / (number + 1)
+					Y_s_std_estimator[m] = np.sqrt((number * (Y_s_estimator_old**2 + Y_s_std_estimator_old**2) + Y_s_estimator_new.copy()**2) / (number + 1) - Y_s_estimator.copy())
             
 				print("box treated.")
 
@@ -285,54 +300,44 @@ for m in range(4):
 	MST_hists_abacus[m] = MST_hists_abacus[m].end_group()
 	MST_hists_random[m] = MST_hists_random[m].end_group()
 
-# saving the histograms
+## Saving the statistics
+print("Starting to save the results")
 labels = ['center', 'face', 'edge', 'corner']
 
-target = "/home/astro/magnan/Repository_Stage_3A/Test_masks/Masked_abacus_"
-
+# Abacus Masked
 for m in range(4):
-	np.savetxt(str(target) + labels[m] + "_X_d", MST_hists_abacus[m]['x_d'])
-	np.savetxt(str(target) + labels[m] + "_Y_d", MST_hists_abacus[m]['y_d'])
-	np.savetxt(str(target) + labels[m] + "_Y_d_std", MST_hists_abacus[m]['y_d_std'])
-	np.savetxt(str(target) + labels[m] + "_X_l", MST_hists_abacus[m]['x_l'])
-	np.savetxt(str(target) + labels[m] + "_Y_l", MST_hists_abacus[m]['y_l'])
-	np.savetxt(str(target) + labels[m] + "_Y_l_std", MST_hists_abacus[m]['y_l_std'])
-	np.savetxt(str(target) + labels[m] + "_X_b", MST_hists_abacus[m]['x_b'])
-	np.savetxt(str(target) + labels[m] + "_Y_b", MST_hists_abacus[m]['y_b'])
-	np.savetxt(str(target) + labels[m] + "_Y_b_std", MST_hists_abacus[m]['y_b_std'])
-	np.savetxt(str(target) + labels[m] + "_X_s", MST_hists_abacus[m]['x_s'])
-	np.savetxt(str(target) + labels[m] + "_Y_s", MST_hists_abacus[m]['y_s'])
-	np.savetxt(str(target) + labels[m] + "_Y_s_std", MST_hists_abacus[m]['y_s_std'])
-    
-target = "/home/astro/magnan/Repository_Stage_3A/Test_masks/Masked_random_"
+	my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Test_masks/')
+	my_file = 'Masked_abacus_' + labels[m] + '.pkl'
+	my_file = os.path.join(my_path, my_file)
+	
+	f = open(my_file, "wb")
+	pickle.dump(MST_hists_abacus[m], f)
+	f.close()
 
+# Random Masked
 for m in range(4):
-	np.savetxt(str(target) + labels[m] + "_X_d", MST_hists_random[m]['x_d'])
-	np.savetxt(str(target) + labels[m] + "_Y_d", MST_hists_random[m]['y_d'])
-	np.savetxt(str(target) + labels[m] + "_Y_d_std", MST_hists_random[m]['y_d_std'])
-	np.savetxt(str(target) + labels[m] + "_X_l", MST_hists_random[m]['x_l'])
-	np.savetxt(str(target) + labels[m] + "_Y_l", MST_hists_random[m]['y_l'])
-	np.savetxt(str(target) + labels[m] + "_Y_l_std", MST_hists_random[m]['y_l_std'])
-	np.savetxt(str(target) + labels[m] + "_X_b", MST_hists_random[m]['x_b'])
-	np.savetxt(str(target) + labels[m] + "_Y_b", MST_hists_random[m]['y_b'])
-	np.savetxt(str(target) + labels[m] + "_Y_b_std", MST_hists_random[m]['y_b_std'])
-	np.savetxt(str(target) + labels[m] + "_X_s", MST_hists_random[m]['x_s'])
-	np.savetxt(str(target) + labels[m] + "_Y_s", MST_hists_random[m]['y_s'])
-	np.savetxt(str(target) + labels[m] + "_Y_s_std", MST_hists_random[m]['y_s_std'])
+	my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Test_masks/')
+	my_file = 'Masked_random_' + labels[m] + '.pkl'
+	my_file = os.path.join(my_path, my_file)
+	
+	f = open(my_file, "wb")
+	pickle.dump(MST_hists_random[m], f)
+	f.close()
 
+# Estimator
 target = "/home/astro/magnan/Repository_Stage_3A/Test_masks/estimator_"
 
 for m in range(4):
-	np.savetxt(str(target) + labels[m] + "_X_d", X_d_estimator)
-	np.savetxt(str(target) + labels[m] + "_Y_d", Y_d_estimator)
-	np.savetxt(str(target) + labels[m] + "_Y_d_std", Y_d_std_estimator)
-	np.savetxt(str(target) + labels[m] + "_X_l", X_l_estimator)
-	np.savetxt(str(target) + labels[m] + "_Y_l", Y_l_estimator)
-	np.savetxt(str(target) + labels[m] + "_Y_l_std", Y_l_std_estimator)
-	np.savetxt(str(target) + labels[m] + "_X_b", X_b_estimator)
-	np.savetxt(str(target) + labels[m] + "_Y_b", Y_b_estimator)
-	np.savetxt(str(target) + labels[m] + "_Y_b_std", Y_b_std_estimator)
-	np.savetxt(str(target) + labels[m] + "_X_s", X_s_estimator)
-	np.savetxt(str(target) + labels[m] + "_Y_s", Y_s_estimator)
-	np.savetxt(str(target) + labels[m] + "_Y_s_std", Y_s_std_estimator)
+	np.savetxt(str(target) + labels[m] + "_X_d", X_d_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_Y_d", Y_d_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_Y_d_std", Y_d_std_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_X_l", X_l_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_Y_l", Y_l_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_Y_l_std", Y_l_std_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_X_b", X_b_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_Y_b", Y_b_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_Y_b_std", Y_b_std_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_X_s", X_s_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_Y_s", Y_s_estimator[m])
+	np.savetxt(str(target) + labels[m] + "_Y_s_std", Y_s_std_estimator[m])
     
