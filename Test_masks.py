@@ -35,6 +35,8 @@ X = CM_abacus[:, 0]
 Y = CM_abacus[:, 1]
 Z = CM_abacus[:, 2]
 
+print(np.shape(X))
+
 MST = mist.GetMST(x = X, y = Y, z = Z)
 MST_histogram = mist.HistMST()
 MST_histogram.setup(usenorm = False, uselog = True)
@@ -128,11 +130,11 @@ for i in range(4):
 					m += 1
             
 				# determining the limits of the small box
-				lim_inf_x, lim_sup_x = 720 / 4 * i, 720 / 4 * (i + 1)
-				lim_inf_y, lim_sup_y = 720 / 4 * j, 720 / 4 * (j + 1)
-				lim_inf_z, lim_sup_z = 720 / 4 * k, 720 / 4 * (k + 1)
+				lim_inf_x, lim_sup_x = (720 / 4) * i, (720 / 4) * (i + 1)
+				lim_inf_y, lim_sup_y = (720 / 4) * j, (720 / 4) * (j + 1)
+				lim_inf_z, lim_sup_z = (720 / 4) * k, (720 / 4) * (k + 1)
             
-				# finding in a node is in the small box
+				# finding nodes in the small box
 				def toRemove(cm):
 					if ((cm[0] > lim_inf_x) and (cm[0] < lim_sup_x)):
 						if ((cm[1] > lim_inf_y) and (cm[1] < lim_sup_y)):
@@ -158,6 +160,8 @@ for i in range(4):
 				X_random_reduced = np.asarray(X_random_reduced)
 				Y_random_reduced = np.asarray(Y_random_reduced)
 				Z_random_reduced = np.asarray(Z_random_reduced)
+				
+				print(np.shape(X_abacus_reduced))
             
 				# computing the smaller MST
 				MST = mist.GetMST(x = X_abacus_reduced, y = Y_abacus_reduced, z = Z_abacus_reduced)
