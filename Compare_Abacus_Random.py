@@ -18,66 +18,66 @@ dict = {'X_d' : [], 'Y_d' : [], 'Y_d_std' : [], 'X_l' : [], 'Y_l' : [], 'Y_l_std
 Strs = ['X_d', 'Y_d', 'Y_d_std', 'X_l', 'Y_l', 'Y_l_std', 'X_b', 'Y_b', 'Y_b_std', 'X_s', 'Y_s', 'Y_s_std']
 
 ## Difference between the random catalogue and Abacus
-# Labels = ['Abacus', 'random']
-# Linestyles = ['b', 'b--']
-# 
-# # Abacus catalogue
-# X_d = np.loadtxt(str(target) + 'Full_Abacus' + "_X_d")
-# Y_d = np.loadtxt(str(target) + 'Full_Abacus' + "_Y_d")
-# Y_d_std = np.array([0 for y_d in Y_d])
-# dict['X_d'].append(X_d)
-# dict['Y_d'].append(Y_d)
-# dict['Y_d_std'].append(Y_d_std)
-# 
-# X_l = np.loadtxt(str(target) + 'Full_Abacus' + "_X_l")
-# Y_l = np.loadtxt(str(target) + 'Full_Abacus' + "_Y_l")
-# Y_l_std = np.array([0 for y_l in Y_l])
-# dict['X_l'].append(X_l)
-# dict['Y_l'].append(Y_l)
-# dict['Y_l_std'].append(Y_l_std)
-# 
-# X_b = np.loadtxt(str(target) + 'Full_Abacus' + "_X_b")
-# Y_b = np.loadtxt(str(target) + 'Full_Abacus' + "_Y_b")
-# Y_b_std = np.array([0 for y_b in Y_b])
-# dict['X_b'].append(X_b)
-# dict['Y_b'].append(Y_b)
-# dict['Y_b_std'].append(Y_b_std)
-# 
-# X_s = np.loadtxt(str(target) + 'Full_Abacus' + "_X_s")
-# Y_s = np.loadtxt(str(target) + 'Full_Abacus' + "_Y_s")
-# Y_s_std = np.array([0 for y_s in Y_s])
-# dict['X_s'].append(X_s)
-# dict['Y_s'].append(Y_s)
-# dict['Y_s_std'].append(Y_s_std)
-# 
-# # Random catalogue
-# X_d = np.loadtxt(str(target) + 'Full_Random' + "_X_d")
-# Y_d = np.loadtxt(str(target) + 'Full_Random' + "_Y_d")
-# Y_d_std = np.array([0 for y_d in Y_d])
-# dict['X_d'].append(X_d)
-# dict['Y_d'].append(Y_d)
-# dict['Y_d_std'].append(Y_d_std)
-# 
-# X_l = np.loadtxt(str(target) + 'Full_Random' + "_X_l")
-# Y_l = np.loadtxt(str(target) + 'Full_Random' + "_Y_l")
-# Y_l_std = np.array([0 for y_l in Y_l])
-# dict['X_l'].append(X_l)
-# dict['Y_l'].append(Y_l)
-# dict['Y_l_std'].append(Y_l_std)
-# 
-# X_b = np.loadtxt(str(target) + 'Full_Random' + "_X_b")
-# Y_b = np.loadtxt(str(target) + 'Full_Random' + "_Y_b")
-# Y_b_std = np.array([0 for y_b in Y_b])
-# dict['X_b'].append(X_b)
-# dict['Y_b'].append(Y_b)
-# dict['Y_b_std'].append(Y_b_std)
-# 
-# X_s = np.loadtxt(str(target) + 'Full_Random' + "_X_s")
-# Y_s = np.loadtxt(str(target) + 'Full_Random' + "_Y_s")
-# Y_b_std = np.array([0 for y_b in Y_b])
-# dict['X_s'].append(X_s)
-# dict['Y_s'].append(Y_s)
-# dict['Y_s_std'].append(Y_s_std)
+Labels = ['Abacus', 'random']
+Linestyles = ['b', 'k']
+
+# Abacus catalogue
+X_d = np.loadtxt(str(target) + 'Full_Abacus' + "_X_d")
+Y_d = np.loadtxt(str(target) + 'Full_Abacus' + "_Y_d")
+Y_d_std = np.array([0 for y_d in Y_d])
+dict['X_d'].append(X_d)
+dict['Y_d'].append(Y_d)
+dict['Y_d_std'].append(Y_d_std)
+
+X_l = np.loadtxt(str(target) + 'Full_Abacus' + "_X_l")
+Y_l = np.loadtxt(str(target) + 'Full_Abacus' + "_Y_l")
+Y_l_std = np.array([0 for y_l in Y_l])
+dict['X_l'].append(X_l)
+dict['Y_l'].append(Y_l)
+dict['Y_l_std'].append(Y_l_std)
+
+X_b = np.loadtxt(str(target) + 'Full_Abacus' + "_X_b")
+Y_b = np.loadtxt(str(target) + 'Full_Abacus' + "_Y_b")
+Y_b_std = np.array([0 for y_b in Y_b])
+dict['X_b'].append(X_b)
+dict['Y_b'].append(Y_b)
+dict['Y_b_std'].append(Y_b_std)
+
+X_s = np.loadtxt(str(target) + 'Full_Abacus' + "_X_s")
+Y_s = np.loadtxt(str(target) + 'Full_Abacus' + "_Y_s")
+Y_s_std = np.array([0 for y_s in Y_s])
+dict['X_s'].append(X_s)
+dict['Y_s'].append(Y_s)
+dict['Y_s_std'].append(Y_s_std)
+
+# Random catalogue
+X_d = np.loadtxt(str(target) + 'Full_Random' + "_X_d")
+Y_d = np.loadtxt(str(target) + 'Full_Random' + "_Y_d")
+Y_d_std = np.array([0 for y_d in Y_d])
+dict['X_d'].append(X_d)
+dict['Y_d'].append(Y_d)
+dict['Y_d_std'].append(Y_d_std)
+
+X_l = np.loadtxt(str(target) + 'Full_Random' + "_X_l")
+Y_l = np.loadtxt(str(target) + 'Full_Random' + "_Y_l")
+Y_l_std = np.array([0 for y_l in Y_l])
+dict['X_l'].append(X_l)
+dict['Y_l'].append(Y_l)
+dict['Y_l_std'].append(Y_l_std)
+
+X_b = np.loadtxt(str(target) + 'Full_Random' + "_X_b")
+Y_b = np.loadtxt(str(target) + 'Full_Random' + "_Y_b")
+Y_b_std = np.array([0 for y_b in Y_b])
+dict['X_b'].append(X_b)
+dict['Y_b'].append(Y_b)
+dict['Y_b_std'].append(Y_b_std)
+
+X_s = np.loadtxt(str(target) + 'Full_Random' + "_X_s")
+Y_s = np.loadtxt(str(target) + 'Full_Random' + "_Y_s")
+Y_b_std = np.array([0 for y_b in Y_b])
+dict['X_s'].append(X_s)
+dict['Y_s'].append(Y_s)
+dict['Y_s_std'].append(Y_s_std)
 
 ## Effect of the masks on Abacus
 # Labels = ['center', 'face', 'edge', 'corner']
@@ -192,7 +192,7 @@ for j in range(4):
             
             elif (i == 1):
                 subplot.set_ylabel('$\Delta N_{d} / N_{d}$')
-                subplot.set_ylim(-0.01, 0.01)
+                subplot.set_ylim(-1, 1)
                 
                 for k in range(len(Labels)):
                     subplot.plot(dict['X_d'][k], (dict['Y_d'][k] - Mean[k]) / Mean[k], Linestyles[k], label = Labels[k])
@@ -234,7 +234,7 @@ for j in range(4):
             
             elif (i == 1):
                 subplot.set_ylabel('$\Delta N_{l} / N_{l}$')
-                subplot.set_ylim(-0.01, 0.01)
+                subplot.set_ylim(-1, 1)
                 
                 for k in range(len(Labels)):
                     subplot.plot(dict['X_l'][k], (dict['Y_l'][k] - Mean[k]) / Mean[k], Linestyles[k], label = Labels[k])
@@ -276,7 +276,7 @@ for j in range(4):
             
             elif (i == 1):
                 subplot.set_ylabel('$\Delta N_{b} / N_{b}$')
-                subplot.set_ylim(-0.01, 0.01)
+                subplot.set_ylim(-1, 1)
                 
                 for k in range(len(Labels)):
                     subplot.plot(dict['X_b'][k], (dict['Y_b'][k] - Mean[k]) / Mean[k], Linestyles[k], label = Labels[k])
@@ -317,7 +317,7 @@ for j in range(4):
             
             elif (i == 1):
                 subplot.set_ylabel('$\Delta N_{s} / N_{s}$')
-                subplot.set_ylim(-0.01, 0.01)
+                subplot.set_ylim(-1, 1)
                 
                 for k in range(len(Labels)):
                     subplot.plot(dict['X_s'][k], (dict['Y_s'][k] - Mean[k]) / Mean[k], Linestyles[k], label = Labels[k])
