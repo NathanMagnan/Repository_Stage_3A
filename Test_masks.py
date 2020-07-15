@@ -179,11 +179,11 @@ for i in range(4):
             
 				# computing the correction estimator for this small box
 				if (number == 0): # we define Xs only for the first small box, and keep these for the others
-                    for mm in range(4):
-                        X_d_estimator[mm] = hist_abacus['x_d'].copy()
-                        X_l_estimator[mm] = hist_abacus['x_l'].copy()
-                        X_b_estimator[mm] = hist_abacus['x_b'].copy()
-                        X_s_estimator[mm] = hist_abacus['x_s'].copy()
+						for mm in range(4):
+								X_d_estimator[mm] = hist_abacus['x_d'].copy()
+								X_l_estimator[mm] = hist_abacus['x_l'].copy()
+								X_b_estimator[mm] = hist_abacus['x_b'].copy()
+								X_s_estimator[mm] = hist_abacus['x_s'].copy()
             
 				Y_d_estimator_new = np.array([0.0 for n in range(np.shape(X_d_estimator[m])[0])]) # we'll these with the values of the estimator
 				Y_l_estimator_new = np.array([0.0 for n in range(np.shape(X_l_estimator[m])[0])])
@@ -202,7 +202,7 @@ for i in range(4):
 					Y_d_estimator_new[n1] = hist_abacus['y_d'][n1] / hist_random['y_d'][n_min] - 1
             
 				for n1 in range(np.shape(X_l_estimator[m])[0]):
-					x1 = X_l_estimator[n1]
+					x1 = X_l_estimator[m][n1]
 					min = 10
 					n_min = 0
 					for n2 in range(np.shape(hist_random['x_l'])[0]):
@@ -219,7 +219,7 @@ for i in range(4):
 							Y_l_estimator = + math.inf
             
 				for n1 in range(np.shape(X_b_estimator[m])[0]):
-					x1 = X_b_estimator[n1]
+					x1 = X_b_estimator[m][n1]
 					min = 10
 					n_min = 0
 					for n2 in range(np.shape(hist_random['x_b'])[0]):
@@ -236,7 +236,7 @@ for i in range(4):
 							Y_b_estimator = + math.inf
             
 				for n1 in range(np.shape(X_s_estimator[m])[0]):
-					x1 = X_s_estimator[n1]
+					x1 = X_s_estimator[m][n1]
 					min = 10
 					n_min = 0
 					for n2 in range(np.shape(hist_random['x_s'])[0]):
@@ -253,45 +253,45 @@ for i in range(4):
 							Y_s_estimator = + math.inf
             
 				# updating the mean and std of the estimator
-				if (number == 0):
+				if (np.shape(Y_d_estimator[m])[0] == 2):
 					Y_d_estimator[m] = Y_d_estimator_new.copy()
-					Y_d_std_estimator[m] = np.array([0 for n in range(np.shape(X_d_estimator)[0])])
+					Y_d_std_estimator[m] = np.array([0.0 for n in range(np.shape(X_d_estimator[m])[0])])
 				else:
 					Y_d_estimator_old = Y_d_estimator[m].copy()
 					Y_d_std_estimator_old = Y_d_std_estimator[m].copy()
                 
 					Y_d_estimator[m] = (number * Y_d_estimator_old + Y_d_estimator_new.copy()) / (number + 1)
-					Y_d_std_estimator[m] = np.sqrt((number * (Y_d_estimator_old**2 + Y_d_std_estimator_old**2) + Y_d_estimator_new.copy()**2) / (number + 1) - Y_d_estimator.copy())
+					Y_d_std_estimator[m] = np.sqrt((number * (Y_d_estimator_old**2 + Y_d_std_estimator_old**2) + Y_d_estimator_new.copy()**2) / (number + 1) - Y_d_estimator[m].copy())
             
-				if (number == 0):
+				if (np.shape(Y_l_estimator[m])[0] == 2):
 					Y_l_estimator[m] = Y_l_estimator_new.copy()
-					Y_l_std_estimator[m] = np.array([0 for n in range(np.shape(X_l_estimator)[0])])
+					Y_l_std_estimator[m] = np.array([0.0 for n in range(np.shape(X_l_estimator[m])[0])])
 				else:
 					Y_l_estimator_old = Y_l_estimator[m].copy()
 					Y_l_std_estimator_old = Y_l_std_estimator[m].copy()
                 
 					Y_l_estimator[m] = (number * Y_l_estimator_old + Y_l_estimator_new.copy()) / (number + 1)
-					Y_l_std_estimator[m] = np.sqrt((number * (Y_l_estimator_old**2 + Y_l_std_estimator_old**2) + Y_l_estimator_new.copy()**2) / (number + 1) - Y_l_estimator.copy())
+					Y_l_std_estimator[m] = np.sqrt((number * (Y_l_estimator_old**2 + Y_l_std_estimator_old**2) + Y_l_estimator_new.copy()**2) / (number + 1) - Y_l_estimator[m].copy())
             
-				if (number == 0):
+				if (np.shape(Y_b_estimator[m])[0] == 2):
 					Y_b_estimator[m] = Y_b_estimator_new.copy()
-					Y_b_std_estimator[m] = np.array([0 for n in range(np.shape(X_b_estimator)[0])])
+					Y_b_std_estimator[m] = np.array([0.0 for n in range(np.shape(X_b_estimator[m])[0])])
 				else:
 					Y_b_estimator_old = Y_b_estimator[m].copy()
 					Y_b_std_estimator_old = Y_b_std_estimator[m].copy()
                 
 					Y_b_estimator[m] = (number * Y_b_estimator_old + Y_b_estimator_new.copy()) / (number + 1)
-					Y_b_std_estimator[m] = np.sqrt((number * (Y_b_estimator_old**2 + Y_b_std_estimator_old**2) + Y_b_estimator_new.copy()**2) / (number + 1) - Y_b_estimator.copy())
+					Y_b_std_estimator[m] = np.sqrt((number * (Y_b_estimator_old**2 + Y_b_std_estimator_old**2) + Y_b_estimator_new.copy()**2) / (number + 1) - Y_b_estimator[m].copy())
             
-				if (number == 0):
+				if (np.shape(Y_s_estimator[m])[0] == 2):
 					Y_s_estimator[m] = Y_s_estimator_new.copy()
-					Y_s_std_estimator[m] = np.array([0 for n in range(np.shape(X_s_estimator)[0])])
+					Y_s_std_estimator[m] = np.array([0.0 for n in range(np.shape(X_s_estimator[m])[0])])
 				else:
-					Y_s_estimator_old = Y_s_estimator.copy()
-					Y_s_std_estimator_old = Y_s_std_estimator.copy()
+					Y_s_estimator_old = Y_s_estimator[m].copy()
+					Y_s_std_estimator_old = Y_s_std_estimator[m].copy()
                 
 					Y_s_estimator[m] = (number * Y_s_estimator_old + Y_s_estimator_new.copy()) / (number + 1)
-					Y_s_std_estimator[m] = np.sqrt((number * (Y_s_estimator_old**2 + Y_s_std_estimator_old**2) + Y_s_estimator_new.copy()**2) / (number + 1) - Y_s_estimator.copy())
+					Y_s_std_estimator[m] = np.sqrt((number * (Y_s_estimator_old**2 + Y_s_std_estimator_old**2) + Y_s_estimator_new.copy()**2) / (number + 1) - Y_s_estimator[m].copy())
             
 				print("box treated.")
 
