@@ -3,6 +3,9 @@ import numpy as np
 import scipy.spatial as spatial
 import scipy.linalg as linalg
 import GPy as GPy
+import matplotlib.pyplot as plt
+from matplotlib import rc
+rc('text', usetex = True)
 
 ## GP Class
 class GP():
@@ -79,9 +82,11 @@ class GP():
         for i in range(n_new_cosmologies):
             h0, w0, ns, sigma8, omegaM = X_new[i]
             
-            X = self.X_data[0 : self.n_points_per_simu, 5]
+            X = self.X_data[-self.n_points_per_simu:, 5]
             X_new = np.reshape([[h0, w0, ns, sigma8, omegaM, x] for x in X], (self.n_points_per_simu, 6))
+            
             Y_new, Cov_new = self.model.predict(X_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])})
+            
             X_predicted.append(X_new)
             Y_predicted.append(Y_new)
             Cov.append(Cov_new)
@@ -92,7 +97,7 @@ class GP():
         for i in range(np.shape(X_test)[0]):
             X_new = np.reshape(X_test[i], (1, 6))
             y_predicted = (self.model.predict(X_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
-            y_expected = Y_test[i][0]
+            y_expected = Y_test[i]
             s += (y_predicted - y_expected)**2
         
         ms = s / np.shape(X_test)[0]
@@ -103,58 +108,54 @@ class GP():
     def test_chi2(self, X_test, Y_test, Noise_test = None):
         if (Noise_test is not None):
             Y_std_test = Noise_test
+        else:
+            print("Error : a noise is necessary for test_chi2")
         
         s = 0            
         for i in range(np.shape(X_test)[0]):
             X_new = np.reshape(X_test[i], (1, 6))
             y_predicted, c = (self.model.predict(X_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
-            y_expected, noise = Y_test[i][0], Y_std_test[i][0]
-            print(y_predicted, y_expected, noise, np.sqrt(c[0][0]))
-            s += (y_predicted[0][0] - y_expected)**2 / (c[0][0] + noise**2)
+            y_expected, noise = Y_test[i], Y_std_test[i]
+            s += (y_predicted - y_expected)**2 / (noise**2)
         
         ms = s / np.shape(X_test)[0]
         
-        chi_2 = ms
+        chi_2 = ms[0][0]
         return(chi_2)
     
     def likelihood_chi2(self, Y_model, Noise_model, Y_observation, Noise_observation):
         s = 0
         
-        n_simulations = int(np.shape(Y_observation)[0] / self.n_points_per_simu)
+        n_simulations = np.shape(Y_observation)[0]
         
         for i in range(n_simulations):
-            Sigma_observation = Noise_observation[i]
-            if (Sigma_observation is None):
-                Diag = [self.model.Gaussian_noise.variance for j in range(self.n_points_per_simu)]
-                Sigma_observation = np.diag(Diag)
-            
             Sigma_model = Noise_model[i]
-            Sigma = Sigma_model + Sigma_observation
+            Sigma_observation = np.diagflat(Noise_observation[i]**2)
+            
+            #Sigma = Sigma_model + Sigma_observation
+            Sigma = 2 * Sigma_observation
             Sigma_inv = np.linalg.inv(Sigma)
             
-            U = Y_observation[i * self.n_points_per_simu : (i + 1) * self.n_points_per_simu]
-            V = Y_model[i * self.n_points_per_simu : (i + 1) * self.n_points_per_simu]
+            U = Y_model[i]
+            V = Y_observation[i]
             
             s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
         
-        chi2 = s / (n_simulations)
+        chi2 = s / (self.n_points_per_simu * n_simulations)
         return(chi2)
     
     def likelihood_ms(self, Y_model, Y_observation, Noise_model = None, Noise_observation = None):
         s = 0
         
-        n_simulations = int(np.shape(Y_observation)[0] / self.n_points_per_simu)
+        n_simulations = np.shape(Y_observation)[0]
         
         for i in range(n_simulations):
             Sigma_inv = np.identity(self.n_points_per_simu)
             
-            U = Y_observation[i * self.n_points_per_simu : (i + 1) * self.n_points_per_simu]
-            V = Y_model[i * self.n_points_per_simu : (i + 1) * self.n_points_per_simu]
+            U = Y_model[i]
+            V = Y_observation[i]
             
             s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
         
-        ms = s / (n_simulations)
+        ms = s / (self.n_points_per_simu * n_simulations)
         return(ms)
-    
-    def plot_prediction(self, X_new):
-        return("Error : Plot_prediction has yet to be written")

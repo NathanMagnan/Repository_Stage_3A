@@ -17,7 +17,10 @@ target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3
 
 dict = {'X_d' : [], 'Y_d' : [], 'Y_d_std' : [], 'X_l' : [], 'Y_l' : [], 'Y_l_std' : [], 'X_b' : [], 'Y_b' : [], 'Y_b_std' : [], 'X_s' : [], 'Y_s' : [], 'Y_s_std' : []}
 
-for i in range(61):    
+n_simu = 40
+n_fidu = 21
+
+for i in range(n_simu + n_fidu):    
     X_d_a = np.loadtxt(str(target) + str(i) + "_X_d")
     Y_d_a = np.loadtxt(str(target) + str(i) + "_Y_d")
     Y_d_std_a = np.loadtxt(str(target) + str(i) + "_Y_d_std")
@@ -60,12 +63,12 @@ for j in range(4):
         
         if (j == 0):
             subplot.set_xlabel('$d$')
-            subplot.set_xlim(1, 4)
+            subplot.set_xlim(1, 6)
             
             X_abacus = dict['X_d'][0]
             Mean_abacus = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
             Std_abacus = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
-            for k in range(41):
+            for k in range(n_fidu):
                 New = []
                 for x1 in X_abacus:
                     min = 1
@@ -90,18 +93,18 @@ for j in range(4):
             
             Mean_fidu = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
             Std_fidu = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
-            for k in range(20):
+            for k in range(n_fidu):
                 New = []
                 for x1 in X_abacus:
                     min = 1
                     l_min = 0
                     for l in range(np.shape(X_abacus)[0]):
-                        x2 = dict['X_d'][k + 41][l]
+                        x2 = dict['X_d'][k + n_simu][l]
                         if (abs(x1 - x2) < min):
                             min = abs(x1 - x2)
                             l_min = l
                     
-                    New.append(dict['Y_d'][k + 41][l_min])
+                    New.append(dict['Y_d'][k + n_simu][l_min])
                 New = np.asarray(New)
                     
                 Mean_old = Mean_fidu.copy()
@@ -114,33 +117,30 @@ for j in range(4):
                 Std_fidu = Std_new.copy()
             
             if (i == 0):
-                subplot.set_ylabel('$N_{d}$')
-                subplot.set_yscale('log')
-                subplot.set_ylim(10**4, 10**6)
+                subplot.set_ylabel('$\Delta N_{d} / \sqrt{<N_{d}>}$')
+                #subplot.set_ylim(-5, 5)
                 
-                subplot.fill_between(x = X_abacus, y1 = Mean_abacus - Std_abacus, y2 = Mean_abacus + Std_abacus, color = 'b', alpha = 0.2, label = 'Abacus range')
-                subplot.fill_between(x = X_abacus, y1 = Mean_fidu - Std_fidu, y2 = Mean_fidu + Std_fidu, color = 'b', alpha = 0.6, label = 'Fiducial range')
+                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / np.sqrt(Mean_abacus), y2 = Std_abacus / np.sqrt(Mean_abacus), color = 'b', alpha = 0.2, label = "Abacus range")
+                subplot.fill_between(x = X_abacus, y1 = (Mean_fidu - Std_fidu - Mean_abacus) / np.sqrt(Mean_abacus), y2 = (Mean_fidu + Std_fidu - Mean_abacus) / np.sqrt(Mean_abacus), color = 'b', alpha = 0.6, label = "Error bar")
                 
                 subplot.legend()
                 
             else:
-                subplot.set_ylabel('$\Delta N_{d} / <N_{d}>$')
-                subplot.set_ylim(-0.3, 0.3)
+                subplot.set_ylabel('SNR (dB)')
+                subplot.set_ylim(0, 20)
                 
-                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / Mean_abacus, y2 = Std_abacus / Mean_abacus, color = 'b', alpha = 0.2, label = "Abacus range")
-                subplot.fill_between(x = X_abacus, y1 = (Mean_fidu - Std_fidu - Mean_abacus) / Mean_abacus, y2 = (Mean_fidu + Std_fidu - Mean_abacus) / Mean_abacus, color = 'b', alpha = 0.6, label = "Fiducial range")
-                
-                subplot.legend()
+                subplot.plot(X_abacus, 10 * np.log10(Std_abacus / Std_fidu), 'b')
+                subplot.axhline(y = 7, c = 'k', linestyle = '--')
         
         elif (j == 1):
             subplot.set_xlabel('$l$')
             subplot.set_xscale('log')
-            subplot.set_xlim(1, 10)
+            #subplot.set_xlim(1, 10)
             
             X_abacus = dict['X_l'][0]
             Mean_abacus = np.asarray([0 for k in range(np.shape(dict['X_l'][0])[0])])
             Std_abacus = np.asarray([0 for k in range(np.shape(dict['X_l'][0])[0])])
-            for k in range(41):
+            for k in range(n_fidu):
                 New = []
                 for x1 in X_abacus:
                     min = 1
@@ -167,20 +167,20 @@ for j in range(4):
             
             Mean_fidu = np.asarray([0 for k in range(np.shape(dict['X_l'][0])[0])])
             Std_fidu = np.asarray([0 for k in range(np.shape(dict['X_l'][0])[0])])
-            for k in range(20):
+            for k in range(n_fidu):
                 New = []
                 for x1 in X_abacus:
                     min = 1
                     l_min = 0
                     for l in range(np.shape(X_abacus)[0]):
-                        x2 = dict['X_l'][k + 41][l]
+                        x2 = dict['X_l'][k + n_simu][l]
                         if (abs(x1 - x2) < min):
                             min = abs(x1 - x2)
                             l_min = l
                     try:
-                        New.append((dict['Y_l'][k + 41][l_min - 1] + dict['Y_l'][k + 41][l_min] + dict['Y_l'][k + 41][l_min + 1]) / 3)
+                        New.append((dict['Y_l'][k + n_simu][l_min - 1] + dict['Y_l'][k + n_simu][l_min] + dict['Y_l'][k + n_simu][l_min + 1]) / 3)
                     except:
-                        New.append(dict['Y_l'][k + 41][l_min])
+                        New.append(dict['Y_l'][k + n_simu][l_min])
                 New = np.asarray(New)
                     
                 Mean_old = Mean_fidu.copy()
@@ -193,35 +193,30 @@ for j in range(4):
                 Std_fidu = Std_new.copy()
             
             if (i == 0):
-                subplot.set_ylabel('$N_{l}$')
-                subplot.set_yscale('log')
-                subplot.set_ylim(10**3, 10**5)
+                subplot.set_ylabel('$\Delta N_{l} / \sqrt{<N_{l}>}$')
+                #subplot.set_ylim(-5, 5)
                 
-                subplot.fill_between(x = X_abacus, y1 = Mean_abacus - Std_abacus, y2 = Mean_abacus + Std_abacus, color = 'g', alpha = 0.2, label = 'Abacus range')
-                subplot.fill_between(x = X_abacus, y1 = Mean_fidu - Std_fidu, y2 = Mean_fidu + Std_fidu, color = 'g', alpha = 0.6, label = 'Fiducial range')
+                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / np.sqrt(Mean_abacus), y2 = Std_abacus / np.sqrt(Mean_abacus), color = 'g', alpha = 0.2, label = "Abacus range")
+                subplot.fill_between(x = X_abacus, y1 = (Mean_fidu - Std_fidu - Mean_abacus) / np.sqrt(Mean_abacus), y2 = (Mean_fidu + Std_fidu - Mean_abacus) / np.sqrt(Mean_abacus), color = 'g', alpha = 0.6, label = "Error bar")
                 
                 subplot.legend()
                 
             else:
-                subplot.set_ylabel('$\Delta N_{l} / <N_{l}>$')
-                subplot.set_ylim(-0.3, 0.3)
+                subplot.set_ylabel('SNR (dB)')
+                subplot.set_ylim(0, 20)
                 
-                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / Mean_abacus, y2 = Std_abacus / Mean_abacus, color = 'g', alpha = 0.2, label = "Abacus range")
-                subplot.fill_between(x = X_abacus, y1 = (Mean_fidu - Std_fidu - Mean_abacus) / Mean_abacus, y2 = (Mean_fidu + Std_fidu - Mean_abacus) / Mean_abacus, color = 'g', alpha = 0.6, label = "Fiducial range")
-                
-                subplot.legend()
-                
-                subplot.legend()
+                subplot.plot(X_abacus, 10 * np.log10(Std_abacus / Std_fidu), 'g')
+                subplot.axhline(y = 7, c = 'k', linestyle = '--')
                 
         elif (j == 2):
             subplot.set_xlabel('$b$')
             subplot.set_xscale('log')
-            subplot.set_xlim(5, 50)
+            #subplot.set_xlim(5, 50)
             
             X_abacus = dict['X_b'][0]
             Mean_abacus = np.asarray([0 for k in range(np.shape(dict['X_b'][0])[0])])
             Std_abacus = np.asarray([0 for k in range(np.shape(dict['X_b'][0])[0])])
-            for k in range(41):
+            for k in range(n_fidu):
                 New = []
                 for x1 in X_abacus:
                     min = 1
@@ -248,20 +243,20 @@ for j in range(4):
             
             Mean_fidu = np.asarray([0 for k in range(np.shape(dict['X_b'][0])[0])])
             Std_fidu = np.asarray([0 for k in range(np.shape(dict['X_b'][0])[0])])
-            for k in range(20):
+            for k in range(n_fidu):
                 New = []
                 for x1 in X_abacus:
                     min = 1
                     l_min = 0
                     for l in range(np.shape(X_abacus)[0]):
-                        x2 = dict['X_b'][k + 41][l]
+                        x2 = dict['X_b'][k + n_simu][l]
                         if (abs(x1 - x2) < min):
                             min = abs(x1 - x2)
                             l_min = l
                     try:
-                        New.append((dict['Y_b'][k + 41][l_min - 1] + dict['Y_b'][k + 41][l_min] + dict['Y_b'][k + 41][l_min + 1]) / 3)
+                        New.append((dict['Y_b'][k + n_simu][l_min - 1] + dict['Y_b'][k + n_simu][l_min] + dict['Y_b'][k + n_simu][l_min + 1]) / 3)
                     except:
-                        New.append(dict['Y_b'][k + 41][l_min])
+                        New.append(dict['Y_b'][k + n_simu][l_min])
                 New = np.asarray(New)
                     
                 Mean_old = Mean_fidu.copy()
@@ -274,32 +269,29 @@ for j in range(4):
                 Std_fidu = Std_new.copy()
             
             if (i == 0):
-                subplot.set_ylabel('$N_{b}$')
-                subplot.set_yscale('log')
-                subplot.set_ylim(10**1, 10**4)
+                subplot.set_ylabel('$\Delta N_{b} / \sqrt{<N_{b}>}$')
+                #subplot.set_ylim(-5, 5)
                 
-                subplot.fill_between(x = X_abacus, y1 = Mean_abacus - Std_abacus, y2 = Mean_abacus + Std_abacus, color = 'r', alpha = 0.2, label = 'Abacus range')
-                subplot.fill_between(x = X_abacus, y1 = Mean_fidu - Std_fidu, y2 = Mean_fidu + Std_fidu, color = 'r', alpha = 0.6, label = 'Fiducial range')
+                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / np.sqrt(Mean_abacus), y2 = Std_abacus / np.sqrt(Mean_abacus), color = 'r', alpha = 0.2, label = "Abacus range")
+                subplot.fill_between(x = X_abacus, y1 = (Mean_fidu - Std_fidu - Mean_abacus) / np.sqrt(Mean_abacus), y2 = (Mean_fidu + Std_fidu - Mean_abacus) / np.sqrt(Mean_abacus), color = 'r', alpha = 0.6, label = "Error bar")
                 
                 subplot.legend()
                 
             else:
-                subplot.set_ylabel('$\Delta N_{b} / <N_{b}>$')
-                subplot.set_ylim(-0.3, 0.3)
+                subplot.set_ylabel('SNR (dB)')
+                subplot.set_ylim(0, 20)
                 
-                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / Mean_abacus, y2 = Std_abacus / Mean_abacus, color = 'r', alpha = 0.2, label = "Abacus range")
-                subplot.fill_between(x = X_abacus, y1 = (Mean_fidu - Std_fidu - Mean_abacus) / Mean_abacus, y2 = (Mean_fidu + Std_fidu - Mean_abacus) / Mean_abacus, color = 'r', alpha = 0.6, label = "Fiducial range")
-                
-                subplot.legend()
+                subplot.plot(X_abacus, 10 * np.log10(Std_abacus / Std_fidu), 'r')
+                subplot.axhline(y = 7, c = 'k', linestyle = '--')
                 
         else:
             subplot.set_xlabel('$s$')
-            subplot.set_xlim(0.3, 0.7)
+            subplot.set_xlim(0, 1)
             
             X_abacus = dict['X_s'][0]
             Mean_abacus = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
             Std_abacus = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
-            for k in range(41):
+            for k in range(n_fidu):
                 New = []
                 for x1 in X_abacus:
                     min = 1
@@ -326,20 +318,20 @@ for j in range(4):
             
             Mean_fidu = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
             Std_fidu = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
-            for k in range(20):
+            for k in range(n_fidu):
                 New = []
                 for x1 in X_abacus:
                     min = 1
                     l_min = 0
                     for l in range(np.shape(X_abacus)[0]):
-                        x2 = dict['X_s'][k + 41][l]
+                        x2 = dict['X_s'][k + n_simu][l]
                         if (abs(x1 - x2) < min):
                             min = abs(x1 - x2)
                             l_min = l
                     try:
-                        New.append((dict['Y_s'][k + 41][l_min - 1] + dict['Y_s'][k + 41][l_min] + dict['Y_s'][k + 41][l_min + 1]) / 3)
+                        New.append((dict['Y_s'][k + n_simu][l_min - 1] + dict['Y_s'][k + n_simu][l_min] + dict['Y_s'][k + n_simu][l_min + 1]) / 3)
                     except:
-                        New.append(dict['Y_s'][k + 41][l_min])
+                        New.append(dict['Y_s'][k + n_simu][l_min])
                 New = np.asarray(New)
                     
                 Mean_old = Mean_fidu.copy()
@@ -352,23 +344,20 @@ for j in range(4):
                 Std_fidu = Std_new.copy()
             
             if (i == 0):
-                subplot.set_ylabel('$N_{s}$')
-                subplot.set_yscale('log')
-                subplot.set_ylim(10**3, 10**4)
+                subplot.set_ylabel('$\Delta N_{s} / \sqrt{<N_{s}>}$')
+                #subplot.set_ylim(-5, 5)
                 
-                subplot.fill_between(x = X_abacus, y1 = Mean_abacus - Std_abacus, y2 = Mean_abacus + Std_abacus, color = 'y', alpha = 0.2, label = 'Abacus range')
-                subplot.fill_between(x = X_abacus, y1 = Mean_fidu - Std_fidu, y2 = Mean_fidu + Std_fidu, color = 'y', alpha = 0.6, label = 'Fiducial range')
+                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / np.sqrt(Mean_abacus), y2 = Std_abacus / np.sqrt(Mean_abacus), color = 'y', alpha = 0.2, label = "Abacus range")
+                subplot.fill_between(x = X_abacus, y1 = (Mean_fidu - Std_fidu - Mean_abacus) / np.sqrt(Mean_abacus), y2 = (Mean_fidu + Std_fidu - Mean_abacus) / np.sqrt(Mean_abacus), color = 'y', alpha = 0.6, label = "Error bar")
                 
                 subplot.legend()
                 
             else:
-                subplot.set_ylabel('$\Delta N_{s} / <N_{s}>$')
-                subplot.set_ylim(-0.3, 0.3)
+                subplot.set_ylabel('SNR (dB)')
+                subplot.set_ylim(0, 20)
                 
-                subplot.fill_between(x = X_abacus, y1 = - Std_abacus / Mean_abacus, y2 = Std_abacus / Mean_abacus, color = 'y', alpha = 0.2, label = "Abacus range")
-                subplot.fill_between(x = X_abacus, y1 = (Mean_fidu - Std_fidu - Mean_abacus) / Mean_abacus, y2 = (Mean_fidu + Std_fidu - Mean_abacus) / Mean_abacus, color = 'y', alpha = 0.6, label = "Fiducial range")
-                
-                subplot.legend()
+                subplot.plot(X_abacus, 10 * np.log10(Std_abacus / Std_fidu), 'y')
+                subplot.axhline(y = 7, c = 'k', linestyle = '--')
 
-plt.suptitle("Error in Abacus simulations")
+plt.suptitle("Signal-To-Noise ratio of the MST from Abacus simulations")
 plt.show()

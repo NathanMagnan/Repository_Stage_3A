@@ -466,6 +466,9 @@ class GP():
                 U = np.concatenate((Y_model[i][0], Y_model[i][1], Y_model[i][2], Y_model[i][3]), 0)
                 V = np.concatenate((Y_observation[i][0], Y_observation[i][1], Y_observation[i][2], Y_observation[i][3]), 0)
                 
+                print(U)
+                print(V)
+                
                 s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
             
             chi2 = s / ((self.n_d_points_per_simu + self.n_l_points_per_simu + self.n_b_points_per_simu + self.n_s_points_per_simu) * n_simulations)
