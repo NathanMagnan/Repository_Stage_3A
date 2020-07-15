@@ -196,65 +196,105 @@ for i in range(4):
             
 				for n1 in range(np.shape(X_d_estimator[m])[0]): # before computing the estimator, we have to match the X to the one from the first box
 					x1 = X_d_estimator[m][n1]
+					
 					min = 10
-					n_min = 0
+					n_min_random = 0
 					for n2 in range(np.shape(hist_random['x_d'])[0]):
 						x2 = hist_random['x_d'][n2]
 						if (abs(x1 - x2) < min):
 								min = abs(x1 - x2)
-								n_min = n2
-					Y_d_estimator_new[n1] = hist_abacus['y_d'][n1] / hist_random['y_d'][n_min] - 1
+								n_min_random = n2
+					
+					min = 10
+					n_min_abacus = 0
+					for n2 in range(np.shape(hist_abacus['x_d'])[0]):
+						x2 = hist_abacus['x_d'][n2]
+						if (abs(x1 - x2) < min):
+								min = abs(x1 - x2)
+								n_min_abacus = n2
+					
+					Y_d_estimator_new[n1] = hist_abacus['y_d'][n_min_abacus] / hist_random['y_d'][n_min_random] - 1
             
 				for n1 in range(np.shape(X_l_estimator[m])[0]):
 					x1 = X_l_estimator[m][n1]
+					
 					min = 10
-					n_min = 0
+					n_min_random = 0
 					for n2 in range(np.shape(hist_random['x_l'])[0]):
 						x2 = hist_random['x_l'][n2]
 						if (abs(x1 - x2) < min):
 								min = abs(x1 - x2)
-								n_min = n2
+								n_min_random = n2
+					
+					min = 10
+					n_min_abacus = 0
+					for n2 in range(np.shape(hist_abacus['x_l'])[0]):
+						x2 = hist_abacus['x_l'][n2]
+						if (abs(x1 - x2) < min):
+								min = abs(x1 - x2)
+								n_min_abacus = n2
+					
 					try: # we try a smoothing for l, b and s because the values of x can be quite different from one box to another
-						Y_l_estimator_new[n1] = ((hist_abacus['y_l'][n1] / hist_random['y_l'][n_min - 1] - 1) + (hist_abacus['y_l'][n1] / hist_random['y_l'][n_min] - 1) + (hist_abacus['y_l'][n1] / hist_random['y_l'][n_min + 1] - 1)) / 3
+						Y_l_estimator_new[n1] = ((hist_abacus['y_l'][n_min_abacus - 1] / hist_random['y_l'][n_min_random - 1] - 1) + (hist_abacus['y_l'][n_min_abacus] / hist_random['y_l'][n_min_random] - 1) + (hist_abacus['y_l'][n_min_abacus + 1] / hist_random['y_l'][n_min_random + 1] - 1)) / 3
 					except:
 						try:
-							Y_l_estimator_new[n1] = hist_abacus['y_l'][n1] / hist_random['y_l'][n_min] - 1
+							Y_l_estimator_new[n1] = hist_abacus['y_l'][n_min_abacus] / hist_random['y_l'][n_min_random] - 1
 						except:
-							Y_l_estimator = + math.inf
+							Y_l_estimator_new[n1] = + math.inf
             
 				for n1 in range(np.shape(X_b_estimator[m])[0]):
 					x1 = X_b_estimator[m][n1]
+					
 					min = 10
-					n_min = 0
+					n_min_random = 0
 					for n2 in range(np.shape(hist_random['x_b'])[0]):
 						x2 = hist_random['x_b'][n2]
 						if (abs(x1 - x2) < min):
 								min = abs(x1 - x2)
-								n_min = n2
+								n_min_random = n2
+					
+					min = 10
+					n_min_abacus = 0
+					for n2 in range(np.shape(hist_abacus['x_b'])[0]):
+						x2 = hist_abacus['x_b'][n2]
+						if (abs(x1 - x2) < min):
+								min = abs(x1 - x2)
+								n_min_abacus = n2
+					
 					try:
-						Y_b_estimator_new[n1] = ((hist_abacus['y_b'][n1] / hist_random['y_b'][n_min - 1] - 1) + (hist_abacus['y_b'][n1] / hist_random['y_b'][n_min] - 1) + (hist_abacus['y_b'][n1] / hist_random['y_b'][n_min + 1] - 1)) / 3
+						Y_b_estimator_new[n1] = ((hist_abacus['y_b'][n_min_abacus - 1] / hist_random['y_b'][n_min_random - 1] - 1) + (hist_abacus['y_b'][n_min_abacus] / hist_random['y_b'][n_min_random] - 1) + (hist_abacus['y_b'][n_min_abacus + 1] / hist_random['y_b'][n_min_random + 1] - 1)) / 3
 					except:
 						try:
-							Y_b_estimator_new[n1] = hist_abacus['y_b'][n1] / hist_random['y_b'][n_min] - 1
+							Y_b_estimator_new[n1] = hist_abacus['y_b'][n_min_abacus] / hist_random['y_b'][n_min_random] - 1
 						except:
-							Y_b_estimator = + math.inf
+							Y_b_estimator_new[n1] = + math.inf
             
 				for n1 in range(np.shape(X_s_estimator[m])[0]):
 					x1 = X_s_estimator[m][n1]
+					
 					min = 10
-					n_min = 0
+					n_min_random = 0
 					for n2 in range(np.shape(hist_random['x_s'])[0]):
 						x2 = hist_random['x_s'][n2]
 						if (abs(x1 - x2) < min):
 								min = abs(x1 - x2)
-								n_min = n2
+								n_min_random = n2
+					
+					min = 10
+					n_min_abacus = 0
+					for n2 in range(np.shape(hist_abacus['x_s'])[0]):
+						x2 = hist_abacus['x_s'][n2]
+						if (abs(x1 - x2) < min):
+								min = abs(x1 - x2)
+								n_min_abacus = n2
+					
 					try:
-						Y_s_estimator_new[n1] = ((hist_abacus['y_s'][n1] / hist_random['y_s'][n_min - 1] - 1) + (hist_abacus['y_s'][n1] / hist_random['y_s'][n_min] - 1) + (hist_abacus['y_s'][n1] / hist_random['y_s'][n_min + 1] - 1)) / 3
+						Y_s_estimator_new[n1] = ((hist_abacus['y_s'][n_min_abacus - 1] / hist_random['y_s'][n_min_random - 1] - 1) + (hist_abacus['y_s'][n_min_abacus] / hist_random['y_s'][n_min_random] - 1) + (hist_abacus['y_s'][n_min_abacus + 1] / hist_random['y_s'][n_min_random + 1] - 1)) / 3
 					except:
 						try:
-							Y_s_estimator_new[n1] = hist_abacus['y_s'][n1] / hist_random['y_s'][n_min] - 1
+							Y_s_estimator_new[n1] = hist_abacus['y_s'][n_min_abacus] / hist_random['y_s'][n_min_random] - 1
 						except:
-							Y_s_estimator = + math.inf
+							Y_s_estimator_new[n1] = + math.inf
             
 				# updating the mean and std of the estimator
 				if (np.shape(Y_d_estimator[m])[0] == 2):
