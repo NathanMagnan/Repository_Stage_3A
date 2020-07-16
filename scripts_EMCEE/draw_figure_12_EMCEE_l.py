@@ -275,7 +275,7 @@ print("MCMC analysis done")
 print("Starting to plot the results")
 
 Coordinates_limits = [[60, 75], [-1.40, -0.60], [0.920, 0.995], [0.64, 1.04], [0.250, 0.375]]
-Expected_values_01 = X_d_planck[0, 0:5]
+Expected_values_01 = X_l_planck[0, 0:5]
 Expected_values = prior(Expected_values_01)
 Parameters = ['H_{0}', 'w_{0}', 'n_{s}', '\sigma_{8}', '\Omega_{M}']
 
@@ -325,7 +325,7 @@ print("Results saved and plotted")
 ## Plotting 2
 import corner
 Labels = ['$H_{0}$', '$w_{0}$', '$n_{s}$', '$\sigma_{8}$', '$\Omega_{M}$']
-Expected_values_01 = X_d_planck[0, 0:5]
+Expected_values_01 = X_l_planck[0, 0:5]
 Truths = prior(Expected_values_01)
 
 flat_samples = sampler.get_chain(discard = 0, thin = 2, flat=True)
@@ -338,4 +338,4 @@ my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/R
 my_file = 'Figure_12_EMCEE_corner_l'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
-#plt.show()
+plt.show()

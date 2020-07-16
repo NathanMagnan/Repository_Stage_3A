@@ -6,25 +6,24 @@ import emcee
 import sys
 import os
 import matplotlib
-matplotlib.use('Agg')
 
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex = True)
 
-sys.path.append('/home/astro/magnan/Repository_Stage_3A')
-#sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+#sys.path.append('/home/astro/magnan/Repository_Stage_3A')
+sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 import GP_tools_simple as GP
-os.chdir('/home/astro/magnan')
-#os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+#os.chdir('/home/astro/magnan')
+os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 
 print("All imports successful")
 
 ## Importing the whole Abacus data
 print("starting to load the data")
 
-target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
-#target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+#target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
 
 dict = {'X_b' : [], 'Y_b' : [], 'Y_b_std' : []}
 
@@ -42,11 +41,11 @@ print("data fully loaded")
 print("Connexion successfull")
 print("starting to load the data")
 
-target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_"
-#target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_'
+#target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_"
+target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_'
 
 """
-l = 10->15
+b = 19->24
 """
 
 n_points_per_simulation_complete = 36
@@ -64,11 +63,11 @@ for i in range(n_fiducial + n_simulations):
         Y_data_new[j] = max(Y_data_new[j], 0)
     
     if i == 0:
-        X_b = X_data_new[10 : 15, 0 : 6]
-        Y_b = Y_data_new[10 : 15]
+        X_b = X_data_new[19 : 24, 0 : 6]
+        Y_b = Y_data_new[19 : 24]
     else:
-        X_b = np.concatenate((X_data_new[10 : 15, 0:6], X_b))
-        Y_b = np.concatenate((Y_data_new[10 : 15], Y_b))
+        X_b = np.concatenate((X_data_new[19 : 24, 0:6], X_b))
+        Y_b = np.concatenate((Y_data_new[19 : 24], Y_b))
 
 X_b_planck = X_b[:(n_fiducial) * 5]
 
@@ -246,8 +245,8 @@ print("Starting to define the problem")
 n_dims = 5
 n_walkers = 32
 
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/EMCEE/')
-#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/EMCEE/')
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/EMCEE/')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/EMCEE/')
 my_file = 'Figure_12_b'
 my_file = os.path.join(my_path, my_file)
 backend = emcee.backends.HDFBackend(my_file)
@@ -276,7 +275,7 @@ print("MCMC analysis done")
 print("Starting to plot the results")
 
 Coordinates_bimits = [[60, 75], [-1.40, -0.60], [0.920, 0.995], [0.64, 1.04], [0.250, 0.375]]
-Expected_values_01 = X_d_planck[0, 0:5]
+Expected_values_01 = X_b_planck[0, 0:5]
 Expected_values = prior(Expected_values_01)
 Parameters = ['H_{0}', 'w_{0}', 'n_{s}', '\sigma_{8}', '\Omega_{M}']
 
@@ -314,19 +313,19 @@ for i in range(5):
 
 plt.suptitle("Posterior distribution (Abacus)")
 
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
 my_file = 'Figure_12_EMCEE_b'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
-#plt.show()
+plt.show()
 
 print("Results saved and plotted")
 
 ## Plotting 2
 import corner
 Labels = ['$H_{0}$', '$w_{0}$', '$n_{s}$', '$\sigma_{8}$', '$\Omega_{M}$']
-Expected_values_01 = X_d_planck[0, 0:5]
+Expected_values_01 = X_b_planck[0, 0:5]
 Truths = prior(Expected_values_01)
 
 flat_samples = sampler.get_chain(discard = 0, thin = 2, flat=True)
@@ -334,9 +333,9 @@ flat_samples = sampler.get_chain(discard = 0, thin = 2, flat=True)
 corner.corner(flat_samples, labels = Labels, truths = Truths, plot_datapoints = False, fill_contours = True)
 plt.suptitle("Posterior distribution (Abacus)")
 
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
 my_file = 'Figure_12_EMCEE_corner_b'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
-#plt.show()
+plt.show()
