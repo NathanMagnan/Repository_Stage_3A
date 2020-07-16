@@ -5,33 +5,36 @@ import GPy as GPy
 import emcee
 import sys
 import os
+import matplotlib
+matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex = True)
 
-#sys.path.append('/home/astro/magnan/Repository_Stage_3A')
-sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+sys.path.append('/home/astro/magnan/Repository_Stage_3A')
+#sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 import GP_tools_simple as GP
-#os.chdir('/home/astro/magnan')
-os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+os.chdir('/home/astro/magnan')
+#os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 
 print("All imports successful")
 
 ## Importing the whole Abacus data
 print("starting to load the data")
 
-#target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
-target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+#target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
 
-dict = {'X_s' : [], 'Y_s' : [], 'Y_s_std' : []}
+dict = {'X_b' : [], 'Y_b' : [], 'Y_b_std' : []}
 
-for i in range(61):     
-    X_s_a = np.loadtxt(str(target) + str(i) + "_X_s")
-    Y_s_a = np.loadtxt(str(target) + str(i) + "_Y_s")
-    Y_s_std_a = np.loadtxt(str(target) + str(i) + "_Y_s_std")
-    dict['X_s'].append(X_s_a)
-    dict['Y_s'].append(Y_s_a)
-    dict['Y_s_std'].append(Y_s_std_a)
+for i in range(61):    
+    X_b_a = np.loadtxt(str(target) + str(i) + "_X_b")
+    Y_b_a = np.loadtxt(str(target) + str(i) + "_Y_b")
+    Y_b_std_a = np.loadtxt(str(target) + str(i) + "_Y_b_std")
+    dict['X_b'].append(X_b_a)
+    dict['Y_b'].append(Y_b_a)
+    dict['Y_b_std'].append(Y_b_std_a)
 
 print("data fully loaded")
 
@@ -39,22 +42,19 @@ print("data fully loaded")
 print("Connexion successfull")
 print("starting to load the data")
 
-#target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus"
-target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_'
+target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_"
+#target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_'
 
 """
-d = 0->4
-s = 28->33
+l = 10->15
 """
 
 n_points_per_simulation_complete = 36
 n_simulations = 40
 n_fiducial = 21
 
-X_d = None
-Y_d = None
-X_s = None
-Y_s = None
+X_b = None
+Y_b = None
 
 for i in range(n_fiducial + n_simulations):
     X_data_new = np.loadtxt(fname = str(target) + str(i) + "_X_data") # numpy array with fields h0, w0, ns, sigma8, omegaM, d/l/b/s
@@ -64,40 +64,35 @@ for i in range(n_fiducial + n_simulations):
         Y_data_new[j] = max(Y_data_new[j], 0)
     
     if i == 0:
-        X_d = X_data_new[0 : 4, 0 : 6]
-        Y_d = Y_data_new[0 : 4]
-        X_s = X_data_new[28 : 33, 0 : 6]
-        Y_s = Y_data_new[28 : 33]
+        X_b = X_data_new[10 : 15, 0 : 6]
+        Y_b = Y_data_new[10 : 15]
     else:
-        X_d = np.concatenate((X_data_new[0 : 4, 0:6], X_d))
-        Y_d = np.concatenate((Y_data_new[0 : 4], Y_d))
-        X_s = np.concatenate((X_data_new[28 : 33, 0:6], X_s))
-        Y_s = np.concatenate((Y_data_new[28 : 33], Y_s))
+        X_b = np.concatenate((X_data_new[10 : 15, 0:6], X_b))
+        Y_b = np.concatenate((Y_data_new[10 : 15], Y_b))
 
-X_d_planck = X_d[:(n_fiducial) * 4]
-X_s_planck = X_s[:(n_fiducial) * 5]
+X_b_planck = X_b[:(n_fiducial) * 5]
 
-X_s_data = X_s[(n_fiducial) * 5:]
-Y_s_data = Y_s[(n_fiducial) * 5:]
-Y_s_data = np.reshape(Y_s_data, (n_simulations * 5, 1))
+X_b_data = X_b[(n_fiducial) * 5:]
+Y_b_data = Y_b[(n_fiducial) * 5:]
+Y_b_data = np.reshape(Y_b_data, (n_simulations * 5, 1))
 
 print("data loaded")
 
 ## Setting up the GPs
 print("starting to define the Gps")
 
-gp_s = GP.GP(X = X_s_data, Y = Y_s_data, n_points_per_simu = 5, Noise = None)
+gp_b = GP.GP(X = X_b_data, Y = Y_b_data, n_points_per_simu = 5, Noise = None)
 
 print("models defined")
 
 ## Optimising the hyperparameters - Gradient Descent
 print("Starting to optimise the hyperparameters")
 
-gp_s.optimize_model(optimizer = 'lbfgsb')
+gp_b.optimize_model(optimizer = 'lbfgsb')
 
 print("Hyperparameters optimised")
 
-gp_s.print_model()
+gp_b.print_model()
 
 ## Defining the prior
 print("starting to define the prior")
@@ -116,60 +111,56 @@ print("prior defined")
 ## Defining the expectation
 print("starting to define the expectation")
 
-X_s_abacus = dict['X_s'][0]
-Mean_s_abacus = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
-Std_s_abacus = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
+X_b_abacus = dict['X_b'][0]
+Mean_b_abacus = np.asarray([0 for k in range(np.shape(dict['X_b'][0])[0])])
+Std_b_abacus = np.asarray([0 for k in range(np.shape(dict['X_b'][0])[0])])
 for k in range(n_simulations):
     New = []
-    for x1 in X_s_abacus:
+    for x1 in X_b_abacus:
         min = 10
         l_min = 0
-        for l in range(np.shape(X_s_abacus)[0]):
-            x2 = dict['X_s'][k][l]
+        for l in range(np.shape(dict['X_b'][k])[0]):
+            x2 = dict['X_b'][k][l]
             if (abs(x1 - x2) < min):
                 min = abs(x1 - x2)
                 l_min = l
-        try:
-            New.append((dict['Y_s'][k][l_min - 1] + dict['Y_s'][k][l_min] + dict['Y_s'][k][l_min + 1]) / 3)
-        except:
-            New.append(dict['Y_s'][k][l_min])
+        
+        New.append(dict['Y_b'][k][l_min])
     New = np.asarray(New)
     
-    Mean_old = Mean_s_abacus.copy()
-    Std_old = Std_s_abacus.copy()
+    Mean_old = Mean_b_abacus.copy()
+    Std_old = Std_b_abacus.copy()
     
     Mean_new = (k * Mean_old + New) / (k + 1)
     Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + New**2) / (k + 1) - Mean_new**2)
     
-    Mean_s_abacus = Mean_new.copy()
-    Std_s_abacus = Std_new.copy()
+    Mean_b_abacus = Mean_new.copy()
+    Std_b_abacus = Std_new.copy()
 
-Mean_s_fidu = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
-Std_s_fidu = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
+Mean_b_fidu = np.asarray([0 for k in range(np.shape(dict['X_b'][0])[0])])
+Std_b_fidu = np.asarray([0 for k in range(np.shape(dict['X_b'][0])[0])])
 for k in range(n_fiducial):
     New = []
-    for x1 in X_s_abacus:
+    for x1 in X_b_abacus:
         min = 10
         l_min = 0
-        for l in range(np.shape(X_s_abacus)[0]):
-            x2 = dict['X_s'][k + n_simulations][l]
+        for l in range(np.shape(dict['X_b'][k + n_simulations])[0]):
+            x2 = dict['X_b'][k + n_simulations][l]
             if (abs(x1 - x2) < min):
                 min = abs(x1 - x2)
                 l_min = l
-        try:
-            New.append((dict['Y_s'][k + n_simulations][l_min - 1] + dict['Y_s'][k + n_simulations][l_min] + dict['Y_s'][k + n_simulations][l_min + 1]) / 3)
-        except:
-            New.append(dict['Y_s'][k + n_simulations][l_min])
+        
+        New.append(dict['Y_b'][k + n_simulations][l_min])
     New = np.asarray(New)
         
-    Mean_old = Mean_s_fidu.copy()
-    Std_old = Std_s_fidu.copy()
+    Mean_old = Mean_b_fidu.copy()
+    Std_old = Std_b_fidu.copy()
     
     Mean_new = (k * Mean_old + New) / (k + 1)
     Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + New**2) / (k + 1) - Mean_new**2)
     
-    Mean_s_fidu = Mean_new.copy()
-    Std_s_fidu = Std_new.copy()
+    Mean_b_fidu = Mean_new.copy()
+    Std_b_fidu = Std_new.copy()
 
 print("expectation defined")
 
@@ -201,48 +192,48 @@ def chi2(X):
     
     # Making the prediction
     X_new = np.reshape(X_new, (1, 5))
-    X_s_predicted, Y_s_predicted, Cov_s = gp_s.compute_prediction(X_new)
+    X_b_predicted, Y_b_predicted, Cov_b = gp_b.compute_prediction(X_new)
     
     # giving the right shape to the predicted value
-    Y_s_predicted = [Y_s_predicted[0]]
+    Y_b_predicted = [Y_b_predicted[0]]
     
     # searching for the expected value
-    X_s_predicted = X_s_predicted[0][:, 5]
+    X_b_predicted = X_b_predicted[0][:, 5]
     
-    Y_s_expected = np.asarray([0 for i in range(np.shape(X_s_predicted)[0])])
-    Y_s_std_expected = np.asarray([0 for i in range(np.shape(X_s_predicted)[0])])
-    for k in range(np.shape(Y_s_expected)[0]):
+    Y_b_expected = np.asarray([0 for i in range(np.shape(X_b_predicted)[0])])
+    Y_b_std_expected = np.asarray([0 for i in range(np.shape(X_b_predicted)[0])])
+    for k in range(np.shape(Y_b_expected)[0]):
         l_min = 0
         min = 10
-        x1 = X_s_predicted[k]
-        for l in range(np.shape(X_s_abacus)[0]):
-            x2 = X_s_abacus[l]
+        x1 = X_b_predicted[k]
+        for l in range(np.shape(X_b_abacus)[0]):
+            x2 = np.log10(X_b_abacus[l])
             if (abs(x1 - x2) < min):
                 min = abs(x1 - x2)
                 l_min = l
-        Y_s_expected[k] = Mean_s_fidu[l_min]
-        Y_s_std_expected[k] = Std_s_fidu[l_min]
-    Y_s_expected = np.asarray(Y_s_expected)
-    Y_s_std_expected = np.asarray(Y_s_std_expected) / (np.log(10) * Y_s_expected)
-    Y_s_expected = np.log10(Y_s_expected)
+        Y_b_expected[k] = Mean_b_fidu[l_min]
+        Y_b_std_expected[k] = Std_b_fidu[l_min]
+    Y_b_expected = np.asarray(Y_b_expected)
+    Y_b_std_expected = np.asarray(Y_b_std_expected) / (np.log(10) * Y_b_expected)
+    Y_b_expected = np.log10(Y_b_expected)
     
     # Giving the right shape to the expected value
-    Y_s_expected = [np.reshape(Y_s_expected, (5, 1))]
+    Y_b_expected = [np.reshape(Y_b_expected, (5, 1))]
     
     # Defining the noises
-    Noise_predicted_s = Cov_s
-    Noise_expected_s = [Y_s_std_expected]
+    Noise_predicted_b = Cov_b
+    Noise_expected_b = [Y_b_std_expected]
     
     # Computing the likelihood
-    chi2_s = gp_s.likelihood_chi2(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s)
+    chi2_b = gp_b.likelihood_chi2(Y_observation = Y_b_expected, Noise_observation = Noise_expected_b, Y_model = Y_b_predicted, Noise_model = Noise_predicted_b)
     
-    if (m.isnan(chi2_s)):
-        print("chi2_s is Nan")
+    if (m.isnan(chi2_b)):
+        print("chi2_b is NaN")
         print(X)
         return(- m.inf)
     
     # combining the 2 statistics
-    chi2 = chi2_s
+    chi2 = chi2_b
     
     # returning the log-likelihood or chi_2
     return(-0.5 * chi2)
@@ -255,9 +246,9 @@ print("Starting to define the problem")
 n_dims = 5
 n_walkers = 32
 
-#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/EMCEE/')
-my_file = 'Figure_12_s'
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/EMCEE/')
+#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/EMCEE/')
+my_file = 'Figure_12_b'
 my_file = os.path.join(my_path, my_file)
 backend = emcee.backends.HDFBackend(my_file)
 backend.reset(n_walkers, n_dims)
@@ -284,7 +275,7 @@ print("MCMC analysis done")
 ## Plotting
 print("Starting to plot the results")
 
-Coordinates_limits = [[60, 75], [-1.40, -0.60], [0.920, 0.995], [0.64, 1.04], [0.250, 0.375]]
+Coordinates_bimits = [[60, 75], [-1.40, -0.60], [0.920, 0.995], [0.64, 1.04], [0.250, 0.375]]
 Expected_values_01 = X_d_planck[0, 0:5]
 Expected_values = prior(Expected_values_01)
 Parameters = ['H_{0}', 'w_{0}', 'n_{s}', '\sigma_{8}', '\Omega_{M}']
@@ -307,13 +298,13 @@ for i in range(5):
             if (j == 0):
                 subplot.set_ylabel("$" + Parameters[i] + "$")
             subplot.hist2d(x = samples[:, j], y = samples[:, i], bins = 100, cmap = "Greys")
-            subplot.set_xlim(left = Coordinates_limits[j][0], right = Coordinates_limits[j][1])
-            subplot.set_ylim(bottom = Coordinates_limits[i][0], top = Coordinates_limits[i][1])
+            subplot.set_xlim(left = Coordinates_bimits[j][0], right = Coordinates_bimits[j][1])
+            subplot.set_ylim(bottom = Coordinates_bimits[i][0], top = Coordinates_bimits[i][1])
             subplot.axvline(x = Expected_values[j], color = 'black', linestyle = '--')
             subplot.axhline(y = Expected_values[i], color = 'black', linestyle = '--')
         
         else:
-            subplot.set_xlim(left = Coordinates_limits[j][0], right = Coordinates_limits[j][1])
+            subplot.set_xlim(left = Coordinates_bimits[j][0], right = Coordinates_bimits[j][1])
             if (i == 4):
                 subplot.set_xlabel("$" + Parameters[j] + "$")
             subplot.set_ylabel("$p(" + Parameters[i] + ")$")
@@ -323,12 +314,12 @@ for i in range(5):
 
 plt.suptitle("Posterior distribution (Abacus)")
 
-#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_s'
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+my_file = 'Figure_12_EMCEE_b'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
-plt.show()
+#plt.show()
 
 print("Results saved and plotted")
 
@@ -343,9 +334,9 @@ flat_samples = sampler.get_chain(discard = 0, thin = 2, flat=True)
 corner.corner(flat_samples, labels = Labels, truths = Truths, plot_datapoints = False, fill_contours = True)
 plt.suptitle("Posterior distribution (Abacus)")
 
-#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_corner_s'
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+my_file = 'Figure_12_EMCEE_corner_b'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
-plt.show()
+#plt.show()

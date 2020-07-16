@@ -12,19 +12,19 @@ import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex = True)
 
-sys.path.append('/home/astro/magnan/Repository_Stage_3A')
-#sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+#sys.path.append('/home/astro/magnan/Repository_Stage_3A')
+sys.path.append('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 import GP_tools_simple as GP
-os.chdir('/home/astro/magnan')
-#os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
+#os.chdir('/home/astro/magnan')
+os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A')
 
 print("All imports successful")
 
 ## Importing the whole Abacus data
 print("starting to load the data")
 
-target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
-#target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+#target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
+target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
 
 dict = {'X_d' : [], 'Y_d' : [], 'Y_d_std' : []}
 
@@ -42,8 +42,8 @@ print("data fully loaded")
 print("Connexion successfull")
 print("starting to load the data")
 
-target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_"
-#target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_'
+#target = "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_"
+target = 'C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/data_set_Abacus/data_set_Abacus_'
 
 """
 d = 0->4
@@ -246,8 +246,8 @@ print("Starting to define the problem")
 n_dims = 5
 n_walkers = 32
 
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/EMCEE/')
-#y_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/EMCEE/')
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/EMCEE/')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/EMCEE/')
 my_file = 'Figure_12_d'
 my_file = os.path.join(my_path, my_file)
 backend = emcee.backends.HDFBackend(my_file)
@@ -314,12 +314,12 @@ for i in range(5):
 
 plt.suptitle("Posterior distribution (Abacus)")
 
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
 my_file = 'Figure_12_EMCEE_d'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
-#plt.show()
+plt.show()
 
 print("Results saved and plotted")
 
@@ -334,8 +334,8 @@ flat_samples = sampler.get_chain(discard = 0, thin = 2, flat=True)
 corner.corner(flat_samples, labels = Labels, truths = Truths, plot_datapoints = False, fill_contours = True)
 plt.suptitle("Posterior distribution (Abacus)")
 
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
-#my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
+#my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
+my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
 my_file = 'Figure_12_EMCEE_corner_d'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
