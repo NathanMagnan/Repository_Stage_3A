@@ -8,6 +8,7 @@ sys.path.append('/home/astro/magnan/Repository_Stage_3A')
 import illustris_tools as il
 import abacus_tools as ab
 import alf_tools as alf
+import patchy_tools as pa
 os.chdir('/home/astro/magnan')
 
 import matplotlib.pyplot as plt
@@ -437,6 +438,50 @@ class Catalogue_ALF(Catalogue):
                 self.compute_MST()
             
             self.MST_histogram = alf.get_MST_histogram(mode_MST = mode_MST, count = self.count, alpha = self.alpha, beta = self.beta, gamma = self.gamma, t0 = self.t0, ts = self.ts, box_size = self.box_size, mode = '3D')
+
+
+class Catalogue_Patchy(Catalogue):
+    
+    def __init__(self, basePath = '/hpcstorage/zhaoc/BOSS_PATCHY_MOCKS/PATCHY_CMASS/box1/CATALPTCICz0.466G960S997413177.dat.bz2'):
+        self.type = "Patchy mock"
+        self.color = 'yellow'
+        self.basePath = basePath
+        
+        self.count = None # float -  number of galaxies
+        self.box_size = 2500 # float - Mpc / h
+        self.CM = None # np.array(count, 3) - Mpc / h
+        self.h = 67.77 # float - km/s / Mpc
+        self.Masses = None # float - M_sun / h
+        
+        self.parameters_HMF = None #dict(bin_min_HMF, bin_max_HMF, n_bin_HMF) - first two in M_sun / h
+        self.Bins_HMF = None # np.array(n_bin_HMF, 1)
+        self.HMF = None # np.array(n_bin_HMF, 1)
+        
+        self.parameters_2PCF = None # dict(bin_min, bin_max, n_bin_2PCF, min_reliable, max_reliable) - first two and last two in Mpc / h
+        self.Bins = None # np.array(n_bin_2PCF, 1) - Mpc / h
+        self.Mean_2PCF = None # np.array(n_bin_2PCF, 1)
+        self.Std_2PCF = None # np.array(n_bin_2PCF, 1)
+        self.Bins_reliable = None # np.array(? , 1) # Mpc / h
+        self.Mean_2PCF_reliable = None # np.array(?, 1)
+        self.Std_2PCF_reliable = None # np.array(?, 1)
+        
+        self.MST = None # mist.mst
+        self.MST_histogram = None # dict
+    
+    def initialise_data(self):
+        self.count, self.CM, self.Masses = pa.get_data(self.basePath)
+    
+    def compute_2PCF(self, bin_min, bin_max, n_bin_2PCF):
+        if (self.CM is None):
+            self.initialise_data()
+        self.parameters_2PCF = {'bin_min' : bin_min, 'bin_max' : bin_max, 'n_bin_2PCF' : n_bin_2PCF, 'min_reliable' : None, 'max_reliable' : None}
+        self.Bins, self.Mean_2PCF, self.Std_2PCF = pa.get_2PCF(input_data = self.CM, bin_min = bin_min, bin_max = bin_max, n_bin_2PCF = n_bin_2PCF, box_size = self.box_size)
+    
+    def compute_MST_histogram(self):
+        if (self.MST is None):
+            self.compute_MST()
+        
+        self.MST_histogram = pa.get_MST_histogram(MST = self.MST)
 
 
 ## Tools
