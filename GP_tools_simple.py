@@ -10,7 +10,7 @@ rc('text', usetex = True)
 ## GP Class
 class GP():
     
-    def __init__(self, X, Y, n_points_per_simu = 5, Noise = None):
+    def __init__(self, X, Y, n_points_per_simu = 5, Noise = None, make_covariance_matrix = True):
         self.X_data = X # (n_simu * n_points_per_simu, 6) array
         self.Y_data = Y # (n_simu * n_points_per_simu, 1) array
         
@@ -25,6 +25,10 @@ class GP():
         
         self.model = None # GPy.model object
         self.make_model()
+        
+        self.cov = None # (n_points_per_simu, n_points_per_simu) array
+        if make_covariance_matrix:
+            self.make_covariance_matrix()
     
     def make_kernel(self):
         self.kernel = GPy.kern.RBF(6, active_dims = [0, 1, 2, 3, 4, 5], ARD = True)
@@ -39,9 +43,63 @@ class GP():
         
         self.model = gp
     
-    def change_kernels(self, new_kernel):
+    def make_covariance_matrix(self):
+        # defining the groups
+        n_groups = int(self.n_simu)
+        
+        List_groups = []
+        for i in range(n_groups):
+            start_group = ((i * int(self.n_simu)) // n_groups)
+            end_group =  (((i + 1) * int(self.n_simu)) // n_groups)
+            
+            X_test_a = self.X_data[start_group * self.n_points_per_simu : end_group * self.n_points_per_simu]
+            X_data_a = np.concatenate((self.X_data[0 : start_group * self.n_points_per_simu], self.X_data[end_group * self.n_points_per_simu :]), 0)
+            Y_test_a = self.Y_data[start_group * self.n_points_per_simu : end_group * self.n_points_per_simu]
+            Y_data_a = np.concatenate((self.Y_data[0 : start_group * self.n_points_per_simu], self.Y_data[end_group * self.n_points_per_simu :]), 0)
+            
+            List_groups.append((X_data_a, Y_data_a, X_test_a, Y_test_a))
+        
+        # Evaluating the GP's errors
+        Errors = []
+        
+        for j in range(n_groups):
+            # getting the right kernel
+            kernel_a = self.kernel.copy()
+            
+            # getting the right data and test groups
+            X_data_a, Y_data_a, X_test_a, Y_test_a = List_groups[j]
+            
+            # creating the gaussian process and optimizing it
+            gp_a = GP(X = X_data_a, Y = Y_data_a, n_points_per_simu = self.n_points_per_simu, Noise = None, make_covariance_matrix = False)
+            gp_a.change_kernel(new_kernel = kernel_a, make_covariance_matrix = False)
+            gp_a.optimize_model(optimizer = 'lbfgsb')
+            
+            # getting the errors
+            errors = gp_a.compute_error_test(X_test_a, Y_test_a)
+            
+            # adding the errors to the lsit
+            Errors.append(errors)
+        
+        # computing the covariance matrix from the error
+        Errors = np.asarray(Errors).T
+        
+        cov = [[0 for i in range(self.n_points_per_simu)] for j in range(self.n_points_per_simu)]
+        for i in range(self.n_points_per_simu):
+            for j in range(self.n_points_per_simu):
+                sum = 0
+                for k in range(n_groups):
+                    sum += Errors[i, k] * Errors[j, k]
+                cov[i][j] = sum / (n_groups - 1)
+        cov = np.asarray(cov)
+        
+        # saving the covariance matrix
+        self.cov = cov
+    
+    def change_kernel(self, new_kernel, make_covariance_matrix = True):
         self.kernel = new_kernel
         self.make_model()
+        if make_covariance_matrix :
+            self.make_covariance_matrix()
     
     def change_model_to_heteroscedatic(self, Noise = None):
         self.Noise = Noise # None or (1, n_points) array
@@ -54,7 +112,8 @@ class GP():
             gp.het_Gauss.variance.fix()
         
         self.model = gp
-            
+        self.make_covariance_matrix()
+    
     def optimize_model(self, optimizer = 'lbfgsb'):
         self.model.optimize(optimizer = optimizer)
     
@@ -64,11 +123,8 @@ class GP():
         print("GP model :")
         print(gp.rbf.variance)
         print(gp.rbf.lengthscale)
-        if (self.Noise is not None):
-            #print(gp.het_Gauss.variance)
-            print()
-        else:
-            print(gp.Gaussian_noise.variance)
+        print("GP covariance matrix : ")
+        print(self.cov)
         print("Obj : " + str(gp.objective_function()))
         print("\n")
     
@@ -89,60 +145,19 @@ class GP():
             
             X_predicted.append(X_new)
             Y_predicted.append(Y_new)
-            Cov.append(Cov_new)
+            Cov.append(self.cov)
         return(X_predicted, Y_predicted, Cov)
     
-    def test_rms(self, X_test, Y_test, Noise_test = None):
-        s = 0
-        for i in range(np.shape(X_test)[0]):
-            X_new = np.reshape(X_test[i], (1, 6))
-            y_predicted = (self.model.predict(X_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))[0][0][0]
-            y_expected = Y_test[i]
-            s += (y_predicted - y_expected)**2
+    def compute_error_test(self, X_test, Y_test): # we assume the model either has already been optimized
+        n_test = np.shape(X_test)[0]
         
-        ms = s / np.shape(X_test)[0]
-        
-        rms = np.sqrt(ms)
-        return(rms)
-    
-    def test_chi2(self, X_test, Y_test, Noise_test = None):
-        if (Noise_test is not None):
-            Y_std_test = Noise_test
-        else:
-            print("Error : a noise is necessary for test_chi2")
-        
-        s = 0            
-        for i in range(np.shape(X_test)[0]):
-            X_new = np.reshape(X_test[i], (1, 6))
-            y_predicted, c = (self.model.predict(X_new, full_cov = True, Y_metadata = {'output_index' : np.array([0])}))
-            y_expected, noise = Y_test[i], Y_std_test[i]
-            s += (y_predicted - y_expected)**2 / (noise**2)
-        
-        ms = s / np.shape(X_test)[0]
-        
-        chi_2 = ms[0][0]
-        return(chi_2)
-    
-    def likelihood_chi2(self, Y_model, Noise_model, Y_observation, Noise_observation):
-        s = 0
-        
-        n_simulations = np.shape(Y_observation)[0]
-        
-        for i in range(n_simulations):
-            Sigma_model = Noise_model[i]
-            Sigma_observation = np.diagflat(Noise_observation[i]**2)
-            
-            #Sigma = Sigma_model + Sigma_observation
-            Sigma = 2 * Sigma_observation
-            Sigma_inv = np.linalg.inv(Sigma)
-            
-            U = Y_model[i]
-            V = Y_observation[i]
-            
-            s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
-        
-        chi2 = s / (self.n_points_per_simu * n_simulations)
-        return(chi2)
+        errors = []
+        for i in range(n_test):
+            x_test = np.reshape(X_test[i], (1, 6))
+            y_test, std_test = self.model.predict(x_test, full_cov = True, Y_metadata = {'output_index' : np.array([0])})
+            errors.append(np.asscalar(y_test - Y_test[i]))
+
+        return(errors)
     
     def likelihood_ms(self, Y_model, Y_observation, Noise_model = None, Noise_observation = None):
         s = 0
@@ -159,3 +174,74 @@ class GP():
         
         ms = s / (self.n_points_per_simu * n_simulations)
         return(ms)
+    
+    def likelihood_chi2_bd(self, Y_model, Noise_model, Y_observation, Noise_observation):
+        s = 0
+        
+        n_simulations = np.shape(Y_observation)[0]
+        
+        for i in range(n_simulations):
+            Sigma_model = Noise_model[i]
+            Sigma_observation = np.diagflat(Noise_observation[i]**2)
+            
+            #Sigma = Sigma_model + Sigma_observation
+            Sigma = 2 * Sigma_observation
+            Sigma_inv = np.linalg.inv(Sigma)
+            
+            U = Y_model[i]
+            V = Y_observation[i]
+            W = U - V
+            
+            s += np.dot(np.dot(np.transpose(W), Sigma_inv), W)
+            #s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
+        
+        chi2 = s / (n_simulations)
+        return(np.asscalar(chi2))
+    
+    def likelihood_chi2_ad(self, Y_model, Noise_model, Y_observation, Noise_observation, N = 21):
+        s = 0
+        
+        n_simulations = np.shape(Y_observation)[0]
+        
+        for i in range(n_simulations):
+            Sigma_model = Noise_model[i]
+            Sigma_observation = np.diagflat(Noise_observation[i]**2)
+            
+            #Sigma = Sigma_model + Sigma_observation
+            Sigma = 2 * Sigma_observation
+            Sigma_inv = np.linalg.inv(Sigma)
+            
+            U = Y_model[i]
+            V = Y_observation[i]
+            W = U - V
+            
+            det = np.linalg.det(Sigma)
+            
+            #s += -2 * np.log(det**(-0.5) * (1 + np.dot(np.dot(np.transpose(W), Sigma_inv), W) / (N - 1))**(- N / 2))
+            s += -2 * np.log((1 + np.dot(np.dot(np.transpose(W), Sigma_inv), W) / (N - 1))**(- N / 2))
+        
+        chi2 = s / (n_simulations)
+        return(np.asscalar(chi2))
+    
+    def likelihood_chi2_bm(self, Y_model, Noise_model, Y_observation, Noise_observation):
+        s = 0
+        
+        n_simulations = np.shape(Y_observation)[0]
+        
+        for i in range(n_simulations):
+            Sigma_model = Noise_model[i]
+            Sigma_observation = Noise_observation[i]
+            
+            Sigma = Sigma_model + Sigma_observation
+            # Sigma = 2 * Sigma_observation
+            Sigma_inv = np.linalg.inv(Sigma)
+            
+            U = Y_model[i]
+            V = Y_observation[i]
+            W = U - V
+            
+            s += np.dot(np.dot(np.transpose(W), Sigma_inv), W)
+            #s += spatial.distance.mahalanobis(U, V, Sigma_inv)**2
+        
+        chi2 = s / (n_simulations)
+        return(np.asscalar(chi2))

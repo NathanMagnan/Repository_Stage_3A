@@ -206,42 +206,59 @@ def chi2(X):
     # giving the right shape to the predicted value
     Y_s_predicted = [Y_s_predicted[0]]
     
-    # searching for the expected value
+    # searching for the expected value and the noise
     X_s_predicted = X_s_predicted[0][:, 5]
     
-    Y_s_expected = np.asarray([0 for i in range(np.shape(X_s_predicted)[0])])
-    Y_s_std_expected = np.asarray([0 for i in range(np.shape(X_s_predicted)[0])])
-    for k in range(np.shape(Y_s_expected)[0]):
-        l_min = 0
-        min = 10
-        x1 = X_s_predicted[k]
-        for l in range(np.shape(X_s_abacus)[0]):
-            x2 = X_s_abacus[l]
-            if (abs(x1 - x2) < min):
-                min = abs(x1 - x2)
-                l_min = l
-        Y_s_expected[k] = Mean_s_fidu[l_min]
-        Y_s_std_expected[k] = Std_s_fidu[l_min]
-    Y_s_expected = np.asarray(Y_s_expected)
-    Y_s_std_expected = np.asarray(Y_s_std_expected) / (np.log(10) * Y_s_expected)
-    Y_s_expected = np.log10(Y_s_expected)
+    Fiducial_data = np.asarray([[0 for j in range(n_fiducial)] for i in range(np.shape(X_s_predicted)[0])])
+    for i in range(np.shape(X_s_predicted)[0]):
+        x1 = X_s_predicted[i]
+        for j in range(n_fiducial):
+            l_min = 0
+            min = 10
+            for l in range(np.shape(dict['X_s'][n_simulations + j])[0]):
+                x2 = dict['X_s'][n_simulations + j][l]
+                if (abs(x1 - x2) < min):
+                    min = abs(x1 - x2)
+                    l_min = l
+            try:
+                Fiducial_data[i][j] = (dict['Y_s'][n_simulations + j][l_min - 1] + dict['Y_s'][n_simulations + j][l_min] + dict['Y_s'][n_simulations + j][l_min + 1]) / 3
+            except:
+                Fiducial_data[i][j] = dict['Y_s'][n_simulations + j][l_min]
+    
+    Fiducial_data = Fiducial_data
+    Y_s_expected = np.mean(Fiducial_data, axis = 1)
+    Noise_s_expected = np.cov(Fiducial_data)
+    Y_s_std_expected = np.sqrt(np.diagonal(Noise_s_expected))
+    
+    # correction to account for the logarithm transformation
+    for i in range(np.shape(X_s_predicted)[0]):
+        Y_s_std_expected[i] = Y_s_std_expected[i] / (np.log(10) * Y_s_expected[i])
+    
+    for i in range(np.shape(X_s_predicted)[0]):
+        for j in range(np.shape(X_s_predicted)[0]):
+            Noise_s_expected[i, j] = Noise_s_expected[i, j] / (np.log(10)**2 * Y_s_expected[i] * Y_s_expected[j])
+    
+    for i in range(np.shape(X_s_predicted)[0]):
+        Y_s_expected[i] = np.log10(Y_s_expected[i])
     
     # Giving the right shape to the expected value
     Y_s_expected = [np.reshape(Y_s_expected, (5, 1))]
     
     # Defining the noises
     Noise_predicted_s = Cov_s
-    Noise_expected_s = [Y_s_std_expected]
+    Noise_expected_s_diagonal = [Y_s_std_expected]
+    Noise_expected_s_matrix = [Noise_s_expected]
     
     # Computing the likelihood
-    chi2_s = gp_s.likelihood_chi2(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s)
+    # chi2_s = gp_s.likelihood_chi2_bd(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_diagonal, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s)
+    # chi2_s = gp_s.likelihood_chi2_ad(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_diagonal, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s, N = 21)
+    chi2_s = gp_s.likelihood_chi2_bm(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_matrix, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s) 
     
     if (m.isnan(chi2_s)):
-        print("chi2_s is Nan")
+        print("chi2_s is NaN")
         print(X)
         return(- m.inf)
     
-    # combining the 2 statistics
     chi2 = chi2_s
     
     # returning the log-likelihood or chi_2
@@ -325,7 +342,7 @@ plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_s'
+my_file = 'Figure_12_EMCEE_bm_s'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()
@@ -345,7 +362,7 @@ plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_corner_s'
+my_file = 'Figure_12_EMCEE_corner_bm_s'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()

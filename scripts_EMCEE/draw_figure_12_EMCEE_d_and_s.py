@@ -272,43 +272,70 @@ def chi2(X):
     Y_d_predicted = [Y_d_predicted[0]]
     Y_s_predicted = [Y_s_predicted[0]]
     
-    # searching for the expected value
+    # searching for the expected value and the noise
     X_d_predicted = X_d_predicted[0][:, 5]
+    
+    Fiducial_data = np.asarray([[0 for j in range(n_fiducial)] for i in range(np.shape(X_d_predicted)[0])])
+    for i in range(np.shape(X_d_predicted)[0]):
+        x1 = X_d_predicted[i]
+        for j in range(n_fiducial):
+            l_min = 0
+            min = 10
+            for l in range(np.shape(dict['X_d'][n_simulations + j])[0]):
+                x2 = dict['X_d'][n_simulations + j][l] / 6
+                if (abs(x1 - x2) < min):
+                    min = abs(x1 - x2)
+                    l_min = l
+            Fiducial_data[i][j] = dict['Y_d'][n_simulations + j][l_min]
+    
+    Fiducial_data = Fiducial_data
+    Y_d_expected = np.mean(Fiducial_data, axis = 1)
+    Noise_d_expected = np.cov(Fiducial_data)
+    Y_d_std_expected = np.sqrt(np.diagonal(Noise_d_expected))
+    
     X_s_predicted = X_s_predicted[0][:, 5]
     
-    Y_d_expected = np.asarray([0 for i in range(np.shape(X_d_predicted)[0])])
-    Y_d_std_expected = np.asarray([0 for i in range(np.shape(X_d_predicted)[0])])
-    for k in range(np.shape(Y_d_expected)[0]):
-        l_min = 0
-        min = 10
-        x1 = X_d_predicted[k]
-        for l in range(np.shape(X_d_abacus)[0]):
-            x2 = X_d_abacus[l] / 6
-            if (abs(x1 - x2) < min):
-                min = abs(x1 - x2)
-                l_min = l
-        Y_d_expected[k] = Mean_d_fidu[l_min]
-        Y_d_std_expected[k] = Std_d_fidu[l_min]
-    Y_d_expected = np.asarray(Y_d_expected)
-    Y_d_std_expected = np.asarray(Y_d_std_expected) / (np.log(10) * Y_d_expected)
-    Y_d_expected = np.log10(Y_d_expected)
+    Fiducial_data = np.asarray([[0 for j in range(n_fiducial)] for i in range(np.shape(X_s_predicted)[0])])
+    for i in range(np.shape(X_s_predicted)[0]):
+        x1 = X_s_predicted[i]
+        for j in range(n_fiducial):
+            l_min = 0
+            min = 10
+            for l in range(np.shape(dict['X_s'][n_simulations + j])[0]):
+                x2 = dict['X_s'][n_simulations + j][l]
+                if (abs(x1 - x2) < min):
+                    min = abs(x1 - x2)
+                    l_min = l
+            try:
+                Fiducial_data[i][j] = (dict['Y_s'][n_simulations + j][l_min - 1] + dict['Y_s'][n_simulations + j][l_min] + dict['Y_s'][n_simulations + j][l_min + 1]) / 3
+            except:
+                Fiducial_data[i][j] = dict['Y_s'][n_simulations + j][l_min]
     
-    Y_s_expected = np.asarray([0 for i in range(np.shape(X_s_predicted)[0])])
-    Y_s_std_expected = np.asarray([0 for i in range(np.shape(X_s_predicted)[0])])
-    for k in range(np.shape(Y_s_expected)[0]):
-        l_min = 0
-        min = 10
-        x1 = X_s_predicted[k]
-        for l in range(np.shape(X_s_abacus)[0]):
-            x2 = X_s_abacus[l]
-            if (abs(x1 - x2) < min):
-                min = abs(x1 - x2)
-                l_min = l
-        Y_s_expected[k] = Mean_s_fidu[l_min]
-        Y_s_std_expected[k] = Std_s_fidu[l_min]
-    Y_s_expected = np.asarray(Y_s_expected)
-    Y_s_std_expected = np.asarray(Y_s_std_expected) / (np.log(10) * Y_s_expected)
-    Y_s_expected = np.log10(Y_s_expected)
+    Fiducial_data = Fiducial_data
+    Y_s_expected = np.mean(Fiducial_data, axis = 1)
+    Noise_s_expected = np.cov(Fiducial_data)
+    Y_s_std_expected = np.sqrt(np.diagonal(Noise_s_expected))
+    
+    # correction to account for the logarithm transformation
+    for i in range(np.shape(X_d_predicted)[0]):
+        Y_d_std_expected[i] = Y_d_std_expected[i] / (np.log(10) * Y_d_expected[i])
+    
+    for i in range(np.shape(X_d_predicted)[0]):
+        for j in range(np.shape(X_d_predicted)[0]):
+            Noise_d_expected[i, j] = Noise_d_expected[i, j] / (np.log(10)**2 * Y_d_expected[i] * Y_d_expected[j])
+    
+    for i in range(np.shape(X_d_predicted)[0]):
+        Y_d_expected[i] = np.log10(Y_d_expected[i])
+    
+    for i in range(np.shape(X_s_predicted)[0]):
+        Y_s_std_expected[i] = Y_s_std_expected[i] / (np.log(10) * Y_s_expected[i])
+    
+    for i in range(np.shape(X_s_predicted)[0]):
+        for j in range(np.shape(X_s_predicted)[0]):
+            Noise_s_expected[i, j] = Noise_s_expected[i, j] / (np.log(10)**2 * Y_s_expected[i] * Y_s_expected[j])
+    
+    for i in range(np.shape(X_s_predicted)[0]):
+        Y_s_expected[i] = np.log10(Y_s_expected[i])
     
     # Giving the right shape to the expected value
     Y_d_expected = [np.reshape(Y_d_expected, (4, 1))]
@@ -316,13 +343,21 @@ def chi2(X):
     
     # Defining the noises
     Noise_predicted_d = Cov_d
-    Noise_expected_d = [Y_d_std_expected]
+    Noise_expected_d_diagonal = [Y_d_std_expected]
+    Noise_expected_d_matrix = [Noise_d_expected]
+    
     Noise_predicted_s = Cov_s
-    Noise_expected_s = [Y_s_std_expected]
+    Noise_expected_s_diagonal = [Y_s_std_expected]
+    Noise_expected_s_matrix = [Noise_s_expected]
     
     # Computing the likelihood
-    chi2_d = gp_d.likelihood_chi2(Y_observation = Y_d_expected, Noise_observation = Noise_expected_d, Y_model = Y_d_predicted, Noise_model = Noise_predicted_d)
-    chi2_s = gp_s.likelihood_chi2(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s)
+    #chi2_d = gp_d.likelihood_chi2_bd(Y_observation = Y_d_expected, Noise_observation = Noise_expected_d_diagonal, Y_model = Y_d_predicted, Noise_model = Noise_predicted_d)
+    # chi2_d = gp_d.likelihood_chi2_ad(Y_observation = Y_d_expected, Noise_observation = Noise_expected_d_diagonal, Y_model = Y_d_predicted, Noise_model = Noise_predicted_d, N = 21)
+    chi2_d = gp_d.likelihood_chi2_bm(Y_observation = Y_d_expected, Noise_observation = Noise_expected_d_matrix, Y_model = Y_d_predicted, Noise_model = Noise_predicted_d) 
+    
+    # chi2_s = gp_s.likelihood_chi2_bd(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_diagonal, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s)
+    # chi2_s = gp_s.likelihood_chi2_ad(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_diagonal, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s, N = 21)
+    chi2_s = gp_s.likelihood_chi2_bm(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_matrix, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s) 
     
     if (m.isnan(chi2_d)):
         print("chi2_d is NaN")
@@ -335,7 +370,7 @@ def chi2(X):
         return(- m.inf)
     
     # combining the 2 statistics
-    chi2 = (4 * chi2_d + 5 * chi2_s) / (4 + 5)
+    chi2 = chi2_d + chi2_s
     
     # returning the log-likelihood or chi_2
     return(-0.5 * chi2)
@@ -418,7 +453,7 @@ plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_d_and_s'
+my_file = 'Figure_12_EMCEE_bm_ds'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()
@@ -438,7 +473,7 @@ plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_corner_d_and_s'
+my_file = 'Figure_12_EMCEE_corner_bm_ds'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()
