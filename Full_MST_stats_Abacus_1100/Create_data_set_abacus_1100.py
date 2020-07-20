@@ -58,30 +58,22 @@ target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus_1100/MST_
 
 X_d = ab.MST_histogram['x_d']
 Y_d = ab.MST_histogram['y_d']
-Y_d_std = ab.MST_histogram['y_d_std']
 np.savetxt(str(target) + str(i) + "_X_d", X_d)
 np.savetxt(str(target) + str(i) + "_Y_d", Y_d)
-np.savetxt(str(target) + str(i) + "_Y_d_std", Y_d_std)
 
 X_l = ab.MST_histogram['x_l']
 Y_l = ab.MST_histogram['y_l']
-Y_l_std = ab.MST_histogram['y_l_std']
 np.savetxt(str(target) + str(i) + "_X_l", X_l)
 np.savetxt(str(target) + str(i) + "_Y_l", Y_l)
-np.savetxt(str(target) + str(i) + "_Y_l_std", Y_l_std)
 
 X_b = ab.MST_histogram['x_b']
 Y_b = ab.MST_histogram['y_b']
-Y_b_std = ab.MST_histogram['y_b_std']
 np.savetxt(str(target) + str(i) + "_X_b", X_b)
 np.savetxt(str(target) + str(i) + "_Y_b", Y_b)
-np.savetxt(str(target) + str(i) + "_Y_b_std", Y_b_std)
 
 X_s = ab.MST_histogram['x_s']
 Y_s = ab.MST_histogram['y_s']
-Y_s_std = ab.MST_histogram['y_s_std']
 np.savetxt(str(target) + str(i) + "_X_s", X_s)
 np.savetxt(str(target) + str(i) + "_Y_s", Y_s)
-np.savetxt(str(target) + str(i) + "_Y_s_std", Y_s_std)
 
 print("data set fully created")

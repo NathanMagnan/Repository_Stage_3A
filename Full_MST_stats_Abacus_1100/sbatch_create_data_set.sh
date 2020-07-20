@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -p p5
+#SBATCH -p p4
 #SBATCH --ntasks=41
 #SBATCH --cpus-per-task=1
 #SBATCH -J create_data_set_1100
