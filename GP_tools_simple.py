@@ -159,6 +159,30 @@ class GP():
 
         return(errors)
     
+    def compute_chi2_test(self, X_test, Y_test, Y_std_test): # we assume the model either has already been optimized
+        n_test = np.shape(X_test)[0]
+        
+        s = 0
+        for i in range(n_test):
+            x_test = np.reshape(X_test[i], (1, 6))
+            y_predicted, std_test = self.model.predict(x_test, full_cov = True, Y_metadata = {'output_index' : np.array([0])})
+            y_expected, y_std_expected = Y_test[i], Y_std_test[i]
+            s += (y_predicted - y_expected)**2 / y_std_expected**2
+
+        return(np.asscalar(s))
+    
+    def compute_ms_test(self, X_test, Y_test, Y_std_test): # we assume the model either has already been optimized
+        n_test = np.shape(X_test)[0]
+        
+        s = 0
+        for i in range(n_test):
+            x_test = np.reshape(X_test[i], (1, 6))
+            y_predicted, std_test = self.model.predict(x_test, full_cov = True, Y_metadata = {'output_index' : np.array([0])})
+            y_expected, y_std_expected = Y_test[i], Y_std_test[i]
+            s += (y_predicted - y_expected)**2
+
+        return(np.asscalar(s))
+    
     def likelihood_ms(self, Y_model, Y_observation, Noise_model = None, Noise_observation = None):
         s = 0
         
