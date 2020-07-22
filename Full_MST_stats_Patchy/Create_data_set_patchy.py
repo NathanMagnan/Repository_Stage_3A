@@ -1,14 +1,12 @@
 ## Imports
 import numpy as np
+import mistree as mist
+import pickle
+import pandas
 from mpi4py import MPI
 
 import sys
 import os
-sys.path.append('/home/astro/magnan/Repository_Stage_3A')
-import catalogue_tools as cat
-sys.path.append("/home/astro/magnan")
-from AbacusCosmos import InputFile
-os.chdir('/home/astro/magnan')
 
 print("All imports successful")
 
@@ -16,7 +14,7 @@ print("All imports successful")
 print("Starting to set up the MPI")
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
-n_proc = comm.Get_size() # Should be equal to 41
+n_proc = comm.Get_size() # Should be as large as possible
 
 i = int(rank)
 
@@ -37,39 +35,31 @@ list_files = os.listdir(path)
 file = list_files[i]
 my_file = os.path.join(path, file)
 
-# creating a catalogue object
-pa = cat.Catalogue_Patchy(basePath = my_file)
-print("simulation " + str(i) + " : catalogue created")
+# reading the file
+Patchy = pandas.read_csv(my_file, sep = ' ', names = ['X', 'Y', 'Z', 'vX', 'vY', 'vZ', 'vMax'])
+X = Patchy['X'].values
+Y = Patchy['Y'].values
+Z = Patchy['Z'].values
+print("file read")
 
-# gettting the data
-pa.initialise_data()
-print("simulation " + str(i) + " : data acquired")
+# computing the MST
+patchy_mst = mist.GetMST(x = X, y = Y, z = Z)
+d, l, b, s = patchy_mst.get_stats(include_index = False)
+print("MST computed")
 
-# computing the histogram
-pa.compute_MST_histogram()
-print("simulation " + str(i) + " : histogram computed")
+# computing the histograms
+patchy_histogram = mist.HistMST()
+patchy_histogram.setup(usenorm = False, uselog = True)
+patchy_histogram = patchy_histogram.get_hist(d, l, b, s)
 
-"""" saving the full statistics """
-target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Patchy/MST_stats_Catalogue_"
+# saving the MST
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Patchy/')
+my_file = 'Simulation' + str(i) + '.pkl'
+my_file = os.path.join(my_path, my_file)
 
-X_d = pa.MST_histogram['x_d']
-Y_d = pa.MST_histogram['y_d']
-np.savetxt(str(target) + str(i) + "_X_d", X_d)
-np.savetxt(str(target) + str(i) + "_Y_d", Y_d)
+f = open(my_file, "wb")
+pickle.dump(patchy_histogram, f)
+f.close()
+print("histogram saved")
 
-X_l = pa.MST_histogram['x_l']
-Y_l = pa.MST_histogram['y_l']
-np.savetxt(str(target) + str(i) + "_X_l", X_l)
-np.savetxt(str(target) + str(i) + "_Y_l", Y_l)
-
-X_b = pa.MST_histogram['x_b']
-Y_b = pa.MST_histogram['y_b']
-np.savetxt(str(target) + str(i) + "_X_b", X_b)
-np.savetxt(str(target) + str(i) + "_Y_b", Y_b)
-
-X_s = pa.MST_histogram['x_s']
-Y_s = pa.MST_histogram['y_s']
-np.savetxt(str(target) + str(i) + "_X_s", X_s)
-np.savetxt(str(target) + str(i) + "_Y_s", Y_s)
-
-print("data set fully created")
+print("work done on simulation " + str(i))
