@@ -18,7 +18,7 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 n_proc = comm.Get_size() # Should be equal to 41
 
-i = int(rank)
+i = int(rank) + 32
 
 print("MPI set up")
 
