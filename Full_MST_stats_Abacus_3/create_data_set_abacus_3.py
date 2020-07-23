@@ -92,7 +92,7 @@ for i in range(4):
             # getting the histogram
             histogram_box = mist.HistMST()
             histogram_box.setup(usenorm = False, uselog = True)
-            histogram_box = histogram.get_hist(d_box, l_box, b_box, s_box)
+            histogram_box = histogram_box.get_hist(d_box, l_box, b_box, s_box)
             print("histogram computed")
             
             # saving the histogram
