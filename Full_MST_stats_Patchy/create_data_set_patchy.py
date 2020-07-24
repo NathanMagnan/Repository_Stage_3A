@@ -20,7 +20,7 @@ i = int(rank)
 
 print("MPI set up")
 
-## creating the data set
+# creating the data set
 print("starting to work on creating the data set")
 
 print("starting to work on simulation " + str(i))
