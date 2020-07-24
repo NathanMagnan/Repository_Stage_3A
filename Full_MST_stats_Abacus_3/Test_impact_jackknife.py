@@ -605,6 +605,26 @@ Std_3_s = (64 * 21 - 1) * Std_3_s
 
 print("formula 3 ready")
 
+## Finding the Std for formula 4
+print("starting to work on formula 4")
+
+Std_4_d = (1 / (21**2)) * Std_3_d
+Std_4_l = (1 / (21**2)) * Std_3_l
+Std_4_b = (1 / (21**2)) * Std_3_b
+Std_4_s = (1 / (21**2)) * Std_3_s
+
+print("formula 4 ready")
+
+## Finding the Std for formula 5
+print("starting to work on formula 5")
+
+Std_5_d = (64 * 21 / ((64 * 21 - 1) * 63)) * Std_2_d
+Std_5_l = (64 * 21 / ((64 * 21 - 1) * 63)) * Std_2_l
+Std_5_b = (64 * 21 / ((64 * 21 - 1) * 63)) * Std_2_b
+Std_5_s = (64 * 21 / ((64 * 21 - 1) * 63)) * Std_2_s
+
+print("formula 5 ready")
+
 ## Plotting the results
 print("starting to plot")
 
@@ -622,12 +642,13 @@ for a in range(4):
             subplot.set_ylim(10**(-3))
             
             subplot.plot(X_d, np.sqrt(Std_basic_d) / Mean_basic_d, color = 'k', label = "Old estimator")
-            subplot.plot(X_d, np.sqrt(Std_jackknife_d) / Mean_basic_d, 'k--', label = 'Jackknife')
-            subplot.plot(X_d, np.sqrt(Std_1_d) / Mean_basic_d, color = 'g', label = 'Formula 1')
-            subplot.plot(X_d, np.sqrt(Std_2_d) / Mean_basic_d, color = 'b', label = 'Formula 2')
-            subplot.plot(X_d, np.sqrt(Std_3_d) / Mean_basic_d, color = 'r', label = "Formula 3")
-            subplot.plot(X_d, np.sqrt(Std_3_d / (21**2)) / Mean_basic_d, color = 'y', label = "Formula 4")
-            subplot.plot(X_d, np.sqrt(Std_2_d / 63) / Mean_basic_d, color = 'orange', label = 'Formula 5')
+            # subplot.plot(X_d, np.sqrt(Std_jackknife_d) / Mean_basic_d, color = 'b', label = 'Formula 1a')
+            # subplot.plot(X_d, np.sqrt(Std_simu_d) / Mean_basic_d, color = 'g', label = 'Formula 1b')
+            # subplot.plot(X_d, np.sqrt(Std_1_d) / Mean_basic_d, color = 'r', label = 'Formula 1c')
+            # subplot.plot(X_d, np.sqrt(Std_2_d) / Mean_basic_d, color = 'b', label = 'Formula 2')
+            # subplot.plot(X_d, np.sqrt(Std_3_d) / Mean_basic_d, color = 'r', label = "Formula 3")
+            # subplot.plot(X_d, np.sqrt(Std_4_d) / Mean_basic_d, color = 'r', label = "Formula 4")
+            # subplot.plot(X_d, np.sqrt(Std_5_d) / Mean_basic_d, color = 'b', label = 'Formula 5')
             
             subplot.legend()
         
@@ -640,12 +661,13 @@ for a in range(4):
             subplot.set_ylim(10**(-3))
             
             subplot.plot(X_l, np.sqrt(Std_basic_l) / Mean_basic_l, color = 'k', label = "Old estimator")
-            subplot.plot(X_l, np.sqrt(Std_jackknife_l) / Mean_basic_l, 'k--', label = 'Jackknife')
-            subplot.plot(X_l, np.sqrt(Std_1_l) / Mean_basic_l, color = 'g', label = 'Formula 1')
-            subplot.plot(X_l, np.sqrt(Std_2_l) / Mean_basic_l, color = 'b', label = 'Formula 2')
-            subplot.plot(X_l, np.sqrt(Std_3_l) / Mean_basic_l, color = 'r', label = "Formula 3")
-            subplot.plot(X_l, np.sqrt(Std_3_l / (21**2)) / Mean_basic_l, color = 'y', label = "Formula 4")
-            subplot.plot(X_l, np.sqrt(Std_2_l / 63) / Mean_basic_l, color = 'orange', label = 'Formula 5')
+            # subplot.plot(X_l, np.sqrt(Std_jackknife_l) / Mean_basic_l, color = 'b', label = 'Formula 1a')
+            # subplot.plot(X_l, np.sqrt(Std_simu_l) / Mean_basic_l, color = 'g', label = 'Formula 1b')
+            # subplot.plot(X_l, np.sqrt(Std_1_l) / Mean_basic_l, color = 'r', label = 'Formula 1c')
+            # subplot.plot(X_l, np.sqrt(Std_2_l) / Mean_basic_l, color = 'b', label = 'Formula 2')
+            # subplot.plot(X_l, np.sqrt(Std_3_l) / Mean_basic_l, color = 'r', label = "Formula 3")
+            # subplot.plot(X_l, np.sqrt(Std_4_l) / Mean_basic_l, color = 'r', label = "Formula 4")
+            # subplot.plot(X_l, np.sqrt(Std_5_l) / Mean_basic_l, color = 'b', label = 'Formula 5')
             
             subplot.legend(loc = 'upper left')
         
@@ -658,12 +680,13 @@ for a in range(4):
             subplot.set_ylim(10**(-3))
             
             subplot.plot(X_b, np.sqrt(Std_basic_b) / Mean_basic_b, color = 'k', label = "Old estimator")
-            subplot.plot(X_b, np.sqrt(Std_jackknife_b) / Mean_basic_b, 'k--', label = 'Jackknife')
-            subplot.plot(X_b, np.sqrt(Std_1_b) / Mean_basic_b, color = 'g', label = 'Formula 1')
-            subplot.plot(X_b, np.sqrt(Std_2_b) / Mean_basic_b, color = 'b', label = 'Formula 2')
-            subplot.plot(X_b, np.sqrt(Std_3_b) / Mean_basic_b, color = 'r', label = "Formula 3")
-            subplot.plot(X_b, np.sqrt(Std_3_b / (21**2)) / Mean_basic_b, color = 'y', label = "Formula 4")
-            subplot.plot(X_b, np.sqrt(Std_2_b / 63) / Mean_basic_b, color = 'orange', label = 'Formula 5')
+            # subplot.plot(X_b, np.sqrt(Std_jackknife_b) / Mean_basic_b, color = 'b', label = 'Formula 1a')
+            # subplot.plot(X_b, np.sqrt(Std_simu_b) / Mean_basic_b, color = 'g', label = 'Formula 1b')
+            # subplot.plot(X_b, np.sqrt(Std_1_b) / Mean_basic_b, color = 'r', label = 'Formula 1c')
+            # subplot.plot(X_b, np.sqrt(Std_2_b) / Mean_basic_b, color = 'b', label = 'Formula 2')
+            # subplot.plot(X_b, np.sqrt(Std_3_b) / Mean_basic_b, color = 'r', label = "Formula 3")
+            # subplot.plot(X_b, np.sqrt(Std_4_b) / Mean_basic_b, color = 'r', label = "Formula 4")
+            # subplot.plot(X_b, np.sqrt(Std_5_b) / Mean_basic_b, color = 'b', label = 'Formula 5')
             
             subplot.legend(loc = 'upper left')
         
@@ -675,12 +698,13 @@ for a in range(4):
             subplot.set_ylim(10**(-3))
             
             subplot.plot(X_s, np.sqrt(Std_basic_s) / Mean_basic_s, color = 'k', label = "Old estimator")
-            subplot.plot(X_s, np.sqrt(Std_jackknife_s) / Mean_basic_s, 'k--', label = 'Jackknife')
-            subplot.plot(X_s, np.sqrt(Std_1_s) / Mean_basic_s, color = 'g', label = 'Formula 1')
-            subplot.plot(X_s, np.sqrt(Std_2_s) / Mean_basic_s, color = 'b', label = 'Formula 2')
-            subplot.plot(X_s, np.sqrt(Std_3_s) / Mean_basic_s, color = 'r', label = "Formula 3")
-            subplot.plot(X_s, np.sqrt(Std_3_s / (21**2)) / Mean_basic_s, color = 'y', label = "Formula 4")
-            subplot.plot(X_s, np.sqrt(Std_2_s / 63) / Mean_basic_s, color = 'orange', label = 'Formula 5')
+            # subplot.plot(X_s, np.sqrt(Std_jackknife_s) / Mean_basic_s, color = 'b', label = 'Formula 1a')
+            # subplot.plot(X_s, np.sqrt(Std_simu_s) / Mean_basic_s, color = 'g', label = 'Formula 1b')
+            # subplot.plot(X_s, np.sqrt(Std_1_s) / Mean_basic_s, color = 'r', label = 'Formula 1c')
+            # subplot.plot(X_s, np.sqrt(Std_2_s) / Mean_basic_s, color = 'b', label = 'Formula 2')
+            # subplot.plot(X_s, np.sqrt(Std_3_s) / Mean_basic_s, color = 'r', label = "Formula 3")
+            # subplot.plot(X_s, np.sqrt(Std_4_s) / Mean_basic_s, color = 'r', label = "Formula 4")
+            # subplot.plot(X_s, np.sqrt(Std_5_s) / Mean_basic_s, color = 'b', label = 'Formula 5')
             
             subplot.legend()
 
