@@ -34,13 +34,13 @@ elif (i < 40):
 	number_str = str(i)
 else:
 	number_str = 'planck'
-path = '/home/astro/magnan/Abacus/AbacusCosmos_720box_products/AbacusCosmos_720box_'
+path = '/hpcstorage/magnan/Abacus_720/AbacusCosmos_720box_products/AbacusCosmos_720box_'
 path += number_str
 path += '_products/AbacusCosmos_720box_'
 path += number_str
 path += '_rockstar_halos/z0.100'
 if (i > 40):
-	path = '/home/astro/magnan/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-'
+	path = '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-'
 	path += str(i - 41)
 	path += '_products/AbacusCosmos_720box_planck_00-'
 	path += str(i - 41)

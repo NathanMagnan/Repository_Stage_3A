@@ -1,1386 +1,530 @@
 All imports successful
+Starting to set up the MPI
+MPI set up
 starting to work on creating the data set
-starting to work on simulation 41
-simulation 41 : catalogue created
-simulation 41 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 41 : histogram computed
-simulation 41 : parameters read
-starting to work on simulation 42
-simulation 42 : catalogue created
-simulation 42 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 42 : histogram computed
-simulation 42 : parameters read
-starting to work on simulation 43
-simulation 43 : catalogue created
-simulation 43 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 43 : histogram computed
-simulation 43 : parameters read
-starting to work on simulation 44
-simulation 44 : catalogue created
-simulation 44 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 44 : histogram computed
-simulation 44 : parameters read
-starting to work on simulation 45
-simulation 45 : catalogue created
-simulation 45 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 45 : histogram computed
-simulation 45 : parameters read
-starting to work on simulation 46
-simulation 46 : catalogue created
-simulation 46 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 46 : histogram computed
-simulation 46 : parameters read
-starting to work on simulation 47
-simulation 47 : catalogue created
-simulation 47 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 47 : histogram computed
-simulation 47 : parameters read
-starting to work on simulation 48
-simulation 48 : catalogue created
-simulation 48 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 48 : histogram computed
-simulation 48 : parameters read
-starting to work on simulation 49
-simulation 49 : catalogue created
-simulation 49 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 49 : histogram computed
-simulation 49 : parameters read
-starting to work on simulation 50
-simulation 50 : catalogue created
-simulation 50 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 50 : histogram computed
-simulation 50 : parameters read
-data set fully created
+starting to work on simulation 57
+simulation 57 : catalogue created
 All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 55
+simulation 55 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 60
+simulation 60 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 56
+simulation 56 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
 starting to work on creating the data set
 starting to work on simulation 51
 simulation 51 : catalogue created
-simulation 51 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 51 : histogram computed
-simulation 51 : parameters read
-starting to work on simulation 52
-simulation 52 : catalogue created
-simulation 52 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 52 : histogram computed
-simulation 52 : parameters read
-starting to work on simulation 53
-simulation 53 : catalogue created
-simulation 53 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 53 : histogram computed
-simulation 53 : parameters read
-starting to work on simulation 54
-simulation 54 : catalogue created
-simulation 54 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 54 : histogram computed
-simulation 54 : parameters read
-starting to work on simulation 55
-simulation 55 : catalogue created
-simulation 55 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 55 : histogram computed
-simulation 55 : parameters read
-starting to work on simulation 56
-simulation 56 : catalogue created
-simulation 56 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 56 : histogram computed
-simulation 56 : parameters read
-starting to work on simulation 57
-simulation 57 : catalogue created
-simulation 57 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 57 : histogram computed
-simulation 57 : parameters read
-starting to work on simulation 58
-simulation 58 : catalogue created
-simulation 58 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 58 : histogram computed
-simulation 58 : parameters read
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
 starting to work on simulation 59
 simulation 59 : catalogue created
-simulation 59 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 59 : histogram computed
-simulation 59 : parameters read
-starting to work on simulation 60
-simulation 60 : catalogue created
-simulation 60 : data acquired
-starting to work on subsample 1
-starting to work on subsample 2
-starting to work on subsample 3
-starting to work on subsample 4
-starting to work on subsample 5
-starting to work on subsample 6
-starting to work on subsample 7
-starting to work on subsample 8
-starting to work on subsample 9
-starting to work on subsample 10
-starting to work on subsample 11
-starting to work on subsample 12
-starting to work on subsample 13
-starting to work on subsample 14
-starting to work on subsample 15
-starting to work on subsample 16
-starting to work on subsample 17
-starting to work on subsample 18
-starting to work on subsample 19
-starting to work on subsample 20
-starting to work on subsample 21
-starting to work on subsample 22
-starting to work on subsample 23
-starting to work on subsample 24
-starting to work on subsample 25
-starting to work on subsample 26
-starting to work on subsample 27
-starting to work on subsample 28
-starting to work on subsample 29
-starting to work on subsample 30
-starting to work on subsample 31
-starting to work on subsample 32
-starting to work on subsample 33
-starting to work on subsample 34
-starting to work on subsample 35
-starting to work on subsample 36
-starting to work on subsample 37
-starting to work on subsample 38
-starting to work on subsample 39
-starting to work on subsample 40
-starting to work on subsample 41
-starting to work on subsample 42
-starting to work on subsample 43
-starting to work on subsample 44
-starting to work on subsample 45
-starting to work on subsample 46
-starting to work on subsample 47
-starting to work on subsample 48
-starting to work on subsample 49
-starting to work on subsample 50
-starting to work on subsample 51
-starting to work on subsample 52
-starting to work on subsample 53
-starting to work on subsample 54
-starting to work on subsample 55
-starting to work on subsample 56
-starting to work on subsample 57
-starting to work on subsample 58
-starting to work on subsample 59
-starting to work on subsample 60
-starting to work on subsample 61
-starting to work on subsample 62
-starting to work on subsample 63
-starting to work on subsample 64
-simulation 60 : histogram computed
-simulation 60 : parameters read
-data set fully created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 49
+simulation 49 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 53
+simulation 53 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 52
+simulation 52 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 48
+simulation 48 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 50
+simulation 50 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 54
+simulation 54 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 58
+simulation 58 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 42
+simulation 42 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 45
+simulation 45 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 41
+simulation 41 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 43
+simulation 43 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 44
+simulation 44 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 47
+simulation 47 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 46
+simulation 46 : catalogue created
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 32
+simulation 32 : catalogue created
+simulation 32 : data acquired
+simulation 32 : histogram computed
+simulation 32 : parameters read
+work done on simulation 32
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 36
+simulation 36 : catalogue created
+simulation 36 : data acquired
+simulation 36 : histogram computed
+simulation 36 : parameters read
+work done on simulation 36
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 33
+simulation 33 : catalogue created
+simulation 33 : data acquired
+simulation 33 : histogram computed
+simulation 33 : parameters read
+work done on simulation 33
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 38
+simulation 38 : catalogue created
+simulation 38 : data acquired
+simulation 38 : histogram computed
+simulation 38 : parameters read
+work done on simulation 38
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 40
+simulation 40 : catalogue created
+simulation 40 : data acquired
+simulation 40 : histogram computed
+simulation 40 : parameters read
+work done on simulation 40
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 35
+simulation 35 : catalogue created
+simulation 35 : data acquired
+simulation 35 : histogram computed
+simulation 35 : parameters read
+work done on simulation 35
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 39
+simulation 39 : catalogue created
+simulation 39 : data acquired
+simulation 39 : histogram computed
+simulation 39 : parameters read
+work done on simulation 39
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 34
+simulation 34 : catalogue created
+simulation 34 : data acquired
+simulation 34 : histogram computed
+simulation 34 : parameters read
+work done on simulation 34
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 37
+simulation 37 : catalogue created
+simulation 37 : data acquired
+simulation 37 : histogram computed
+simulation 37 : parameters read
+work done on simulation 37
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 27
+simulation 27 : catalogue created
+simulation 27 : data acquired
+simulation 27 : histogram computed
+simulation 27 : parameters read
+work done on simulation 27
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 17
+simulation 17 : catalogue created
+simulation 17 : data acquired
+simulation 17 : histogram computed
+simulation 17 : parameters read
+work done on simulation 17
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 25
+simulation 25 : catalogue created
+simulation 25 : data acquired
+simulation 25 : histogram computed
+simulation 25 : parameters read
+work done on simulation 25
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 8
+simulation 8 : catalogue created
+simulation 8 : data acquired
+simulation 8 : histogram computed
+simulation 8 : parameters read
+work done on simulation 8
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 28
+simulation 28 : catalogue created
+simulation 28 : data acquired
+simulation 28 : histogram computed
+simulation 28 : parameters read
+work done on simulation 28
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 20
+simulation 20 : catalogue created
+simulation 20 : data acquired
+simulation 20 : histogram computed
+simulation 20 : parameters read
+work done on simulation 20
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 30
+simulation 30 : catalogue created
+simulation 30 : data acquired
+simulation 30 : histogram computed
+simulation 30 : parameters read
+work done on simulation 30
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 1
+simulation 1 : catalogue created
+simulation 1 : data acquired
+simulation 1 : histogram computed
+simulation 1 : parameters read
+work done on simulation 1
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 23
+simulation 23 : catalogue created
+simulation 23 : data acquired
+simulation 23 : histogram computed
+simulation 23 : parameters read
+work done on simulation 23
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 18
+simulation 18 : catalogue created
+simulation 18 : data acquired
+simulation 18 : histogram computed
+simulation 18 : parameters read
+work done on simulation 18
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 7
+simulation 7 : catalogue created
+simulation 7 : data acquired
+simulation 7 : histogram computed
+simulation 7 : parameters read
+work done on simulation 7
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 29
+simulation 29 : catalogue created
+simulation 29 : data acquired
+simulation 29 : histogram computed
+simulation 29 : parameters read
+work done on simulation 29
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 12
+simulation 12 : catalogue created
+simulation 12 : data acquired
+simulation 12 : histogram computed
+simulation 12 : parameters read
+work done on simulation 12
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 15
+simulation 15 : catalogue created
+simulation 15 : data acquired
+simulation 15 : histogram computed
+simulation 15 : parameters read
+work done on simulation 15
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 16
+simulation 16 : catalogue created
+simulation 16 : data acquired
+simulation 16 : histogram computed
+simulation 16 : parameters read
+work done on simulation 16
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 6
+simulation 6 : catalogue created
+simulation 6 : data acquired
+simulation 6 : histogram computed
+simulation 6 : parameters read
+work done on simulation 6
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 26
+simulation 26 : catalogue created
+simulation 26 : data acquired
+simulation 26 : histogram computed
+simulation 26 : parameters read
+work done on simulation 26
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 0
+simulation 0 : catalogue created
+simulation 0 : data acquired
+simulation 0 : histogram computed
+simulation 0 : parameters read
+work done on simulation 0
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 10
+simulation 10 : catalogue created
+simulation 10 : data acquired
+simulation 10 : histogram computed
+simulation 10 : parameters read
+work done on simulation 10
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 24
+simulation 24 : catalogue created
+simulation 24 : data acquired
+simulation 24 : histogram computed
+simulation 24 : parameters read
+work done on simulation 24
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 19
+simulation 19 : catalogue created
+simulation 19 : data acquired
+simulation 19 : histogram computed
+simulation 19 : parameters read
+work done on simulation 19
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 21
+simulation 21 : catalogue created
+simulation 21 : data acquired
+simulation 21 : histogram computed
+simulation 21 : parameters read
+work done on simulation 21
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 22
+simulation 22 : catalogue created
+simulation 22 : data acquired
+simulation 22 : histogram computed
+simulation 22 : parameters read
+work done on simulation 22
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 11
+simulation 11 : catalogue created
+simulation 11 : data acquired
+simulation 11 : histogram computed
+simulation 11 : parameters read
+work done on simulation 11
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 31
+simulation 31 : catalogue created
+simulation 31 : data acquired
+simulation 31 : histogram computed
+simulation 31 : parameters read
+work done on simulation 31
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 3
+simulation 3 : catalogue created
+simulation 3 : data acquired
+simulation 3 : histogram computed
+simulation 3 : parameters read
+work done on simulation 3
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 9
+simulation 9 : catalogue created
+simulation 9 : data acquired
+simulation 9 : histogram computed
+simulation 9 : parameters read
+work done on simulation 9
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 5
+simulation 5 : catalogue created
+simulation 5 : data acquired
+simulation 5 : histogram computed
+simulation 5 : parameters read
+work done on simulation 5
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 13
+simulation 13 : catalogue created
+simulation 13 : data acquired
+simulation 13 : histogram computed
+simulation 13 : parameters read
+work done on simulation 13
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 2
+simulation 2 : catalogue created
+simulation 2 : data acquired
+simulation 2 : histogram computed
+simulation 2 : parameters read
+work done on simulation 2
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 14
+simulation 14 : catalogue created
+simulation 14 : data acquired
+simulation 14 : histogram computed
+simulation 14 : parameters read
+work done on simulation 14
+All imports successful
+Starting to set up the MPI
+MPI set up
+starting to work on creating the data set
+starting to work on simulation 4
+simulation 4 : catalogue created
+simulation 4 : data acquired
+simulation 4 : histogram computed
+simulation 4 : parameters read
+work done on simulation 4

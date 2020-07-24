@@ -1,244 +1,622 @@
 /astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
   import imp
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
 /astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
   import imp
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:91: RuntimeWarning: divide by zero encountered in log10
-  Y_l_long = np.log10(ab.MST_histogram['y_l']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:92: RuntimeWarning: invalid value encountered in true_divide
-  Y_l_std = ab.MST_histogram['y_l_std'] / ab.MST_histogram['y_l'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:98: RuntimeWarning: divide by zero encountered in log10
-  Y_b_long = np.log10(ab.MST_histogram['y_b']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:99: RuntimeWarning: invalid value encountered in true_divide
-  Y_b_std = ab.MST_histogram['y_b_std'] / ab.MST_histogram['y_b'] # valid approximation when std << mean
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:105: RuntimeWarning: divide by zero encountered in log10
-  Y_s_long = np.log10(ab.MST_histogram['y_s']) # we normalize every histogram to have a typical scale of 1
-/home/astro/magnan/Repository_Stage_3A/create_data_set_abacus.py:106: RuntimeWarning: invalid value encountered in true_divide
-  Y_s_std = ab.MST_histogram['y_s_std'] / ab.MST_histogram['y_s'] # valid approximation when std << mean
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-14_products/AbacusCosmos_720box_planck_00-14_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-19_products/AbacusCosmos_720box_planck_00-19_rockstar_halos/z0.100/header'
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-15_products/AbacusCosmos_720box_planck_00-15_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-18_products/AbacusCosmos_720box_planck_00-18_rockstar_halos/z0.100/header'
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-16_products/AbacusCosmos_720box_planck_00-16_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-8_products/AbacusCosmos_720box_planck_00-8_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-10_products/AbacusCosmos_720box_planck_00-10_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-12_products/AbacusCosmos_720box_planck_00-12_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-7_products/AbacusCosmos_720box_planck_00-7_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-11_products/AbacusCosmos_720box_planck_00-11_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-9_products/AbacusCosmos_720box_planck_00-9_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-13_products/AbacusCosmos_720box_planck_00-13_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-17_products/AbacusCosmos_720box_planck_00-17_rockstar_halos/z0.100/header'
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-1_products/AbacusCosmos_720box_planck_00-1_rockstar_halos/z0.100/header'
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-4_products/AbacusCosmos_720box_planck_00-4_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-0_products/AbacusCosmos_720box_planck_00-0_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-3_products/AbacusCosmos_720box_planck_00-3_rockstar_halos/z0.100/header'
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-2_products/AbacusCosmos_720box_planck_00-2_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-6_products/AbacusCosmos_720box_planck_00-6_rockstar_halos/z0.100/header'
+Traceback (most recent call last):
+  File "/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py", line 54, in <module>
+    ab.initialise_data()
+  File "/home/astro/magnan/Repository_Stage_3A/catalogue_tools.py", line 364, in initialise_data
+    self.count, self.box_size, self.CM, self.h, self.Masses = ab.get_data(self.dataPath, self.inputPath)
+  File "/home/astro/magnan/Repository_Stage_3A/abacus_tools.py", line 13, in get_data
+    cat = Halos.make_catalog_from_dir(dirname = dataPath, load_subsamples = False, load_pids = False)
+  File "/home/astro/magnan/AbacusCosmos/Halos.py", line 217, in make_catalog_from_dir
+    header = InputFile(pjoin(dirname, 'header'))
+  File "/home/astro/magnan/AbacusCosmos/InputFile.py", line 44, in __init__
+    param = open(fn, "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-5_products/AbacusCosmos_720box_planck_00-5_rockstar_halos/z0.100/header'
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:89: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:89: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:89: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:89: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/.local/lib/python3.7/site-packages/mistree/mst/hist_mst.py:183: RuntimeWarning: invalid value encountered in sqrt
+  x_s, y_s = bin_data(np.sqrt(1.-s), minimum=self.s_min, maximum=self.s_max, bin_number=self.num_s_bins, normalised=self.usenorm)
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+/astro/soft/common/gcc/5.4.0/python/3.7.1/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:89: RuntimeWarning: divide by zero encountered in log10
+  Y_d = np.log10(ab.MST_histogram['y_d'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:92: RuntimeWarning: divide by zero encountered in log10
+  Y_l_long = np.log10(ab.MST_histogram['y_l'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:97: RuntimeWarning: divide by zero encountered in log10
+  Y_b_long = np.log10(ab.MST_histogram['y_b'])
+/home/astro/magnan/Repository_Stage_3A/data_set_Abacus/create_data_set_abacus.py:102: RuntimeWarning: divide by zero encountered in log10
+  Y_s_long = np.log10(ab.MST_histogram['y_s'])
+srun: error: node209: tasks 48-60: Exited with exit code 1
+srun: error: node208: tasks 41-47: Exited with exit code 1
