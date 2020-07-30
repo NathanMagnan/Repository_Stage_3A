@@ -241,52 +241,52 @@ BigMD_s = np.asarray(BigMD_s)
 
 print("x-axis adapted")
 
-## Dividing by 2 the number of bins
-print("starting to divide by 2 the number of bins for l, b and s")
-
-# l
-New_X_l = []
-New_BigMD_l = []
-New_Patchy_l = [np.array([0.0 for i in range(25)]) for j in range(100)]
-for i in range(25):
-    New_X_l.append((X_l[4*i] + X_l[4*i + 1] + X_l[4*i + 2] + X_l[4*i + 3]) / 4)
-    New_BigMD_l.append(BigMD_l[4*i] + BigMD_l[4*i + 1] + BigMD_l[4*i + 2] + BigMD_l[4*i + 3])
-    
-    for j in range(100):
-        New_Patchy_l[j][i] = Patchy_l[j][4*i] + Patchy_l[j][4*i + 1] + Patchy_l[j][4*i + 2] + Patchy_l[j][4*i + 2]
-X_l = np.asarray(New_X_l)
-BigMD_l = np.asarray(New_BigMD_l)
-Patchy_l = New_Patchy_l.copy()
-
-# b
-New_X_b = []
-New_BigMD_b = []
-New_Patchy_b = [np.array([0.0 for i in range(25)]) for j in range(100)]
-for i in range(25):
-    New_X_b.append((X_b[4*i] + X_b[4*i + 1] + X_b[4*i + 2] + X_b[4*i + 3]) / 4)
-    New_BigMD_b.append(BigMD_b[4*i] + BigMD_b[4*i + 1] + BigMD_b[4*i + 2] + BigMD_b[4*i + 3])
-    
-    for j in range(100):
-        New_Patchy_b[j][i] = Patchy_b[j][4*i] + Patchy_b[j][4*i + 1] + Patchy_b[j][4*i + 2] + Patchy_b[j][4*i + 2]
-X_b = np.asarray(New_X_b)
-BigMD_b = np.asarray(New_BigMD_b)
-Patchy_b = New_Patchy_b.copy()
-
-# s
-New_X_s = []
-New_BigMD_s = []
-New_Patchy_s = [np.array([0.0 for i in range(25)]) for j in range(100)]
-for i in range(25):
-    New_X_s.append((X_s[2*i] + X_s[2*i + 1]) / 2)
-    New_BigMD_s.append(BigMD_s[2*i] + BigMD_s[2*i + 1])
-    
-    for j in range(100):
-        New_Patchy_s[j][i] = Patchy_s[j][2*i] + Patchy_s[j][2*i + 1]
-X_s = np.asarray(New_X_s)
-BigMD_s = np.asarray(New_BigMD_s)
-Patchy_s = New_Patchy_s.copy()
-
-print("number of bins divided by 2")
+# ## Dividing by 2 the number of bins
+# print("starting to divide by 2 the number of bins for l, b and s")
+# 
+# # l
+# New_X_l = []
+# New_BigMD_l = []
+# New_Patchy_l = [np.array([0.0 for i in range(25)]) for j in range(100)]
+# for i in range(25):
+#     New_X_l.append((X_l[4*i] + X_l[4*i + 1] + X_l[4*i + 2] + X_l[4*i + 3]) / 4)
+#     New_BigMD_l.append(BigMD_l[4*i] + BigMD_l[4*i + 1] + BigMD_l[4*i + 2] + BigMD_l[4*i + 3])
+#     
+#     for j in range(100):
+#         New_Patchy_l[j][i] = Patchy_l[j][4*i] + Patchy_l[j][4*i + 1] + Patchy_l[j][4*i + 2] + Patchy_l[j][4*i + 2]
+# X_l = np.asarray(New_X_l)
+# BigMD_l = np.asarray(New_BigMD_l)
+# Patchy_l = New_Patchy_l.copy()
+# 
+# # b
+# New_X_b = []
+# New_BigMD_b = []
+# New_Patchy_b = [np.array([0.0 for i in range(25)]) for j in range(100)]
+# for i in range(25):
+#     New_X_b.append((X_b[4*i] + X_b[4*i + 1] + X_b[4*i + 2] + X_b[4*i + 3]) / 4)
+#     New_BigMD_b.append(BigMD_b[4*i] + BigMD_b[4*i + 1] + BigMD_b[4*i + 2] + BigMD_b[4*i + 3])
+#     
+#     for j in range(100):
+#         New_Patchy_b[j][i] = Patchy_b[j][4*i] + Patchy_b[j][4*i + 1] + Patchy_b[j][4*i + 2] + Patchy_b[j][4*i + 2]
+# X_b = np.asarray(New_X_b)
+# BigMD_b = np.asarray(New_BigMD_b)
+# Patchy_b = New_Patchy_b.copy()
+# 
+# # s
+# New_X_s = []
+# New_BigMD_s = []
+# New_Patchy_s = [np.array([0.0 for i in range(25)]) for j in range(100)]
+# for i in range(25):
+#     New_X_s.append((X_s[2*i] + X_s[2*i + 1]) / 2)
+#     New_BigMD_s.append(BigMD_s[2*i] + BigMD_s[2*i + 1])
+#     
+#     for j in range(100):
+#         New_Patchy_s[j][i] = Patchy_s[j][2*i] + Patchy_s[j][2*i + 1]
+# X_s = np.asarray(New_X_s)
+# BigMD_s = np.asarray(New_BigMD_s)
+# Patchy_s = New_Patchy_s.copy()
+# 
+# print("number of bins divided by 2")
 
 ## Computing the mean and std for Patchy
 print("starting to compute the mean and std for patchy")
@@ -361,12 +361,12 @@ for a in range(4):
                 subplot.legend(loc = 'upper right')
             
             else:
-                subplot.set_ylabel('$\Delta N_{d} / \sqrt{<N_{d}>}$')
-                subplot.set_ylim(-100, 100)
+                subplot.set_ylabel('$N_{d} / <N_{d}>$')
+                subplot.set_ylim(0, 2)
                 
-                subplot.fill_between(x = X_d, y1 = - 3 * Std_d / np.sqrt(Mean_d), y2 = 3 * Std_d / np.sqrt(Mean_d), color = 'b', alpha = 0.4)
-                subplot.fill_between(x = X_d, y1 = - Std_d / np.sqrt(Mean_d), y2 = Std_d / np.sqrt(Mean_d), color = 'b', alpha = 0.8, label = 'Patchy')
-                subplot.plot(X_d, (BigMD_d - Mean_d) / np.sqrt(Mean_d), color = 'b', label = 'BigMD')
+                subplot.fill_between(x = X_d, y1 = (Mean_d - Std_d) / Mean_d, y2 = (Mean_d + Std_d) / Mean_d, color = 'b', alpha = 0.8, label = 'Patchy')
+                subplot.fill_between(x = X_d, y1 = (Mean_d - 3*Std_d) / Mean_d, y2 = (Mean_d + 3*Std_d) / Mean_d, color = 'b', alpha = 0.4)
+                subplot.plot(X_d, BigMD_d / Mean_d, color = 'b', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
         
@@ -385,18 +385,19 @@ for a in range(4):
                 subplot.legend(loc = 'upper right')
             
             else:
-                subplot.set_ylabel('$\Delta N_{l} / \sqrt{<N_{l}>}$')
-                subplot.set_ylim(-300, 300)
+                subplot.set_ylabel('$N_{l} / <N_{l}>$')
+                subplot.set_ylim(0, 2)
                 
-                subplot.fill_between(x = X_l, y1 = - 3 * Std_l / np.sqrt(Mean_l), y2 = 3 * Std_l / np.sqrt(Mean_l), color = 'g', alpha = 0.4)
-                subplot.fill_between(x = X_l, y1 = - Std_l / np.sqrt(Mean_l), y2 = Std_l / np.sqrt(Mean_l), color = 'g', alpha = 0.8, label = 'Patchy')
-                subplot.plot(X_l, (BigMD_l - Mean_l) / np.sqrt(Mean_l), color = 'g', label = 'BigMD')
+                subplot.fill_between(x = X_l, y1 = (Mean_l - Std_l) / Mean_l, y2 = (Mean_l + Std_l) / Mean_l, color = 'g', alpha = 0.8, label = 'Patchy')
+                subplot.fill_between(x = X_l, y1 = (Mean_l - 3*Std_l) / Mean_l, y2 = (Mean_l + 3*Std_l) / Mean_l, color = 'g', alpha = 0.4)
+                subplot.plot(X_l, BigMD_l / Mean_l, color = 'g', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
         
         elif (a == 2):
             subplot.set_xlabel('$b$')
             subplot.set_xscale('log')
+            subplot.set_xlim(10**(-1), 10**(2))
             
             if (b == 0):
                 subplot.set_ylabel('$N_{b}$')
@@ -409,12 +410,12 @@ for a in range(4):
                 subplot.legend(loc = 'upper right')
             
             else:
-                subplot.set_ylabel('$\Delta N_{b} / \sqrt{<N_{b}>}$')
-                subplot.set_ylim(-100, 100)
+                subplot.set_ylabel('$N_{b} / <N_{b}>$')
+                subplot.set_ylim(0, 2)
                 
-                subplot.fill_between(x = X_b, y1 = - 3 * Std_b / np.sqrt(Mean_b), y2 = 3 * Std_b / np.sqrt(Mean_b), color = 'r', alpha = 0.4)
-                subplot.fill_between(x = X_b, y1 = - Std_b / np.sqrt(Mean_b), y2 = Std_b / np.sqrt(Mean_b), color = 'r', alpha = 0.8, label = 'Patchy')
-                subplot.plot(X_b, (BigMD_b - Mean_b) / np.sqrt(Mean_b), color = 'r', label = 'BigMD')
+                subplot.fill_between(x = X_b, y1 = (Mean_b - Std_b) / Mean_b, y2 = (Mean_b + Std_b) / Mean_b, color = 'r', alpha = 0.8, label = 'Patchy')
+                subplot.fill_between(x = X_b, y1 = (Mean_b - 3*Std_b) / Mean_b, y2 = (Mean_b + 3*Std_b) / Mean_b, color = 'r', alpha = 0.4)
+                subplot.plot(X_b, BigMD_b / Mean_b, color = 'r', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
         
@@ -430,13 +431,14 @@ for a in range(4):
                 subplot.plot(X_s, BigMD_s, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
+            
             else:
-                subplot.set_ylabel('$\Delta N_{s} / \sqrt{<N_{s}>}$')
-                subplot.set_ylim(-100, 100)
+                subplot.set_ylabel('$N_{s} / <N_{s}>$')
+                subplot.set_ylim(0, 2)
                 
-                subplot.fill_between(x = X_s, y1 = - 3 * Std_s / np.sqrt(Mean_s), y2 = 3 * Std_s / np.sqrt(Mean_s), color = 'y', alpha = 0.4)
-                subplot.fill_between(x = X_s, y1 = - Std_s / np.sqrt(Mean_s), y2 = Std_s / np.sqrt(Mean_s), color = 'y', alpha = 0.8, label = 'Patchy')
-                subplot.plot(X_s, (BigMD_s - Mean_s) / np.sqrt(Mean_s), color = 'y', label = 'BigMD')
+                subplot.fill_between(x = X_s, y1 = (Mean_s - Std_s) / Mean_s, y2 = (Mean_s + Std_s) / Mean_s, color = 'y', alpha = 0.8, label = 'Patchy')
+                subplot.fill_between(x = X_s, y1 = (Mean_s - 3*Std_s) / Mean_s, y2 = (Mean_s + 3*Std_s) / Mean_s, color = 'y', alpha = 0.4)
+                subplot.plot(X_s, BigMD_s / Mean_s, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
 
