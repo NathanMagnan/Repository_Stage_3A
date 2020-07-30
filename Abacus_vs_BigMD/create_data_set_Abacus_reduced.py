@@ -44,12 +44,12 @@ print("starting to work on simulation " + str(i))
 # getting the basepath
 if (i < 20):
     number_str = str(i)
-    path = '/hpcstorage/magnan/Abacus_720/Abacus/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-'
-    path += str(i)
+    path = '/hpcstorage/magnan/Abacus_720/AbacusCosmos_720box_planck_products/AbacusCosmos_720box_planck_00-'
+    path += number_str
     path += '_products/AbacusCosmos_720box_planck_00-'
-    path += str(i)
+    path += number_str
     path += '_rockstar_halos/z0.100'
-elif (i = 20):
+elif (i == 20):
     number_str = 'planck'
     path = '/hpcstorage/magnan/Abacus_720/AbacusCosmos_720box_products/AbacusCosmos_720box_'
     path += number_str
@@ -101,7 +101,7 @@ ab.compute_MST_histogram(jacknife = False)
 print("simulation " + str(i) + " : histogram computed")
 
 # Saving the data
-my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Abacus_vs_BigMD/')
+my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Abacus_vs_BigMD')
 if (j == 0):
     my_file = 'MST_Mass_cut_' + str(i) + '.pkl'
 elif (j == 1):
