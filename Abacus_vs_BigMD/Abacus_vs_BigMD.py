@@ -13,7 +13,7 @@ print("starting to load the mass cut histograms")
 
 Histograms_mass_cut = []
 
-for n_simu in range(40):
+for n_simu in range(22):
     # reading the histograms
     path = r'C:\Users\Nathan\Documents\D - X\C - Stages\Stage 3A\Repository_Stage_3A\Abacus_vs_BigMD'
     file = 'MST_Mass_cut_' + str(n_simu) + '.pkl'
@@ -33,7 +33,7 @@ print("starting to load the random cut histograms")
 
 Histograms_random_cut = []
 
-for n_simu in range(40):
+for n_simu in range(22):
     # reading the histograms
     path = r'C:\Users\Nathan\Documents\D - X\C - Stages\Stage 3A\Repository_Stage_3A\Abacus_vs_BigMD'
     file = 'MST_random_cut' + str(n_simu) + '.pkl'
@@ -48,32 +48,23 @@ for n_simu in range(40):
 
 print("random cut histograms loaded")
 
-## Loading the full histograms
+## Loading the Full histograms
 print("starting to load the full histograms")
 
-Histograms_full = [{'X_d' : 0, 'Y_d' : 0, 'X_l' : 0, 'Y_l' : 0, 'X_b' : 0, 'Y_b' : 0, 'X_s' : 0, 'Y_s' : 0} for i in range(40)]
+Histograms_full = []
 
-target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
-for i in range(40): 
-    X_d = np.loadtxt(str(target) + str(i) + "_X_d")
-    Y_d = np.loadtxt(str(target) + str(i) + "_Y_d")
-    Histograms_full[i]['x_d'] = X_d
-    Histograms_full[i]['y_d'] = Y_d
+for n_simu in range(22):
+    # reading the histograms
+    path = r'C:\Users\Nathan\Documents\D - X\C - Stages\Stage 3A\Repository_Stage_3A\Abacus_vs_BigMD'
+    file = 'MST_full' + str(n_simu) + '.pkl'
+    my_file = os.path.join(path, file)
     
-    X_l = np.loadtxt(str(target) + str(i) + "_X_l")
-    Y_l = np.loadtxt(str(target) + str(i) + "_Y_l")
-    Histograms_full[i]['x_l'] = X_l
-    Histograms_full[i]['y_l'] = Y_l
+    f = open(my_file, "rb")
+    New_histogram = pickle.load(f)
+    f.close()
     
-    X_b = np.loadtxt(str(target) + str(i) + "_X_b")
-    Y_b = np.loadtxt(str(target) + str(i) + "_Y_b")
-    Histograms_full[i]['x_b'] = X_b
-    Histograms_full[i]['y_b'] = Y_b
-    
-    X_s = np.loadtxt(str(target) + str(i) + "_X_s")
-    Y_s = np.loadtxt(str(target) + str(i) + "_Y_s")
-    Histograms_full[i]['x_s'] = X_s
-    Histograms_full[i]['y_s'] = Y_s
+    # adding the histograms to the right data sets
+    Histograms_full.append(New_histogram)
 
 print("full histograms loaded")
 
@@ -102,7 +93,7 @@ print("starting to match the x-axis")
 
 # adapting the x-axis for mass cut
 Mass_cut_d = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_d]
         for k in range(np.shape(X_d)[0]):
             x1 = X_d[k]
@@ -119,7 +110,7 @@ for i in range(40):
         
 
 Mass_cut_l = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_l]
         for k in range(np.shape(X_l)[0]):
             x1 = X_l[k]
@@ -149,7 +140,7 @@ for i in range(40):
         Mass_cut_l.append(np.asarray(New))
 
 Mass_cut_b = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_b]
         for k in range(np.shape(X_b)[0]):
             x1 = X_b[k]
@@ -178,7 +169,7 @@ for i in range(40):
         Mass_cut_b.append(np.asarray(New))
 
 Mass_cut_s = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_s]
         for k in range(np.shape(X_s)[0]):
             x1 = X_s[k]
@@ -194,7 +185,7 @@ for i in range(40):
 
 # adapting the x-axis for random cut
 Random_cut_d = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_d]
         for k in range(np.shape(X_d)[0]):
             x1 = X_d[k]
@@ -211,7 +202,7 @@ for i in range(40):
         
 
 Random_cut_l = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_l]
         for k in range(np.shape(X_l)[0]):
             x1 = X_l[k]
@@ -241,7 +232,7 @@ for i in range(40):
         Random_cut_l.append(np.asarray(New))
 
 Random_cut_b = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_b]
         for k in range(np.shape(X_b)[0]):
             x1 = X_b[k]
@@ -270,7 +261,7 @@ for i in range(40):
         Random_cut_b.append(np.asarray(New))
 
 Random_cut_s = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_s]
         for k in range(np.shape(X_s)[0]):
             x1 = X_s[k]
@@ -286,7 +277,7 @@ for i in range(40):
 
 # adapting the x-axis for the full histograms
 Full_d = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_d]
         for k in range(np.shape(X_d)[0]):
             x1 = X_d[k]
@@ -302,7 +293,7 @@ for i in range(40):
         
 
 Full_l = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_l]
         for k in range(np.shape(X_l)[0]):
             x1 = X_l[k]
@@ -332,7 +323,7 @@ for i in range(40):
         Full_l.append(np.asarray(New))
 
 Full_b = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_b]
         for k in range(np.shape(X_b)[0]):
             x1 = X_b[k]
@@ -361,7 +352,7 @@ for i in range(40):
         Full_b.append(np.asarray(New))
 
 Full_s = []
-for i in range(40):
+for i in range(22):
         New = [0 for x1 in X_s]
         for k in range(np.shape(X_s)[0]):
             x1 = X_s[k]
@@ -479,7 +470,7 @@ print("starting to compute the means and stds")
 # for mass cuts
 Mean_mc_d = np.asarray([0 for x_d in X_d])
 Std_mc_d = np.asarray([0 for x_d in X_d])
-for i in range(40):
+for i in range(21):
     New = Mass_cut_d[i]
     
     Mean_old = Mean_mc_d.copy()
@@ -490,7 +481,7 @@ for i in range(40):
 
 Mean_mc_l = np.array([0 for x_l in X_l])
 Std_mc_l = np.array([0 for x_l in X_l])
-for i in range(40):
+for i in range(21):
     New = Mass_cut_l[i]
     
     Mean_old = Mean_mc_l.copy()
@@ -501,7 +492,7 @@ for i in range(40):
 
 Mean_mc_b = np.asarray([0 for x_b in X_b])
 Std_mc_b = np.asarray([0 for x_b in X_b])
-for i in range(40):
+for i in range(21):
     New = Mass_cut_b[i]
     
     Mean_old = Mean_mc_b.copy()
@@ -512,7 +503,7 @@ for i in range(40):
 
 Mean_mc_s = np.asarray([0 for x_s in X_s])
 Std_mc_s = np.asarray([0 for x_s in X_s])
-for i in range(40):
+for i in range(21):
     New = Mass_cut_s[i]
     
     Mean_old = Mean_mc_s.copy()
@@ -524,7 +515,7 @@ for i in range(40):
 # for random cuts
 Mean_rc_d = np.asarray([0 for x_d in X_d])
 Std_rc_d = np.asarray([0 for x_d in X_d])
-for i in range(40):
+for i in range(21):
     New = Random_cut_d[i]
     
     Mean_old = Mean_rc_d.copy()
@@ -535,7 +526,7 @@ for i in range(40):
 
 Mean_rc_l = np.array([0 for x_l in X_l])
 Std_rc_l = np.array([0 for x_l in X_l])
-for i in range(40):
+for i in range(21):
     New = Random_cut_l[i]
     
     Mean_old = Mean_rc_l.copy()
@@ -546,7 +537,7 @@ for i in range(40):
 
 Mean_rc_b = np.asarray([0 for x_b in X_b])
 Std_rc_b = np.asarray([0 for x_b in X_b])
-for i in range(40):
+for i in range(21):
     New = Random_cut_b[i]
     
     Mean_old = Mean_rc_b.copy()
@@ -557,7 +548,7 @@ for i in range(40):
 
 Mean_rc_s = np.asarray([0 for x_s in X_s])
 Std_rc_s = np.asarray([0 for x_s in X_s])
-for i in range(40):
+for i in range(21):
     New = Random_cut_s[i]
     
     Mean_old = Mean_rc_s.copy()
@@ -569,7 +560,7 @@ for i in range(40):
 # for full
 Mean_f_d = np.asarray([0 for x_d in X_d])
 Std_f_d = np.asarray([0 for x_d in X_d])
-for i in range(40):
+for i in range(21):
     New = Full_d[i]
     
     Mean_old = Mean_f_d.copy()
@@ -580,7 +571,7 @@ for i in range(40):
 
 Mean_f_l = np.array([0 for x_l in X_l])
 Std_f_l = np.array([0 for x_l in X_l])
-for i in range(40):
+for i in range(21):
     New = Full_l[i]
     
     Mean_old = Mean_f_l.copy()
@@ -591,7 +582,7 @@ for i in range(40):
 
 Mean_f_b = np.asarray([0 for x_b in X_b])
 Std_f_b = np.asarray([0 for x_b in X_b])
-for i in range(40):
+for i in range(21):
     New = Full_b[i]
     
     Mean_old = Mean_f_b.copy()
@@ -602,7 +593,7 @@ for i in range(40):
 
 Mean_f_s = np.asarray([0 for x_s in X_s])
 Std_f_s = np.asarray([0 for x_s in X_s])
-for i in range(40):
+for i in range(21):
     New = Full_s[i]
     
     Mean_old = Mean_f_s.copy()
@@ -631,9 +622,9 @@ for a in range(4):
                 subplot.set_yscale('log')
                 subplot.set_ylim(10**0, 10**7)
                 
-                subplot.fill_between(x = X_d, y1 = Mean_mc_d - Std_mc_d, y2 = Mean_mc_d + Std_mc_d, color = 'b', alpha = 0.4, label = 'Mass cut')
-                subplot.fill_between(x = X_d, y1 = Mean_rc_d - Std_rc_d, y2 = Mean_rc_d + Std_rc_d, color = 'g', alpha = 0.4, label = 'Random cut')
-                subplot.fill_between(x = X_d, y1 = Mean_f_d - Std_f_d, y2 = Mean_f_d + Std_f_d, color = 'r', alpha = 0.4, label = 'Full distribution')
+                subplot.fill_between(x = X_d, y1 = Mass_cut_d[21] - Std_mc_d, y2 = Mass_cut_d[21] + Std_mc_d, color = 'b', alpha = 0.4, label = 'Mass cut')
+                subplot.fill_between(x = X_d, y1 = Random_cut_d[21] - Std_rc_d, y2 = Random_cut_d[21] + Std_rc_d, color = 'g', alpha = 0.4, label = 'Random cut')
+                subplot.fill_between(x = X_d, y1 = Full_d[21] - Std_f_d, y2 = Full_d[21] + Std_f_d, color = 'r', alpha = 0.4, label = 'Full distribution')
                 subplot.plot(X_d, BigMD_d * (720 / 2500)**3, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
@@ -642,8 +633,8 @@ for a in range(4):
                 subplot.set_ylabel('$N_{d} / <N_{d}>$')
                 subplot.set_ylim(0, 2)
                 
-                subplot.fill_between(x = X_d, y1 = (Mean_mc_d - 3 * Std_mc_d) / (BigMD_d * (720 / 2500)**3), y2 = (Mean_mc_d + 3 * Std_mc_d) / (BigMD_d * (720 / 2500)**3), color = 'b', alpha = 0.4, label = 'Mass cut')
-                subplot.fill_between(x = X_d, y1 = (Mean_rc_d - 3 * Std_rc_d ) / (BigMD_d * (720 / 2500)**3), y2 = (Mean_rc_d + 3 * Std_rc_d) / (BigMD_d * (720 / 2500)**3), color = 'g', alpha = 0.4, label = 'Random cut')
+                subplot.fill_between(x = X_d, y1 = (Mass_cut_d[21] - 3 * Std_mc_d) / (BigMD_d * (720 / 2500)**3), y2 = (Mass_cut_d[21] + 3 * Std_mc_d) / (BigMD_d * (720 / 2500)**3), color = 'b', alpha = 0.4, label = 'Mass cut')
+                subplot.fill_between(x = X_d, y1 = (Random_cut_d[21] - 3 * Std_rc_d ) / (BigMD_d * (720 / 2500)**3), y2 = (Random_cut_d[21] + 3 * Std_rc_d) / (BigMD_d * (720 / 2500)**3), color = 'g', alpha = 0.4, label = 'Random cut')
                 subplot.plot(X_d, BigMD_d / BigMD_d, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
@@ -658,9 +649,9 @@ for a in range(4):
                 subplot.set_yscale('log')
                 subplot.set_ylim(10**0, 10**7)
                 
-                subplot.fill_between(x = X_l, y1 = Mean_mc_l - Std_mc_l, y2 = Mean_mc_l + Std_mc_l, color = 'b', alpha = 0.4, label = 'Mass cut')
-                subplot.fill_between(x = X_l, y1 = Mean_rc_l - Std_rc_l, y2 = Mean_rc_l + Std_rc_l, color = 'g', alpha = 0.4, label = 'Random cut')
-                subplot.fill_between(x = X_l, y1 = Mean_f_l - Std_f_l, y2 = Mean_f_l + Std_f_l, color = 'r', alpha = 0.4, label = 'Full distribution')
+                subplot.fill_between(x = X_l, y1 = Mass_cut_l[21] - Std_mc_l, y2 = Mass_cut_l[21] + Std_mc_l, color = 'b', alpha = 0.4, label = 'Mass cut')
+                subplot.fill_between(x = X_l, y1 = Random_cut_l[21] - Std_rc_l, y2 = Random_cut_l[21] + Std_rc_l, color = 'g', alpha = 0.4, label = 'Random cut')
+                subplot.fill_between(x = X_l, y1 = Full_l[21] - Std_f_l, y2 = Full_l[21] + Std_f_l, color = 'r', alpha = 0.4, label = 'Full distribution')
                 subplot.plot(X_l, BigMD_l * (720 / 2500)**3, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
@@ -669,8 +660,8 @@ for a in range(4):
                 subplot.set_ylabel('$N_{l} / <N_{l}>$')
                 subplot.set_ylim(0, 2)
                 
-                subplot.fill_between(x = X_l, y1 = (Mean_mc_l - 3 * Std_mc_l) / (BigMD_l * (720 / 2500)**3), y2 = (Mean_mc_l + 3 * Std_mc_l) / (BigMD_l * (720 / 2500)**3), color = 'b', alpha = 0.4, label = 'Mass cut')
-                subplot.fill_between(x = X_l, y1 = (Mean_rc_l - 3 * Std_rc_l ) / (BigMD_l * (720 / 2500)**3), y2 = (Mean_rc_l + 3 * Std_rc_l) / (BigMD_l * (720 / 2500)**3), color = 'g', alpha = 0.4, label = 'Random cut')
+                subplot.fill_between(x = X_l, y1 = (Mass_cut_l[21] - 3 * Std_mc_l) / (BigMD_l * (720 / 2500)**3), y2 = (Mass_cut_l[21] + 3 * Std_mc_l) / (BigMD_l * (720 / 2500)**3), color = 'b', alpha = 0.4, label = 'Mass cut')
+                subplot.fill_between(x = X_l, y1 = (Random_cut_l[21] - 3 * Std_rc_l ) / (BigMD_l * (720 / 2500)**3), y2 = (Random_cut_l[21] + 3 * Std_rc_l) / (BigMD_l * (720 / 2500)**3), color = 'g', alpha = 0.4, label = 'Random cut')
                 subplot.plot(X_l, BigMD_l / BigMD_l, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
@@ -685,9 +676,9 @@ for a in range(4):
                 subplot.set_yscale('log')
                 subplot.set_ylim(10**0, 10**7)
                 
-                subplot.fill_between(x = X_b, y1 = Mean_mc_b - Std_mc_b, y2 = Mean_mc_b + Std_mc_b, color = 'b', alpha = 0.4, label = 'Mass cut')
-                subplot.fill_between(x = X_b, y1 = Mean_rc_b - Std_rc_b, y2 = Mean_rc_b + Std_rc_b, color = 'g', alpha = 0.4, label = 'Random cut')
-                subplot.fill_between(x = X_b, y1 = Mean_f_b - Std_f_b, y2 = Mean_f_b + Std_f_b, color = 'r', alpha = 0.4, label = 'Full distribution')
+                subplot.fill_between(x = X_b, y1 = Mass_cut_b[21] - Std_mc_b, y2 = Mass_cut_b[21] + Std_mc_b, color = 'b', alpha = 0.4, label = 'Mass cut')
+                subplot.fill_between(x = X_b, y1 = Random_cut_b[21] - Std_rc_b, y2 = Random_cut_b[21] + Std_rc_b, color = 'g', alpha = 0.4, label = 'Random cut')
+                subplot.fill_between(x = X_b, y1 = Full_b[21] - Std_f_b, y2 = Full_b[21] + Std_f_b, color = 'r', alpha = 0.4, label = 'Full distribution')
                 subplot.plot(X_b, BigMD_b * (720 / 2500)**3, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
@@ -696,8 +687,8 @@ for a in range(4):
                 subplot.set_ylabel('$N_{b} / <N_{b}>$')
                 subplot.set_ylim(0, 2)
                 
-                subplot.fill_between(x = X_b, y1 = (Mean_mc_b - 3 * Std_mc_b) / (BigMD_b * (720 / 2500)**3), y2 = (Mean_mc_b + 3 * Std_mc_b) / (BigMD_b * (720 / 2500)**3), color = 'b', alpha = 0.4, label = 'Mass cut')
-                subplot.fill_between(x = X_b, y1 = (Mean_rc_b - 3 * Std_rc_b) / (BigMD_b * (720 / 2500)**3), y2 = (Mean_rc_b + 3 * Std_rc_b) / (BigMD_b * (720 / 2500)**3), color = 'g', alpha = 0.4, label = 'Random cut')
+                subplot.fill_between(x = X_b, y1 = (Mass_cut_b[21] - 3 * Std_mc_b) / (BigMD_b * (720 / 2500)**3), y2 = (Mass_cut_b[21] + 3 * Std_mc_b) / (BigMD_b * (720 / 2500)**3), color = 'b', alpha = 0.4, label = 'Mass cut')
+                subplot.fill_between(x = X_b, y1 = (Random_cut_b[21] - 3 * Std_rc_b) / (BigMD_b * (720 / 2500)**3), y2 = (Random_cut_b[21] + 3 * Std_rc_b) / (BigMD_b * (720 / 2500)**3), color = 'g', alpha = 0.4, label = 'Random cut')
                 subplot.plot(X_b, BigMD_b / BigMD_b, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
@@ -710,9 +701,9 @@ for a in range(4):
                 subplot.set_yscale('log')
                 subplot.set_ylim(10**0, 10**7)
                 
-                subplot.fill_between(x = X_s, y1 = Mean_mc_s - Std_mc_s, y2 = Mean_mc_s + Std_mc_s, color = 'b', alpha = 0.4, label = 'Mass cut')
-                subplot.fill_between(x = X_s, y1 = Mean_rc_s - Std_rc_s, y2 = Mean_rc_s + Std_rc_s, color = 'g', alpha = 0.4, label = 'Random cut')
-                subplot.fill_between(x = X_s, y1 = Mean_f_s - Std_f_s, y2 = Mean_f_s + Std_f_s, color = 'r', alpha = 0.4, label = 'Full distribution')
+                subplot.fill_between(x = X_s, y1 = Mass_cut_s[21] - Std_mc_s, y2 = Mass_cut_s[21] + Std_mc_s, color = 'b', alpha = 0.4, label = 'Mass cut')
+                subplot.fill_between(x = X_s, y1 = Random_cut_s[21] - Std_rc_s, y2 = Random_cut_s[21] + Std_rc_s, color = 'g', alpha = 0.4, label = 'Random cut')
+                subplot.fill_between(x = X_s, y1 = Full_s[21] - Std_f_s, y2 = Full_s[21] + Std_f_s, color = 'r', alpha = 0.4, label = 'Full distribution')
                 subplot.plot(X_s, BigMD_s * (720 / 2500)**3, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
@@ -721,8 +712,8 @@ for a in range(4):
                 subplot.set_ylabel('$N_{s} / <N_{s}>$')
                 subplot.set_ylim(0, 2)
                 
-                subplot.fill_between(x = X_s, y1 = (Mean_mc_s - 3 * Std_mc_s) / (BigMD_s * (720 / 2500)**3), y2 = (Mean_mc_s + 3 * Std_mc_s) / (BigMD_s * (720 / 2500)**3), color = 'b', alpha = 0.4, label = 'Mass cut')
-                subplot.fill_between(x = X_s, y1 = (Mean_rc_s - 3 * Std_rc_s) / (BigMD_s * (720 / 2500)**3), y2 = (Mean_rc_s + 3 * Std_rc_s) / (BigMD_s * (720 / 2500)**3), color = 'g', alpha = 0.4, label = 'Random cut')
+                subplot.fill_between(x = X_s, y1 = (Mass_cut_s[21] - 3 * Std_mc_s) / (BigMD_s * (720 / 2500)**3), y2 = (Mass_cut_s[21] + 3 * Std_mc_s) / (BigMD_s * (720 / 2500)**3), color = 'b', alpha = 0.4, label = 'Mass cut')
+                subplot.fill_between(x = X_s, y1 = (Random_cut_s[21] - 3 * Std_rc_s) / (BigMD_s * (720 / 2500)**3), y2 = (Random_cut_s[21] + 3 * Std_rc_s) / (BigMD_s * (720 / 2500)**3), color = 'g', alpha = 0.4, label = 'Random cut')
                 subplot.plot(X_s, BigMD_s / BigMD_s, color = 'y', label = 'BigMD')
                 
                 subplot.legend(loc = 'upper right')
