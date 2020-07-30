@@ -2,9 +2,12 @@
 import numpy as np
 import math as m
 import GPy as GPy
+import pickle
 import emcee
 import sys
 import os
+import matplotlib as mpl
+mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex = True)
@@ -17,32 +20,110 @@ os.chdir('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3
 
 print("All imports successful")
 
-## Importing the whole Abacus data
+## Importing the observation's data
 print("starting to load the data")
 
 #target = "/home/astro/magnan/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
 target = "C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Full_MST_stats_Abacus/MST_stats_Catalogue_"
 
-dict = {'X_d' : [], 'Y_d' : [], 'Y_d_std' : [], 'X_l' : [], 'Y_l' : [], 'Y_l_std' : [], 'X_b' : [], 'Y_b' : [], 'Y_b_std' : [], 'X_s' : [], 'Y_s' : [], 'Y_s_std' : []}
+dict = {'X_d' : [], 'Y_d' : [], 'X_l' : [], 'Y_l' : [], 'X_b' : [], 'Y_b' : [], 'X_s' : [], 'Y_s' : []}
 
-for i in range(61):    
-    X_d_a = np.loadtxt(str(target) + str(i) + "_X_d")
-    Y_d_a = np.loadtxt(str(target) + str(i) + "_Y_d")
-    Y_d_std_a = np.loadtxt(str(target) + str(i) + "_Y_d_std")
+for i in range(21):    
+    X_d_a = np.loadtxt(str(target) + str(i + 40) + "_X_d")
+    Y_d_a = np.loadtxt(str(target) + str(i + 40) + "_Y_d")
     dict['X_d'].append(X_d_a)
     dict['Y_d'].append(Y_d_a)
-    dict['Y_d_std'].append(Y_d_std_a)
     
-    X_s_a = np.loadtxt(str(target) + str(i) + "_X_s")
-    Y_s_a = np.loadtxt(str(target) + str(i) + "_Y_s")
-    Y_s_std_a = np.loadtxt(str(target) + str(i) + "_Y_s_std")
+    X_s_a = np.loadtxt(str(target) + str(i + 40) + "_X_s")
+    Y_s_a = np.loadtxt(str(target) + str(i + 40) + "_Y_s")
     dict['X_s'].append(X_s_a)
     dict['Y_s'].append(Y_s_a)
-    dict['Y_s_std'].append(Y_s_std_a)
 
 print("data fully loaded")
 
-## Importing the data
+## Finding the observation
+print("Looking for the observation")
+
+X_d_abacus = dict['X_d'][0]
+Mean_d_fidu = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
+for k in range(21):
+    New = []
+    for x1 in X_d_abacus:
+        min = 10
+        l_min = 0
+        for l in range(np.shape(dict['X_d'][k])[0]):
+            x2 = dict['X_d'][k][l]
+            if (abs(x1 - x2) < min):
+                min = abs(x1 - x2)
+                l_min = l
+        
+        New.append(dict['Y_d'][k][l_min])
+    New = np.asarray(New)
+        
+    Mean_old = Mean_d_fidu.copy()
+    Mean_d_fidu = (k * Mean_old + New) / (k + 1)
+
+X_s_abacus = dict['X_s'][0]
+Mean_s_fidu = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
+for k in range(21):
+    New = []
+    for x1 in X_s_abacus:
+        min = 10
+        l_min = 0
+        for l in range(np.shape(X_s_abacus)[0]):
+            x2 = dict['X_s'][k][l]
+            if (abs(x1 - x2) < min):
+                min = abs(x1 - x2)
+                l_min = l
+        
+        try:
+            if (x1 > dict['X_s'][k][l_min]):
+                x2a = dict['X_s'][k][l_min]
+                x2b = dict['X_s'][k][l_min+1]
+                a = (x2b - x1) / (x2b - x2a)
+                b = (x1 - x2a) / (x2b - x2a)
+                New.append(a * dict['Y_s'][k][l_min] + b * dict['Y_s'][k][l_min + 1])
+            else:
+                x2a = dict['X_s'][k][l_min - 1]
+                x2b = dict['X_s'][k][l_min]
+                a = (x2b - x1) / (x2b - x2a)
+                b = (x1 - x2a) / (x2b - x2a)
+                New.append(a * dict['Y_s'][k][l_min - 1] + b * dict['Y_s'][k][l_min])
+        except:
+            New.append(dict['Y_s'][k][l_min])
+    New = np.asarray(New)
+        
+    Mean_old = Mean_s_fidu.copy()
+    Mean_s_fidu = (k * Mean_old + New) / (k + 1)
+Mean_observation = np.concatenate((Mean_d_fidu, Mean_s_fidu))
+
+Indexes_to_keep = [0, 1, 2, 3, 18, 23, 28, 33, 38]
+Mean_observation = np.log10(Mean_observation[Indexes_to_keep])
+
+print("Observation found")
+
+## Importing the noise matrices
+print("Starting to load the noise matrices")
+
+path = r'C:\Users\Nathan\Documents\D - X\C - Stages\Stage 3A\Repository_Stage_3A\Full_MST_stats_Abacus_3'
+file = 'Jackknife_noise_matrix.pkl'
+my_file = os.path.join(path, file)
+
+f = open(my_file, "rb")
+Cov_observation = pickle.load(f)
+f.close()
+
+path = r'C:\Users\Nathan\Documents\D - X\C - Stages\Stage 3A\Repository_Stage_3A\Full_MST_stats_Abacus_3'
+file = 'GP_error_matrix.pkl'
+my_file = os.path.join(path, file)
+
+f = open(my_file, "rb")
+Cov_GP = pickle.load(f)
+f.close()
+
+print("Noise matrices loaded")
+
+## Importing the GP's data
 print("Connexion successfull")
 print("starting to load the data")
 
@@ -96,8 +177,8 @@ print("data loaded")
 ## Setting up the GPs
 print("starting to define the Gps")
 
-gp_d = GP.GP(X = X_d_data, Y = Y_d_data, n_points_per_simu = 4, Noise = None)
-gp_s = GP.GP(X = X_s_data, Y = Y_s_data, n_points_per_simu = 5, Noise = None)
+gp_d = GP.GP(X = X_d_data, Y = Y_d_data, n_points_per_simu = 4, Noise = None, make_covariance_matrix = False)
+gp_s = GP.GP(X = X_s_data, Y = Y_s_data, n_points_per_simu = 5, Noise = None, make_covariance_matrix = False)
 
 print("models defined")
 
@@ -111,6 +192,22 @@ print("Hyperparameters optimised")
 
 gp_d.print_model()
 gp_s.print_model()
+
+## Defining the chi 2
+print("starting to define the chi2")
+
+def chi2(Y_observation, Noise_observation, Y_model, Noise_model):
+    Sigma = Noise_observation + Noise_model
+    Sigma_inv = np.linalg.inv(Sigma)
+    
+    U = np.reshape(Y_observation, (-1, 1))
+    V = np.reshape(Y_model, (-1, 1))
+    
+    c2 = np.dot(np.dot((U - V).T, Sigma_inv), (U - V))
+    
+    return(np.asscalar(c2))
+
+print("chi2 defined")
 
 ## Defining the prior
 print("starting to define the prior")
@@ -126,123 +223,12 @@ def prior(X_01):
 
 print("prior defined")
 
-## Defining the expectation
-print("starting to define the expectation")
-
-X_d_abacus = dict['X_d'][0]
-Mean_d_abacus = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
-Std_d_abacus = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
-for k in range(n_simulations):
-    New = []
-    for x1 in X_d_abacus:
-        min = 10
-        l_min = 0
-        for l in range(np.shape(dict['X_d'][k])[0]):
-            x2 = dict['X_d'][k][l]
-            if (abs(x1 - x2) < min):
-                min = abs(x1 - x2)
-                l_min = l
-        
-        New.append(dict['Y_d'][k][l_min])
-    New = np.asarray(New)
-    
-    Mean_old = Mean_d_abacus.copy()
-    Std_old = Std_d_abacus.copy()
-    
-    Mean_new = (k * Mean_old + New) / (k + 1)
-    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + New**2) / (k + 1) - Mean_new**2)
-    
-    Mean_d_abacus = Mean_new.copy()
-    Std_d_abacus = Std_new.copy()
-
-Mean_d_fidu = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
-Std_d_fidu = np.asarray([0 for k in range(np.shape(dict['X_d'][0])[0])])
-for k in range(n_fiducial):
-    New = []
-    for x1 in X_d_abacus:
-        min = 10
-        l_min = 0
-        for l in range(np.shape(dict['X_d'][k + n_simulations])[0]):
-            x2 = dict['X_d'][k + n_simulations][l]
-            if (abs(x1 - x2) < min):
-                min = abs(x1 - x2)
-                l_min = l
-        
-        New.append(dict['Y_d'][k + n_simulations][l_min])
-    New = np.asarray(New)
-        
-    Mean_old = Mean_d_fidu.copy()
-    Std_old = Std_d_fidu.copy()
-    
-    Mean_new = (k * Mean_old + New) / (k + 1)
-    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + New**2) / (k + 1) - Mean_new**2)
-    
-    Mean_d_fidu = Mean_new.copy()
-    Std_d_fidu = Std_new.copy()
-
-X_s_abacus = dict['X_s'][0]
-Mean_s_abacus = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
-Std_s_abacus = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
-for k in range(n_simulations):
-    New = []
-    for x1 in X_s_abacus:
-        min = 10
-        l_min = 0
-        for l in range(np.shape(X_s_abacus)[0]):
-            x2 = dict['X_s'][k][l]
-            if (abs(x1 - x2) < min):
-                min = abs(x1 - x2)
-                l_min = l
-        try:
-            New.append((dict['Y_s'][k][l_min - 1] + dict['Y_s'][k][l_min] + dict['Y_s'][k][l_min + 1]) / 3)
-        except:
-            New.append(dict['Y_s'][k][l_min])
-    New = np.asarray(New)
-    
-    Mean_old = Mean_s_abacus.copy()
-    Std_old = Std_s_abacus.copy()
-    
-    Mean_new = (k * Mean_old + New) / (k + 1)
-    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + New**2) / (k + 1) - Mean_new**2)
-    
-    Mean_s_abacus = Mean_new.copy()
-    Std_s_abacus = Std_new.copy()
-
-Mean_s_fidu = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
-Std_s_fidu = np.asarray([0 for k in range(np.shape(dict['X_s'][0])[0])])
-for k in range(n_fiducial):
-    New = []
-    for x1 in X_s_abacus:
-        min = 10
-        l_min = 0
-        for l in range(np.shape(X_s_abacus)[0]):
-            x2 = dict['X_s'][k + n_simulations][l]
-            if (abs(x1 - x2) < min):
-                min = abs(x1 - x2)
-                l_min = l
-        try:
-            New.append((dict['Y_s'][k + n_simulations][l_min - 1] + dict['Y_s'][k + n_simulations][l_min] + dict['Y_s'][k + n_simulations][l_min + 1]) / 3)
-        except:
-            New.append(dict['Y_s'][k + n_simulations][l_min])
-    New = np.asarray(New)
-        
-    Mean_old = Mean_s_fidu.copy()
-    Std_old = Std_s_fidu.copy()
-    
-    Mean_new = (k * Mean_old + New) / (k + 1)
-    Std_new = np.sqrt((k * (Std_old**2 + Mean_old**2) + New**2) / (k + 1) - Mean_new**2)
-    
-    Mean_s_fidu = Mean_new.copy()
-    Std_s_fidu = Std_new.copy()
-
-print("expectation defined")
-
 ## Defining the log-likelihood
 print("Starting to define the log-likelihood")
 
 Boundaries = [[60, 75], [-1.40, -0.60], [0.920, 0.995], [0.64, 1.04], [0.250, 0.375]]
 
-def chi2(X):    
+def loglikelihood(X):    
     # Making boundaries
     if ((X[0] > Boundaries[0][1]) or (X[0] < Boundaries[0][0])):
         return(- m.inf)
@@ -269,111 +255,21 @@ def chi2(X):
     X_s_predicted, Y_s_predicted, Cov_s = gp_s.compute_prediction(X_new)
     
     # giving the right shape to the predicted value
-    Y_d_predicted = [Y_d_predicted[0]]
-    Y_s_predicted = [Y_s_predicted[0]]
+    Y_predicted = np.concatenate((Y_d_predicted[0], Y_s_predicted[0]))
     
-    # searching for the expected value and the noise
-    X_d_predicted = X_d_predicted[0][:, 5]
-    
-    Fiducial_data = np.asarray([[0 for j in range(n_fiducial)] for i in range(np.shape(X_d_predicted)[0])])
-    for i in range(np.shape(X_d_predicted)[0]):
-        x1 = X_d_predicted[i]
-        for j in range(n_fiducial):
-            l_min = 0
-            min = 10
-            for l in range(np.shape(dict['X_d'][n_simulations + j])[0]):
-                x2 = dict['X_d'][n_simulations + j][l] / 6
-                if (abs(x1 - x2) < min):
-                    min = abs(x1 - x2)
-                    l_min = l
-            Fiducial_data[i][j] = dict['Y_d'][n_simulations + j][l_min]
-    
-    Fiducial_data = Fiducial_data
-    Y_d_expected = np.mean(Fiducial_data, axis = 1)
-    Noise_d_expected = np.cov(Fiducial_data)
-    Y_d_std_expected = np.sqrt(np.diagonal(Noise_d_expected))
-    
-    X_s_predicted = X_s_predicted[0][:, 5]
-    
-    Fiducial_data = np.asarray([[0 for j in range(n_fiducial)] for i in range(np.shape(X_s_predicted)[0])])
-    for i in range(np.shape(X_s_predicted)[0]):
-        x1 = X_s_predicted[i]
-        for j in range(n_fiducial):
-            l_min = 0
-            min = 10
-            for l in range(np.shape(dict['X_s'][n_simulations + j])[0]):
-                x2 = dict['X_s'][n_simulations + j][l]
-                if (abs(x1 - x2) < min):
-                    min = abs(x1 - x2)
-                    l_min = l
-            try:
-                Fiducial_data[i][j] = (dict['Y_s'][n_simulations + j][l_min - 1] + dict['Y_s'][n_simulations + j][l_min] + dict['Y_s'][n_simulations + j][l_min + 1]) / 3
-            except:
-                Fiducial_data[i][j] = dict['Y_s'][n_simulations + j][l_min]
-    
-    Fiducial_data = Fiducial_data
-    Y_s_expected = np.mean(Fiducial_data, axis = 1)
-    Noise_s_expected = np.cov(Fiducial_data)
-    Y_s_std_expected = np.sqrt(np.diagonal(Noise_s_expected))
-    
-    # correction to account for the logarithm transformation
-    for i in range(np.shape(X_d_predicted)[0]):
-        Y_d_std_expected[i] = Y_d_std_expected[i] / (np.log(10) * Y_d_expected[i])
-    
-    for i in range(np.shape(X_d_predicted)[0]):
-        for j in range(np.shape(X_d_predicted)[0]):
-            Noise_d_expected[i, j] = Noise_d_expected[i, j] / (np.log(10)**2 * Y_d_expected[i] * Y_d_expected[j])
-    
-    for i in range(np.shape(X_d_predicted)[0]):
-        Y_d_expected[i] = np.log10(Y_d_expected[i])
-    
-    for i in range(np.shape(X_s_predicted)[0]):
-        Y_s_std_expected[i] = Y_s_std_expected[i] / (np.log(10) * Y_s_expected[i])
-    
-    for i in range(np.shape(X_s_predicted)[0]):
-        for j in range(np.shape(X_s_predicted)[0]):
-            Noise_s_expected[i, j] = Noise_s_expected[i, j] / (np.log(10)**2 * Y_s_expected[i] * Y_s_expected[j])
-    
-    for i in range(np.shape(X_s_predicted)[0]):
-        Y_s_expected[i] = np.log10(Y_s_expected[i])
-    
-    # Giving the right shape to the expected value
-    Y_d_expected = [np.reshape(Y_d_expected, (4, 1))]
-    Y_s_expected = [np.reshape(Y_s_expected, (5, 1))]
-    
-    # Defining the noises
-    Noise_predicted_d = Cov_d
-    Noise_expected_d_diagonal = [Y_d_std_expected]
-    Noise_expected_d_matrix = [Noise_d_expected]
-    
-    Noise_predicted_s = Cov_s
-    Noise_expected_s_diagonal = [Y_s_std_expected]
-    Noise_expected_s_matrix = [Noise_s_expected]
+    # getting the observation
+    Y_observed = np.reshape(Mean_observation, (-1, 1))
     
     # Computing the likelihood
-    #chi2_d = gp_d.likelihood_chi2_bd(Y_observation = Y_d_expected, Noise_observation = Noise_expected_d_diagonal, Y_model = Y_d_predicted, Noise_model = Noise_predicted_d)
-    # chi2_d = gp_d.likelihood_chi2_ad(Y_observation = Y_d_expected, Noise_observation = Noise_expected_d_diagonal, Y_model = Y_d_predicted, Noise_model = Noise_predicted_d, N = 21)
-    chi2_d = gp_d.likelihood_chi2_bm(Y_observation = Y_d_expected, Noise_observation = Noise_expected_d_matrix, Y_model = Y_d_predicted, Noise_model = Noise_predicted_d) 
+    ll = chi2(Y_observation = Y_observed, Noise_observation = Cov_observation, Y_model = Y_predicted, Noise_model = Cov_GP)
     
-    # chi2_s = gp_s.likelihood_chi2_bd(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_diagonal, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s)
-    # chi2_s = gp_s.likelihood_chi2_ad(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_diagonal, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s, N = 21)
-    chi2_s = gp_s.likelihood_chi2_bm(Y_observation = Y_s_expected, Noise_observation = Noise_expected_s_matrix, Y_model = Y_s_predicted, Noise_model = Noise_predicted_s) 
-    
-    if (m.isnan(chi2_d)):
-        print("chi2_d is NaN")
+    if (m.isnan(ll)):
+        print("chi2 is Nan")
         print(X)
         return(- m.inf)
     
-    if (m.isnan(chi2_s)):
-        print("chi2_s is Nan")
-        print(X)
-        return(- m.inf)
-    
-    # combining the 2 statistics
-    chi2 = chi2_d + chi2_s
-    
-    # returning the log-likelihood or chi_2
-    return(-0.5 * chi2)
+    # returning the log-likelihood
+    return(-0.5 *ll)
 
 print("Likelihood defined")
 
@@ -393,7 +289,7 @@ backend.reset(n_walkers, n_dims)
 A = np.random.rand(n_walkers, n_dims)
 Initial_guess = np.asarray([prior(A[i]) for i in range(n_walkers)])
 
-sampler = emcee.EnsembleSampler(n_walkers, n_dims, chi2, args=[], backend=backend)
+sampler = emcee.EnsembleSampler(n_walkers, n_dims, loglikelihood, args=[], backend=backend)
 
 print("Problem defined")
 
@@ -453,7 +349,7 @@ plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_bm_ds'
+my_file = 'Figure_12_EMCEE_bm_ds_2'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()
@@ -468,12 +364,25 @@ Truths = prior(Expected_values_01)
 
 flat_samples = sampler.get_chain(discard = 0, thin = 2, flat=True)
 
-corner.corner(flat_samples, labels = Labels, truths = Truths, plot_datapoints = False, fill_contours = True)
-plt.suptitle("Posterior distribution (Abacus)")
+corner.corner(flat_samples,
+    labels = Labels, 
+    truths = Truths,
+    truth_color = 'black',
+    show_titles = True, 
+    title_kwargs = {"fontsize": 10},
+    bins = 40,
+    scale_hist = True,
+    plot_datapoints = False, 
+    plot_contours = True,
+    fill_contours = True,
+    levels = (1 - np.exp(-0.5), 1 - np.exp(- 2)),
+    color = 'green'
+    )
+plt.suptitle("Posterior distribution on the cosmological parameters")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_corner_bm_ds'
+my_file = 'Figure_12_EMCEE_corner_bm_ds_2'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()

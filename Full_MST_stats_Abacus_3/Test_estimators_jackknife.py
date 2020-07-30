@@ -636,61 +636,77 @@ for a in range(4):
         
         if (a == 0):
             subplot.set_xlabel('$d$')
-            subplot.set_xlim(1, 4)
 
             subplot.set_ylabel('$\sigma_{d} / <N_{d}>$')
-            subplot.set_ylim(- 10**(-1), 10**(-1))
+            subplot.set_yscale('log')
+            subplot.set_ylim(10**(-3))
             
-            subplot.plot(X_d, (Mean_d[0] - Mean_basic_d) / Mean_basic_d, color = 'g', label = 'simulation 0')
-            subplot.fill_between(x = X_d, y1 = (Mean_d[0] - Mean_basic_d - np.sqrt(Std_d[0])) / Mean_basic_d, y2 = (Mean_d[0] - Mean_basic_d + np.sqrt(Std_d[0])) / Mean_basic_d, color = 'g', alpha = 0.4)
-            subplot.plot(X_d, (Mean_d[20] - Mean_basic_d) / Mean_basic_d, color = 'r', label = 'simulation 20')
-            subplot.fill_between(x = X_d, y1 = (Mean_d[20] - Mean_basic_d - np.sqrt(Std_d[20])) / Mean_basic_d, y2 = (Mean_d[20] - Mean_basic_d + np.sqrt(Std_d[20])) / Mean_basic_d, color = 'r', alpha = 0.4)
+            subplot.plot(X_d, np.sqrt(Std_basic_d) / Mean_basic_d, color = 'k', label = "Old estimator")
+            # subplot.plot(X_d, np.sqrt(Std_jackknife_d) / Mean_basic_d, color = 'b', label = 'Formula 1a')
+            # subplot.plot(X_d, np.sqrt(Std_simu_d) / Mean_basic_d, color = 'g', label = 'Formula 1b')
+            # subplot.plot(X_d, np.sqrt(Std_1_d) / Mean_basic_d, color = 'r', label = 'Formula 1c')
+            # subplot.plot(X_d, np.sqrt(Std_2_d) / Mean_basic_d, color = 'b', label = 'Formula 2')
+            # subplot.plot(X_d, np.sqrt(Std_3_d) / Mean_basic_d, color = 'r', label = "Formula 3")
+            # subplot.plot(X_d, np.sqrt(Std_4_d) / Mean_basic_d, color = 'r', label = "Formula 4")
+            # subplot.plot(X_d, np.sqrt(Std_5_d) / Mean_basic_d, color = 'b', label = 'Formula 5')
             
             subplot.legend()
         
         elif (a == 1):
             subplot.set_xlabel('$l$')
             subplot.set_xscale('log')
-            subplot.set_xlim(10**(0), 10**(1))
 
             subplot.set_ylabel('$\sigma_{l} / <N_{l}>$')
-            subplot.set_ylim(- 10**(0), 10**(0))
+            subplot.set_yscale('log')
+            subplot.set_ylim(10**(-3))
             
-            subplot.plot(X_l, (Mean_l[0] - Mean_basic_l) / Mean_basic_l, color = 'g', label = 'simulation 0')
-            subplot.fill_between(x = X_l, y1 = (Mean_l[0] - Mean_basic_l - np.sqrt(Std_l[0])) / Mean_basic_l, y2 = (Mean_l[0] - Mean_basic_l + np.sqrt(Std_l[0])) / Mean_basic_l, color = 'g', alpha = 0.4)
-            subplot.plot(X_l, (Mean_l[20] - Mean_basic_l) / Mean_basic_l, color = 'r', label = 'simulation 20')
-            subplot.fill_between(x = X_l, y1 = (Mean_l[20] - Mean_basic_l - np.sqrt(Std_l[20])) / Mean_basic_l, y2 = (Mean_l[20] - Mean_basic_l + np.sqrt(Std_l[20])) / Mean_basic_l, color = 'r', alpha = 0.4)
+            subplot.plot(X_l, np.sqrt(Std_basic_l) / Mean_basic_l, color = 'k', label = "Old estimator")
+            # subplot.plot(X_l, np.sqrt(Std_jackknife_l) / Mean_basic_l, color = 'b', label = 'Formula 1a')
+            # subplot.plot(X_l, np.sqrt(Std_simu_l) / Mean_basic_l, color = 'g', label = 'Formula 1b')
+            # subplot.plot(X_l, np.sqrt(Std_1_l) / Mean_basic_l, color = 'r', label = 'Formula 1c')
+            # subplot.plot(X_l, np.sqrt(Std_2_l) / Mean_basic_l, color = 'b', label = 'Formula 2')
+            # subplot.plot(X_l, np.sqrt(Std_3_l) / Mean_basic_l, color = 'r', label = "Formula 3")
+            # subplot.plot(X_l, np.sqrt(Std_4_l) / Mean_basic_l, color = 'r', label = "Formula 4")
+            # subplot.plot(X_l, np.sqrt(Std_5_l) / Mean_basic_l, color = 'b', label = 'Formula 5')
             
             subplot.legend(loc = 'upper left')
         
         elif (a == 2):
             subplot.set_xlabel('$b$')
             subplot.set_xscale('log')
-            subplot.set_xlim(3, 30)
 
             subplot.set_ylabel('$\sigma_{b} / <N_{b}>$')
-            subplot.set_ylim(- 3 * 10**(-1), 3 * 10**(-1))
+            subplot.set_yscale('log')
+            subplot.set_ylim(10**(-3))
             
-            subplot.plot(X_b, (Mean_b[0] - Mean_basic_b) / Mean_basic_b, color = 'g', label = 'simulation 0')
-            subplot.fill_between(x = X_b, y1 = (Mean_b[0] - Mean_basic_b - np.sqrt(Std_b[0])) / Mean_basic_b, y2 = (Mean_b[0] - Mean_basic_b + np.sqrt(Std_b[0])) / Mean_basic_b, color = 'g', alpha = 0.4)
-            subplot.plot(X_b, (Mean_b[20] - Mean_basic_b) / Mean_basic_b, color = 'r', label = 'simulation 20')
-            subplot.fill_between(x = X_b, y1 = (Mean_b[20] - Mean_basic_b - np.sqrt(Std_b[20])) / Mean_basic_b, y2 = (Mean_b[20] - Mean_basic_b + np.sqrt(Std_b[20])) / Mean_basic_b, color = 'r', alpha = 0.4)
+            subplot.plot(X_b, np.sqrt(Std_basic_b) / Mean_basic_b, color = 'k', label = "Old estimator")
+            # subplot.plot(X_b, np.sqrt(Std_jackknife_b) / Mean_basic_b, color = 'b', label = 'Formula 1a')
+            # subplot.plot(X_b, np.sqrt(Std_simu_b) / Mean_basic_b, color = 'g', label = 'Formula 1b')
+            # subplot.plot(X_b, np.sqrt(Std_1_b) / Mean_basic_b, color = 'r', label = 'Formula 1c')
+            # subplot.plot(X_b, np.sqrt(Std_2_b) / Mean_basic_b, color = 'b', label = 'Formula 2')
+            # subplot.plot(X_b, np.sqrt(Std_3_b) / Mean_basic_b, color = 'r', label = "Formula 3")
+            # subplot.plot(X_b, np.sqrt(Std_4_b) / Mean_basic_b, color = 'r', label = "Formula 4")
+            # subplot.plot(X_b, np.sqrt(Std_5_b) / Mean_basic_b, color = 'b', label = 'Formula 5')
             
             subplot.legend(loc = 'upper left')
         
         else:
             subplot.set_xlabel('$s$')
-            subplot.set_xlim(0, 0.7)
 
             subplot.set_ylabel('$\sigma_{s} / <N_{s}>$')
-            subplot.set_ylim(- 10**(-1), 10**(-1))
+            subplot.set_yscale('log')
+            subplot.set_ylim(10**(-3))
             
-            subplot.plot(X_s, (Mean_s[0] - Mean_basic_s) / Mean_basic_s, color = 'g', label = 'simulation 0')
-            subplot.fill_between(x = X_s, y1 = (Mean_s[0] - Mean_basic_s - np.sqrt(Std_s[0])) / Mean_basic_s, y2 = (Mean_s[0] - Mean_basic_s + np.sqrt(Std_s[0])) / Mean_basic_s, color = 'g', alpha = 0.4)
-            subplot.plot(X_s, (Mean_s[20] - Mean_basic_s) / Mean_basic_s, color = 'r', label = 'simulation 20')
-            subplot.fill_between(x = X_s, y1 = (Mean_s[20] - Mean_basic_s - np.sqrt(Std_s[20])) / Mean_basic_s, y2 = (Mean_s[20] - Mean_basic_s + np.sqrt(Std_s[20])) / Mean_basic_s, color = 'r', alpha = 0.4)
+            subplot.plot(X_s, np.sqrt(Std_basic_s) / Mean_basic_s, color = 'k', label = "Old estimator")
+            # subplot.plot(X_s, np.sqrt(Std_jackknife_s) / Mean_basic_s, color = 'b', label = 'Formula 1a')
+            # subplot.plot(X_s, np.sqrt(Std_simu_s) / Mean_basic_s, color = 'g', label = 'Formula 1b')
+            # subplot.plot(X_s, np.sqrt(Std_1_s) / Mean_basic_s, color = 'r', label = 'Formula 1c')
+            # subplot.plot(X_s, np.sqrt(Std_2_s) / Mean_basic_s, color = 'b', label = 'Formula 2')
+            # subplot.plot(X_s, np.sqrt(Std_3_s) / Mean_basic_s, color = 'r', label = "Formula 3")
+            # subplot.plot(X_s, np.sqrt(Std_4_s) / Mean_basic_s, color = 'r', label = "Formula 4")
+            # subplot.plot(X_s, np.sqrt(Std_5_s) / Mean_basic_s, color = 'b', label = 'Formula 5')
             
             subplot.legend()
 
-plt.suptitle("Comparison of the jacknife noise estimate to the simulation's dispersion")
+plt.suptitle("Comparison of different formulas for estimating the noise")
 plt.show()

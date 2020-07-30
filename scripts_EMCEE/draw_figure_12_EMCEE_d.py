@@ -330,7 +330,7 @@ plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_d_4'
+my_file = 'Figure_12_EMCEE_bm_d_2'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()
@@ -350,7 +350,7 @@ plt.suptitle("Posterior distribution (Abacus)")
 
 #my_path = os.path.abspath('/home/astro/magnan/Repository_Stage_3A/Figures')
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Figures')
-my_file = 'Figure_12_EMCEE_corner_d_4'
+my_file = 'Figure_12_EMCEE_corner_bm_d_2'
 my_file = os.path.join(my_path, my_file)
 plt.savefig(my_file)
 plt.show()

@@ -204,8 +204,8 @@ for j in range(n_groups):
     gp_d.optimize_model(optimizer = 'lbfgsb')
     gp_s = GP.GP(X = X_s_data, Y = Y_s_data, n_points_per_simu = 5, Noise = None, make_covariance_matrix = False)
     gp_s.optimize_model(optimizer = 'lbfgsb')
-    gp_imc = GP_b.GP(X = [X_d_data, X_s_data], Y = [Y_d_data, Y_s_data], N_points_per_simu = [4, 5], Noise = [None, None])
-    gp_imc.optimize_models(optimizer = 'lbfgsb')
+    gp_imc = GP_b.GP(X = [X_d_data, X_s_data], Y = [Y_d_data, Y_s_data], N_points_per_simu = [4, 5], Noise = [None, None], make_covariance_matrix = False)
+    gp_imc.optimize_model(optimizer = 'lbfgsb')
     
     # getting the errors
     error_d = gp_d.compute_ms_test(X_d_test, Y_d_test, Y_d_std_test)
@@ -238,7 +238,7 @@ plt.legend()
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Test_IMC/')
 my_file = 'Test_IMC_d'
 my_file = os.path.join(my_path, my_file)
-plt.savefig(my_file)
+#plt.savefig(my_file)
 plt.show()
 
 plt.title("$k$-fold cross validation of IMC : $s$")
@@ -253,7 +253,7 @@ plt.legend()
 my_path = os.path.abspath('C:/Users/Nathan/Documents/D - X/C - Stages/Stage 3A/Repository_Stage_3A/Test_IMC/')
 my_file = 'Test_IMC_s'
 my_file = os.path.join(my_path, my_file)
-plt.savefig(my_file)
+#plt.savefig(my_file)
 plt.show()
 
 print("results plotted and saved")
